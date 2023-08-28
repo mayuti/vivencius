@@ -1,7 +1,7 @@
-
-Sobre Vivencius
+Vivencius
+============
 Te doy la bienvenida a nuestro portal
-
+-------------------------
 Agradezco que te estés interesando en recorrer este camino apasionante del Software Libre, donde se te abren muchas oportunidades para ti en aprendizaje, trabajo y relacionarte con personas de todo el mundo que conforman comunidades basadas en la filosofía de compartir conocimiento, participar en las creaciones más importantes a nivel mundial aunque no seas programador y lograr reconocimiento por tus esfuerzos.
 
 Podrás crear tu empresa con modelo cooperativo que se adapta naturalmente cuando desarrollamos software y/u ofrecemos servicios sobre los programas con licencias permisivas, o simplemente si quieres cambiar por aplicaciones libres de ofimáticas, bases de datos, navegadores, etc. que poseen características muchas veces mayores que las aplicaciones privativas, donde solo adquieres el derecho de uso pero no la propiedad del programa.
@@ -20,3 +20,28 @@ Reitero mi agradecimiento y espero que los contenidos del sitio te sean de mucha
 
 Saludos cordiales.
 Grupo Vivencius.
+
+-------------------------
+
+### Contribuir
+
+Si deseas contribuir al desarrollo de este portal, ya sea en su diseño gráfico, funcionalidades, difundiendo el proyecto, traducir en otros idiomas o como expositor para dar contenido al sitio, etc. te pido que nos contactes a [@mayuti](https://github.com/mayuti)
+
+-------------------------
+
+### Requisitos de Sistema
+
+* PHP: 7.4+
+* MySQL: 5.6+ (o MariaDB versión 10.1+)
+* WordPress: 5.8+
+
+
+--------------------------
+
+### Registro de Cambios
+
+#### 0.1.0 - Agosto 2023
+
+* Lanzamiento inicial
+
+Desarrollador [@mayuti](https://github.com/mayuti)
