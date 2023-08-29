@@ -1,4 +1,4 @@
-<p align="center"><a href="https://vivencius.org/"><img src="./screenshot/screenshoot1.JPG" alt="Vivencius"></a></p>
+<p align="center"><a href="https://vivencius.org/"><img src="./screenshot/screenshot1.JPG" alt="Vivencius"></a></p>
 
 Vivencius
 ============
