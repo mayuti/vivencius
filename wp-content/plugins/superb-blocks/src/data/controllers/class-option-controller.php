@@ -178,6 +178,16 @@ class OptionController
         return update_option(Option::SETTINGS, $settings);
     }
 
+    public static function GetCompatibilitySettings()
+    {
+        return get_option(Option::COMPATIBILITY_SETTINGS, array(CompatibilitySettingsOptionKey::SPECTRA_BLOCK_SPACING => true));
+    }
+
+    public function SaveCompatibilitySettings($compatibility_settings)
+    {
+        return update_option(Option::COMPATIBILITY_SETTINGS, $compatibility_settings);
+    }
+
     /* */
 }
 
@@ -186,6 +196,7 @@ class Option
     const PREFIX = 'superbaddonslibrary_';
     const KEY_DOMAIN = self::PREFIX . 'keydomain';
     const SETTINGS = self::PREFIX . 'settings';
+    const COMPATIBILITY_SETTINGS = self::PREFIX . 'compatibilitysettings';
 }
 
 class KeyDomainOptionKey
@@ -203,4 +214,9 @@ class SettingsOptionKey
 {
     const LOGS_ENABLED = 'spblogsenabled';
     const LOG_SHARE_ENABLED = 'spblogshareenabled';
+}
+
+class CompatibilitySettingsOptionKey
+{
+    const SPECTRA_BLOCK_SPACING = 'spbspectrablockspacing';
 }

@@ -564,7 +564,7 @@ screen and (-ms-high-contrast: none) {
     content: ","
 }
 .pmagic .pm-field-multiple-value:last-child::after {
-    content: "."
+    content: ""
 }
 .pm-group-view .pm-edit-heading {
     margin-bottom: 20px
@@ -1036,6 +1036,12 @@ screen and (-ms-high-contrast: none) {
     box-shadow: none!important;
     transition: background-color 0.2s, border 0.2s;
 }
+
+.pmagic .pg-group-reg-form .pmrow .pm-field-input select[multiple]{
+    height: auto;
+}
+
+
 
 .pmagic .pg-group-reg-form .pmrow .pm-field-input input[type="text"]:hover, 
 .pmagic .pg-group-reg-form .pmrow .pm-field-input input[type="password"]:hover, 
@@ -2799,7 +2805,7 @@ div#pm_result_pane .pm-loader {
 }
 #pm-edit-group-popup .pg-group-setting-popup-wrap {
     min-height: 160px;
-    padding: 20px 0
+    padding: 20px 10px
 }
 #pm-edit-group-popup .pg-group-setting-popup-wrap .pg-info-message {
     margin-bottom: 28px
@@ -3402,6 +3408,12 @@ div#pm_result_pane .pm-loader {
     align-content: stretch;
 }
 
+#pm-advance-search-form .pm-search-box-wrap .pm-search-box {
+    padding: 10px;
+    border: 0px;
+    margin: 0px;
+}
+
 #pm-advance-search-form #advance_search_pane {
     display: flex;
     flex-direction: row;
@@ -3416,12 +3428,15 @@ div#pm_result_pane .pm-loader {
 }
 
 #pm-advance-search-form #advance_search_pane .pm-search-box {
-
+    margin: 0px;
+    padding: 0px;
+    border: 1px solid #e1e1e1;
+    text-align: left;
 }
 
 #pm-advance-search-form #advance_search_pane .pm-search-box select {
     width: 100%;
-
+    max-width: 100% !important;
 }
 
 #pm-advance-search-form #advance_search_pane #advance_seach_ul{

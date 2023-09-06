@@ -537,12 +537,10 @@ if ( filter_input( INPUT_GET, 'action' ) == 'delete' ) {
 <?php esc_html_e( 'Options:', 'profilegrid-user-profiles-groups-and-communities' ); ?>
                     </div>
                     <div class="uiminput">
-                        <textarea name="field_options[dropdown_option_value]" id="field_options">
-                        <?php
+                        <textarea name="field_options[dropdown_option_value]" id="field_options"><?php
                         if ( !empty( $field_options ) ) {
 							echo esc_attr( $field_options['dropdown_option_value'] );}
-						?>
-                        </textarea>
+						?></textarea>
                         <div class="errortext"></div>
                     </div>
                     <div class="uimnote"><?php esc_html_e( 'Options for drop down list. Separate multiple values with a comma(,).', 'profilegrid-user-profiles-groups-and-communities' ); ?></div>

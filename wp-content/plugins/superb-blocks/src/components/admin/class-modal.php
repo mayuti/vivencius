@@ -19,6 +19,7 @@ class Modal
             <div class="superbaddons-admindashboard-modal">
                 <div class="superbaddons-admindashboard-modal-header">
                     <span class="superbaddons-admindashboard-modal-title superbaddons-element-text-lg superbaddons-element-text-800">Modal Title</span>
+                    <img class="superbaddons-admindashboard-modal-header-spinner" src="<?= SUPERBADDONS_ASSETS_PATH . "/img/blocks-spinner.svg"; ?>" />
                     <div class="superbaddons-admindashboard-modal-close-button" class="superb-addons-template-library-button superb-addons-template-library-button-secondary"><img src="<?= SUPERBADDONS_ASSETS_PATH . "/img/x.svg"; ?>" alt="<?= esc_attr__("Close", "superbaddons"); ?>" /></div>
                 </div>
                 <div class="superbaddons-element-separator"></div>

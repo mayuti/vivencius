@@ -9,7 +9,6 @@ class ComposerStaticInita94ee717fbe31078ea93f7c04889a4f8
     public static $classMap = array (
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
         'SuperbAddons\\Admin\\Controllers\\DashboardController' => __DIR__ . '/../..' . '/src/admin/controllers/class-dashboard-controller.php',
-        'SuperbAddons\\Admin\\Controllers\\SettingInputKey' => __DIR__ . '/../..' . '/src/admin/controllers/class-settings-controller.php',
         'SuperbAddons\\Admin\\Controllers\\SettingsController' => __DIR__ . '/../..' . '/src/admin/controllers/class-settings-controller.php',
         'SuperbAddons\\Admin\\Controllers\\TroubleshootingController' => __DIR__ . '/../..' . '/src/admin/controllers/class-troubleshooting-controller.php',
         'SuperbAddons\\Admin\\Pages\\DashboardPage' => __DIR__ . '/../..' . '/src/admin/pages/class-page-dashboard.php',
@@ -40,6 +39,7 @@ class ComposerStaticInita94ee717fbe31078ea93f7c04889a4f8
         'SuperbAddons\\Config\\Capabilities' => __DIR__ . '/../..' . '/src/class-config.php',
         'SuperbAddons\\Config\\Config' => __DIR__ . '/../..' . '/src/class-config.php',
         'SuperbAddons\\Data\\Controllers\\CacheController' => __DIR__ . '/../..' . '/src/data/controllers/class-cache-controller.php',
+        'SuperbAddons\\Data\\Controllers\\CompatibilitySettingsOptionKey' => __DIR__ . '/../..' . '/src/data/controllers/class-option-controller.php',
         'SuperbAddons\\Data\\Controllers\\DomainShiftController' => __DIR__ . '/../..' . '/src/data/controllers/class-domainshift-controller.php',
         'SuperbAddons\\Data\\Controllers\\KeyController' => __DIR__ . '/../..' . '/src/data/controllers/class-key-controller.php',
         'SuperbAddons\\Data\\Controllers\\KeyDomainOptionKey' => __DIR__ . '/../..' . '/src/data/controllers/class-option-controller.php',
@@ -67,6 +67,7 @@ class ComposerStaticInita94ee717fbe31078ea93f7c04889a4f8
         'SuperbAddons\\Library\\Controllers\\LibraryController' => __DIR__ . '/../..' . '/src/library/controllers/class-library-controller.php',
         'SuperbAddons\\Library\\Controllers\\LibraryRequestController' => __DIR__ . '/../..' . '/src/library/controllers/class-request-controller.php',
         'SuperbAddons\\SuperbAddonsPlugin' => __DIR__ . '/../..' . '/src/class-plugin.php',
+        'SuperbAddons\\Tours\\Controllers\\TourController' => __DIR__ . '/../..' . '/src/tours/class-tour-controller.php',
     );
 
     public static function getInitializer(ClassLoader $loader)

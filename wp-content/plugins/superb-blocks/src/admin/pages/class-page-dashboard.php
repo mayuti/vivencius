@@ -66,11 +66,12 @@ class DashboardPage
                     <?php
                     new LinkBox(
                         array(
-                            "icon" => "purple-file.svg",
-                            "title" => __("Documentation", "superbaddons"),
-                            "description" => __("We have put together a detailed documentation that walks you through every step of the process, from installation to customization.", "superbaddons"),
-                            "cta" => __("View documentation", "superbaddons"),
-                            "link" => "https://superbthemes.com/documentation/",
+                            "icon" => "question.svg",
+                            "title" => __("Help & Tutorials", "superbaddons"),
+                            "description" => __("We have put together detailed documentation that walks you through every step of the process, from installation to customization.", "superbaddons"),
+                            "cta" => __("View tutorials", "superbaddons"),
+                            "link" => admin_url('admin.php?page=' . DashboardController::SUPPORT),
+                            "same_window" => true,
                         )
                     );
                     new LinkBox(

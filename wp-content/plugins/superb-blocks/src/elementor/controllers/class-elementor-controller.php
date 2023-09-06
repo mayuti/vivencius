@@ -37,7 +37,7 @@ class ElementorController
         }
 
         // Check for required Elementor version
-        if (version_compare(ELEMENTOR_VERSION, self::MINIMUM_ELEMENTOR_VERSION, '<')) {
+        if (!defined("ELEMENTOR_VERSION") || version_compare(ELEMENTOR_VERSION, self::MINIMUM_ELEMENTOR_VERSION, '<')) {
             return false;
         }
 

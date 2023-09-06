@@ -22,10 +22,10 @@ class DashboardController
 {
     const MENU_SLUG = 'superbaddons';
     const DASHBOARD = 'dashboard';
-    const ELEMENTOR_DASHBOARD = 'superbaddons_elementor_dashboard';
-    const GUTENBERG_DASHBOARD = 'superbaddons_gutenberg_dashboard';
-    const SETTINGS = 'superbaddons_settings';
-    const SUPPORT = 'superbaddons_support';
+    const ELEMENTOR_DASHBOARD = 'superbaddons-element-dashboard';
+    const GUTENBERG_DASHBOARD = 'superbaddons-gutenberg-dashboard';
+    const SETTINGS = 'superbaddons-settings';
+    const SUPPORT = 'superbaddons-support';
 
     const PREMIUM_CLASS = 'superbaddons-get-premium';
 
@@ -157,7 +157,7 @@ class DashboardController
         );
 
         if ($page_hook === $this->hooks[self::SUPPORT]) {
-            wp_enqueue_script('superb-addons-troubleshooting', SUPERBADDONS_ASSETS_PATH . '/js/admin/troubleshooting.js', array('jquery'), SUPERBADDONS_VERSION, true);
+            wp_enqueue_script('superb-addons-troubleshooting', SUPERBADDONS_ASSETS_PATH . '/js/admin/troubleshooting.js', array('jquery', 'wp-i18n'), SUPERBADDONS_VERSION, true);
             wp_localize_script('superb-addons-troubleshooting', 'superbaddonstroubleshooting_g', array(
                 "rest" => array(
                     "base" => \get_rest_url(),
@@ -165,6 +165,7 @@ class DashboardController
                     "nonce" => wp_create_nonce("wp_rest"),
                     "routes" => array(
                         "troubleshooting" => TroubleshootingController::TROUBLESHOOTING_ROUTE,
+                        "tutorial" => TroubleshootingController::TUTORIAL_ROUTE,
                     )
                 ),
                 "steps" => array(
@@ -219,6 +220,18 @@ class DashboardController
                 )
             ));
             add_action("admin_footer", array($this, 'TroubleshootingTemplates'));
+            wp_enqueue_style(
+                'superb-addons-admin-modal',
+                SUPERBADDONS_ASSETS_PATH . '/css/admin-modal.min.css',
+                array(),
+                SUPERBADDONS_VERSION
+            );
+            wp_enqueue_style(
+                'superbaddons-js-snackbar',
+                SUPERBADDONS_ASSETS_PATH . '/lib/js-snackbar.min.css',
+                array(),
+                SUPERBADDONS_VERSION
+            );
         } elseif ($page_hook === $this->hooks[self::SETTINGS]) {
             wp_enqueue_style(
                 'superb-addons-admin-modal',

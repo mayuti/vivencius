@@ -136,9 +136,15 @@ class KeyController
     public static function GetCurrentKeyTypeLabel()
     {
         $option_controller = new OptionController();
+
+        if (!self::HasRegisteredKey()) {
+            return self::GetKeyTypeLabel(KeyType::FREE);
+        }
+
         if (!self::HasPremiumKey()) {
             return self::GetKeyTypeLabel(KeyType::FREE_PLUS);
         }
+
         return self::GetKeyTypeLabel($option_controller->GetKeyType());
     }
 

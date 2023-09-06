@@ -6,7 +6,7 @@ namespace SuperbAddons;
 Plugin Name: Superb Addons - WordPress & Elementor Addons
 Plugin URI: http://superbthemes.com/
 Description: Superb Addons - WordPress & Elementor Addons
-Version: 3.0.2
+Version: 3.0.5
 Author: SuperbThemes
 Author URI: http://superbthemes.com/
 Text Domain: superbaddons
@@ -20,7 +20,7 @@ if (!defined('WPINC')) {
 }
 // Constants
 if (!defined('SUPERBADDONS_VERSION')) {
-    define('SUPERBADDONS_VERSION', '3.0.2');
+    define('SUPERBADDONS_VERSION', '3.0.5');
 }
 
 if (!defined('SUPERBADDONS_BASE')) {

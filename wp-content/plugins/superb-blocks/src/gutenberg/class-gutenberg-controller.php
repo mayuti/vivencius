@@ -4,6 +4,8 @@ namespace SuperbAddons\Gutenberg\Controllers;
 
 defined('ABSPATH') || exit();
 
+use SuperbAddons\Admin\Controllers\SettingsController;
+use SuperbAddons\Data\Controllers\CompatibilitySettingsOptionKey;
 use SuperbAddons\Data\Controllers\RestController;
 use SuperbAddons\Gutenberg\BlocksAPI\Controllers\RecentPostsController;
 use SuperbAddons\Library\Controllers\LibraryController;
@@ -92,10 +94,6 @@ class GutenbergController
             SUPERBADDONS_VERSION
         );
         wp_localize_script('superb-addons-gutenberg-library', 'superblayoutlibrary_g', array(
-            "title" => esc_html__('Superb Patterns', 'superbaddons'),
-            "appender_title" => esc_html__('Add Superb Pattern', 'superbaddons'),
-            "patterns_title" => esc_html__('Explore Superb Patterns', 'superbaddons'),
-            "logoUrl" => esc_url(SUPERBADDONS_ASSETS_PATH . '/img/icon-superb.svg'),
             "style_placeholder" => esc_html__('All themes', 'superbaddons'),
             "category_placeholder" => esc_html__('All categories', 'superbaddons'),
             "snacks" => array(
@@ -146,6 +144,16 @@ class GutenbergController
             array(),
             SUPERBADDONS_VERSION
         );
+
+        if (SettingsController::IsCompatibilitySettingRelevantAndEnabled(CompatibilitySettingsOptionKey::SPECTRA_BLOCK_SPACING)) {
+            wp_enqueue_script(
+                'superb-addons-block-spacing-compatibility-fix',
+                SUPERBADDONS_ASSETS_PATH . '/js/compatibility/block-spacing.js',
+                array('jquery'),
+                SUPERBADDONS_VERSION,
+                true
+            );
+        }
     }
 
     public function RegisterBlockCategory($block_categories, $block_editor_context)
@@ -185,6 +193,11 @@ class GutenbergController
             include(SUPERBADDONS_PLUGIN_DIR . 'src/gutenberg/templates/pattern-tab-library-button.php');
             $template = ob_get_clean();
             echo '<script type="text/template" id="tmpl-gutenberg-superb-library-button-patternstab">' . $template . '</script>';
+            //
+            ob_start();
+            include(SUPERBADDONS_PLUGIN_DIR . 'src/gutenberg/templates/appender-button.php');
+            $template = ob_get_clean();
+            echo '<script type="text/template" id="tmpl-gutenberg-superb-library-appender-button">' . $template . '</script>';
             ////// Library
             LibraryController::InsertTemplatesWithWrapper();
         });

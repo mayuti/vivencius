@@ -8,7 +8,6 @@ $baseDir = dirname($vendorDir);
 return array(
     'Composer\\InstalledVersions' => $vendorDir . '/composer/InstalledVersions.php',
     'SuperbAddons\\Admin\\Controllers\\DashboardController' => $baseDir . '/src/admin/controllers/class-dashboard-controller.php',
-    'SuperbAddons\\Admin\\Controllers\\SettingInputKey' => $baseDir . '/src/admin/controllers/class-settings-controller.php',
     'SuperbAddons\\Admin\\Controllers\\SettingsController' => $baseDir . '/src/admin/controllers/class-settings-controller.php',
     'SuperbAddons\\Admin\\Controllers\\TroubleshootingController' => $baseDir . '/src/admin/controllers/class-troubleshooting-controller.php',
     'SuperbAddons\\Admin\\Pages\\DashboardPage' => $baseDir . '/src/admin/pages/class-page-dashboard.php',
@@ -39,6 +38,7 @@ return array(
     'SuperbAddons\\Config\\Capabilities' => $baseDir . '/src/class-config.php',
     'SuperbAddons\\Config\\Config' => $baseDir . '/src/class-config.php',
     'SuperbAddons\\Data\\Controllers\\CacheController' => $baseDir . '/src/data/controllers/class-cache-controller.php',
+    'SuperbAddons\\Data\\Controllers\\CompatibilitySettingsOptionKey' => $baseDir . '/src/data/controllers/class-option-controller.php',
     'SuperbAddons\\Data\\Controllers\\DomainShiftController' => $baseDir . '/src/data/controllers/class-domainshift-controller.php',
     'SuperbAddons\\Data\\Controllers\\KeyController' => $baseDir . '/src/data/controllers/class-key-controller.php',
     'SuperbAddons\\Data\\Controllers\\KeyDomainOptionKey' => $baseDir . '/src/data/controllers/class-option-controller.php',
@@ -66,4 +66,5 @@ return array(
     'SuperbAddons\\Library\\Controllers\\LibraryController' => $baseDir . '/src/library/controllers/class-library-controller.php',
     'SuperbAddons\\Library\\Controllers\\LibraryRequestController' => $baseDir . '/src/library/controllers/class-request-controller.php',
     'SuperbAddons\\SuperbAddonsPlugin' => $baseDir . '/src/class-plugin.php',
+    'SuperbAddons\\Tours\\Controllers\\TourController' => $baseDir . '/src/tours/class-tour-controller.php',
 );

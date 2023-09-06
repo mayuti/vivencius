@@ -12,12 +12,14 @@ use SuperbAddons\Data\Utils\ElementorCache;
 use SuperbAddons\Data\Utils\KeyException;
 use SuperbAddons\Elementor\Controllers\ElementorController;
 use SuperbAddons\Gutenberg\Controllers\GutenbergController;
+use SuperbAddons\Tours\Controllers\TourController;
 
 defined('ABSPATH') || exit();
 
 class TroubleshootingController
 {
     const TROUBLESHOOTING_ROUTE = '/troubleshooting';
+    const TUTORIAL_ROUTE = '/tutorial';
 
     const ENDPOINT_BASE = 'addons-status/';
 
@@ -27,6 +29,11 @@ class TroubleshootingController
             'methods' => 'POST',
             'permission_callback' => array($this, 'TroubleshootingCallbackPermissionCheck'),
             'callback' => array($this, 'TroubleshootingRouteCallback'),
+        ));
+        RestController::AddRoute(self::TUTORIAL_ROUTE, array(
+            'methods' => 'POST',
+            'permission_callback' => array($this, 'TutorialCallbackPermissionCheck'),
+            'callback' => array($this, 'TutorialRouteCallback'),
         ));
     }
 
@@ -38,6 +45,38 @@ class TroubleshootingController
         }
 
         return true;
+    }
+
+    public function TutorialCallbackPermissionCheck()
+    {
+        // Restrict endpoint to only users who have the proper capability.
+        if (!current_user_can(Capabilities::CONTRIBUTOR)) {
+            return new WP_Error('rest_forbidden', esc_html__('Unauthorized. Please check user permissions.', 'superbaddons'), array('status' => 401));
+        }
+
+        return true;
+    }
+
+    public function TutorialRouteCallback($request)
+    {
+        if (!isset($request['action'])) {
+            return new \WP_Error('bad_request_plugin', 'Bad Plugin Request', array('status' => 400));
+        }
+        try {
+            switch ($request['action']) {
+                case 'elementor-tour':
+                    $url = TourController::GetElementorTourURL();
+                    return rest_ensure_response(['success' => true, 'url' => esc_url_raw($url)]);
+                case 'cleanup-elementor-tour-page':
+                    $removed = TourController::CleanUpTourPage($request['tour-nonce']);
+                    return rest_ensure_response(['success' => $removed]);
+                default:
+                    return new \WP_Error('bad_request_plugin', 'Bad Plugin Request', array('status' => 400));
+            }
+        } catch (Exception $ex) {
+            LogController::HandleException($ex);
+            return new \WP_Error('internal_error_plugin', 'Internal Plugin Error', array('status' => 500));
+        }
     }
 
     public function TroubleshootingRouteCallback($request)
@@ -133,6 +172,12 @@ class TroubleshootingController
     private function KeyCheckCallback()
     {
         try {
+            $keytype_label = KeyController::GetCurrentKeyTypeLabel();
+            if (!KeyController::HasRegisteredKey()) {
+                // No need to check for key status if no key is registered.
+                return rest_ensure_response(['success' => true, "text" => esc_html($keytype_label)]);
+            }
+
             $keyinfo = KeyController::GetKeyStatus();
 
             if ($keyinfo['expired']) {
@@ -147,7 +192,6 @@ class TroubleshootingController
                 return rest_ensure_response(['success' => false, "text" => esc_html__('License Key Verification Invalid', 'superbaddons')]);
             }
 
-            $keytype_label = KeyController::GetCurrentKeyTypeLabel();
             return rest_ensure_response(['success' => true, "text" => esc_html($keytype_label)]);
         } catch (KeyException $k_ex) {
             return rest_ensure_response(['success' => false, "text" => esc_html($k_ex->getMessage())]);

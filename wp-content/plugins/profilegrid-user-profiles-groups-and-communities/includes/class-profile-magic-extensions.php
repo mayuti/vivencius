@@ -646,6 +646,19 @@ class Profile_Magic_Extensions {
             'path'          => 'profilegrid-user-profiles-groups-and-communities-profilegrid-woocommerce-customized-product-restrictions/profilegrid-woocommerce-customized-product-restrictions.php',
             'class'         => 'Profilegrid_Woocommerce_Product_Restrictions',
         );
+        
+        $list['TERAWALLET_INTEGRATION'] =array(
+            'slug'          => 'TERAWALLET_INTEGRATION',
+            'price'         => 'paid',
+            'filter'        => 'integration woocommerce customsolution',
+            'title'         => __( 'Customized TeraWallet Integration', 'profilegrid-user-profiles-groups-and-communities' ),
+            'image'         => 'pg-wallet-icon.png',
+            'description'   =>__( 'Offers powerful Group based credit control to admins and Group leaders. It integrates with WooCommerce and TeraWallet plugins to provide a workflow enabling Group based credit limit spendable on WooCommerce.', 'profilegrid-user-profiles-groups-and-communities' ),
+            'option_url'    => '',
+            'extension_url' =>'https://profilegrid.co/extensions/profilegrid-customized-terawallet-integration/',
+            'path'          => 'profilegrid-user-profiles-groups-and-communities-profilegrid-customized-terawallet-integration/profilegrid-credit.php',
+            'class'         => 'Profilegrid_Credit',
+        );
 
         return $list;
     }

@@ -27,20 +27,26 @@ Grupo Vivencius.
 
 ### Contribuir
 
-Si deseas contribuir al desarrollo de este portal, ya sea en su diseño gráfico, funcionalidades, difundiendo el proyecto, traducir en otros idiomas o como expositor para dar contenido al sitio, etc. te pido que nos contactes a [@mayuti](https://github.com/mayuti)
+Si deseas contribuir al desarrollo de este portal, ya sea en su diseño gráfico, funcionalidades, difundiendo el proyecto, traducir en otros idiomas o como expositor para dar contenido al sitio, etc. te pido que nos contactes a [Administrador Vivencius](mailto:admin@vivencius.ar)
 
 -------------------------
 
 ### Requisitos de Sistema
 
-* PHP: 7.4+
-* MySQL: 5.6+ (o MariaDB versión 10.1+)
-* WordPress: 5.8+
+* PHP: 8.0+
+* MySQL: 8.0+ (o MariaDB versión 11.0+)
+* WordPress: 6.0+
 
 
 --------------------------
 
 ### Registro de Cambios
+
+#### 0.1.1 - Septiembre 2023
+
+* Mejoras en logo, sección redes sociales, imágenes y redacciones.
+
+Desarrollador [@mayuti](https://github.com/mayuti)
 
 #### 0.1.0 - Agosto 2023
 

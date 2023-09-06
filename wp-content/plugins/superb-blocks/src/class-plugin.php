@@ -11,6 +11,7 @@ use SuperbAddons\Data\Controllers\LogController;
 use SuperbAddons\Data\Controllers\RestController;
 use SuperbAddons\Gutenberg\Controllers\GutenbergController;
 use SuperbAddons\Library\Controllers\LibraryRequestController;
+use SuperbAddons\Tours\Controllers\TourController;
 
 class SuperbAddonsPlugin
 {
@@ -32,6 +33,7 @@ class SuperbAddonsPlugin
         new GutenbergController();
         new ElementorController();
         new LibraryRequestController();
+        new TourController();
         LogController::AddCronAction();
         RestController::RegisterRoutes();
         add_filter('wp_theme_json_data_default', array($this, 'UpdateThemeJsonDefaults'));

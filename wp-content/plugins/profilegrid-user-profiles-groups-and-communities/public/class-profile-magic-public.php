@@ -3204,7 +3204,7 @@ class Profile_Magic_Public {
 			set_transient( 'rm_user_online_status', $logged_in_users, $expire_in = ( 30 * 60 ) ); // 30 mins
 		}
 
-		wp_schedule_single_event( time(), 'twicedaily', 'clean_user_online_status' );
+		//wp_schedule_single_event( time(), 'twicedaily', 'clean_user_online_status' );
 	}
 
 	public function clean_user_online_status() {

@@ -7,14 +7,16 @@ defined('ABSPATH') || exit();
 class InputCheckbox
 {
     private $Id;
+    private $Action;
     private $Title;
     private $Description;
     private $Checked;
     private $Icon;
 
-    public function __construct($id, $title, $description = false, $checked = false, $icon = false)
+    public function __construct($id, $action, $title, $description = false, $checked = false, $icon = false)
     {
         $this->Id = $id;
+        $this->Action = $action;
         $this->Title = $title;
         $this->Description = $description;
         $this->Checked = $checked;
@@ -27,7 +29,7 @@ class InputCheckbox
 ?>
         <div class="superb-addons-checkbox-input-wrapper">
             <label class="superbaddons-element-text-xs superbaddons-element-text-gray superbaddons-element-inlineflex-center">
-                <input id="<?= esc_attr($this->Id); ?>" name="<?= esc_attr($this->Id); ?>" type="checkbox" <?= $this->Checked ? 'checked="checked"' : '' ?>>
+                <input id="<?= esc_attr($this->Id); ?>" name="<?= esc_attr($this->Id); ?>" class="superbaddons-inputcheckbox-input" data-action="<?= esc_attr($this->Action); ?>" type="checkbox" <?= $this->Checked ? 'checked="checked"' : '' ?>>
                 <span class="superb-addons-checkbox-checkmark"><img class="superbaddons-admindashboard-content-icon" src="<?= esc_url(SUPERBADDONS_ASSETS_PATH . '/img/checkmark.svg'); ?>" /></span>
                 <span><?= esc_html($this->Title); ?></span>
                 <?php if ($this->Icon) : ?>

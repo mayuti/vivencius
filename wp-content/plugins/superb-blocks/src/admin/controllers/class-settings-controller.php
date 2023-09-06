@@ -11,6 +11,7 @@ use SuperbAddons\Data\Controllers\OptionController;
 use SuperbAddons\Data\Controllers\RestController;
 use SuperbAddons\Data\Controllers\SettingsOptionKey;
 use Exception;
+use SuperbAddons\Data\Controllers\CompatibilitySettingsOptionKey;
 use SuperbAddons\Data\Controllers\LogController;
 use SuperbAddons\Data\Utils\KeyException;
 use SuperbAddons\Data\Utils\PluginInstaller;
@@ -54,12 +55,14 @@ class SettingsController
                 return $this->RemoveKeyCallback();
             case 'getelementor':
                 return $this->InstallElementorCallback();
-            case 'toggle_logs':
-            case 'toggle_share_logs':
+            case SettingsOptionKey::LOGS_ENABLED:
+            case SettingsOptionKey::LOG_SHARE_ENABLED:
             case 'clear_cache':
             case 'clear_logs':
             case 'view_logs':
                 return $this->SaveSettingsCallback($request['action']);
+            case CompatibilitySettingsOptionKey::SPECTRA_BLOCK_SPACING:
+                return $this->SaveCompatibilitySettingsCallback($request['action']);
             default:
                 return new \WP_Error('bad_request_plugin', 'Bad Plugin Request', array('status' => 400));
         }
@@ -130,6 +133,11 @@ class SettingsController
         return OptionController::GetSettings();
     }
 
+    public static function GetCompatibilitySettings()
+    {
+        return OptionController::GetCompatibilitySettings();
+    }
+
     private function SaveSettingsCallback($action)
     {
         try {
@@ -137,11 +145,11 @@ class SettingsController
             $current_settings = OptionController::GetSettings();
 
             switch ($action) {
-                case 'toggle_logs':
+                case SettingsOptionKey::LOGS_ENABLED:
                     $current_settings[SettingsOptionKey::LOGS_ENABLED] = !$current_settings[SettingsOptionKey::LOGS_ENABLED];
                     $option_controller->SaveSettings($current_settings);
                     break;
-                case 'toggle_share_logs':
+                case SettingsOptionKey::LOG_SHARE_ENABLED:
                     $current_settings[SettingsOptionKey::LOG_SHARE_ENABLED] = !$current_settings[SettingsOptionKey::LOG_SHARE_ENABLED];
                     $saved = $option_controller->SaveSettings($current_settings);
                     if ($saved) {
@@ -168,10 +176,46 @@ class SettingsController
             return new \WP_Error('internal_error_plugin', 'Internal Plugin Error', array('status' => 500));
         }
     }
-}
 
-class SettingInputKey
-{
-    const ENABLE_LOGS = 'superbaddons_enable_logs';
-    const SHARE_LOGS = 'superbaddons_share_logs';
+    private function SaveCompatibilitySettingsCallback($action)
+    {
+        try {
+            $option_controller = new OptionController();
+            $current_settings = OptionController::GetCompatibilitySettings();
+
+            switch ($action) {
+                case CompatibilitySettingsOptionKey::SPECTRA_BLOCK_SPACING:
+                    $current_settings[CompatibilitySettingsOptionKey::SPECTRA_BLOCK_SPACING] = !$current_settings[CompatibilitySettingsOptionKey::SPECTRA_BLOCK_SPACING];
+                    $option_controller->SaveCompatibilitySettings($current_settings);
+                    break;
+            }
+
+            return rest_ensure_response(['success' => true]);
+        } catch (SettingsException $s_ex) {
+            return rest_ensure_response(['success' => false, "text" => esc_html($s_ex->getMessage())]);
+        } catch (Exception $ex) {
+            LogController::HandleException($ex);
+            return new \WP_Error('internal_error_plugin', 'Internal Plugin Error', array('status' => 500));
+        }
+    }
+
+    public static function GetRelevantCompatibilitySettings()
+    {
+        $relevant_settings = array();
+        // Check if Spectra is active
+        if (class_exists('UAGB_Loader')) {
+            $relevant_settings[CompatibilitySettingsOptionKey::SPECTRA_BLOCK_SPACING] = true;
+        }
+
+        return $relevant_settings;
+    }
+
+    public static function IsCompatibilitySettingRelevantAndEnabled($compatibility_setting)
+    {
+        $relevant_settings = self::GetRelevantCompatibilitySettings();
+        if (!isset($relevant_settings[$compatibility_setting])) return false;
+
+        $compatibility_settings = self::GetCompatibilitySettings();
+        return $compatibility_settings[$compatibility_setting];
+    }
 }

@@ -6,14 +6,17 @@ defined('ABSPATH') || exit();
 
 use SuperbAddons\Components\Admin\ContentBoxLarge;
 use SuperbAddons\Components\Admin\LinkBox;
+use SuperbAddons\Components\Admin\Modal;
 use SuperbAddons\Components\Admin\PremiumBox;
 use SuperbAddons\Components\Admin\ReviewBox;
 use SuperbAddons\Components\Admin\SupportBox;
+use SuperbAddons\Tours\Controllers\TourController;
 
 class SupportPage
 {
     public function __construct()
     {
+
         $this->Render();
     }
 
@@ -25,7 +28,7 @@ class SupportPage
                 <?php new ContentBoxLarge(
                     array(
                         "title" => __("Troubleshooting", "superbaddons"),
-                        "description" => __("Encountering technical difficulties with the Superb Addons? We recommend running the troubleshooting process, which can help scan for and identify common issues. ", "superbaddons"),
+                        "description" => __("Experiencing technical difficulties with Superb Addons? We recommend running the troubleshooting process to scan for and identify common issues.", "superbaddons"),
                         "image" => "asset-medium-troubleshooting.jpg",
                         "connected_bottom" => true,
                         "class" => 'superbaddons-admindashboard-troubleshooting-image-box-large'
@@ -72,8 +75,49 @@ class SupportPage
                     </div>
                 </div>
                 <div class="superbaddons-additional-content-wrapper">
-                    <h4 class="superbaddons-element-text-sm superbaddons-element-text-dark superbaddons-element-text-800 superbaddons-element-m0"><?= esc_html__("Help & Tutorials", "superbaddons"); ?></h4>
-                    <p class="superbaddons-element-text-xs superbaddons-element-text-gray "><?= esc_html__("Get help with over 40+ step by step guides.", "superbaddons"); ?></p>
+                    <h4 class="superbaddons-element-text-sm superbaddons-element-text-dark superbaddons-element-text-800 superbaddons-element-m0"><?= esc_html__("Guided Tutorials", "superbaddons"); ?></h4>
+                    <p class="superbaddons-element-text-xs superbaddons-element-text-gray "><?= esc_html__("Get started with our guided tutorials of Superb Addons features.", "superbaddons"); ?></p>
+                    <div class="superbaddons-admindashboard-linkbox-wrapper">
+                        <?php
+                        new LinkBox(
+                            array(
+                                "id" => "superbaddons-tour-gutenberg-patterns",
+                                "icon" => "purple-subtract-square.svg",
+                                "title" => __("Gutenberg Patterns", "superbaddons"),
+                                "description" => __("Let's show you where and how to use our library of Gutenberg patterns!", "superbaddons"),
+                                "cta" => __("Start Tutorial", "superbaddons"),
+                                "link" => esc_url(admin_url("post-new.php?" . TourController::TOUR_GUTENBERG . "=" . TourController::GUTENBERG_TOUR_PATTERNS)),
+                                "classes" => 'superbaddons-start-tutorial-link-gutenberg'
+                            )
+                        );
+                        new LinkBox(
+                            array(
+                                "id" => "superbaddons-tour-gutenberg-blocks",
+                                "icon" => "purple-cube.svg",
+                                "title" => __("Gutenberg Blocks", "superbaddons"),
+                                "description" => __("How do you insert the included blocks? This tutorial will show you.", "superbaddons"),
+                                "cta" => __("Start Tutorial", "superbaddons"),
+                                "link" => esc_url(admin_url("post-new.php?" . TourController::TOUR_GUTENBERG . "=" . TourController::GUTENBERG_TOUR_BLOCKS)),
+                                "classes" => 'superbaddons-start-tutorial-link-gutenberg'
+                            )
+                        );
+                        new LinkBox(
+                            array(
+                                "id" => "superbaddons-tour-elementor",
+                                "icon" => "logo-elementor.svg",
+                                "title" => __("Elementor Addons", "superbaddons"),
+                                "description" => __("Love using Elementor? Start the tutorial and see how you can use our Elementor addons.", "superbaddons"),
+                                "cta" => __("Start Tutorial", "superbaddons"),
+                                "link" => esc_url('#' . TourController::TOUR_ELEMENTOR),
+                                "classes" => 'superbaddons-start-tutorial-link-elementor superbaddons-flex-basis-100'
+                            )
+                        );
+                        ?>
+                    </div>
+                </div>
+                <div class="superbaddons-additional-content-wrapper">
+                    <h4 class="superbaddons-element-text-sm superbaddons-element-text-dark superbaddons-element-text-800 superbaddons-element-m0"><?= esc_html__("Knowledge Base", "superbaddons"); ?></h4>
+                    <p class="superbaddons-element-text-xs superbaddons-element-text-gray "><?= esc_html__("Looking for answers? Our knowledge base may have what you're looking for.", "superbaddons"); ?></p>
                     <div class="superbaddons-admindashboard-linkbox-wrapper">
                         <?php
                         new LinkBox(
@@ -134,6 +178,7 @@ class SupportPage
                     </div>
                 </div>
             </div>
+
             <div class="superbaddons-admindashboard-sidebarlayout-right">
                 <?php
                 new PremiumBox();
@@ -143,6 +188,7 @@ class SupportPage
             </div>
         </div>
     <?php
+        new Modal();
     }
 
 
