@@ -92,6 +92,82 @@ Referencias
 Experiencias adquiridas durante el desarrollo y la puesta en producción del sitio.
 -------------------------
 
+* Primeros pasos en el uso de WordPress
+
+* Comenzar a ver que plantilla se ajustaba mas a lo que yo buscaba
+
+* Una vez elegida la plantilla que mas se asemejaba a mis necesidades, era ver como trabajar con todas las herramientas que tenía por defecto y las nuevas.
+
+* Vi que era mejor trabajar todo el entorno WordPress en forma local porque muchas herramientas imponían varios requisitos necesarios o debía contratar un plan no sabiendo a donde iba a llegar o cuanto me llevaría el proyecto.
+
+* Comencé a investigar como era todo el proceso, a lo cual recurrí a usar otra herramienta libre chatGPT consultando algunos detalles de Wordpress para uso local.
+
+* Realicé todo el proceso de instalación de WordPress en forma local previamente habiendo bajado e instalando XAMP, una vez configurado el entorno debí obtener la plantilla que ya tenía en mente y luego según sus recomendaciones pedía instalar unos plugin para poder aprovechar todo el potencial de desarrollo del entorno.
+
+* Tuve varios traspiés entre investigación de cada parte de configuración de Widgets, imaginarme el contenido de cada sección mas allá que a grandes rasgos ya tenía definido el proyecto, pero seguramente es algo que sucede comúnmente que no nos decidimos hasta que realmente nos ponemos a trabajar y en ese interin se nos ocurren mas detalles o queremos aprovechar algo más de lo que se nos ofrece la plataforma.
+
+* Ubicar cada botón, cada sección, buscar ejemplos de diseño, no agregar mucho contenido para no desorientar, buscar impacto visual, estética armoniosa, moderna, etc, etc.. Tuve que frenar el desarrollo cada tanto y darme un tiempo porque cada paso requería muchas veces adquirir conocimiento para que fluya la creatividad y obtener el resultado buscado.
+
+* Aparenta ser todo bastante abrumador, con muchas herramientas, opciones de todo tipo para elementos, plugines, widgets, disposiciones de elementos, etc.
+
+* Día a día se hacen pruebas de diferentes herramientas y se comienza el diseño con herramienta Elementor. 
+
+* Se tratan de adaptar el tema (Theme) elegido a las necesidades del proyecto y agregar áreas nuevas con Elementor buscando el mismo objetivo de encuadrar todo en un diseño único.
+
+* Se combina el uso de 3 tipos  de diseños y configuraciones para realizar mejor adaptaciones al proyecto, las mismas son las propias de Wordpress, los plugin del tema (theme) elegido y Elementor.
+
+* Se realiza registro en web Peertube (xy-space) para comenzar a explorar la sección de carga de videos
+Se obtiene autorización para subir videos en Peertube
+Pequeños cortes de servicios en Peertube.
+
+* Se crea una nueva sección dentro de la presentación principal del sitio que consta de 3 videos de exposiciones TED y TEDx de personas reconocidas que motivan a cambiar las estructuras establecidas.
+
+* Detallan Políticas de Privacidad y Código de Conducta.
+
+* Comienzo a diseñar las secciones en las páginas web de experiencias en formato video y texto.
+
+* Prueba de contacto con cooperativa, blog, portal de conferencias.
+
+* Se continua con diseño de la página de inicio cambiando estilos de presentación principalmente en imágenes, colores y transparencias
+
+* Luego de un par de semanas no se obtiene respuesta de alguna persona interesada en participar con su experiencia en SL
+
+* Se crea sección de software con licencias permisivas en portada principal.
+
+* Redacción de sección Sobre Vivencius
+
+* Utilizando la ayuda de Inteligencia Artificial se consulta si se deben realizar correcciones a la redacción de la sección Sobre Vivencius
+
+* Tarea de subir proyecto a repositorio en Github (https://github.com/mayuti/vivencius), realizar README.md con detalles varios del mismo y subir plantilla con sentencias sql de estructura local.
+
+* Búsqueda de proveedor de alojamiento y dominio web para sitio creado en WordPress
+ 
+* Se observan costos altos en registro de dominio internacional y alojamientos con cobros en períodos anuales.
+
+* Se registra dominio vivencius.ar (NIC Argentina) y uno de los pocos proveedores de Hosting también en Argentina que acepta pagos mensuales (Donweb), moneda local y plataforma para desplegar Wordpress.
+
+* Aprendizaje de como subir y configurar todo el entorno Wordpress desde el equipo local a la nube, se configuran direcciones de email personalizados de administracion y contacto con dominio vivencius.ar .
+
+* Se logra colocar el sitio en línea y se continua con detalles de configuraciones generales.
+
+* Creación de cuentas en redes sociales como Twitter, Instagram y TikTok.
+
+* Retoque de partes del portal como algunos cambios de imagenes, redacciones y se trabaja en el logo.
+
+* Terminación del logo y exposición del mismo en redes sociales Twitter, Instagram y TikTok.
+
+* Actualización de repositorio en Github con versión 0.1.1 con retoques mencionados.
+
+* Envío de invitación a personas cercanas que observen la web y sus secciones por medio de PC, Laptop y Smartphone para obtener críticas diversas.
+
+* Publicación en redes sociales, foros, comunidades, etc.
+
+-------------------------
+
+**Etapa 3 bis:**
+
+* Se crea una web vivencias.php personalizada que se separa de la estructura principal del tema, aunque se siguen utilizando la cabecera y pie de la plantilla llamándolas con las funciones correspondientes de Wordpress
+
 
 
 
