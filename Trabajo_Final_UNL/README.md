@@ -101,7 +101,7 @@ Experiencias adquiridas durante el desarrollo y la puesta en producción del sit
 - Después de seleccionar la plantilla ideal, opté por trabajar en un entorno local. Esta decisión se basó en la necesidad de evitar requisitos innecesarios y costos desconocidos al utilizar herramientas externas.
 
 * Investigación y consultas:
-- Investigué a fondo el proceso, utilizando herramientas como chatGPT para aclarar dudas específicas sobre WordPress y su uso local.
+- Investigué a fondo el proceso para aclarar dudas específicas sobre WordPress y su uso local.
 
 * Instalación y configuración:
 - Luego de instalar XAMPP, procedí a instalar WordPress localmente. Configuré el entorno y elegí los plugins recomendados para potenciar el desarrollo.
@@ -113,10 +113,10 @@ Experiencias adquiridas durante el desarrollo y la puesta en producción del sit
 - Diariamente, realicé pruebas con Elementor para diseñar y adaptar el tema elegido a las necesidades del proyecto, combinando configuraciones de WordPress, plugins del tema y Elementor.
 
 * Integración de videos en Peertube:
-- Exploré la carga de videos en Peertube, creando una sección con exposiciones TED y TEDx. También se establecieron políticas de privacidad y código de conducta.
+- Exploré la carga de videos en Peertube. Se creo una sección con exposiciones TED y TEDx. También se establecieron políticas de privacidad y código de conducta.
 
 * Expansión del sitio:
-- Se diseñaron secciones de experiencias en video y texto, y se realizaron pruebas de contacto con cooperativas, blogs y portales de conferencias.
+- Se diseñaron secciones de experiencias en video y se realizaron pruebas de contacto con cooperativas, blogs y portales de conferencias.
 
 * Repositorio en Github:
 - Subí el proyecto a Github, creando un README.md detallado y compartiendo la estructura local mediante sentencias SQL.
@@ -139,30 +139,30 @@ Experiencias adquiridas durante el desarrollo y la puesta en producción del sit
 
 **1. Separación de estructuras en compilado.php:**
 - Se crea un archivo compilado.php personalizado que se separa de la estructura principal del tema.
-    Aunque se llama a funciones predefinidas de WordPress para la cabecera y el pie de página, asegurándose de no afectar el estilo general de la web.
+- Aunque se llama a funciones predefinidas de WordPress para la cabecera y el pie de página, asegurándose de no afectar el estilo general de la web.
 
 **2. Base de datos y tabla personalizada:**
 - Se añade una tabla a la base de datos de WordPress con tres campos, incluyendo un ID autoincremental.
-    La tabla almacena enlaces de videos codificados en iframes y sus descripciones correspondientes.
+- La tabla almacena enlaces de videos codificados en iframes y sus descripciones correspondientes.
 
 **3. Acceso y búsqueda en la base de datos:**
 - Se programa el acceso a la base de datos para buscar información.
-    Se genera una tabla con los resultados obtenidos, mostrando cada video y su descripción.
+- Se genera una tabla con los resultados obtenidos, mostrando cada video y su descripción.
 
 **4. Reconfiguración de enlaces de menú Ayuda:**
 - Los enlaces del menú Ayuda se redireccionan a diferentes páginas fuera de la estructura de la plantilla de WordPress.
 
 **5. Creación de páginas y gestión de contenido:**
 - Se crean páginas específicas (nosotros.php, conducta.php, privacidad.php) con contenido HTML separado del código PHP principal.
-    Páginas como contacto.php, proc_form.php, saludos.php y error.php incluyen programación de seguridad para controlar sesiones y asegurar el llenado de campos necesarios en el formulario de contacto.
+- Páginas como contacto.php, proc_form.php, saludos.php y error.php incluyen programación de seguridad para controlar sesiones y asegurar el llenado de campos necesarios en el formulario de contacto.
 
 **6. Problemas con la función mail() y solución alternativa:**
 - Después de pruebas fallidas, se detecta que la función mail() no está permitida bajo el entorno WordPress o el servidor de alojamiento.
-    Se deja la codificación disponible y se sugiere el uso de un sistema previo implementado por un plugin con complementos de seguridad para WordPress.
+- Se deja la codificación disponible y se sugiere el uso de un sistema previo implementado por un plugin con complementos de seguridad para WordPress.
 
 **7. Página de búsqueda de vivencias:**
 - Se crea una página de búsqueda (buscar.php) que permite a los usuarios buscar videos en la base de datos y desplegar resultados.
-    Si no hay resultados, se imprime un mensaje indicando la falta de coincidencias.
+- Si no hay resultados, se imprime un mensaje indicando la falta de coincidencias.
 
 **8. Mantenimiento de secciones críticas:**
 - Se decide mantener las secciones que gestionan usuarios y blogs debido a la eficiencia en seguridad y procesamiento de información proporcionada por la plantilla de WordPress seleccionada.
