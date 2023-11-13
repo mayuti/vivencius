@@ -1,4 +1,4 @@
-<p align="center"><a href="https://vivencius.org/"><img src="./screenshot/screenshot1.JPG" alt="Vivencius"></a></p>
+<p align="center"><a href="http://vivencius.ar/"><img src="./screenshot/screenshot1.JPG" alt="Vivencius"></a></p>
 
 Vivencius
 ============
@@ -41,6 +41,12 @@ Si deseas contribuir al desarrollo de este portal, ya sea en su diseño gráfico
 --------------------------
 
 ### Registro de Cambios
+
+#### 0.1.2 - Noviembre 2023
+
+* Actualización, Creación y Codificación de varias páginas web en PHP, HTML y CSS conservando la seguridad ofrecida por los plugin y el acabado profesional del CMS Wordpress.
+
+Desarrollador [@mayuti](https://github.com/mayuti)
 
 #### 0.1.1 - Septiembre 2023
 
