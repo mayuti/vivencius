@@ -57,6 +57,8 @@ Cronograma
 
 Cronograma de Actualización
 -------------------------
+| Etapas | - | - | - | - |
+| -------------------------------- | ------------ | ------------ | ------------ | ------------ |
 | **Etapa 3 bis:** <br> - **Nota:** El proyecto se extiende una semana más, como estaba estipulado, debido al requerimiento de codificación de algunas partes del proyecto y creación de nuevas secciones. <br> - Codificar en lenguaje ___PHP, HTML y CSS___ la sección de exposición de vivencias. <br> - Colocar nueva tabla en la estructura de la base de datos Wordpress. <br> - Realizar una programación de búsqueda de vivencias de acuerdo a la descripción con la que fueron cargadas. <br> - Codificar en lenguaje ___PHP, HTML y CSS___ toda la sección de Ayuda, Código de Conducta, Política de Privacidad y formulario de Contacto (adicional al actual). | - | X | X | - |
 
 
