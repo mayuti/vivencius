@@ -23,10 +23,10 @@
 define( 'DB_NAME', 'c2122128_wordpre' );
 
 /** Database username */
-define( 'DB_USER', 'c2122128_admin' );
+define( 'DB_USER', 'admin' );
 
 /** Database password */
-define( 'DB_PASSWORD', 'Oriana2508' );
+define( 'DB_PASSWORD', 'admin1234' );
 
 /** Database hostname */
 define( 'DB_HOST', 'localhost' );
