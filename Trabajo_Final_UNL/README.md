@@ -59,7 +59,7 @@ Cronograma de Actualización
 -------------------------
 | Etapa | - | - | - | - |
 | -------------------------------- | ------------ | ------------ | ------------ | ------------ |
-| **Etapa 3 bis:** <br> - **Nota:** El proyecto se extiende una semana más, como estaba estipulado, debido al requerimiento de codificación de algunas partes del proyecto y creación de nuevas secciones. <br> - Codificar en lenguaje __PHP, HTML y CSS__ la sección de exposición de vivencias. <br> - Colocar nueva tabla en la estructura de la base de datos Wordpress. <br> - Realizar una programación de búsqueda de vivencias de acuerdo a la descripción con la que fueron cargadas. <br> - Codificar en lenguaje __PHP, HTML y CSS__ toda la sección de Ayuda, Código de Conducta, Política de Privacidad y formulario de Contacto (adicional al actual). | - | - | - | - |
+| **Etapa 3 bis:** <br> - **Nota:** El proyecto se extiende una semana más, como estaba estipulado, debido al requerimiento de codificación de algunas partes del proyecto y creación de nuevas secciones. <br> - Codificar en lenguaje __PHP, HTML y CSS__ la sección de exposición de vivencias. <br> - Colocar nueva tabla en la estructura de la base de datos Wordpress. <br> - Realizar una programación de búsqueda de vivencias de acuerdo a la descripción con la que fueron cargadas. <br> - Codificar en lenguaje __PHP, HTML y CSS__ toda la sección de Ayuda, Código de Conducta, Política de Privacidad y formulario de Contacto (adicional al actual). <br> - Embeber lenguaje PHP en HTML y utilizar funciones de WordPress dentro de las páginas que serán creadas. <br>| - | - | - | - |
 
 
 
@@ -90,3 +90,7 @@ Referencias
 -------------------------
 
 [Administrador Vivencius](mailto:admin@vivencius.ar)
+
+============
+Experiencias adquiridas durante el desarrollo y la puesta en producción del sitio.
+============
