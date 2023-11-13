@@ -92,7 +92,7 @@ Referencias
 Experiencias adquiridas durante el desarrollo y la puesta en producción del sitio.
 -------------------------
 
-### Etapas 1, 2, 3, 4: <br>
+### __Etapas 1, 2, 3, 4:__ <br>
 
 **Inicios en la exploración de WordPress:**
 - Inicialmente, me adentré en el mundo de WordPress, comenzando por la elección de una plantilla que se ajustara a mis necesidades.
@@ -135,7 +135,7 @@ Experiencias adquiridas durante el desarrollo y la puesta en producción del sit
 
 -------------------------
 
-### Etapa 5: <br>
+### __Etapa 5:__ <br>
 
 **1. Separación de estructuras en compilado.php:**
 - Se crea un archivo compilado.php personalizado que se separa de la estructura principal del tema.
