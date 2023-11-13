@@ -59,7 +59,7 @@ Cronograma de Actualización
 -------------------------
 | Etapa | - | - | - | - |
 | -------------------------------- | ------------ | ------------ | ------------ | ------------ |
-| **Etapa 3 bis:** <br> - **Nota:** El proyecto se extiende una semana más, como estaba estipulado, debido al requerimiento de codificación de algunas partes del proyecto y creación de nuevas secciones. <br> - Codificar en lenguaje __PHP, HTML y CSS__ la sección de exposición de vivencias. <br> - Colocar nueva tabla en la estructura de la base de datos Wordpress. <br> - Realizar una programación de búsqueda de vivencias de acuerdo a la descripción con la que fueron cargadas. <br> - Codificar en lenguaje __PHP, HTML y CSS__ toda la sección de Ayuda, Código de Conducta, Política de Privacidad y formulario de Contacto (adicional al actual). <br> - Embeber lenguaje __PHP__ en __HTML__ y utilizar funciones de WordPress dentro de las páginas que serán creadas. <br>| - | - | - | - |
+| **Etapa 5:** <br> - **Nota:** El proyecto se extiende una semana más debido al requerimiento de codificación de algunas partes del proyecto y creación de nuevas secciones. <br> - Codificar en lenguaje __PHP, HTML y CSS__ la sección de exposición de vivencias. <br> - Colocar nueva tabla en la estructura de la base de datos Wordpress. <br> - Realizar una programación de búsqueda de vivencias de acuerdo a la descripción con la que fueron cargadas. <br> - Codificar en lenguaje __PHP, HTML y CSS__ toda la sección de Ayuda, Código de Conducta, Política de Privacidad y formulario de Contacto (adicional al actual). <br> - Embeber lenguaje __PHP__ en __HTML__ y utilizar funciones de WordPress dentro de las páginas que serán creadas. <br>| - | - | - | - |
 
 
 
@@ -92,75 +92,47 @@ Referencias
 Experiencias adquiridas durante el desarrollo y la puesta en producción del sitio.
 -------------------------
 
-* Primeros pasos en el uso de WordPress
+* Inicios en la exploración de WordPress:
+    Inicialmente, me adentré en el mundo de WordPress, comenzando por la elección de una plantilla que se ajustara a mis necesidades.
 
-* Comenzar a ver que plantilla se ajustaba mas a lo que yo buscaba
+* Configuración del entorno local:
+    Después de seleccionar la plantilla ideal, opté por trabajar en un entorno local. Esta decisión se basó en la necesidad de evitar requisitos innecesarios y costos desconocidos al utilizar herramientas externas.
 
-* Una vez elegida la plantilla que mas se asemejaba a mis necesidades, era ver como trabajar con todas las herramientas que tenía por defecto y las nuevas.
+* Investigación y consultas:
+    Investigué a fondo el proceso, utilizando herramientas como chatGPT para aclarar dudas específicas sobre WordPress y su uso local.
 
-* Vi que era mejor trabajar todo el entorno WordPress en forma local porque muchas herramientas imponían varios requisitos necesarios o debía contratar un plan no sabiendo a donde iba a llegar o cuanto me llevaría el proyecto.
+* Instalación y configuración:
+    Luego de instalar XAMPP, procedí a instalar WordPress localmente. Configuré el entorno y elegí los plugins recomendados para potenciar el desarrollo.
 
-* Comencé a investigar como era todo el proceso, a lo cual recurrí a usar otra herramienta libre chatGPT consultando algunos detalles de Wordpress para uso local.
+* Desafíos y ajustes constantes:
+    En la fase de diseño, enfrenté desafíos al configurar widgets, imaginando el contenido de cada sección y ajustando detalles según surgían nuevas ideas. Este proceso requería pausas estratégicas para adquirir conocimientos necesarios.
 
-* Realicé todo el proceso de instalación de WordPress en forma local previamente habiendo bajado e instalando XAMP, una vez configurado el entorno debí obtener la plantilla que ya tenía en mente y luego según sus recomendaciones pedía instalar unos plugin para poder aprovechar todo el potencial de desarrollo del entorno.
+* Elementor y diseño creativo:
+    Diariamente, realicé pruebas con Elementor para diseñar y adaptar el tema elegido a las necesidades del proyecto, combinando configuraciones de WordPress, plugins del tema y Elementor.
 
-* Tuve varios traspiés entre investigación de cada parte de configuración de Widgets, imaginarme el contenido de cada sección mas allá que a grandes rasgos ya tenía definido el proyecto, pero seguramente es algo que sucede comúnmente que no nos decidimos hasta que realmente nos ponemos a trabajar y en ese interin se nos ocurren mas detalles o queremos aprovechar algo más de lo que se nos ofrece la plataforma.
+* Integración de videos en Peertube:
+    Exploré la carga de videos en Peertube, creando una sección con exposiciones TED y TEDx. También se establecieron políticas de privacidad y código de conducta.
 
-* Ubicar cada botón, cada sección, buscar ejemplos de diseño, no agregar mucho contenido para no desorientar, buscar impacto visual, estética armoniosa, moderna, etc, etc.. Tuve que frenar el desarrollo cada tanto y darme un tiempo porque cada paso requería muchas veces adquirir conocimiento para que fluya la creatividad y obtener el resultado buscado.
+* Expansión del sitio:
+    Se diseñaron secciones de experiencias en video y texto, y se realizaron pruebas de contacto con cooperativas, blogs y portales de conferencias.
 
-* Aparenta ser todo bastante abrumador, con muchas herramientas, opciones de todo tipo para elementos, plugines, widgets, disposiciones de elementos, etc.
+* Repositorio en Github:
+    Subí el proyecto a Github, creando un README.md detallado y compartiendo la estructura local mediante sentencias SQL.
 
-* Día a día se hacen pruebas de diferentes herramientas y se comienza el diseño con herramienta Elementor. 
+* Elección de proveedor de alojamiento:
+    Después de investigar opciones, opté por un proveedor argentino, Donweb, que permitía pagos mensuales y brindaba soporte local.
 
-* Se tratan de adaptar el tema (Theme) elegido a las necesidades del proyecto y agregar áreas nuevas con Elementor buscando el mismo objetivo de encuadrar todo en un diseño único.
+* Lanzamiento del sitio:
+    Tras aprender a trasladar WordPress de lo local a la nube, configuré direcciones de correo personalizadas y publiqué el sitio en línea, continuando con ajustes generales.
 
-* Se combina el uso de 3 tipos  de diseños y configuraciones para realizar mejor adaptaciones al proyecto, las mismas son las propias de Wordpress, los plugin del tema (theme) elegido y Elementor.
+* Presencia en redes sociales:
+    Establecí cuentas en Twitter, Instagram y TikTok, y realicé ajustes en el portal, incluyendo cambios de imágenes y redacciones.
 
-* Se realiza registro en web Peertube (xy-space) para comenzar a explorar la sección de carga de videos
-Se obtiene autorización para subir videos en Peertube
-Pequeños cortes de servicios en Peertube.
+* Retroalimentación y mejoras:
+    Finalicé el logo, lo compartí en redes sociales, actualicé el repositorio en Github y solicité opiniones a personas cercanas mediante diferentes dispositivos.
 
-* Se crea una nueva sección dentro de la presentación principal del sitio que consta de 3 videos de exposiciones TED y TEDx de personas reconocidas que motivan a cambiar las estructuras establecidas.
-
-* Detallan Políticas de Privacidad y Código de Conducta.
-
-* Comienzo a diseñar las secciones en las páginas web de experiencias en formato video y texto.
-
-* Prueba de contacto con cooperativa, blog, portal de conferencias.
-
-* Se continua con diseño de la página de inicio cambiando estilos de presentación principalmente en imágenes, colores y transparencias
-
-* Luego de un par de semanas no se obtiene respuesta de alguna persona interesada en participar con su experiencia en SL
-
-* Se crea sección de software con licencias permisivas en portada principal.
-
-* Redacción de sección Sobre Vivencius
-
-* Utilizando la ayuda de Inteligencia Artificial se consulta si se deben realizar correcciones a la redacción de la sección Sobre Vivencius
-
-* Tarea de subir proyecto a repositorio en Github (https://github.com/mayuti/vivencius), realizar README.md con detalles varios del mismo y subir plantilla con sentencias sql de estructura local.
-
-* Búsqueda de proveedor de alojamiento y dominio web para sitio creado en WordPress
- 
-* Se observan costos altos en registro de dominio internacional y alojamientos con cobros en períodos anuales.
-
-* Se registra dominio vivencius.ar (NIC Argentina) y uno de los pocos proveedores de Hosting también en Argentina que acepta pagos mensuales (Donweb), moneda local y plataforma para desplegar Wordpress.
-
-* Aprendizaje de como subir y configurar todo el entorno Wordpress desde el equipo local a la nube, se configuran direcciones de email personalizados de administracion y contacto con dominio vivencius.ar .
-
-* Se logra colocar el sitio en línea y se continua con detalles de configuraciones generales.
-
-* Creación de cuentas en redes sociales como Twitter, Instagram y TikTok.
-
-* Retoque de partes del portal como algunos cambios de imagenes, redacciones y se trabaja en el logo.
-
-* Terminación del logo y exposición del mismo en redes sociales Twitter, Instagram y TikTok.
-
-* Actualización de repositorio en Github con versión 0.1.1 con retoques mencionados.
-
-* Envío de invitación a personas cercanas que observen la web y sus secciones por medio de PC, Laptop y Smartphone para obtener críticas diversas.
-
-* Publicación en redes sociales, foros, comunidades, etc.
+* Promoción en línea:
+    Lanzamiento oficial en redes sociales para dar a conocer el proyecto.
 
 -------------------------
 
