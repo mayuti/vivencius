@@ -92,7 +92,7 @@ Referencias
 Experiencias adquiridas durante el desarrollo y la puesta en producción del sitio.
 -------------------------
 
-### __Etapas 1, 2, 3, 4:__ <br>
+### Etapas 1, 2, 3, 4: <br>
 
 **Inicios en la exploración de WordPress:**
 - Inicialmente, me adentré en el mundo de WordPress, comenzando por la elección de una plantilla que se ajustara a mis necesidades.
@@ -135,15 +135,14 @@ Experiencias adquiridas durante el desarrollo y la puesta en producción del sit
 
 -------------------------
 
-### __Etapa 5:__ <br>
+### Etapa 5: <br>
 
 **1. Separación de estructuras en compilado.php:**
-- Se crea un archivo compilado.php personalizado que se separa de la estructura principal del tema.
-- Aunque se llama a funciones predefinidas de WordPress para la cabecera y el pie de página, asegurándose de no afectar el estilo general de la web.
+- Se crea un archivo compilado.php personalizado que se separa de la estructura principal del tema. Aunque se llama a funciones predefinidas de WordPress para la cabecera y el pie de página, asegurándose de no afectar el estilo general de la web.
 
 **2. Base de datos y tabla personalizada:**
 - Se añade una tabla a la base de datos de WordPress con tres campos, incluyendo un ID autoincremental.
-- La tabla almacena enlaces de videos codificados en iframes y sus descripciones correspondientes.
+- La tabla almacena enlaces de videos que luego serán codificados en iframes con sus descripciones correspondientes.
 
 **3. Acceso y búsqueda en la base de datos:**
 - Se programa el acceso a la base de datos para buscar información.
@@ -153,11 +152,11 @@ Experiencias adquiridas durante el desarrollo y la puesta en producción del sit
 - Los enlaces del menú Ayuda se redireccionan a diferentes páginas fuera de la estructura de la plantilla de WordPress.
 
 **5. Creación de páginas y gestión de contenido:**
-- Se crean páginas específicas (nosotros.php, conducta.php, privacidad.php) con contenido HTML separado del código PHP principal.
+- Se crean páginas específicas (nosotros.php, conducta.php, privacidad.php) con contenido HTML que contiene en forma de documento detalles de los temas __Sobre Vivencius, Código de Conducta y Política de Privacidad__ separados del código PHP principal para poder trabajar en modificaciones específicas futuras teniendo mayor comodidad sin alterar el código principal de funcionamiento de la web.
 - Páginas como contacto.php, proc_form.php, saludos.php y error.php incluyen programación de seguridad para controlar sesiones y asegurar el llenado de campos necesarios en el formulario de contacto.
 
 **6. Problemas con la función mail() y solución alternativa:**
-- Después de pruebas fallidas, se detecta que la función mail() no está permitida bajo el entorno WordPress o el servidor de alojamiento.
+- Después de pruebas fallidas, se detecta que la función mail() no está permitida bajo el entorno WordPress o el servidor de alojamiento no permite dicha acción.
 - Se deja la codificación disponible y se sugiere el uso de un sistema previo implementado por un plugin con complementos de seguridad para WordPress.
 
 **7. Página de búsqueda de vivencias:**
@@ -166,7 +165,7 @@ Experiencias adquiridas durante el desarrollo y la puesta en producción del sit
 
 **8. Mantenimiento de secciones críticas:**
 - Se decide mantener las secciones que gestionan usuarios y blogs debido a la eficiencia en seguridad y procesamiento de información proporcionada por la plantilla de WordPress seleccionada.
-- Modificar estas secciones podría comprometer la seguridad y la adaptación del diseño a diferentes dispositivos.
+- Modificar estas secciones podría comprometer la seguridad en un sitio que ya se encuentra en producción y la adaptación del diseño a diferentes dispositivos se degradaría.
 
 -------------------------
 
