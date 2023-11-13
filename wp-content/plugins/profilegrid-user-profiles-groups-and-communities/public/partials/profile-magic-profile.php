@@ -101,7 +101,18 @@ if(isset($post['canel_edit_profile']))
     exit;
 }
 
-if(isset($content['id']))$uid = $content['id'];else $uid = rtrim(filter_input(INPUT_GET, 'uid'),'/\\');
+//if(isset($content['id']))$uid = $content['id'];else $uid = rtrim(filter_input(INPUT_GET, 'uid'),'/\\');
+if(isset($content['id'])){
+    $uid = $content['id'];}
+else {
+    //$uid = rtrim(filter_input(INPUT_GET, 'uid'),'/\\');
+    $uid = get_query_var('uid');
+    if(!$uid){
+        if(!empty(filter_input(INPUT_GET, 'uid'))){
+            $uid = rtrim(filter_input(INPUT_GET, 'uid'),'/\\');
+        }
+    }
+}
 if(isset($uid))
 {
      $uid = $pmrequests->pm_get_uid_from_profile_slug($uid);

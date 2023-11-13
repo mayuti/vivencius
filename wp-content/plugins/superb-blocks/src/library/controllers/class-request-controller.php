@@ -8,6 +8,7 @@ use Exception;
 use WP_Error;
 use SuperbAddons\Config\Capabilities;
 use SuperbAddons\Data\Controllers\CacheController;
+use SuperbAddons\Data\Controllers\DomainShiftController;
 use SuperbAddons\Data\Controllers\KeyController;
 use SuperbAddons\Data\Controllers\OptionController;
 use SuperbAddons\Data\Controllers\RestController;
@@ -105,9 +106,8 @@ class LibraryRequestController
         // Fetch data cache from service
         $options_controller = new OptionController();
         $license_key = $options_controller->GetKey();
-        $preferred_domain = $options_controller->GetPreferredDomain();
 
-        $response = wp_remote_get($preferred_domain . $endpoint . $item_type . '?action=list&key=' . $license_key, RestController::GetArgsHeadersArray());
+        $response = DomainShiftController::RemoteGet($endpoint . $item_type . '?action=list&key=' . $license_key);
         ///
         if (!is_array($response) || is_wp_error($response) || wp_remote_retrieve_response_code($response) !== 200) {
             return new \WP_Error('service_unavailable', 'Plugin Service Unavailable', array('status' => 503));
@@ -156,14 +156,13 @@ class LibraryRequestController
             //
             $options_controller = new OptionController();
             $license_key = $options_controller->GetKey();
-            $preferred_domain = $options_controller->GetPreferredDomain();
             if (!isset($request['id']) || !isset($request['package']) || $request['package'] === "premium" && !$license_key) {
                 return new \WP_Error('forbidden', 'Forbidden', array('status' => 403));
             }
 
             $stamp = $options_controller->GetStamp();
             $collection = $request['package'] === 'premium' ? "premium" : "free";
-            $response = wp_remote_get($preferred_domain . $endpoint . $item_type . '?action=insert&id=' . $request['id'] . '&collection=' . $collection . '&dm=' . urlencode(\home_url()) . '&key=' . urlencode($license_key) . '&stamp=' . absint($stamp), RestController::GetArgsHeadersArray());
+            $response = DomainShiftController::RemoteGet($endpoint . $item_type . '?action=insert&id=' . $request['id'] . '&collection=' . $collection . '&dm=' . urlencode(\home_url()) . '&key=' . urlencode($license_key) . '&stamp=' . absint($stamp));
             ///
             if (!is_array($response) || is_wp_error($response) || wp_remote_retrieve_response_code($response) !== 200) {
                 return new \WP_Error('service_unavailable', 'Plugin Service Unavailable', array('status' => 503));

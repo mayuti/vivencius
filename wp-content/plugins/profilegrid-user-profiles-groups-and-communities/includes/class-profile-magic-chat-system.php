@@ -89,6 +89,18 @@ class ProfileMagic_Chat {
 						$last_msgid   = '';
 					}
 
+                                        if (is_array($lastmsg) && isset($lastmsg[0]->status)) {
+                                            $status = $lastmsg[0]->status;
+                                        } else {
+                                            $status = 2;
+                                        }
+                                        if (is_array($lastmsg) && isset($lastmsg[0]->s_id)) {
+                                            $s_id = $lastmsg[0]->s_id;
+                                        } else {
+                                            $s_id = 1;
+                                        }
+
+					$last_message = apply_filters('pm_last_msg_show', $last_message, $status, $uid, $s_id);
 					$profile_url                    = $pmrequests->pm_get_user_profile_url( $other_uid );
 					$other_user_info['profile_url'] = $profile_url;
 					$other_user_info['avatar']      = get_avatar(
@@ -136,6 +148,8 @@ class ProfileMagic_Chat {
 					}
 					$login_status = ( $pmrequests->pm_get_user_online_status( $other_uid ) == 1 ? 'pm-online' : 'pm-offline' );
 
+					$add_chat_members = apply_filters('pm_add_chat_members', '', $tid);
+
 					 $return .= ' <div id="pg-msg-thread-' . $tid . '" data-thread="' . $tid . '" class="pg-msg-conversation-list ' . $active_class . '" onclick="pg_show_msg_panel(' . $uid . ',' . $other_uid . ',' . $tid . ')">' . $other_user_info['avatar'] . '<div class="' . $login_status . '"></div><div class="pg-msg-conversation-info">
                         <div class="pg-list-user-img-wrap">
                           <div class="pg-msg-thread-user">' . $other_user_info['name'] . '</div>
@@ -144,7 +158,7 @@ class ProfileMagic_Chat {
                           <div class="pg-msg-conversation-action">' .
 							$read_unread_button . '
                             <div class="pg-msg-conversation-delete" onclick="event.stopPropagation();pg_msg_delete_thread_confirmbox(' . $tid . ',' . $uid . ',' . $last_msgid . ')"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M16 9v10H8V9h8m-1.5-6h-5l-1 1H5v2h14V4h-3.5l-1-1zM18 7H6v12c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7z"/></svg></div>
-
+							' . $add_chat_members . '
                           </div>
                           ' . $unread_visual . '
                         </div>
@@ -195,6 +209,7 @@ class ProfileMagic_Chat {
 
 				$tid     = $thread->t_id;
 				$lastmsg = $pmrequests->get_message_of_thread( $tid, 1, 0, true );
+                                
 				if ( ! empty( $lastmsg ) ) {
 					$last_message = nl2br( $lastmsg[0]->content );
 					$last_msgid   = $lastmsg[0]->m_id;
@@ -204,6 +219,20 @@ class ProfileMagic_Chat {
 					$last_msgid   = '';
 				}
 
+                                if (is_array($lastmsg) && isset($lastmsg[0]->status)) {
+					$status = $lastmsg[0]->status;
+				} else {
+					$status = 2;
+				}
+
+				if (is_array($lastmsg) && isset($lastmsg[0]->s_id)) {
+					$s_id = $lastmsg[0]->s_id;
+				} else {
+					$s_id = 1;
+				}
+
+				$last_message = apply_filters('pm_last_msg_show', $last_message, $status, $uid, $s_id );
+                                
 				$profile_url                    = $pmrequests->pm_get_user_profile_url( $other_uid );
 				$other_user_info['profile_url'] = $profile_url;
 				$other_user_info['avatar']      = get_avatar(
@@ -251,6 +280,8 @@ class ProfileMagic_Chat {
 				}
 				$login_status = ( $pmrequests->pm_get_user_online_status( $other_uid ) == 1 ? 'pg-msg-online' : 'pg-msg-offline' );
 
+				$add_chat_members = apply_filters('pm_add_chat_members', '', $tid);
+
 				 $return .= ' <div id="pg-msg-thread-' . $tid . '" data-thread="' . $tid . '" class="pg-msg-conversation-list ' . $active_class . '" onclick="pg_show_msg_panel(' . $uid . ',' . $other_uid . ',' . $tid . ')">' . $other_user_info['avatar'] . '<div class="pg-user-status ' . $login_status . '"></div><div class="pg-msg-conversation-info">
                     <div class="pg-list-user-img-wrap">
                       <div class="pg-msg-thread-user">' . $other_user_info['name'] . '</div>
@@ -258,7 +289,7 @@ class ProfileMagic_Chat {
                       <div class="pg-msg-conversation-action">' .
 						$read_unread_button . '
                         <div class="pg-msg-conversation-delete" onclick="event.stopPropagation();pg_msg_delete_thread_confirmbox(' . $tid . ',' . $uid . ',' . $last_msgid . ')"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M0 0h24v24H0z" fill="none"/><path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"/></svg></div>
-  
+						' . $add_chat_members . '
                       </div>
                     
                     </div>
@@ -378,6 +409,9 @@ class ProfileMagic_Chat {
 					$align = '';
 				}
 					$last_message  = nl2br( $message->content );
+					if ($uid != $cur_uid && $message->status == 3 && !current_user_can('manage_options')){
+						$last_message  = 'Pending for admin approval';
+					}
 					$date          = mysql2date( 'd M,g:i A', gmdate( 'Y-m-d H:i:s', ( strtotime( $message->timestamp ) ) - $time_conversion ) );
 					$msg_timestamp = human_time_diff( strtotime( $message->timestamp ), current_time( 'timestamp' ) );
 				if ( $msg_timestamp == '1 min' ) {
@@ -385,12 +419,13 @@ class ProfileMagic_Chat {
 				}
 
 					$return .= '<div id="pg-msg_id_' . $message->m_id . '" class="pg-message-list ' . $align . '">';
-				if ( $uid == $cur_uid ) {
+				if ( apply_filters('pm_add_approve_condition', $uid == $cur_uid, $uid, $cur_uid) ) {
 					$return .= '<div class="pg-message-action" ><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M0 0h24v24H0z" fill="none"/><path d="M6 10c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm12 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm-6 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"/></svg>
-                       <div class="pg-message-action-wrap"> <ul><li onclick="pg_msg_edit(' . $message->m_id . ')">Edit</li><li  onclick="pg_msg_delete(' . $message->m_id . ')">Delete</li></ul></div>
+                       <div class="pg-message-action-wrap"> <ul>' .apply_filters('pm_add_admin_edit_button', '<li onclick="pg_msg_edit(' . $message->m_id . ')">Edit</li>', $message->m_id, $uid, $cur_uid ) .'<li  onclick="pg_msg_delete(' . $message->m_id . ')">Delete</li> ' .apply_filters('pm_add_approve_button', '', $message->m_id, $message->status) . '</ul></div>
                        </div>';
 				}
-				$return .= get_avatar(
+				
+				$avatar = get_avatar(
 					$uid,
 					50,
 					'',
@@ -399,11 +434,18 @@ class ProfileMagic_Chat {
 						'class'         => 'pm-user-profile',
 						'force_display' => true,
 					)
-				) . '
+				);
+
+				$image = apply_filters('pm_msg_user_image_link', $avatar, $uid );
+
+				$return .=  $image . '
+				<div class="pm-thread-user">'. apply_filters('pm_msg_user_name', '', $uid ) .'</div>
                 <div class="pg-message-box pm-border">
                   ' . stripslashes( $last_message ) . '
                 </div>
                 <div class="pg-msg-thread-time">' . $date . '</div>
+
+				'. apply_filters('pm_add_approve_notice', '', $message->status ) .'
               </div>';
 
 			}
@@ -452,9 +494,9 @@ class ProfileMagic_Chat {
 
 				</div>
 		</div>
-<script>
-  jQuery("#message_display_area").scrollTop( jQuery("#message_display_area div:last").offset().top);
-</script>
+		<script>
+		jQuery("#message_display_area").scrollTop( jQuery("#message_display_area div:last").offset().top);
+		</script>
 		<?php
 	}
 
@@ -514,6 +556,9 @@ class ProfileMagic_Chat {
 
 
 	public function pg_show_thread_message_panel( $uid, $rid, $tid, $search = '' ) {
+                if(empty($rid)){
+                    $rid = 0;
+                }
 		$pmrequests   = new PM_request();
 		$current_user = wp_get_current_user();
 		$profile_url  = $pmrequests->pm_get_user_profile_url( $rid );
@@ -573,34 +618,34 @@ class ProfileMagic_Chat {
         </div>
 
 		  
-			<div class="pg-users-search-list-wrap">
-			 <?php echo $this->pm_messenger_show_messages( $tid, 1, 0, $search ); ?>
-			</div>
+		<div class="pg-users-search-list-wrap">
+			<?php echo $this->pm_messenger_show_messages( $tid, 1, 0, $search ); ?>
+		</div>
 
-			<div class="pg-message-footer">
-				  <form id="chat_message_form" name="chat_message_form" onsubmit="pm_messenger_send_chat_message(event);">  
-				
-                                      <input id="pg_messaging_text" name="content" value="" type="text" data-placeholder="<?php printf( esc_html__( 'Send a message to %s', 'profilegrid-user-profiles-groups-and-communities' ), esc_html( $r_name ) ); ?>" /> 
-					  
-				  <button id="send_msg_btn" form="chat_message_form" type="submit" name="send">
+		<div class="pg-message-footer">
+			<form id="chat_message_form" name="chat_message_form" onsubmit="pm_messenger_send_chat_message(event);">  
+				<input id="pg_messaging_text" name="content" value="" type="text" data-placeholder="<?php printf( esc_html__( 'Send a message to %s', 'profilegrid-user-profiles-groups-and-communities' ), esc_html( $r_name ) ); ?>" /> 
+		
+				<button id="send_msg_btn" form="chat_message_form" type="submit" name="send">
 					<svg width="100%" height="100%" viewBox="0 0 512 512" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" style="fill:#ccc">
-	<g transform="matrix(1.05995e-15,17.3103,-17.3103,1.05995e-15,22248.8,-22939.9)">
-		<path d="M1340,1256C1340,1256 1350.4,1279.2 1352.6,1284.1C1352.68,1284.28 1352.65,1284.49 1352.53,1284.65C1352.41,1284.81 1352.22,1284.89 1352.02,1284.86C1349.73,1284.54 1344.07,1283.75 1342.5,1283.53C1342.26,1283.5 1342.07,1283.3 1342.04,1283.06C1341.71,1280.61 1340,1268 1340,1268C1340,1268 1338.33,1280.61 1338.01,1283.06C1337.98,1283.31 1337.79,1283.5 1337.54,1283.53C1335.97,1283.75 1330.28,1284.54 1327.98,1284.86C1327.78,1284.89 1327.58,1284.81 1327.46,1284.65C1327.35,1284.49 1327.32,1284.28 1327.4,1284.1C1329.6,1279.2 1340,1256 1340,1256Z"/>
-	</g>
-	</svg>
-				  </button>
-				  <input type="hidden" id="receipent_field_rid" name="rid" value="<?php
+						<g transform="matrix(1.05995e-15,17.3103,-17.3103,1.05995e-15,22248.8,-22939.9)">
+							<path d="M1340,1256C1340,1256 1350.4,1279.2 1352.6,1284.1C1352.68,1284.28 1352.65,1284.49 1352.53,1284.65C1352.41,1284.81 1352.22,1284.89 1352.02,1284.86C1349.73,1284.54 1344.07,1283.75 1342.5,1283.53C1342.26,1283.5 1342.07,1283.3 1342.04,1283.06C1341.71,1280.61 1340,1268 1340,1268C1340,1268 1338.33,1280.61 1338.01,1283.06C1337.98,1283.31 1337.79,1283.5 1337.54,1283.53C1335.97,1283.75 1330.28,1284.54 1327.98,1284.86C1327.78,1284.89 1327.58,1284.81 1327.46,1284.65C1327.35,1284.49 1327.32,1284.28 1327.4,1284.1C1329.6,1279.2 1340,1256 1340,1256Z"/>
+						</g>
+					</svg>
+				</button>
+
+				<input type="hidden" id="receipent_field_rid" name="rid" value="<?php
 					if ( isset( $rid ) ) {
 						echo wp_kses_post( $rid );}
 					?>"  />   
 				<?php wp_nonce_field( 'pg_send_new_message' ); ?>
-				   <input type="hidden" name="action" value='pm_messenger_send_new_message' /> 
-					<input type="hidden" id="thread_hidden_field" name="tid" value="<?php echo esc_attr( $tid ); ?>"/>
-                                        <input type="hidden" name="sid" value="<?php echo esc_attr( $uid ); ?>" /> 
-				  <input type="hidden" name="new_thread" id="new_thread" value="0" />
-				  <input type="hidden" name="mid" id="mid" value="" />
-				  </form>
-			</div>
+				<input type="hidden" name="action" value='pm_messenger_send_new_message' /> 
+				<input type="hidden" id="thread_hidden_field" name="tid" value="<?php echo esc_attr( $tid ); ?>"/>
+									<input type="hidden" name="sid" value="<?php echo esc_attr( $uid ); ?>" /> 
+				<input type="hidden" name="new_thread" id="new_thread" value="0" />
+				<input type="hidden" name="mid" id="mid" value="" />
+			</form>
+		</div>
 
 		<?php
 	}
@@ -642,93 +687,94 @@ class ProfileMagic_Chat {
 		
 
 			
- <div class="pm-blog-desc-wrap pm-difl pm-section-content pm-message-thread-section">
-				<div id="pm-msg-overlay" class="pm-msg-overlay  
-				<?php
+ 		<div class="pm-blog-desc-wrap pm-difl pm-section-content pm-message-thread-section">
+			<div id="pm-msg-overlay" class="pm-msg-overlay  <?php
 				if ( ( $return == 'You have no conversations yet.' ) && ! isset( $receiver_user ) ) {
 					echo 'pm-overlay-show1';}
 				?>
-				"> </div>
-				<form id="chat_message_form" onsubmit="pm_messenger_send_chat_message(event);">  
-				<input type="hidden" id="receipent_field_rid" name="rid" value="<?php
-				if ( isset( $rid ) ) {
-					echo wp_kses_post( $rid );}
-				?>"  />   
-				<div class="contact-profile" id="userSection">	
-				<?php
-
-					echo '<div class="pm-conversation-box-user pm-difl"><a href="' . esc_url( $profile_url ) . '">' . wp_kses_post( $r_avatar ) . '</a></div>';
-					echo '<p>' . wp_kses_post( $r_name ) . '</p>';
-				?>
-										
-				</div>
+				"> 
+			</div>
 				
+			<form id="chat_message_form" onsubmit="pm_messenger_send_chat_message(event);">  
+				<input type="hidden" id="receipent_field_rid" name="rid" value="<?php
+					if ( isset( $rid ) ) {
+						echo wp_kses_post( $rid );}
+					?>"  />
+
+				<div class="contact-profile" id="userSection">	
+					<?php
+						echo '<div class="pm-conversation-box-user pm-difl"><a href="' . esc_url( $profile_url ) . '">' . wp_kses_post( $r_avatar ) . '</a></div>';
+						echo '<p>' . wp_kses_post( $r_name ) . '</p>';
+					?>					
+				</div>
 				
 				<div id="message_display_area" class="pm-difl pm_full_width_profile"  style="min-height:200px;max-height:200px;max-width: 550px;overflow-y:auto;">
 					<?php echo $return; ?>
-				<?php $path = plugins_url( '../public/partials/images/typing_image.gif', __FILE__ ); ?>
-				
+					<?php $path = plugins_url( '../public/partials/images/typing_image.gif', __FILE__ ); ?>
 				</div>
 					
-				<div id="typing_on"  class="pm-user-description-row pm-dbfl pm-border"><div class="pm-typing-inner"><img height="9px" width="40px" src="<?php echo esc_url( $path ); ?>"/></div></div>
+				<div id="typing_on"  class="pm-user-description-row pm-dbfl pm-border">
+					<div class="pm-typing-inner"><img height="9px" width="40px" src="<?php echo esc_url( $path ); ?>"/></div>
+				</div>
 			  
 				<div class="pm-dbfl pm-chat-messenger-box">
-                                    <?php wp_nonce_field( 'pg_send_new_message' ); ?>
-					  <input type="hidden" name="action" value='pm_messenger_send_new_message' /> 
+                    <?php wp_nonce_field( 'pg_send_new_message' ); ?>
+					<input type="hidden" name="action" value='pm_messenger_send_new_message' /> 
 					<input type="hidden" id="thread_hidden_field" name="tid" value=""/>
 					<div class="emoji-container">
 						<div class="pm-messenger-user-profile-pic">
-						<?php
-						$avatar = get_avatar(
-							$current_user->ID,
-							50,
-							'',
-							false,
-							array(
-								'class'         => 'pm-user-profile',
-								'force_display' => true,
-							)
-						);
-																   echo wp_kses_post( $avatar );
-						?>
+							<?php
+								$avatar = get_avatar(
+									$current_user->ID,
+									50,
+									'',
+									false,
+									array(
+										'class'         => 'pm-user-profile',
+										'force_display' => true,
+									)
+								);
+								echo wp_kses_post( $avatar );
+							?>
 						</div>
-					<textarea id="messenger_textarea" data-emojiable="true"  name="content" style="min-width: 100%;height:100px;"
-						
-							   form="chat_message_form" placeholder="<?php esc_attr_e( 'Type your message..', 'profilegrid-user-profiles-groups-and-communities' ); ?>" ></textarea> 
-					<input type="hidden" disabled  maxlength="4" size="4" value="1000" id="counter">
-					<input type="hidden" name="sid" value="" />   
-					<div class="pm-messenger-button">
-						<label>
-						  <input id="send_msg_btn" type="submit" name="send" value="<?php esc_attr_e( 'send', 'profilegrid-user-profiles-groups-and-communities' ); ?>"/>
-					<svg width="100%" height="100%" viewBox="0 0 512 512" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" style="fill:#ccc">
-	<g transform="matrix(1.05995e-15,17.3103,-17.3103,1.05995e-15,22248.8,-22939.9)">
-		<path d="M1340,1256C1340,1256 1350.4,1279.2 1352.6,1284.1C1352.68,1284.28 1352.65,1284.49 1352.53,1284.65C1352.41,1284.81 1352.22,1284.89 1352.02,1284.86C1349.73,1284.54 1344.07,1283.75 1342.5,1283.53C1342.26,1283.5 1342.07,1283.3 1342.04,1283.06C1341.71,1280.61 1340,1268 1340,1268C1340,1268 1338.33,1280.61 1338.01,1283.06C1337.98,1283.31 1337.79,1283.5 1337.54,1283.53C1335.97,1283.75 1330.28,1284.54 1327.98,1284.86C1327.78,1284.89 1327.58,1284.81 1327.46,1284.65C1327.35,1284.49 1327.32,1284.28 1327.4,1284.1C1329.6,1279.2 1340,1256 1340,1256Z"/>
-	</g>
-	</svg>
-						</label>      
+						<textarea id="messenger_textarea" data-emojiable="true"  name="content" style="min-width: 100%;height:100px;"
+						form="chat_message_form" placeholder="<?php esc_attr_e( 'Type your message..', 'profilegrid-user-profiles-groups-and-communities' ); ?>" ></textarea>
+						<input type="hidden" disabled  maxlength="4" size="4" value="1000" id="counter">
+						<input type="hidden" name="sid" value="" />   
+						<div class="pm-messenger-button">
+							<label>
+								<input id="send_msg_btn" type="submit" name="send" value="<?php esc_attr_e( 'send', 'profilegrid-user-profiles-groups-and-communities' ); ?>"/>
+								<svg width="100%" height="100%" viewBox="0 0 512 512" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" style="fill:#ccc">
+									<g transform="matrix(1.05995e-15,17.3103,-17.3103,1.05995e-15,22248.8,-22939.9)">
+										<path d="M1340,1256C1340,1256 1350.4,1279.2 1352.6,1284.1C1352.68,1284.28 1352.65,1284.49 1352.53,1284.65C1352.41,1284.81 1352.22,1284.89 1352.02,1284.86C1349.73,1284.54 1344.07,1283.75 1342.5,1283.53C1342.26,1283.5 1342.07,1283.3 1342.04,1283.06C1341.71,1280.61 1340,1268 1340,1268C1340,1268 1338.33,1280.61 1338.01,1283.06C1337.98,1283.31 1337.79,1283.5 1337.54,1283.53C1335.97,1283.75 1330.28,1284.54 1327.98,1284.86C1327.78,1284.89 1327.58,1284.81 1327.46,1284.65C1327.35,1284.49 1327.32,1284.28 1327.4,1284.1C1329.6,1279.2 1340,1256 1340,1256Z"/>
+									</g>
+								</svg>
+							</label>      
+						</div>
 					</div>
 				</div>
-					</div>
 			</form>
-				
-				
-
 		</div>
 
 		<?php
 	}
 
-	public function pm_messenger_send_new_message( $rid, $content ) {
+	public function pm_messenger_send_new_message( $rid, $content,$tid = '' ) {
 		$dbhandler    = new PM_DBhandler();
 		$pmrequests   = new PM_request();
 		$current_user = wp_get_current_user();
 		$sid          = $current_user->ID;
-
-			$is_msg_sent = $pmrequests->pm_create_message( $sid, $rid, $content );
-
-		if ( !$is_msg_sent ) {
-			$return = __( 'not sent', 'profilegrid-user-profiles-groups-and-communities' );
+		$condition    = apply_filters('pm_send_msg_restriction', true, $sid, $rid);
+		
+		if ( $condition ){
+			$is_msg_sent = $pmrequests->pm_create_message( $sid, $rid, $content ,$tid );
+			if ( !$is_msg_sent ) {
+				$return = __( 'not sent', 'profilegrid-user-profiles-groups-and-communities' );
+			}
+		}else{
+			$is_msg_sent = __( 'not sent', 'profilegrid-user-profiles-groups-and-communities' );
 		}
+		
 		return $is_msg_sent;
 
 	}

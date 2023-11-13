@@ -131,6 +131,7 @@ class Profile_Magic {
 				require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-profile-magic-chat-system.php';
 				require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-profile-magic-friends-helper.php';
 				require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-profile-magic-friends-integration.php';
+                                require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-profile-magic-license.php';
 				require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-profile-magic-notifications.php';
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'widgets/profilegrid-groups-widgets.php';
 				require_once plugin_dir_path( dirname( __FILE__ ) ) . 'widgets/profilegrid-user-blogs-widgets.php';
@@ -193,7 +194,7 @@ class Profile_Magic {
 		$plugin_block = new Profile_Magic_Block( $this->get_profile_magic(), $this->get_version() );
 		$this->loader->add_action( 'init', $plugin_block, 'profilegrid_block_register' );
 		$this->loader->add_action( 'rest_api_init', $plugin_block, 'pm_register_rest_route' );
-
+		$this->loader->add_action('block_categories_all',  $plugin_block, 'profilegrid_add_block_categories');
 	}
 
 	private function define_admin_hooks() {
@@ -267,6 +268,9 @@ class Profile_Magic {
                                 $this->loader->add_filter( 'wp_kses_allowed_html', $plugin_admin, 'pm_allowed_html_tags', 10, 2 );
                                 $this->loader->add_action( 'wp_ajax_pm_get_groups_details', $plugin_admin, 'pm_get_groups_details' );
                                 $this->loader->add_action('pg_customization_extension_html', $plugin_admin, 'pg_customization_extension_html');
+                                $this->loader->add_action( 'wp_ajax_pg_activate_license', $plugin_admin, 'profilegrid_activate_license' );
+                                $this->loader->add_action( 'wp_ajax_pg_deactivate_license', $plugin_admin, 'profilegrid_deactivate_license' );
+                                
 	}
 
 	private function define_access_hooks() {
@@ -435,6 +439,9 @@ class Profile_Magic {
 				$this->loader->add_action( 'clear_auth_cookie', $plugin_public, 'profile_magic_set_logged_out_status', 10, 1 );
 
 				$this->loader->add_action( 'rm_submission_completed', $plugin_public, 'profile_magic_rm_form_submission', 10, 3 );
+				$this->loader->add_action( 'rm_payment_completed', $plugin_public, 'profile_magic_rm_form_submission_payment_completed', 10, 3 );
+                                $this->loader->add_action( 'profile_magic_profile_settings_tab', $plugin_public, 'pg_rm_registration_tab', 10, 2 );
+                                $this->loader->add_action( 'rm_payment_completed', $plugin_public, 'profile_magic_rm_form_submission_payment_completed', 10, 3 );
 				$this->loader->add_action( 'profile_magic_profile_settings_tab', $plugin_public, 'pg_rm_registration_tab', 10, 2 );
 				$this->loader->add_action( 'profile_magic_profile_settings_tab_content', $plugin_public, 'pg_rm_registration_tab_content', 10, 2 );
 				$this->loader->add_action( 'profile_magic_profile_settings_tab', $plugin_public, 'pg_rm_payment_tab', 10, 2 );

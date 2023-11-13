@@ -17,9 +17,9 @@ class OptionController
     }
 
     /* Domains */
-    public function GetPreferredDomain()
+    public function GetPreferredDomain($refresh = false)
     {
-        $current_option = self::GetKeyDomainOption();
+        $current_option = self::GetKeyDomainOption($refresh);
         return Config::API_DOMAINS[$current_option[KeyDomainOptionKey::DOMAIN]];
     }
 

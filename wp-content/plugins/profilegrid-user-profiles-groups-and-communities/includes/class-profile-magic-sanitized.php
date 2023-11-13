@@ -443,6 +443,10 @@ class PM_sanitizer {
 		$new_input = array();
 		// Loop through the input and sanitize each of the values
 		foreach ( $input as $key => $val ) {
+                        if(empty($val)){
+                            $new_input[ $key ] = $val;
+                            continue;
+                        }
 			if ( is_array( $val ) ) {
 				$new_input[ $key ] = $this->sanitize( $val );
 			} else {

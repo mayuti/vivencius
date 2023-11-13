@@ -27,7 +27,7 @@ final class spbsm_db
         $this->db = $wpdb;
         $this->table_settings = $this->db->prefix . "spbsm";
         $this->table_positionSettings = $this->db->prefix . "spbsm_position";
-        $this->db_version = "1.5";
+        $this->db_version = "1.8";
         $this->medias = include plugin_dir_path(__FILE__) . 'mediadata.php';
         $this->sqlErrorResponse =  __("Couldn't save settings. Data couldn't be updated.", 'spbsm');
         $this->successResponse =  __("Settings successfully saved!", 'spbsm');
@@ -108,6 +108,9 @@ final class spbsm_db
                 foreach ($results as &$value) {
                     foreach ($arr as &$media) {
                         if ($value['id'] == $media['id']) {
+                            if (isset($media['alt-name'])) {
+                                $value['alt-name'] = $media['alt-name'];
+                            }
                             $media = $value;
                         }
                     }
@@ -172,6 +175,9 @@ final class spbsm_db
                     if ($value['id'] == $media['id']) {
                         $value['icon'] = $media['icon'];
                         $value['share'] = $media['share'];
+                        if (isset($media['alt-name'])) {
+                            $value['alt-name'] = $media['alt-name'];
+                        }
                     }
                 }
             }

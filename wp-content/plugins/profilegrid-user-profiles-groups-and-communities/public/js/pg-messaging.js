@@ -519,7 +519,7 @@ function show_thread_messages(tid,loadnum)
     var offset = new Date().getTimezoneOffset();
     var nonce = pg_msg_object.nonce;
     var data = {'action': 'pm_messenger_show_messages', 'tid': tid,'loadnum': loadnum,'timezone':offset,'nonce':nonce};
-   console.log(data);
+   //console.log(data);
     jQuery.post(pg_msg_object.ajax_url, data, function (resp) {
        pm_messenger_notification_extra_data(1);
         //console.log(resp);

@@ -65,7 +65,7 @@ jQuery( document ).ready(
                 var validation =false;
                 if (jQuery( '#pm_groups' ).val() === undefined || jQuery( '#pm_groups' ).val() === null) {
                     alert( 'Select at least one group.' );
-                } else if (jQuery( '#pm_fields' ).val() === undefined || jQuery( '#pm_fields' ).val() === null) {
+                } else if (jQuery( '#pm_fields' ).val() === undefined || jQuery( '#pm_fields' ).val().length < 1) {
                     alert( pm_error_object.atleast_one_field );
                 } else if (jQuery( '#pm_separator' ).val() === undefined || jQuery( '#pm_separator' ).val() === null || jQuery( '#pm_separator' ).val() === '' ) {
                     alert( pm_error_object.seprator_not_empty );
@@ -527,6 +527,8 @@ function pm_show_hide_field_option(a,primary)
 	}
 	if (a == 'term_checkbox') {
 		jQuery( '#term_and_condition_html' ).show( 500 );
+                jQuery( '#term_and_condition_url_html' ).show( 500 );
+                jQuery( '#term_and_condition_label_html' ).show( 500 );
 	}
 
 	if (a == 'heading') {

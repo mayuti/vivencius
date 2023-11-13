@@ -208,7 +208,7 @@ update_option( 'pg_redirect_to_group_page', '0' );
   
  <!-- Pagination -->
 
-<div class="pg-box-pagination pg-box-row-wrap"><?php echo wp_kses_post($pagination);?></div> 
+<div class="pg-box-pagination pg-box-row-wrap"><?php if(!empty($pagination)) echo wp_kses_post($pagination);?></div> 
 
 <!-- Pagination End --> 
 

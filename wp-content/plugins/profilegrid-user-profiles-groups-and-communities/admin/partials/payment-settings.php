@@ -19,6 +19,12 @@ if ( filter_input( INPUT_POST, 'submit_settings' ) ) {
 		if ( !isset( $post['pm_enable_paypal'] ) ) {
 			$post['pm_enable_paypal'] = 0;
 		}
+    if ( !isset( $post['pm_przelewy24_test_mode'] ) ) {
+			$post['pm_przelewy24_test_mode'] = 0;
+        }
+		if ( !isset( $post['pm_enable_przelewy24'] ) ) {
+			$post['pm_enable_przelewy24'] = 0;
+		}
 		foreach ( $post as $key=>$value ) {
 			$dbhandler->update_global_option_value( $key, $value );
 		}

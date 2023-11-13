@@ -1,10 +1,10 @@
 === All in One SEO – Best WordPress SEO Plugin – Easily Improve SEO Rankings & Increase Traffic ===
 Contributors: aioseo, smub, benjaminprojas
 Tags: SEO, Google Search Console, XML Sitemap, meta description, schema, meta title, rich snippets, woocommerce seo, local seo, open graph, google news sitemap, video sitemap, robots.txt, seo audit, content analysis, seo plugin, redirection
-Tested up to: 6.3
+Tested up to: 6.4.1
 Requires at least: 4.9
 Requires PHP: 7.0
-Stable tag: 4.4.5.1
+Stable tag: 4.5.0
 License: GPLv3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.txt
 
@@ -258,21 +258,83 @@ Visit <a href="http://www.wpbeginner.com/" rel="friend" title="WPBeginner">WPBeg
 
 == Changelog ==
 
+**New in Version 4.5.0**
+
+* New: Post Index Status - Check whether your posts have been indexed by Google inside our Search Statistics reports and revamped AIOSEO Details column.
+* New: AIOSEO Details Column Revamp - We've redesigned our post/term column to give it a fresh lick of paint. You can now add smart tags to the title & meta description inside the column and see your headline score.
+* Fixed: Search Statistics no longer considers URLs with query args or HTML anchors.
+
+**New in Version 4.4.9.2**
+
+* Fixed: Widgets page not loading due to JavaScript error.
+
+**New in Version 4.4.9.1**
+
+* Fixed: Metabox sometimes doesn't load in post editor when post does not support featured images.
+
+**New in Version 4.4.9**
+
+* Updated: Added support for our Divi page builder integration for the Extra theme.
+* Updated: Robots.txt Editor now also highlights conflicting crawl-delay directives
+* Fixed: Social snippet preview now re-renders when Featured Image is changed.
+* Fixed: SEO Overview widget throws PHP warning when all content on the site is noindexed.
+* Fixed: Schema Validator output could not be copied to clipboard on sites using HTTP.
+* Fixed: TruSEO sometimes highlighting single characters or words.
+* Fixed: TruSEO throws PHP warning when ACF Link field is used in post.
+* Fixed: REST API error when "All" language filter is selected in WPML.
+* Fixed: PHP notice when HTTP_USER_AGENT request header not set.
+
+**New in Version 4.4.8**
+
+* New: Cornerstone Content - Mark the most important pages on your website as cornerstone content so that AIOSEO can prioritize internal linking suggestions for them.
+* Updated: Breadcrumbs schema has been updated according to Google's latest specifications.
+
+**New in Version 4.4.7.1**
+
+* Fixed: Plugin conflict with Divi where the visual editor does not load.
+
+**New in Version 4.4.7**
+
+* Updated: Improved TruSEO Highlighter style compatibility with various popular themes.
+* Updated: Improved general style compatibility with Elementor dark mode.
+* Updated: Added TikTok to supported social profiles under Social Networks settings.
+* Updated: Added custom capability for SEO Revisions tab in metabox to Access Control menu.
+* Fixed: Auto-update for AIOSEO Pro users failing in some cases where the download URL is expired.
+* Fixed: Incorrect robots meta value output on search pages when additional query args are added to the URL.
+* Fixed: Query Loop block not rendering correctly due to calls to do_blocks() when autogenerating meta descriptions.
+* Fixed: Excluded posts, excluded terms and hidden WooCommerce Products are now considered again when determining the amount of product sitemap indexes for the root sitemap index.
+* Fixed: Priority value missing for posts/terms in sitemap with a priority of 1.0 or 0.0.
+* Fixed: Additional sitemap pages hook now returns consistent data in root and additional page sitemap indexes.
+* Fixed: TruSEO shows incorrect results when Focus Keyphrase contains special characters.
+* Fixed: TruSEO results not visible after loading the post editor until user switches between tabs.
+* Fixed: Event schema no longer let's users select an end date that takes place before the start date.
+* Fixed: Product schema triggers WooCommerce "Can't add this product to cart" alert when product is out of stock.
+* Fixed: Image property of Webpage schema doesn't refer to the correct ID of the PrimaryImage property.
+* Fixed: SEO Revisions modal now opens automatically in Lite when SEO Revisions menu is opened via sidebar.
+* Fixed: Plugin conflict where Vimeography breaks robots.txt.
+* Fixed: Rare issue where Safari browser can crash on iOS 15 due to CSS animation.
+* Fixed: Harmless JavaScript console error when editing a term.
+
+**New in Version 4.4.6**
+
+* New: TruSEO Highlighter – Our improved TruSEO content algorithm now lets you highlight phrases that need to be improved, allowing you to easily optimize your post content for SE👁️!
+* Fixed: Conflicts with Post SMTP Mailer and other plugins where call to sanitize_file_name breaks features.
+
 **New in Version 4.4.5.1**
 
 * New: REST API addon endpoints now return the breadcrumb trail.
-* New: Added filter hook to filter post ID
+* New: Added filter hook to filter post ID.
 * Updated: Importing redirects in Redirection Manager addon now supports pass-through status from the Redirection plugin.
 * Updated: Adding a redirect to a protected path like `/wp-admin/` now throws a warning.
 * Updated: Added support for ACF Link field to TruSEO algorithm.
 * Updated: Product schema now outputs multiple offers for variable WooCommerce Products.
-* Updated: Image sitemap now detects images inside Kadance Gallery block.
+* Updated: Image sitemap now detects images inside Kadence Gallery block.
 * Updated: Local SEO Map no longer uses geocoding to center the map.
 * Fixed: Breadcrumbs prefix not rendering on frontend.
 * Fixed: Searching for redirects now works again when a user enters one or more numbers.
 * Fixed: Testing a regex redirect that uses regex groups no longer returns a false-negative.
 * Fixed: Redirects no longer have an automatic trailing slash added to the target URL.
-* Fixed: PHP warnings from Product schema when a WooCommerce Product doesn’t have reviews enabled.
+* Fixed: PHP warnings from Product schema when a WooCommerce Product doesn't have reviews enabled.
 * Fixed: Generic Product schema not working for posts other than EDD Downloads and WooCommerce Products.
 * Fixed: Missing FAQ schema if FAQ Block is nested inside another block.
 * Fixed: Event schema now outputs the start and end date again.
@@ -281,16 +343,15 @@ Visit <a href="http://www.wpbeginner.com/" rel="friend" title="WPBeginner">WPBeg
 * Fixed: Plugin conflict where WP Optimize removed AIOSEO custom tables.
 * Fixed: Plugin conflicts with Product shipping details schema.
 * Fixed: Plugin conflict with Jetpack WAF causing warnings when a failed login attempt occurs.
-* Fixed: Theme conflict with JupitorX causing the “lang” and “prefix” attributes to be combined.
-* Fixed: Avada Theme’s Fusion Elements are no longer available in the AIOSEO options.
+* Fixed: Theme conflict with Jupiter X causing the "lang" and "prefix" attributes to be combined.
+* Fixed: Avada Theme's Fusion Elements are no longer available in the AIOSEO options.
 * Fixed: Removed Table of Contents block from Widgets Editor.
 * Fixed: Removing a static robots.txt file through the relevant notification in the Notifications Center now works correctly.
 * Fixed: Search Statistics date range picker sometimes hidden behind admin bar.
 * Fixed: TruSEO algorithm now parses special characters in post titles correctly.
-* Fixed: TruSEO’s Passive Voice check now correctly warns users when over 10% of the content uses passive voice.
+* Fixed: TruSEO's Passive Voice check now correctly warns users when over 10% of the content uses passive voice.
 * Fixed: Image SEO addon bulk action to add image attributes throws a PHP notice.
 * Fixed: PHP 8 notice in Robots.txt Editor.
-* Fixed: Image SEO addon bulk action to add image attributes throws a PHP notice.
 * Fixed: PHP error on login page for Wealthy Affiliate users.
 * Fixed: WP 6.3 affecting styling of link format in Block Editor.
 
@@ -592,6 +653,6 @@ Additionally, AIOSEO can also provide you with data on the most frequently used 
 
 == Upgrade Notice ==
 
-= 4.4.5.1 =
+= 4.5.0 =
 
 This update adds major improvements and bug fixes.

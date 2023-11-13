@@ -47,6 +47,7 @@ class Profile_Magic_Public {
 		 * @param      string $profile_magic       The name of the plugin.
 		 * @param      string $version    The version of this plugin.
 		 */
+                private $pm_theme;
 	public function __construct( $profile_magic, $version ) {
 			$dbhandler           = new PM_DBhandler();
 			$this->profile_magic = $profile_magic;
@@ -208,8 +209,11 @@ class Profile_Magic_Public {
 			// wp_enqueue_script( 'profile-magic-emoji-util.js', plugin_dir_url( __FILE__ ) . 'js/util.js', array( 'jquery' ), $this->version, true );
 			// wp_enqueue_script( 'profile-magic-emojiarea.js', plugin_dir_url( __FILE__ ) . 'js/jquery.emojiarea.js', array( 'jquery' ), $this->version, true );
 			// wp_enqueue_script( 'profile-magic-emoji-picker.js', plugin_dir_url( __FILE__ ) . 'js/emoji-picker.js', array( 'jquery' ), $this->version, true );
-
-			wp_enqueue_media();
+                        $classes = get_body_class();
+                        if (!in_array('fusion-builder-panel-main',$classes)) {
+                            wp_enqueue_media();
+                        }
+			
 			wp_enqueue_script( 'jquery-form' );
 			wp_enqueue_script( 'jcrop' );
 			wp_enqueue_script( 'jquery-ui-tooltip' );
@@ -414,7 +418,7 @@ class Profile_Magic_Public {
 			}
 		}
 
-		return $path;
+		return apply_filters('pm_filter_group_theme_css', $path, plugin_dir_path( __FILE__ ), get_stylesheet_directory(), $plugin_path, $wp_theme_dir );
 	}
 
 
@@ -431,8 +435,8 @@ class Profile_Magic_Public {
 		} else {
 			$path = $plugin_path . 'partials/themes/default/' . $type . '.php';
 		}
-
-		return $path;
+		
+		return apply_filters('pm_filter_group_theme', $path, $type, $plugin_path, $wp_theme_dir);
 	}
 	public function profile_magic_messenger( $content ) {
 		return $this->profile_magic_get_template_html( 'profile-magic-messenger', $content );
@@ -873,6 +877,11 @@ class Profile_Magic_Public {
 			$default_avatar_path = $path . '/partials/images/default-user.png';
 			$pm_avatar           = '<img src="' . $default_avatar_path . '" width="' . $size . '" height="' . $size . '" class="user-profile-image" />';
 		} else {
+                        // FIX FOR WPDISCUZ ---START
+                        if ( isset( $args['wpdiscuz_current_user'] ) ) {
+                        unset( $args['wpdiscuz_current_user'] );
+                        }
+                        // FIX FOR WPDISCUZ ---END
 			$pm_avatar = wp_get_attachment_image( $avatarid, array( $size, $size ), false, $args );
 		}
 
@@ -1147,9 +1156,18 @@ class Profile_Magic_Public {
                         }else{
                             $content = '';
                         }
-			
+                        
+                        if(isset($post['tid'])){
+                            $tid = $post['tid'];
+                        }else{
+                            $tid = '';
+                        }
 			if ( $mid == '' ) {
+				if ($tid == 0){
 				$result = $pmmessenger->pm_messenger_send_new_message( $rid, $content );
+			}else{
+				$result = $pmmessenger->pm_messenger_send_new_message( $rid, $content,$tid );
+				}
 			} else {
 				$result = $pmmessenger->pm_messenger_send_edit_message( $rid, $mid, $content );
 			}
@@ -1166,11 +1184,14 @@ class Profile_Magic_Public {
 		$tid         = filter_input( INPUT_POST, 'tid' );
 		$loadnum     = filter_input( INPUT_POST, 'loadnum' );
 		$timezone    = filter_input( INPUT_POST, 'timezone' );
-                $nonce    = filter_input( INPUT_POST, 'nonce' );
-                if ( !isset($nonce ) || ! wp_verify_nonce( wp_unslash($nonce), 'ajax-nonce' ) ) {
-                    die(esc_html__('Failed security check','profilegrid-user-profiles-groups-and-communities') );
-                }
+		$nonce    = filter_input( INPUT_POST, 'nonce' );
+		
+		if ( !isset($nonce ) || ! wp_verify_nonce( wp_unslash($nonce), 'ajax-nonce' ) ) {
+			
+			die(esc_html__('Failed security check','profilegrid-user-profiles-groups-and-communities') );
+		}
 		$return = $pmmessenger->pm_messenger_show_messages( $tid, $loadnum, $timezone );
+		// update_option('pm_update_status_test', 'yoyo');
 		//echo wp_kses_post($return);
                 echo $return;
 		die;
@@ -2474,14 +2495,18 @@ class Profile_Magic_Public {
 		}
 	}
 
-	public function pg_comment_link_to_profile( $return, $author, $comment_ID ) {
+	public function pg_comment_link_to_profile( $return,$author = '', $comment_ID ='' ) {
 		   $dbhandler   = new PM_DBhandler();
 			$pmrequests = new PM_request();
 			$comment    = get_comment( $comment_ID );
 		if ( $dbhandler->get_global_option_value( 'pm_auto_redirect_author_to_profile', '0' ) == 1 && isset( $comment->user_id ) && ! empty( $comment->user_id ) ) {
-			$link        = $pmrequests->pm_get_user_profile_url( $comment->user_id );
-			$displayname = $pmrequests->pm_get_display_name( $comment->user_id );
-			$return      = "<a href='" . $link . "'>" . $displayname . '</a>';
+			$user = get_userdata( $comment->user_id );
+                        if($user!==false)
+                        {
+                            $link        = $pmrequests->pm_get_user_profile_url( $comment->user_id );
+                            $displayname = $pmrequests->pm_get_display_name( $comment->user_id );
+                            $return      = "<a href='" . $link . "'>" . $displayname . '</a>';
+                        }
 
 		}
 			return $return;
@@ -3187,7 +3212,9 @@ class Profile_Magic_Public {
 	public function user_online_status() {
 		// get the user activity the list
 		$logged_in_users = get_transient( 'rm_user_online_status' );
-
+                if(!is_array($logged_in_users)){
+                    $logged_in_users= array();
+                }
 		// get current user ID
 		$user = wp_get_current_user();
 
@@ -3234,7 +3261,10 @@ class Profile_Magic_Public {
 
 	public function profile_magic_rm_form_submission( $form_id, $user_id, $rm_data ) {
 		$pmrequests = new PM_request();
-
+                $form_factory = defined('REGMAGIC_ADDON') ? new RM_Form_Factory_Addon() : new RM_Form_Factory();
+                $fe_form = $form_factory->create_form($form_id);
+              
+                
 		if ( is_array( $user_id ) ) {
 			$uid = $user_id['user_id'];
 		} else {
@@ -3245,7 +3275,7 @@ class Profile_Magic_Public {
 			$user_id = get_current_user_id();
 			$uid     = $user_id;
 		}
-		if ( $form_type == '1' && isset( $user_id ) && $user_id != null ) {
+		if ( $form_type == '1' && isset( $user_id ) && $user_id != null) {
 			$associate_groups = $pmrequests->pm_check_rm_form_associate_with_groups( $form_id );
 
 			if ( ! empty( $associate_groups ) ) {
@@ -3255,8 +3285,10 @@ class Profile_Magic_Public {
 						echo esc_html( $group_limit );
 						continue;}
 					$group_type = $pmrequests->profile_magic_get_group_type( $group );
-
-					$pmrequests->profile_magic_join_group_fun( $uid, $group, $group_type );
+                                        if($fe_form->has_price_field()===false)
+                                        {
+                                            $pmrequests->profile_magic_join_group_fun( $uid, $group, $group_type );
+                                        }
 					$mapping_fields = $pmrequests->pm_get_map_fields_with_rm_form( $group );
 
 					foreach ( $mapping_fields as $key => $map_field ) {
@@ -3271,7 +3303,37 @@ class Profile_Magic_Public {
 			}
 		}
 	}
+        
+        public function profile_magic_rm_form_submission_payment_completed($user_email, $form, $sub_id)
+        {
+          
+                $pmrequests = new PM_request();
+                $user = get_user_by('email', $user_email);
+                $uid = $user->ID;
+                $form_id = $form->get_form_id();
 
+		$form_type = $pmrequests->pm_check_rm_form_type( $form_id );
+		if ( $form_type == '1' && is_user_logged_in() && $uid == null ) {
+			$user_id = get_current_user_id();
+			$uid     = $user_id;
+		}
+		if ( $form_type == '1' && isset( $uid ) && $uid != null) {
+			$associate_groups = $pmrequests->pm_check_rm_form_associate_with_groups( $form_id );
+
+			if ( ! empty( $associate_groups ) ) {
+				foreach ( $associate_groups as $group ) {
+					$group_limit = $pmrequests->pm_check_group_limit( $group );
+					if ( $group_limit != '' ) {
+						echo esc_html( $group_limit );
+						continue;}
+					$group_type = $pmrequests->profile_magic_get_group_type( $group );
+                                        $pmrequests->profile_magic_join_group_fun( $uid, $group, $group_type );
+                                        
+					
+				}
+			}
+		}
+        }
 	public function pg_rm_registration_tab( $uid, $gid ) {
 		$dbhandler  = new PM_DBhandler();
 		$pmrequests = new PM_request();
@@ -3608,12 +3670,13 @@ class Profile_Magic_Public {
 			// echo '<li class="pm-dbfl pm-border-bt pm-pad10"><a class="pm-dbfl" href="#'.sanitize_key($section->section_name).$section->id.'">'.$section->section_name.'</a></li>';
 			// endforeach;
 
-				$pmhtmlcreator->pg_get_profile_sections_tab_header( $uid );
-			do_action( 'profile_magic_after_profile_section_tab', $uid, $primary_gid );
+				$pmhtmlcreator->pg_get_profile_sections_tab_header( $uid, $group_leader );
 
-			?>
-		</ul>
-	  </div>
+
+				do_action( 'profile_magic_after_profile_section_tab', $uid, $primary_gid );
+				?>
+			</ul>
+	  	</div>
 		<?php else : ?>
 <div class="pm-section-left-panel pm-section-no-left-panel pm-section-nav-vertical pm-difl pm-border pm-radius5 pm-bg">
 	
@@ -3631,8 +3694,12 @@ class Profile_Magic_Public {
 								echo 'pm_full_width_profile';}
 							?>">
 				<?php
-				$fields = $pmrequests->pm_get_frontend_user_meta( $uid, $gid, $group_leader, '', $section->id, '"user_avatar","user_pass","user_name","heading","paragraph","confirm_pass"' );
-				$pmhtmlcreator->get_user_meta_fields_html( $fields, $uid );
+				$exclude = apply_filters('pm_exclude_default', '"user_avatar","user_pass","user_name","heading","paragraph","confirm_pass"');
+				$fields = $pmrequests->pm_get_frontend_user_meta( $uid, $gid, $group_leader, '', $section->id, $exclude );
+				
+				if ($fields){
+					$pmhtmlcreator->get_user_meta_fields_html( $fields, $uid );
+				}
 				?>
 	  </div>
 				<?php

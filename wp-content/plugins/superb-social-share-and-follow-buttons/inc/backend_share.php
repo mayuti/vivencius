@@ -29,25 +29,26 @@ if ($settings) { ?>
 				</section>
 				<section id="content2">
 					<div class="spbsm-follow-wrapper">
-						<h2><?php printf(esc_html__('%s: Social Media', 'spbsm'), $currentButtons);?></h2>
-						<p class="headline-description"><?php printf(esc_html__('Choose which social media networks you want to display %s for.', 'spbsm'), strtolower($currentButtons));?></p>
+						<h2><?php printf(esc_html__('%s: Social Media', 'spbsm'), $currentButtons); ?></h2>
+						<p class="headline-description"><?php printf(esc_html__('Choose which social media networks you want to display %s for.', 'spbsm'), strtolower($currentButtons)); ?></p>
 						<!-- Follow Options -->
 						<table id="media-selection-table" class="spbsm-follow-wrapper">
 							<thead>
 								<tr>
-									<th><?php echo esc_html__("Social Media", 'spbsm');?></th>
-									<th><?php echo esc_html__("Activate", 'spbsm');?></th>
+									<th><?php echo esc_html__("Social Media", 'spbsm'); ?></th>
+									<th><?php echo esc_html__("Activate", 'spbsm'); ?></th>
 								</tr>
 							</thead>
 							<tbody>
 								<?php
 								foreach ($settings as &$item) {
+									$name = isset($item['alt-name']) ? $item['alt-name'] : $item['class'];
 									echo '<tr class="spbsm-follow-item">';
-									echo '<td><a href="#" class="spbsm-follow '.$item['class'].'"></a>';
-									echo $item['class']."\n</td>";
-									echo '<td><input type="hidden" value="0" name="'.$item['class'].'[share]">';
-									echo '<input type="checkbox" name="'.$item['class'].'[share]" '.($item['share']==1?'checked':'').'>';
-									echo '<input class="queue-value" type="hidden" value="'.$item['share_queue'].'" name="'.$item['class'].'[share_queue]" />';
+									echo '<td><a href="#" class="spbsm-follow ' . $item['class'] . '"></a>';
+									echo $name . "\n</td>";
+									echo '<td><input type="hidden" value="0" name="' . $item['class'] . '[share]">';
+									echo '<input type="checkbox" name="' . $item['class'] . '[share]" ' . ($item['share'] == 1 ? 'checked' : '') . '>';
+									echo '<input class="queue-value" type="hidden" value="' . $item['share_queue'] . '" name="' . $item['class'] . '[share_queue]" />';
 									echo '<input class="spbsm_dragRow" style="cursor: move;" type="button" /></td>';
 									echo '</tr>';
 								}
@@ -67,7 +68,7 @@ if ($settings) { ?>
 
 		<div class="spbsm_discount">
 			<div>
-				<div class="spbsm_img_wrapper"><img width="70" height="70" src="<?php echo plugin_dir_url( dirname( __FILE__ ) ) . 'assets/img/icon-discount-15.png'; ?>"></div>
+				<div class="spbsm_img_wrapper"><img width="70" height="70" src="<?php echo plugin_dir_url(dirname(__FILE__)) . 'assets/img/icon-discount-15.png'; ?>"></div>
 				Use our limited time offer & get a <strong>15% discount</strong> on Superb Social Share Buttons Premium
 			</div>
 			<a target="_blank" href="https://superbthemes.com/plugins/social-media-share-and-follow-buttons/">Get Premium Version For <span>$22</span> <strong>$19</strong></a>
@@ -76,6 +77,6 @@ if ($settings) { ?>
 	</div>
 
 
-	<?php
+<?php
 }
 ?>

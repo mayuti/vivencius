@@ -23,10 +23,8 @@ class KeyController
             }
 
             $option_controller = new OptionController();
-
-            $preferred_domain = $option_controller->GetPreferredDomain();
             $stamp = $option_controller->GetStamp();
-            $response = wp_remote_get($preferred_domain . self::ENDPOINT_BASE . 'keys?' . ($is_registration ? "registration=true" : "revalidate=true") . '&key=' . $key . '&dm=' . urlencode(home_url()) . '&stamp=' . absint($stamp), RestController::GetArgsHeadersArray());
+            $response = DomainShiftController::RemoteGet(self::ENDPOINT_BASE . 'keys?' . ($is_registration ? "registration=true" : "revalidate=true") . '&key=' . $key . '&dm=' . urlencode(home_url()) . '&stamp=' . absint($stamp));
             $response_code = wp_remote_retrieve_response_code($response);
             if (!is_array($response) || is_wp_error($response) || $response_code !== 200) {
                 if ($response_code === 404) {
@@ -73,10 +71,9 @@ class KeyController
     {
         $option_controller = new OptionController();
         try {
-            $preferred_domain = $option_controller->GetPreferredDomain();
             $stamp = $request_stamp ? $request_stamp : $option_controller->GetStamp();
             $key = $request_key ? $request_key : $option_controller->GetKey();
-            $response = wp_remote_get($preferred_domain . self::ENDPOINT_BASE . 'keys/remove?key=' . $key . '&dm=' . urlencode(home_url()) . '&stamp=' . absint($stamp), RestController::GetArgsHeadersArray());
+            $response = DomainShiftController::RemoteGet(self::ENDPOINT_BASE . 'keys/remove?key=' . $key . '&dm=' . urlencode(home_url()) . '&stamp=' . absint($stamp));
             $response_code = wp_remote_retrieve_response_code($response);
             if (!is_array($response) || is_wp_error($response) || $response_code !== 200) {
                 throw new Exception(__("License key removal record not received.", 'superbaddons'), $response_code);

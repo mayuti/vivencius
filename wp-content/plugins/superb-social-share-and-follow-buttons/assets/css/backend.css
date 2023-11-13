@@ -315,7 +315,7 @@ input#spbsm-save-btn {
 }
 
 .spbsm-follow-item .twitter:after {
-  background-image: url(../img/twitter-logo.svg);
+  background-image: url(../img/x-logo.svg);
 }
 .spbsm-follow-item .facebook:after {
   background-image: url(../img/facebook-letter-logo.svg);
@@ -397,6 +397,15 @@ input#spbsm-save-btn {
 }
 .spbsm-follow-item .telegram:after {
   background-image: url(../img/telegram_logo.svg);
+}
+.spbsm-follow-item .mastodon:after {
+  background-image: url(../img/mastodon.svg);
+}
+.spbsm-follow-item .goodreads:after {
+  background-image: url(../img/goodreads.svg);
+}
+.spbsm-follow-item .threads:after {
+  background-image: url(../img/threads-logo.svg);
 }
 
 #media-selection-table {

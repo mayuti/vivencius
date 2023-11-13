@@ -1936,24 +1936,26 @@ class PM_request {
 			} else {
 				 $additional = 'AND s_id = ' . $uid . ' OR r_id = ' . $uid;
 			}
-			
-			$threads = $dbhandler->get_all_result( $identifier, $column = '*', $where, 'results', 0, $limit, $sort_by = 'timestamp', true, $additional );
+			$additional = apply_filters('pm_get_user_all_threads_additional',$additional,$uid,$active);
+                        $threads = $dbhandler->get_all_result( $identifier, $column = '*', $where, 'results', 0, $limit, 'timestamp', true, $additional );
 			return $threads;
 		}
 	}
 
-	public function pm_create_message( $sid, $rid, $content ) {
+	public function pm_create_message( $sid, $rid, $content, $tid = '' ) {
 		$mid = 'false';
 		if ( $sid != '' && $rid != '' ) {
 			$dbhandler = new PM_DBhandler();
 			$pmemail = new PM_Emails;
 
 			$identifier   = 'MSG_CONVERSATION';
-			$status       = 2;
+			$status       = apply_filters('pm_default_chat_status',2, $sid);
 			$allowed_html = array();
 			$content      = wp_kses( $content, $allowed_html );
+                        if($tid=='')
+                        {
 			$tid          = $this->fetch_or_create_thread( $sid, $rid );
-			
+                        }
 			$data = array(
 				's_id'      => $sid,
 				't_id'      => $tid,
@@ -2038,6 +2040,7 @@ class PM_request {
 		$dbhandler  = new PM_DBhandler();
 		$identifier = 'MSG_THREADS';
 		$data       = array( 'status' => $status );
+		
 		$data       = $this->sanitize_request( $data, $identifier );
 		$updated    = $dbhandler->update_row( $identifier, 't_id', $tid, $data );
 
@@ -2048,9 +2051,10 @@ class PM_request {
 	public function fetch_or_create_thread( $sid, $rid ) {
 		$dbhandler   = new PM_DBhandler();
 		 $identifier = 'MSG_THREADS';
+		 
 		if ( $this->is_thread_exsist( $sid, $rid ) ) {
-
 			$tid = $this->get_thread_id( $sid, $rid );
+                        do_action('pg_update_thread_desc_add_members',$tid,$sid,$rid);
 		} else {
 
 			$thread_desc                               = array();
@@ -2060,15 +2064,15 @@ class PM_request {
 			$thread_desc[ "$rid" ]['typing_timestamp'] = 0;
 			$thread_desc[ "$rid" ]['delete_mid']       = 0;
 			$thread_desc[ "$rid" ]['typing_status']    = 'nottyping';
-			$value                                     = maybe_serialize( $thread_desc );
+			$value                                     = apply_filters('pm_thread_desc', $thread_desc, $sid, $rid );
 			$data                                      = array(
 				's_id'        => $sid,
 				'r_id'        => $rid,
-				'thread_desc' => $value,
+				'thread_desc' => maybe_serialize($value),
 				'timestamp'   => current_time( 'mysql', true ),
 			);
-			$data                                      = $this->sanitize_request( $data, $identifier );
-			$tid                                       = $dbhandler->insert_row( $identifier, $data );
+			$data = $this->sanitize_request( $data, $identifier );
+			$tid  = $dbhandler->insert_row( $identifier, $data );
 			
 		}
 		return $tid;
@@ -2142,6 +2146,8 @@ class PM_request {
 		if ( $search == '' ) {
 			$additional = " and m_id > $delete_mid";
 		}
+
+		
 
 		$message = $dbhandler->get_all_result( $identifier, $column = '*', array( 't_id' => $tid ), 'results', $offset, $limit, $sort_by = 'timestamp', $descending, $additional );
 		if ( isset( $message ) && ! empty( $message ) ) :
@@ -2510,7 +2516,6 @@ class PM_request {
 		if ( $current_user_id == $profile_id ) {
 			$access = true;
 		}
-
                     return apply_filters('pm_check_profile_access_permission',$access,$profile_id);
 	}
 
@@ -3153,7 +3158,11 @@ class PM_request {
 		}
 		?>
 		<?php
-		echo '<div class="pm-blog-pagination">' . wp_kses_post( $pagination ) . '</div>';
+		if (isset($pagination)){
+			echo '<div class="pm-blog-pagination">' . wp_kses_post( $pagination ) . '</div>';
+		}else{
+			echo '<div class="pm-blog-pagination"></div>';
+		}
 
 	}
 
@@ -3438,7 +3447,11 @@ class PM_request {
 
 		?>
 		<?php
-		echo '<div class="pm-member-pagination">' . wp_kses_post( $pagination ) . '</div>';
+		if (isset($pagination)){
+			echo '<div class="pm-member-pagination">' . wp_kses_post( $pagination ) . '</div>';
+		} else {
+			echo '<div class="pm-member-pagination"></div>';
+		}
 
 	}
 
@@ -3555,8 +3568,11 @@ class PM_request {
 		?>
 		<?php
 		echo '<div class="pm_clear"></div>';
-		echo '<div class="pm-member-pagination-grid">' . wp_kses_post( $pagination ) . '</div>';
-
+        if(!empty($pagination)){
+			echo '<div class="pm-member-pagination-grid">' . wp_kses_post( $pagination ) . '</div>';
+        }else{
+            echo '<div class="pm-member-pagination-grid"></div>';    
+        }
 	}
 
 	public function generate_members_args( $args, $sort_by, $search_in, $search, $gid ) {
@@ -4149,9 +4165,11 @@ class PM_request {
 	 <div class='pg-alert-warning pg-alert-info'><?php esc_html_e( 'There are no pending membership requests.', 'profilegrid-user-profiles-groups-and-communities' ); ?></div>
 			<?php
 		}
-
-		echo '<div class="pm-request-pagination">' . wp_kses_post( $pagination ) . '</div>';
-
+		if (isset($pagination)){
+			echo '<div class="pm-request-pagination">' . wp_kses_post( $pagination ) . '</div>';
+		}else{
+			echo '<div class="pm-request-pagination"></div>';
+		}
 	}
 
 	public function pg_get_primary_group_id( $gid ) {
@@ -4573,10 +4591,12 @@ class PM_request {
 
 		?>
 	 <div class="pm_clear"></div>
-		<?php
-
+		<?php   
+        if(!empty($pagination)){
 		echo '<div class="pm-groups-pagination">' . wp_kses_post( $pagination ) . '</div>';
-
+        } else {
+        	echo '<div class="pm-groups-pagination"></div>';
+        }
 	}
 
 	public function pm_get_group_html( $group, $view = 'grid' ) {
@@ -4610,7 +4630,7 @@ class PM_request {
 					</div>
 					<?php
 									$groupdesc = '';
-					if ( strlen( $group->group_desc ) > 150 ) {
+					if ( !empty($group->group_desc) && strlen( $group->group_desc ) > 150 ) {
 							$groupdesc  = substr( $group->group_desc, 0, 150 );
 							$groupdesc .= '...';
 					} else {
@@ -4618,7 +4638,7 @@ class PM_request {
 					}
 
 					?>
-					<div class="pm-group-desc pm-dbfl pm-pad10"><?php echo wp_kses_post( $groupdesc ); ?></div>
+					<div class="pm-group-desc pm-dbfl pm-pad10"><?php if(!empty($groupdesc)) echo wp_kses_post( $groupdesc ); ?></div>
 
 				  </div>
 				  <?php if ( ! is_user_logged_in() ) : ?> 
@@ -4671,7 +4691,7 @@ class PM_request {
 				 <div class="pm-group-heading pm-dbfl pm-pad10 pm-clip"><?php echo wp_kses_post($password_html);?><a href="<?php echo esc_url( $group_url ); ?>"><?php echo esc_html( $group->group_name ); ?></a></div>
 				 <?php
 									$groupdesc = '';
-					if ( strlen( $group->group_desc ) > 150 ) {
+					if ( !empty( $group->group_desc ) && strlen( $group->group_desc ) > 150 ) {
 							$groupdesc  = substr( $group->group_desc, 0, 150 );
 							$groupdesc .= '...';
 					} else {
@@ -4679,7 +4699,7 @@ class PM_request {
 					}
 
 					?>
-					<div class="pm-group-desc pm-dbfl pm-pad10"><?php echo wp_kses_post( $groupdesc ); ?></div>
+					<div class="pm-group-desc pm-dbfl pm-pad10"><?php if(!empty($groupdesc)) echo wp_kses_post( $groupdesc ); ?></div>
 
 					<div class="pm-group-list-view-info"><?php echo esc_html( $group_type ); ?> / <a> <span><?php echo esc_html( count( $group_leaders ) ); ?></span></a> <?php echo esc_html( $this->pm_get_group_admin_label( $group->id ) ); ?> / <a><span><?php echo esc_html( $this->pm_count_group_members( $group->id ) ); ?></span></a> <?php esc_html_e( 'Members', 'profilegrid-user-profiles-groups-and-communities' ); ?></div>
 			 </div>
@@ -4823,6 +4843,8 @@ class PM_request {
 
 	public function generate_profile_tab_links( $id, $tab, $uid, $gid, $primary_gid ) {
 		 $path = plugins_url( '../public/partials/images/sounds/msg_tone.mp3', __FILE__ );
+
+		 $path = apply_filters('custom_chat_notification_sound', $path);
 
 		$current_user = wp_get_current_user();
 		if ( isset( $tab ) && $tab['status'] == '1' ) {

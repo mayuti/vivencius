@@ -23,6 +23,15 @@ $pmrequests = new PM_request();
       </div>
     </a> 
     </div> 
+          
+      <div class="uimrow"> <a href="admin.php?page=pm_license_settings">
+  <div class="pm_setting_image"> <img src="<?php echo esc_url( $path . 'images/pg_license.png' ); ?>" class="options" alt="options"> </div>
+  <div class="pm-setting-heading"> <span class="pm-setting-icon-title">
+    <?php esc_html_e( 'License', 'profilegrid-user-profiles-groups-and-communities' ); ?>
+    </span> <span class="pm-setting-description">
+    <?php esc_html_e( 'Add license keys for auto-updates.', 'profilegrid-user-profiles-groups-and-communities' ); ?>
+    </span> </div>
+  </a> </div>       
       
       
     <div class="uimrow"> 
@@ -235,6 +244,8 @@ $pmrequests = new PM_request();
     <?php esc_html_e( 'Currency, Symbol Position, Checkout Page etc.', 'profilegrid-user-profiles-groups-and-communities' ); ?>
     </span> </div>
   </a> </div>
+          
+        
 
     </div>
  

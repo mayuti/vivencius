@@ -142,10 +142,8 @@ class LogController
                 return;
             }
 
-            $option_controller = new OptionController();
-            $preferred_domain = $option_controller->GetPreferredDomain();
-
-            $response = wp_remote_post($preferred_domain . self::SHARE_ENDPOINT, RestController::GetArgsHeadersArray(
+            $response = DomainShiftController::RemotePost(
+                self::SHARE_ENDPOINT,
                 array(
                     'headers' => array('Content-Type' => 'application/json'),
                     'method' => 'POST',
@@ -156,7 +154,7 @@ class LogController
                         )
                     )
                 )
-            ));
+            );
             $status = wp_remote_retrieve_response_code($response);
             if (!is_array($response) || is_wp_error($response) || $status !== 200) {
                 throw new Exception(sprintf(__("Error logs could not be shared. Status %d.", 'superbaddons'), $status));
@@ -174,13 +172,11 @@ class LogController
 
     public static function SendFeedback($message)
     {
-        $option_controller = new OptionController();
-        $preferred_domain = $option_controller->GetPreferredDomain();
-
         if (strlen($message) > 1000) {
             $message = substr($message, 0, 1000) . "...";
         }
-        $response = wp_remote_post($preferred_domain . self::FEEDBACK_ENDPOINT, RestController::GetArgsHeadersArray(
+        $response = DomainShiftController::RemotePost(
+            self::FEEDBACK_ENDPOINT,
             array(
                 'headers' => array('Content-Type' => 'application/json'),
                 'method' => 'POST',
@@ -196,7 +192,7 @@ class LogController
                     )
                 )
             )
-        ));
+        );
         $status = wp_remote_retrieve_response_code($response);
         if (!is_array($response) || is_wp_error($response) || $status !== 200) {
             throw new Exception(sprintf(__("Feedback could not be shared. Status %d.", 'superbaddons'), $status));

@@ -43,4 +43,16 @@ class RestController
             'headers' => $headers
         ));
     }
+
+    public static function IsAcceptableConnection($response)
+    {
+        if (!is_wp_error($response) && wp_remote_retrieve_response_code($response) === 200) {
+            if (!isset($response['headers']) || (isset($response['headers']['server']) && strpos($response['headers']['server'], 'imunify360') !== false)) {
+                return false;
+            }
+            return true;
+        }
+
+        return false;
+    }
 }

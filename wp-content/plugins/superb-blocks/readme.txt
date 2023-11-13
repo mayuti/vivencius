@@ -4,7 +4,7 @@ Tags: blocks, block, gutenberg blocks, wordpress blocks, block editor, page buil
 Requires at least: 3.0.1
 Tested up to: 6.3
 Requires PHP: 6.0
-Stable tag: 3.0.5
+Stable tag: 3.0.9
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -189,9 +189,25 @@ Yes, Superb Addons works excellently with the WordPress Editor Gutenberg and Ele
  
 With our user-friendly website builder, you'll have your site up and running in just a few clicks. Your vision, coupled with our extensive array of pre-designed elements, will transform into a captivating online presence. This feature is currently being actively developed and we are aiming for a release version in a soon to be released upcoming update.
 
-
+== Screenshots ==
+1. Gutenberg Patterns
+2. Gutenberg Blocks
+3. Elementor Sections
 
 == Changelog ==
+= 3.0.9 =
+* Fixed an issue occuring when using PHP 8.0.8 or above.
+
+= 3.0.8 =
+* Fixed an issue when trying to insert a pattern while using plain permalinks.
+
+= 3.0.7 =
+* Significantly reduced plugin file size.
+* Now automatically fixes loading issues during load without the need for the troubleshooter.
+
+= 3.0.6 =
+* Fixed an issue where sometimes elements could not be loaded correctly. 
+
 = 3.0.5 =
 * Added guided tutorials for new users
 * Added compatibility features

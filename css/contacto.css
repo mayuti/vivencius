@@ -1,0 +1,32 @@
+form {
+    background-color: #fff; /* Establece el color de fondo del formulario en blanco */
+    padding: 20px; /* Agrega un espacio interno de 20 píxeles alrededor del contenido del formulario. */
+    border-radius: 8px; /* Redondea las esquinas del formulario con un radio de 8 píxeles. */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Agrega una sombra alrededor del formulario. */
+    width: 50%; /* */
+}
+
+label {
+    display: block; /* Hace que las etiquetas se muestren como bloques */
+    margin-bottom: 8px; /* Agrega un espacio inferior de 8 píxeles a cada etiqueta para separarlas verticalmente. */
+}
+
+input,
+textarea {
+    width: 100%; /* Hace que los campos de entrada y las áreas de texto ocupen el 100% del ancho disponible. */
+    padding: 8px; /* Agrega un espacio interno de 8 píxeles alrededor del contenido de los campos de entrada y áreas de texto. */
+    margin-bottom: 16px; /*  Agrega un espacio inferior de 16 píxeles para separar verticalmente los campos de entrada y áreas de texto. */
+    box-sizing: border-box; /* Hace que el tamaño total de los elementos incluya el contenido, el padding y el borde, sin agregar el margen adicional. */
+    border: 1px solid #ccc; /* Establece el ancho del borde en 1 píxel, borde es una línea sólida y color del borde */
+    border-radius: 4px; /* radio de las esquinas del elemento, creando esquinas redondeadas, radio de 4 píxeles. */
+}
+
+input[type="submit"] {
+    background-color: #4caf50; /* Establece el color de fondo del botón de envío en verde */
+    color: #fff; /* Establece el color del texto del botón en blanco. */
+    cursor: pointer; /* Cambia el cursor del mouse a una mano para indicar que el botón es interactivo. */
+}
+
+footer p.com_fecha{
+    text-align: right; /* Alinea el texto del párrafo con la clase com_fecha a la derecha dentro del elemento footer */
+}

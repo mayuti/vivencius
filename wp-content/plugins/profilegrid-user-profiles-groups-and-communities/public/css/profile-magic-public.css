@@ -862,6 +862,19 @@ screen and (-ms-high-contrast: none) {
     transition: 0.2s;
     box-shadow: 0 0 1px 1px rgba(255,255,255,0.25);
 }
+.pg-edit-action-wrap .pm-edit-action input[type="submit"],
+.pmagic form.pmagic-form .buttonarea.pm-full-width-container input[type="submit"]{
+    background-color: #eee;
+    background-color: rgba(0,0,0,0.80);
+    border: 1px solid #ddd;
+    border: 1px solid rgba(0,0,0,0.9);
+    color: #fff;
+    color: rgba(255,255,255,1);
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.2s;
+    box-shadow: 0 0 1px 1px rgba(255,255,255,0.25);
+}
 
 .pmagic .pm-group-view .pm-section .pm-section-content form.pmagic-form .pmrow input,
 .pmagic .pm-group-view .pm-section .pm-section-content form.pmagic-form .pmrow select,
@@ -980,6 +993,11 @@ screen and (-ms-high-contrast: none) {
     min-height: 1px
 }
 
+.pmagic .pg-group-form-field-icon .pm-form-field-icon{
+    width: auto;
+    margin-right: 4px;
+}
+
 .pmagic .pm-form-field-icon:empty{
     display: none;
 }
@@ -1002,8 +1020,7 @@ screen and (-ms-high-contrast: none) {
     margin: 0 auto;
 }
 
-.pmagic .pmrow input:not(.pmagic .pm-radio-option input[type=checkbox]),
-.pmagic .pmrow input:not(.pmagic .pm-radio-option input[type=radio]),
+.pmagic .pmrow input:not(.pmagic .pm-radio-option input[type=radio]):not(.pmagic .pm-radio-option input[type=checkbox]),
 .pmagic .pmrow select,
 .pmagic .pmrow textarea {
     width: 100%
@@ -1281,7 +1298,8 @@ div.clearer {
     top: 0;
     width: 100%;
     height: 100%;
-    z-index: 999999
+    z-index: 999999;
+    max-width: 100% !important;
 }
 #pm-add-blog-dialog,
 #pm-change-cover-image-dialog,
@@ -1436,6 +1454,13 @@ div#pm_result_pane .pm-loader {
 
 .theme-astra .pmagic .pm-search-box input[type=text].pm-search-input:focus,
 .theme-astra .pmagic .pm-search-box input[type=text].pm-search-input:active{
+    border-width: 1px;
+    border-style: solid;
+    outline: 1px;
+}
+
+.theme-astra .pmagic .pmrow .pm-field-input input:focus,
+.theme-astra .pmagic .pmrow .pm-field-input input:active{
     border-width: 1px;
     border-style: solid;
     outline: 1px;
@@ -4085,14 +4110,35 @@ button#send_msg_btn {
 
 /* message box css end */
 
+/*--- Toggle Password---*/
+
+.pmagic .pm-login-box .pmagic-form .pg-toggle-password {
+    float: right;
+    cursor: pointer;
+    margin-right: 6%;
+    margin-top: -25px;
+    z-index: 999;
+    position: relative;
+}
+
+/*---Toggle Password---*/
+
 
 /*--Theme Fixes-----*/
 
 body.theme-twentytwenty-three .pmagic,
 body.theme-twentytwenty .pmagic,
 body.theme-twentytwenty-one .pmagic,
-body.theme-twentytwenty-two .pmagic{  
+body.theme-twentytwenty-two .pmagic:not(body.theme-twentytwenty-two .pmagic.pg-payment-modal){  
     display: inline-flex;
+}
+body.theme-twentytwenty-one .pmagic{
+    justify-content: center;
+}
+
+body.theme-twentytwenty-one .pmagic .pm-users-search-page {
+    max-width: 1200px;
+    margin: 0px auto;
 }
 
 body.theme-twentytwenty-three .pmagic .pmagic-form#pm_add_blog_post{
@@ -4121,3 +4167,23 @@ body.theme-twentytwenty-two .pmagic .pg-group-box-wrap{
     margin: 0px auto;
 }
 
+body.theme-twentytwenty .pmagic {
+    max-width: 1200px !important;
+    margin: 0px auto !important;
+    display: grid;
+}
+
+body.theme-twentytwenty-two .pmagic .pm-friend-action-bar button{
+    padding: 8px 12px;
+}
+
+.theme-twentytwenty-one .pg-theme-bg {
+    background-color: rgb(255, 255, 255,0.4);
+}
+
+
+.pg-users-search-list-wrap .pm-thread-user {
+    position: absolute;
+    top: -30px;
+    left: 38px;
+}

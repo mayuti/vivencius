@@ -195,6 +195,6 @@ $pagination   = $dbhandler->pm_get_pagination( $num_of_pages, $pagenum );
 
     </table>
   </div>
-  <?php echo wp_kses_post( $pagination ); ?>
+  <?php if(!empty($pagination)) echo wp_kses_post( $pagination ); ?>
   </form>
 </div>

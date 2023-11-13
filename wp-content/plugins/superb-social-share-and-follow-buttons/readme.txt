@@ -4,7 +4,7 @@ Tags: social, media, share, follow, buttons
 Requires at least: 3.0.1
 Tested up to: 6.2
 Requires PHP: 5.2.4
-Stable tag: 1.1.6
+Stable tag: 1.1.7
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -22,7 +22,7 @@ Social share icons are easily identifiable for followers, viewers and clients. Y
 
 == The Following Social Media Buttons Are Available == 
 <ul>
-	<li>Twitter Share & Follow Button / icon</li>
+	<li>X (Twitter) Share & Follow Button / icon</li>
 	<li>Facebook Share & Follow Button / icon</li>
 	<li>Instagram Share & Follow Button / icon</li>
 	<li>Pinterest Share & Follow Button / icon</li>
@@ -30,12 +30,15 @@ Social share icons are easily identifiable for followers, viewers and clients. Y
 	<li>Tumblr Share & Follow Button / icon</li>
 	<li>Reddit Share & Follow Button / icon</li>
 	<li>WhatsApp Share & Follow Button / icon</li>
+	<li>Telegram Share & Follow Button / icon</li>
+	<li>Mastodon Share & Follow Button / icon</li>
 	<li>Tiktok Follow Button / icon</li>
 	<li>Flickr Follow Button / icon</li>
 	<li>Github Follow Button / icon</li>
 	<li>Snapchat Follow Button / icon</li>
 	<li>Youtube Follow Button / icon</li>
 	<li>Twitch Follow Button / icon</li>
+	<li>Threads Follow Button / icon</li>
 	<li>Spotify Follow Button / icon</li>
 	<li>Bandcamp Follow Button / icon</li>
 	<li>Apple Music Follow Button / icon</li>
@@ -48,6 +51,7 @@ Social share icons are easily identifiable for followers, viewers and clients. Y
 	<li>Foursquare Follow Button / icon</li>
 	<li>Behance Follow Button / icon</li>
 	<li>Medium Follow Button / icon</li>
+	<li>Goodreads Follow Button / icon</li>
 	<li>Email Share Button / icon</li>
 </ul>
 
@@ -116,7 +120,7 @@ This plugin impresses with its simplicity. I can hardly believe that anyone will
 
 == Plenty of Social Networks == 
 
-You are probably active on Facebook and Twitter, and some of you may use Pinterest and LinkedIn too. However, neglecting other social networks isn’t always a smart decision. You have to be present where your audience is present. 
+You are probably active on Facebook and X (Twitter), and some of you may use Pinterest and LinkedIn too. However, neglecting other social networks isn’t always a smart decision. You have to be present where your audience is present. 
 
 It’s totally up to you to decide which bookmarking services & social networks are suitable for your business. Regardless of your choice, Superb Social Media Share and Follow Buttons lets you engage with your readers on countless social networks. YouTube, Instagram, Snapchat, Tumblr, Reddit, Twitch, and Behance are all available with this plugin.
 
@@ -166,11 +170,17 @@ There is no shortcode for the floating share sidebar & floating follow icon side
 
 
 == Changelog ==
+= 1.1.7 =
+Changed Twitter to X.
+Added Threads button.
+Added Mastodon button.
+Added Goodreads button.
+
 = 1.1.6 =
 Fixed messages in PHP 8+ if debug enabled.
 
 = 1.1.5 =
-Fixed user access issue and  issues that could generate PHP warnings.
+Fixed user access issue and issues that could generate PHP warnings.
 
 = 1.1.3 = 
 GDPR compliance update.

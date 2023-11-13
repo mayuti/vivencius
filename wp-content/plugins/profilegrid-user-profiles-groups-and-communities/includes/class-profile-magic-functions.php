@@ -757,7 +757,7 @@ class Profile_Magic_Basic_Functions {
         $file_path = $path . 'theme-list.json';
         $raw_json  = file_get_contents( $file_path );
         if ( $raw_json != false ) {
-            $raw_json = utf8_encode( $raw_json );
+            $raw_json = mb_convert_encoding( $raw_json, 'UTF-8', 'ISO-8859-1' );
             return json_decode( $raw_json );
         } else {
             return false;

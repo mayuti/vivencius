@@ -49,6 +49,7 @@ class PM_Emails {
          $pmrequests         = new PM_request();
         $from_email_address  = $pmrequests->profile_magic_get_from_email();
 		$admin_email_address = $pmrequests->profile_magic_get_admin_email();
+		$admin_email_address = apply_filters("pg_dislike_profile_notifications_admin", $admin_email_address);
 		$headers             = "MIME-Version: 1.0\r\n";
 		$headers            .= "Content-type:text/html;charset=UTF-8\r\n";
 		$headers            .= 'From:' . $from_email_address . "\r\n";

@@ -10,13 +10,15 @@ if(is_array($gid)){$gid_array = $gid;} else{$gid_array = array($gid);}
 if(!empty($gid_array))
 {
     $exclude = "associate_group in(".implode(',',$gid_array).") and field_type not in('user_name','user_email','user_avatar','user_pass','confirm_pass','paragraph','heading','term_checkbox','read_only')";
+
+    $exclude = apply_filters('pm_exclude_heading_paragraph_field', $exclude, $gid_array);
     $is_field =  $dbhandler->get_all_result('FIELDS', $column = '*',1,'results',0,false, $sort_by = 'ordering',false,$exclude);
 }
 $rd = filter_input(INPUT_GET, 'rd');
 ?>
 <div class="pmagic"> 
   <!-----Operationsbar Starts----->
-  <div class="pm-group-view pm-dbfl pm-bg-lt">
+  <div class="pm-group-view pm-dbfl pm-bg-lt pg-theme-bg">
     <?php if(isset($is_field) && !empty($is_field)):?>  
       
     <form class="pmagic-form pm-dbfl" method="post" action="" id="pm_edit_form" name="pm_edit_form"  enctype="multipart/form-data">
@@ -60,14 +62,23 @@ echo '<div class="pm-accordian-title pm-dbfl pm-border pm-bg pm-pad10">'.esc_htm
 			 {
 				 foreach($fields as $field)
 				 {
-                                    if ($field->field_options != "")
-                                    {
-                                       $field_options = maybe_unserialize($field->field_options);
-                                    }
-                                    if(!empty($field_options) && isset($field_options['admin_only']) && $field_options['admin_only']=="1" && !is_super_admin() )
-                                    {
-                                       continue;
-                                    }
+          
+          if ($field->field_options != "")
+          {
+              $field_options = maybe_unserialize($field->field_options);
+          }
+          if(!empty($field_options) && isset($field_options['admin_only']) && $field_options['admin_only']=="1" && !is_super_admin() )
+          {
+              continue;
+          }
+
+          $skip_field = apply_filters('pg_group_field_edit_profile_filter', true, $field, $field_options);
+
+          if (!$skip_field) {
+            // Your code inside the loop will run here.
+            continue;
+          }
+
 					echo '<div class="pmrow">';
 					$value = $pmrequests->profile_magic_get_user_field_value($edit_uid,$field->field_key);
 					$pm_customfields->pm_get_custom_form_fields($field,$value,$this->profile_magic);

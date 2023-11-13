@@ -1,4 +1,4 @@
-/*! elementor - v3.15.0 - 20-08-2023 */
+/*! elementor - v3.17.0 - 08-11-2023 */
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
@@ -258,63 +258,6 @@ exports["default"] = AiBehavior;
 
 /***/ }),
 
-/***/ "../modules/ai/assets/js/editor/ai-promotion-behavior.js":
-/*!***************************************************************!*\
-  !*** ../modules/ai/assets/js/editor/ai-promotion-behavior.js ***!
-  \***************************************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
-
-"use strict";
-/* provided dependency */ var __ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n")["__"];
-
-
-var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../node_modules/@babel/runtime/helpers/interopRequireDefault.js");
-Object.defineProperty(exports, "__esModule", ({
-  value: true
-}));
-exports["default"] = void 0;
-var _classCallCheck2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ "../node_modules/@babel/runtime/helpers/classCallCheck.js"));
-var _createClass2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/createClass */ "../node_modules/@babel/runtime/helpers/createClass.js"));
-var _inherits2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/inherits */ "../node_modules/@babel/runtime/helpers/inherits.js"));
-var _possibleConstructorReturn2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/possibleConstructorReturn */ "../node_modules/@babel/runtime/helpers/possibleConstructorReturn.js"));
-var _getPrototypeOf2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/getPrototypeOf */ "../node_modules/@babel/runtime/helpers/getPrototypeOf.js"));
-function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = (0, _getPrototypeOf2.default)(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = (0, _getPrototypeOf2.default)(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return (0, _possibleConstructorReturn2.default)(this, result); }; }
-function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
-var AiPromotionBehavior = /*#__PURE__*/function (_Marionette$Behavior) {
-  (0, _inherits2.default)(AiPromotionBehavior, _Marionette$Behavior);
-  var _super = _createSuper(AiPromotionBehavior);
-  function AiPromotionBehavior() {
-    (0, _classCallCheck2.default)(this, AiPromotionBehavior);
-    return _super.apply(this, arguments);
-  }
-  (0, _createClass2.default)(AiPromotionBehavior, [{
-    key: "initialize",
-    value: function initialize() {
-      this.promotionLabel = __('Coming soon', 'elementor');
-    }
-  }, {
-    key: "onRender",
-    value: function onRender() {
-      var promotionLabel = this.getOption('promotionLabel');
-      var $button = jQuery('<button>', {
-        class: 'e-ai-button'
-      });
-      $button.html('<i class="eicon-ai"></i>');
-      $button.tipsy({
-        gravity: 's',
-        title: function title() {
-          return promotionLabel;
-        }
-      });
-      this.$el.find('.elementor-control-title:eq(0)').after($button);
-    }
-  }]);
-  return AiPromotionBehavior;
-}(Marionette.Behavior);
-exports["default"] = AiPromotionBehavior;
-
-/***/ }),
-
 /***/ "../modules/ai/assets/js/editor/api/index.js":
 /*!***************************************************!*\
   !*** ../modules/ai/assets/js/editor/api/index.js ***!
@@ -328,21 +271,26 @@ var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/inte
 Object.defineProperty(exports, "__esModule", ({
   value: true
 }));
-exports.uploadImage = exports.setStatusFeedback = exports.setGetStarted = exports.getUserInformation = exports.getTextToImageGeneration = exports.getImageToImageUpscale = exports.getImageToImageReplaceBackground = exports.getImageToImageRemoveText = exports.getImageToImageRemoveBackground = exports.getImageToImageOutPainting = exports.getImageToImageMaskGeneration = exports.getImageToImageGeneration = exports.getImagePromptEnhanced = exports.getEditText = exports.getCustomCode = exports.getCustomCSS = exports.getCompletionText = void 0;
+exports.uploadImage = exports.toggleFavoriteHistoryItem = exports.setStatusFeedback = exports.setGetStarted = exports.getUserInformation = exports.getTextToImageGeneration = exports.getLayoutPromptEnhanced = exports.getImageToImageUpscale = exports.getImageToImageReplaceBackground = exports.getImageToImageRemoveText = exports.getImageToImageRemoveBackground = exports.getImageToImageOutPainting = exports.getImageToImageMaskGeneration = exports.getImageToImageGeneration = exports.getImagePromptEnhanced = exports.getHistory = exports.getEditText = exports.getCustomCode = exports.getCustomCSS = exports.getCompletionText = exports.generateLayout = exports.deleteHistoryItem = void 0;
 var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "../node_modules/@babel/runtime/helpers/defineProperty.js"));
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { (0, _defineProperty2.default)(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
 var request = function request(endpoint) {
   var data = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+  var immediately = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
+  var signal = arguments.length > 3 ? arguments[3] : undefined;
   if (Object.keys(data).length) {
     data.context = window.elementorAiCurrentContext;
   }
   return new Promise(function (resolve, reject) {
-    return elementorCommon.ajax.addRequest(endpoint, {
+    var ajaxData = elementorCommon.ajax.addRequest(endpoint, {
       success: resolve,
       error: reject,
       data: data
-    });
+    }, immediately);
+    if (signal && ajaxData.jqXhr) {
+      signal.addEventListener('abort', ajaxData.jqXhr.abort);
+    }
   });
 };
 var getUserInformation = function getUserInformation() {
@@ -456,6 +404,39 @@ var uploadImage = function uploadImage(image) {
   return request('ai_upload_image', _objectSpread({}, image));
 };
 exports.uploadImage = uploadImage;
+var generateLayout = function generateLayout(prompt, variationType, signal) {
+  return request('ai_generate_layout', {
+    prompt: prompt,
+    variationType: variationType
+  }, true, signal);
+};
+exports.generateLayout = generateLayout;
+var getLayoutPromptEnhanced = function getLayoutPromptEnhanced(prompt) {
+  return request('ai_get_layout_prompt_enhancer', {
+    prompt: prompt
+  });
+};
+exports.getLayoutPromptEnhanced = getLayoutPromptEnhanced;
+var getHistory = function getHistory(type, page, limit) {
+  return request('ai_get_history', {
+    type: type,
+    page: page,
+    limit: limit
+  });
+};
+exports.getHistory = getHistory;
+var deleteHistoryItem = function deleteHistoryItem(id) {
+  return request('ai_delete_history_item', {
+    id: id
+  });
+};
+exports.deleteHistoryItem = deleteHistoryItem;
+var toggleFavoriteHistoryItem = function toggleFavoriteHistoryItem(id) {
+  return request('ai_toggle_favorite_history_item', {
+    id: id
+  });
+};
+exports.toggleFavoriteHistoryItem = toggleFavoriteHistoryItem;
 
 /***/ }),
 
@@ -477,7 +458,7 @@ exports["default"] = void 0;
 var _react = _interopRequireDefault(__webpack_require__(/*! react */ "react"));
 var _ui = __webpack_require__(/*! @elementor/ui */ "@elementor/ui");
 var _pageContent = _interopRequireDefault(__webpack_require__(/*! ./page-content */ "../modules/ai/assets/js/editor/page-content.js"));
-var _helpers = __webpack_require__(/*! ./helpers */ "../modules/ai/assets/js/editor/helpers.js");
+var _helpers = __webpack_require__(/*! ./helpers */ "../modules/ai/assets/js/editor/helpers/index.js");
 var App = function App(props) {
   return /*#__PURE__*/_react.default.createElement(_ui.DirectionProvider, {
     rtl: props.isRTL
@@ -530,7 +511,6 @@ var _react = _interopRequireDefault(__webpack_require__(/*! react */ "react"));
 var _extends2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/extends */ "../node_modules/@babel/runtime/helpers/extends.js"));
 var _ui = __webpack_require__(/*! @elementor/ui */ "@elementor/ui");
 var _icons = __webpack_require__(/*! @elementor/icons */ "@elementor/icons");
-var _styledChip = _interopRequireDefault(__webpack_require__(/*! ./ui/styled-chip */ "../modules/ai/assets/js/editor/components/ui/styled-chip.js"));
 var ElementorLogo = function ElementorLogo(props) {
   return /*#__PURE__*/_react.default.createElement(_ui.SvgIcon, (0, _extends2.default)({
     viewBox: "0 0 32 32"
@@ -543,31 +523,43 @@ var ElementorLogo = function ElementorLogo(props) {
 var StyledElementorLogo = (0, _ui.styled)(ElementorLogo)(function (_ref) {
   var theme = _ref.theme;
   return {
-    width: theme.sizing['400'],
-    height: theme.sizing['400'],
+    width: theme.spacing(3),
+    height: theme.spacing(3),
     '& path': {
       fill: theme.palette.text.primary
     }
   };
 });
 var DialogHeader = function DialogHeader(props) {
-  return /*#__PURE__*/_react.default.createElement(_ui.DialogTitle, {
+  return /*#__PURE__*/_react.default.createElement(_ui.AppBar, {
     sx: {
       fontWeight: 'normal'
-    }
+    },
+    color: "transparent",
+    position: "relative"
+  }, /*#__PURE__*/_react.default.createElement(_ui.Toolbar, {
+    variant: "dense"
   }, /*#__PURE__*/_react.default.createElement(StyledElementorLogo, {
     sx: {
-      mr: 3
+      mr: 1
     }
-  }), __('AI', 'elementor'), /*#__PURE__*/_react.default.createElement(_styledChip.default, {
+  }), /*#__PURE__*/_react.default.createElement(_ui.Typography, {
+    component: "span",
+    variant: "subtitle2",
+    sx: {
+      fontWeight: 'bold',
+      textTransform: 'uppercase'
+    }
+  }, __('AI', 'elementor')), /*#__PURE__*/_react.default.createElement(_ui.Chip, {
     label: __('Beta', 'elementor'),
     color: "default",
+    size: "small",
     sx: {
-      ml: 3
+      ml: 1
     }
   }), /*#__PURE__*/_react.default.createElement(_ui.Stack, {
     direction: "row",
-    spacing: 3,
+    spacing: 1,
     alignItems: "center",
     sx: {
       ml: 'auto'
@@ -578,10 +570,10 @@ var DialogHeader = function DialogHeader(props) {
     onClick: props.onClose,
     sx: {
       '&.MuiButtonBase-root': {
-        mr: -4
+        mr: -1
       }
     }
-  }, /*#__PURE__*/_react.default.createElement(_icons.XIcon, null))));
+  }, /*#__PURE__*/_react.default.createElement(_icons.XIcon, null)))));
 };
 DialogHeader.propTypes = {
   onClose: PropTypes.func.isRequired,
@@ -614,16 +606,13 @@ var _icons = __webpack_require__(/*! @elementor/icons */ "@elementor/icons");
 var GenerateButton = function GenerateButton(props) {
   return /*#__PURE__*/_react.default.createElement(_ui.Button, (0, _extends2.default)({
     variant: "contained",
-    endIcon: /*#__PURE__*/_react.default.createElement(_icons.AIIcon, null),
+    endIcon: /*#__PURE__*/_react.default.createElement(_icons.AIIcon, {
+      fontSize: "small"
+    }),
     disabled: !prompt,
     "aria-label": __('search', 'elementor'),
     type: "submit",
-    size: "small",
-    sx: {
-      '& .MuiButton-endIcon': {
-        width: 18
-      }
-    }
+    size: "small"
   }, props));
 };
 var _default = GenerateButton;
@@ -638,6 +627,7 @@ exports["default"] = _default;
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 "use strict";
+/* provided dependency */ var PropTypes = __webpack_require__(/*! prop-types */ "../node_modules/prop-types/index.js");
 
 
 var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../node_modules/@babel/runtime/helpers/interopRequireDefault.js");
@@ -647,17 +637,40 @@ Object.defineProperty(exports, "__esModule", ({
 exports["default"] = void 0;
 var _react = _interopRequireDefault(__webpack_require__(/*! react */ "react"));
 var _extends2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/extends */ "../node_modules/@babel/runtime/helpers/extends.js"));
+var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "../node_modules/@babel/runtime/helpers/defineProperty.js"));
+var _objectWithoutProperties2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/objectWithoutProperties */ "../node_modules/@babel/runtime/helpers/objectWithoutProperties.js"));
 var _ui = __webpack_require__(/*! @elementor/ui */ "@elementor/ui");
-var Loader = function Loader(props) {
-  return /*#__PURE__*/_react.default.createElement(_ui.Box, {
-    sx: {
-      px: 4,
-      py: 6
-    },
-    width: "100%"
-  }, /*#__PURE__*/_react.default.createElement(_ui.LinearProgress, (0, _extends2.default)({
+var _excluded = ["sx", "BoxProps"];
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { (0, _defineProperty2.default)(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+var Loader = function Loader(_ref) {
+  var _ref$sx = _ref.sx,
+    sx = _ref$sx === void 0 ? {} : _ref$sx,
+    _ref$BoxProps = _ref.BoxProps,
+    BoxProps = _ref$BoxProps === void 0 ? {} : _ref$BoxProps,
+    props = (0, _objectWithoutProperties2.default)(_ref, _excluded);
+  return /*#__PURE__*/_react.default.createElement(_ui.Box, (0, _extends2.default)({
+    width: "100%",
+    display: "flex",
+    alignItems: "center"
+  }, BoxProps, {
+    sx: _objectSpread({
+      px: 1.5,
+      minHeight: function minHeight(theme) {
+        return theme.spacing(5);
+      }
+    }, BoxProps.sx || {})
+  }), /*#__PURE__*/_react.default.createElement(_ui.LinearProgress, (0, _extends2.default)({
     color: "secondary"
-  }, props)));
+  }, props, {
+    sx: _objectSpread({
+      width: '100%'
+    }, sx)
+  })));
+};
+Loader.propTypes = {
+  sx: PropTypes.object,
+  BoxProps: PropTypes.object
 };
 var _default = Loader;
 exports["default"] = _default;
@@ -688,28 +701,22 @@ var PromptActionSelection = function PromptActionSelection(props) {
   var actionId = labelToDashCash(props.label);
   var _props$wrapperStyle = props.wrapperStyle,
     wrapperStyle = _props$wrapperStyle === void 0 ? {
-      width: 138
+      maxWidth: 138
     } : _props$wrapperStyle;
   return /*#__PURE__*/_react.default.createElement(_ui.FormControl, {
+    size: "small",
+    color: "secondary",
+    fullWidth: true,
     sx: wrapperStyle
   }, /*#__PURE__*/_react.default.createElement(_ui.InputLabel, {
     id: actionId
   }, props.label), /*#__PURE__*/_react.default.createElement(_ui.Select, {
-    labelId: actionId,
     id: actionId,
-    value: props.value || '',
-    color: "secondary",
-    onChange: props.onChange,
-    size: "small",
+    labelId: actionId,
     label: props.label,
+    value: props.value || '',
+    onChange: props.onChange,
     disabled: props.disabled,
-    MenuProps: {
-      PaperProps: {
-        sx: {
-          width: 138
-        }
-      }
-    },
     sx: {
       // Fixing global CSS of the editor that targets input[disabled] globally.
       '&.Mui-disabled .MuiSelect-nativeInput': {
@@ -758,9 +765,9 @@ Object.defineProperty(exports, "__esModule", ({
 exports["default"] = void 0;
 var _react = _interopRequireDefault(__webpack_require__(/*! react */ "react"));
 var _extends2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/extends */ "../node_modules/@babel/runtime/helpers/extends.js"));
-var _styledChip = _interopRequireDefault(__webpack_require__(/*! ./ui/styled-chip */ "../modules/ai/assets/js/editor/components/ui/styled-chip.js"));
+var _ui = __webpack_require__(/*! @elementor/ui */ "@elementor/ui");
 var PromptAction = function PromptAction(props) {
-  return /*#__PURE__*/_react.default.createElement(_styledChip.default, (0, _extends2.default)({
+  return /*#__PURE__*/_react.default.createElement(_ui.Chip, (0, _extends2.default)({
     size: "large",
     color: "secondary",
     variant: "outlined"
@@ -799,7 +806,7 @@ var PromptCredits = function PromptCredits(props) {
     variant: "caption",
     color: "text.tertiary"
   }, /* Translators: %s: AI prompt remained credits. */
-  sprintf(__('You\'ve used %s of the free trial.', 'elementor'), props.usagePercentage + '%'), ' ', /*#__PURE__*/_react.default.createElement("a", {
+  sprintf(__('You\'ve used %s of your Elementor AI plan.', 'elementor'), props.usagePercentage + '%'), ' ', /*#__PURE__*/_react.default.createElement("a", {
     href: upgradeLink,
     target: "_blank",
     rel: "noreferrer"
@@ -824,24 +831,81 @@ exports["default"] = _default;
 
 
 var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+var _typeof = __webpack_require__(/*! @babel/runtime/helpers/typeof */ "../node_modules/@babel/runtime/helpers/typeof.js");
 Object.defineProperty(exports, "__esModule", ({
   value: true
 }));
 exports["default"] = void 0;
-var _react = _interopRequireDefault(__webpack_require__(/*! react */ "react"));
+var _react = _interopRequireWildcard(__webpack_require__(/*! react */ "react"));
 var _extends2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/extends */ "../node_modules/@babel/runtime/helpers/extends.js"));
+var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "../node_modules/@babel/runtime/helpers/defineProperty.js"));
+var _slicedToArray2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/slicedToArray */ "../node_modules/@babel/runtime/helpers/slicedToArray.js"));
 var _ui = __webpack_require__(/*! @elementor/ui */ "@elementor/ui");
 var _reactDraggable = _interopRequireDefault(__webpack_require__(/*! react-draggable */ "../node_modules/react-draggable/build/cjs/cjs.js"));
 var _dialogHeader = _interopRequireDefault(__webpack_require__(/*! ./dialog-header */ "../modules/ai/assets/js/editor/components/dialog-header.js"));
-var PromptDialog = function PromptDialog(props) {
+function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
+function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || _typeof(obj) !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { (0, _defineProperty2.default)(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+var DraggablePaper = function DraggablePaper(props) {
+  var _useState = (0, _react.useState)({
+      x: 0,
+      y: 0
+    }),
+    _useState2 = (0, _slicedToArray2.default)(_useState, 2),
+    position = _useState2[0],
+    setPosition = _useState2[1];
+  var paperRef = (0, _react.useRef)(null);
+  var timeout = (0, _react.useRef)(null);
+  var onDrag = function onDrag(_e, _ref) {
+    var x = _ref.x,
+      y = _ref.y;
+    return setPosition({
+      x: x,
+      y: y
+    });
+  };
+  var handlePositionBoundaries = function handlePositionBoundaries() {
+    clearTimeout(timeout.current);
+
+    // Ensuring the dialog header, which is used as the dialog dragging handle, does not exceed the screen.
+    timeout.current = setTimeout(function () {
+      var _paperRef$current;
+      var dialogTop = (_paperRef$current = paperRef.current) === null || _paperRef$current === void 0 ? void 0 : _paperRef$current.getBoundingClientRect().top;
+      if (dialogTop < 0) {
+        setPosition(function (prev) {
+          return _objectSpread(_objectSpread({}, prev), {}, {
+            y: prev.y - dialogTop
+          });
+        });
+      }
+    }, 50);
+  };
+  (0, _react.useEffect)(function () {
+    var resizeObserver = new ResizeObserver(handlePositionBoundaries);
+    resizeObserver.observe(paperRef.current);
+    return function () {
+      resizeObserver.disconnect();
+    };
+  }, []);
   return /*#__PURE__*/_react.default.createElement(_reactDraggable.default, {
-    handle: ".MuiDialogTitle-root",
-    cancel: '[class*="MuiDialogContent-root"]'
-  }, /*#__PURE__*/_react.default.createElement(_ui.Dialog, (0, _extends2.default)({
+    position: position,
+    onDrag: onDrag,
+    handle: ".MuiAppBar-root",
+    cancel: '[class*="MuiDialogContent-root"]',
+    bounds: "parent"
+  }, /*#__PURE__*/_react.default.createElement(_ui.Paper, (0, _extends2.default)({}, props, {
+    ref: paperRef
+  })));
+};
+var PromptDialog = function PromptDialog(props) {
+  return /*#__PURE__*/_react.default.createElement(_ui.Dialog, (0, _extends2.default)({
+    scroll: "paper",
     open: true,
     fullWidth: true,
     hideBackdrop: true,
-    scroll: "paper",
+    PaperComponent: DraggablePaper,
+    disableScrollLock: true,
     sx: {
       '& .MuiDialog-container': {
         alignItems: 'flex-start',
@@ -854,7 +918,7 @@ var PromptDialog = function PromptDialog(props) {
         maxHeight: '76vh'
       }
     }
-  }, props), props.children));
+  }, props), props.children);
 };
 PromptDialog.propTypes = {
   onClose: PropTypes.func.isRequired,
@@ -966,7 +1030,7 @@ var PromptErrorMessage = function PromptErrorMessage(_ref) {
     action: 'default' === actionPosition && action
   }, props), message.text, message.description, 'bottom' === actionPosition && /*#__PURE__*/_react.default.createElement(_ui.Box, {
     sx: {
-      mt: 3
+      mt: 1
     }
   }, action));
 };
@@ -976,6 +1040,1389 @@ PromptErrorMessage.propTypes = {
   actionPosition: PropTypes.oneOf(['default', 'bottom'])
 };
 var _default = PromptErrorMessage;
+exports["default"] = _default;
+
+/***/ }),
+
+/***/ "../modules/ai/assets/js/editor/components/prompt-history/context/prompt-history-action-context.js":
+/*!*********************************************************************************************************!*\
+  !*** ../modules/ai/assets/js/editor/components/prompt-history/context/prompt-history-action-context.js ***!
+  \*********************************************************************************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+/* provided dependency */ var PropTypes = __webpack_require__(/*! prop-types */ "../node_modules/prop-types/index.js");
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+var _typeof = __webpack_require__(/*! @babel/runtime/helpers/typeof */ "../node_modules/@babel/runtime/helpers/typeof.js");
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports.useSubscribeOnPromptHistoryAction = exports.usePromptHistoryAction = exports.PromptHistoryActionProvider = exports.PromptHistoryActionContext = exports.ACTION_TYPES = void 0;
+var _react = _interopRequireWildcard(__webpack_require__(/*! react */ "react"));
+var _slicedToArray2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/slicedToArray */ "../node_modules/@babel/runtime/helpers/slicedToArray.js"));
+var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "../node_modules/@babel/runtime/helpers/defineProperty.js"));
+var _historyTypes = __webpack_require__(/*! ../history-types */ "../modules/ai/assets/js/editor/components/prompt-history/history-types.js");
+var _promptHistoryContext = __webpack_require__(/*! ./prompt-history-context */ "../modules/ai/assets/js/editor/components/prompt-history/context/prompt-history-context.js");
+var _HISTORY_TYPES$TEXT, _HISTORY_TYPES$CODE, _HISTORY_TYPES$IMAGE, _ENABLED_ACTIONS_BY_T;
+function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
+function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || _typeof(obj) !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it.return != null) it.return(); } finally { if (didErr) throw err; } } }; }
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i]; return arr2; }
+var PromptHistoryActionContext = (0, _react.createContext)({});
+exports.PromptHistoryActionContext = PromptHistoryActionContext;
+var initialActionValue = {
+  type: '',
+  id: '',
+  data: null
+};
+var ACTION_TYPES = Object.freeze({
+  REUSE: 'reuse',
+  EDIT: 'edit',
+  RESTORE: 'restore',
+  REMOVE: 'remove'
+});
+exports.ACTION_TYPES = ACTION_TYPES;
+var ENABLED_ACTIONS_BY_TYPE = (_ENABLED_ACTIONS_BY_T = {}, (0, _defineProperty2.default)(_ENABLED_ACTIONS_BY_T, _historyTypes.HISTORY_TYPES.TEXT, (_HISTORY_TYPES$TEXT = {}, (0, _defineProperty2.default)(_HISTORY_TYPES$TEXT, ACTION_TYPES.REUSE, true), (0, _defineProperty2.default)(_HISTORY_TYPES$TEXT, ACTION_TYPES.EDIT, true), (0, _defineProperty2.default)(_HISTORY_TYPES$TEXT, ACTION_TYPES.REMOVE, true), _HISTORY_TYPES$TEXT)), (0, _defineProperty2.default)(_ENABLED_ACTIONS_BY_T, _historyTypes.HISTORY_TYPES.CODE, (_HISTORY_TYPES$CODE = {}, (0, _defineProperty2.default)(_HISTORY_TYPES$CODE, ACTION_TYPES.REUSE, true), (0, _defineProperty2.default)(_HISTORY_TYPES$CODE, ACTION_TYPES.REMOVE, true), _HISTORY_TYPES$CODE)), (0, _defineProperty2.default)(_ENABLED_ACTIONS_BY_T, _historyTypes.HISTORY_TYPES.IMAGE, (_HISTORY_TYPES$IMAGE = {}, (0, _defineProperty2.default)(_HISTORY_TYPES$IMAGE, ACTION_TYPES.RESTORE, true), (0, _defineProperty2.default)(_HISTORY_TYPES$IMAGE, ACTION_TYPES.REMOVE, true), _HISTORY_TYPES$IMAGE)), _ENABLED_ACTIONS_BY_T);
+var PromptHistoryActionProvider = function PromptHistoryActionProvider(_ref) {
+  var children = _ref.children;
+  var _useState = (0, _react.useState)(initialActionValue),
+    _useState2 = (0, _slicedToArray2.default)(_useState, 2),
+    state = _useState2[0],
+    dispatch = _useState2[1];
+  return /*#__PURE__*/_react.default.createElement(PromptHistoryActionContext.Provider, {
+    value: {
+      state: state,
+      dispatch: dispatch
+    }
+  }, children);
+};
+exports.PromptHistoryActionProvider = PromptHistoryActionProvider;
+PromptHistoryActionProvider.propTypes = {
+  children: PropTypes.node
+};
+var usePromptHistoryAction = function usePromptHistoryAction() {
+  var _useContext = (0, _react.useContext)(PromptHistoryActionContext),
+    state = _useContext.state,
+    dispatch = _useContext.dispatch;
+  var _usePromptHistoryCont = (0, _promptHistoryContext.usePromptHistoryContext)(),
+    historyType = _usePromptHistoryCont.historyType,
+    onClose = _usePromptHistoryCont.onClose;
+  var closeModalAfterAction = function closeModalAfterAction(action) {
+    return function () {
+      action.apply(void 0, arguments);
+      onClose();
+    };
+  };
+  var getAllowedActions = function getAllowedActions() {
+    return ENABLED_ACTIONS_BY_TYPE[historyType] || {};
+  };
+  var onPromptReuse = function onPromptReuse(id, data) {
+    return dispatch({
+      type: ACTION_TYPES.REUSE,
+      id: id,
+      data: data
+    });
+  };
+  var onResultEdit = function onResultEdit(id, data) {
+    return dispatch({
+      type: ACTION_TYPES.EDIT,
+      id: id,
+      data: data
+    });
+  };
+  var onImagesRestore = function onImagesRestore(id, data) {
+    return dispatch({
+      type: ACTION_TYPES.RESTORE,
+      id: id,
+      data: data
+    });
+  };
+  return {
+    promptHistoryAction: state,
+    onPromptReuse: closeModalAfterAction(onPromptReuse),
+    onResultEdit: closeModalAfterAction(onResultEdit),
+    onImagesRestore: closeModalAfterAction(onImagesRestore),
+    getAllowedActions: getAllowedActions
+  };
+};
+
+/**
+ *
+ * @param {{type: string, handler: Function}[]} actions
+ */
+exports.usePromptHistoryAction = usePromptHistoryAction;
+var useSubscribeOnPromptHistoryAction = function useSubscribeOnPromptHistoryAction(actions) {
+  var _useContext2 = (0, _react.useContext)(PromptHistoryActionContext),
+    state = _useContext2.state;
+  (0, _react.useEffect)(function () {
+    if (!state.type) {
+      return;
+    }
+    var _iterator = _createForOfIteratorHelper(actions),
+      _step;
+    try {
+      for (_iterator.s(); !(_step = _iterator.n()).done;) {
+        var action = _step.value;
+        if (state.type === (action === null || action === void 0 ? void 0 : action.type)) {
+          action === null || action === void 0 ? void 0 : action.handler(state);
+        }
+      }
+    } catch (err) {
+      _iterator.e(err);
+    } finally {
+      _iterator.f();
+    }
+  }, [state]);
+};
+exports.useSubscribeOnPromptHistoryAction = useSubscribeOnPromptHistoryAction;
+
+/***/ }),
+
+/***/ "../modules/ai/assets/js/editor/components/prompt-history/context/prompt-history-context.js":
+/*!**************************************************************************************************!*\
+  !*** ../modules/ai/assets/js/editor/components/prompt-history/context/prompt-history-context.js ***!
+  \**************************************************************************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+/* provided dependency */ var PropTypes = __webpack_require__(/*! prop-types */ "../node_modules/prop-types/index.js");
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+var _typeof = __webpack_require__(/*! @babel/runtime/helpers/typeof */ "../node_modules/@babel/runtime/helpers/typeof.js");
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports.usePromptHistoryContext = exports.PromptHistoryProvider = exports.PromptHistoryContext = void 0;
+var _react = _interopRequireWildcard(__webpack_require__(/*! react */ "react"));
+var _slicedToArray2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/slicedToArray */ "../node_modules/@babel/runtime/helpers/slicedToArray.js"));
+var _historyTypes = __webpack_require__(/*! ../history-types */ "../modules/ai/assets/js/editor/components/prompt-history/history-types.js");
+var _helpers = __webpack_require__(/*! ../../../helpers */ "../modules/ai/assets/js/editor/helpers/index.js");
+function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
+function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || _typeof(obj) !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+var PromptHistoryContext = (0, _react.createContext)({});
+exports.PromptHistoryContext = PromptHistoryContext;
+var DIALOG_CONTAINER_SELECTOR = '.e-ai-dialog-content';
+var getContainer = function getContainer() {
+  return document.querySelector(DIALOG_CONTAINER_SELECTOR);
+};
+var getContainerHeight = function getContainerHeight() {
+  var contentContainer = document.querySelector(DIALOG_CONTAINER_SELECTOR);
+  return contentContainer === null || contentContainer === void 0 ? void 0 : contentContainer.clientHeight;
+};
+var getContentHeight = function getContentHeight() {
+  var contentContainer = document.querySelector(DIALOG_CONTAINER_SELECTOR);
+  return contentContainer.children[0].clientHeight + 50;
+};
+var setContentHeight = function setContentHeight(height) {
+  var contentContainer = document.querySelector(DIALOG_CONTAINER_SELECTOR);
+  if ('auto' === height) {
+    contentContainer.style.height = 'auto';
+    return;
+  }
+  contentContainer.style.height = "".concat(height, "px");
+};
+var PromptHistoryProvider = function PromptHistoryProvider(_ref) {
+  var historyType = _ref.historyType,
+    children = _ref.children;
+  var showHistoryState = (0, _react.useState)(false);
+  return /*#__PURE__*/_react.default.createElement(PromptHistoryContext.Provider, {
+    value: {
+      historyType: historyType,
+      showHistoryState: showHistoryState
+    }
+  }, children);
+};
+exports.PromptHistoryProvider = PromptHistoryProvider;
+PromptHistoryProvider.propTypes = {
+  historyType: PropTypes.oneOf(Object.values(_historyTypes.HISTORY_TYPES)).isRequired,
+  children: PropTypes.node
+};
+var usePromptHistoryContext = function usePromptHistoryContext() {
+  var _useContext = (0, _react.useContext)(PromptHistoryContext),
+    historyType = _useContext.historyType,
+    showHistoryState = _useContext.showHistoryState;
+  var _showHistoryState = (0, _slicedToArray2.default)(showHistoryState, 2),
+    showHistory = _showHistoryState[0],
+    setShowHistory = _showHistoryState[1];
+  var _useState = (0, _react.useState)(false),
+    _useState2 = (0, _slicedToArray2.default)(_useState, 2),
+    showModalWrapper = _useState2[0],
+    setShowModalWrapper = _useState2[1];
+  var _useState3 = (0, _react.useState)(false),
+    _useState4 = (0, _slicedToArray2.default)(_useState3, 2),
+    showPromptHistory = _useState4[0],
+    setShowPromptHistory = _useState4[1];
+  var handleFullScreenHistoryState = function handleFullScreenHistoryState() {
+    if (showHistory) {
+      setShowModalWrapper(true);
+      setTimeout(function () {
+        return setShowPromptHistory(true);
+      }, 200);
+      return;
+    }
+    setShowPromptHistory(false);
+    setTimeout(function () {
+      return setShowModalWrapper(false);
+    }, 500);
+  };
+  var handleDefaultHistoryState = function handleDefaultHistoryState() {
+    if (showHistory) {
+      var currentHeight = getContentHeight();
+
+      // Set initial state
+      setContentHeight(currentHeight);
+      setTimeout(function () {
+        if (currentHeight < (0, _helpers.vh)(61)) {
+          setContentHeight((0, _helpers.vh)(61));
+          setTimeout(function () {
+            return setShowModalWrapper(true);
+          }, 200);
+          setTimeout(function () {
+            return setShowPromptHistory(true);
+          }, 300);
+          return;
+        }
+        setShowModalWrapper(true);
+        setShowPromptHistory(true);
+      }, 20);
+      return;
+    }
+    setShowPromptHistory(false);
+    setTimeout(function () {
+      setShowModalWrapper(false);
+      setContentHeight(getContentHeight());
+      setTimeout(function () {
+        return setContentHeight('auto');
+      }, 300);
+    }, 500);
+  };
+  (0, _react.useEffect)(function () {
+    if (showHistory === showModalWrapper && showHistory === showPromptHistory) {
+      return;
+    }
+    if (historyType === _historyTypes.HISTORY_TYPES.IMAGE) {
+      return handleFullScreenHistoryState();
+    }
+    handleDefaultHistoryState();
+  }, [showHistory]);
+  var onOpen = function onOpen() {
+    setShowHistory(true);
+  };
+  var onClose = function onClose() {
+    setShowHistory(false);
+  };
+  return {
+    historyType: historyType,
+    isOpen: showPromptHistory,
+    isModalOpen: showModalWrapper,
+    showHistory: showHistory,
+    onOpen: onOpen,
+    onClose: onClose,
+    getContainer: getContainer,
+    getContainerHeight: getContainerHeight
+  };
+};
+exports.usePromptHistoryContext = usePromptHistoryContext;
+
+/***/ }),
+
+/***/ "../modules/ai/assets/js/editor/components/prompt-history/helpers/history-period-helpers.js":
+/*!**************************************************************************************************!*\
+  !*** ../modules/ai/assets/js/editor/components/prompt-history/helpers/history-period-helpers.js ***!
+  \**************************************************************************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+/* provided dependency */ var __ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n")["__"];
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports.renderPeriods = exports.groupPromptHistoryData = exports.LAST_7_DAYS_KEY = exports.LAST_30_DAYS_KEY = void 0;
+var _react = _interopRequireDefault(__webpack_require__(/*! react */ "react"));
+var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "../node_modules/@babel/runtime/helpers/defineProperty.js"));
+var _toConsumableArray2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/toConsumableArray */ "../node_modules/@babel/runtime/helpers/toConsumableArray.js"));
+var _dateHelpers = __webpack_require__(/*! ../../../helpers/date-helpers */ "../modules/ai/assets/js/editor/helpers/date-helpers.js");
+var _modalPeriod = _interopRequireDefault(__webpack_require__(/*! ../parts/modal-period */ "../modules/ai/assets/js/editor/components/prompt-history/parts/modal-period.js"));
+function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it.return != null) it.return(); } finally { if (didErr) throw err; } } }; }
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i]; return arr2; }
+var DATE_KEY = 'date';
+var LAST_7_DAYS_KEY = '7-days';
+exports.LAST_7_DAYS_KEY = LAST_7_DAYS_KEY;
+var LAST_30_DAYS_KEY = '30-days';
+exports.LAST_30_DAYS_KEY = LAST_30_DAYS_KEY;
+var MONTH_FORMAT = __('F', 'elementor');
+
+/**
+ * Sorts items in ascending order by date.
+ *
+ * @param {Array} historyData
+ * @return {Array}
+ */
+var sortPromptHistoryData = function sortPromptHistoryData(historyData) {
+  var clone = (0, _toConsumableArray2.default)(historyData);
+  return clone.sort(function (a, b) {
+    return new Date(b[DATE_KEY]) - new Date(a[DATE_KEY]);
+  });
+};
+
+/**
+ * Groups prompt history data by time periods.
+ *
+ * @param {Array} historyData
+ * @return {Object.<string, {label: string, items: any[]}>}
+ */
+var groupPromptHistoryData = function groupPromptHistoryData(historyData) {
+  var _result;
+  var data = sortPromptHistoryData(historyData);
+  var currentDate = new Date();
+  var result = (_result = {}, (0, _defineProperty2.default)(_result, LAST_7_DAYS_KEY, {
+    label: __('Last 7 days', 'elementor'),
+    items: []
+  }), (0, _defineProperty2.default)(_result, LAST_30_DAYS_KEY, {
+    label: __('Last 30 days', 'elementor'),
+    items: []
+  }), _result);
+  var _iterator = _createForOfIteratorHelper(data),
+    _step;
+  try {
+    for (_iterator.s(); !(_step = _iterator.n()).done;) {
+      var item = _step.value;
+      var date = new Date(item[DATE_KEY]);
+      var diff = (0, _dateHelpers.daysDiff)(date, currentDate);
+      if (diff <= 7) {
+        result[LAST_7_DAYS_KEY].items.push(item);
+        continue;
+      }
+      if (diff <= 30) {
+        result[LAST_30_DAYS_KEY].items.push(item);
+        continue;
+      }
+      var month = date.getMonth();
+      if (!result[month]) {
+        result[month] = {
+          label: (0, _dateHelpers.translateDate)(MONTH_FORMAT, date),
+          items: []
+        };
+      }
+      result[month].items.push(item);
+    }
+  } catch (err) {
+    _iterator.e(err);
+  } finally {
+    _iterator.f();
+  }
+  return result;
+};
+exports.groupPromptHistoryData = groupPromptHistoryData;
+var renderPeriods = function renderPeriods(_ref) {
+  var _groupData$LAST_7_DAY, _groupData$LAST_7_DAY2, _groupData$LAST_30_DA, _groupData$LAST_30_DA2;
+  var items = _ref.items,
+    onDelete = _ref.onDelete;
+  var groupData = groupPromptHistoryData(items);
+  var periods = [];
+  if ((_groupData$LAST_7_DAY = groupData[LAST_7_DAYS_KEY]) !== null && _groupData$LAST_7_DAY !== void 0 && (_groupData$LAST_7_DAY2 = _groupData$LAST_7_DAY.items) !== null && _groupData$LAST_7_DAY2 !== void 0 && _groupData$LAST_7_DAY2.length) {
+    periods.push( /*#__PURE__*/_react.default.createElement(_modalPeriod.default, {
+      periodTitle: groupData[LAST_7_DAYS_KEY].label,
+      onHistoryItemDelete: onDelete,
+      historyItems: groupData[LAST_7_DAYS_KEY].items
+    }));
+  }
+  if ((_groupData$LAST_30_DA = groupData[LAST_30_DAYS_KEY]) !== null && _groupData$LAST_30_DA !== void 0 && (_groupData$LAST_30_DA2 = _groupData$LAST_30_DA.items) !== null && _groupData$LAST_30_DA2 !== void 0 && _groupData$LAST_30_DA2.length) {
+    periods.push( /*#__PURE__*/_react.default.createElement(_modalPeriod.default, {
+      periodTitle: groupData[LAST_30_DAYS_KEY].label,
+      onHistoryItemDelete: onDelete,
+      historyItems: groupData[LAST_30_DAYS_KEY].items
+    }));
+  }
+  for (var i = _dateHelpers.MONTH_DECEMBER_INDEX; i >= _dateHelpers.MONTH_JANUARY_INDEX; i--) {
+    if (groupData[i]) {
+      periods.push( /*#__PURE__*/_react.default.createElement(_modalPeriod.default, {
+        periodTitle: groupData[i].label,
+        onHistoryItemDelete: onDelete,
+        historyItems: groupData[i].items
+      }));
+    }
+  }
+  return periods;
+};
+exports.renderPeriods = renderPeriods;
+
+/***/ }),
+
+/***/ "../modules/ai/assets/js/editor/components/prompt-history/history-button.js":
+/*!**********************************************************************************!*\
+  !*** ../modules/ai/assets/js/editor/components/prompt-history/history-button.js ***!
+  \**********************************************************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+/* provided dependency */ var __ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n")["__"];
+/* provided dependency */ var PropTypes = __webpack_require__(/*! prop-types */ "../node_modules/prop-types/index.js");
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var _react = _interopRequireDefault(__webpack_require__(/*! react */ "react"));
+var _extends2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/extends */ "../node_modules/@babel/runtime/helpers/extends.js"));
+var _objectWithoutProperties2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/objectWithoutProperties */ "../node_modules/@babel/runtime/helpers/objectWithoutProperties.js"));
+var _taggedTemplateLiteral2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/taggedTemplateLiteral */ "../node_modules/@babel/runtime/helpers/taggedTemplateLiteral.js"));
+var _ui = __webpack_require__(/*! @elementor/ui */ "@elementor/ui");
+var _icons = __webpack_require__(/*! @elementor/icons */ "@elementor/icons");
+var _excluded = ["isActive"];
+var _templateObject;
+var StyledHistoryButton = (0, _ui.styled)(_ui.IconButton)(_templateObject || (_templateObject = (0, _taggedTemplateLiteral2.default)(["\n  margin-right: ", ";\n\n  ", "\n"])), function (_ref) {
+  var theme = _ref.theme;
+  return theme.spacing(2);
+}, function (_ref2) {
+  var isActive = _ref2.isActive,
+    theme = _ref2.theme;
+  return isActive && "\n    background-color: ".concat(theme.palette.action.hover, ";\n    color: ").concat(theme.palette.text.tertiary, ";\n  ");
+});
+var PromptHistoryButton = function PromptHistoryButton(_ref3) {
+  var isActive = _ref3.isActive,
+    props = (0, _objectWithoutProperties2.default)(_ref3, _excluded);
+  return /*#__PURE__*/_react.default.createElement(StyledHistoryButton, (0, _extends2.default)({
+    "aria-label": __('Show prompt history', 'elementor'),
+    type: "button",
+    size: "small",
+    isActive: isActive
+  }, props), /*#__PURE__*/_react.default.createElement(_icons.HistoryIcon, null));
+};
+PromptHistoryButton.propTypes = {
+  isActive: PropTypes.bool.isRequired
+};
+var _default = PromptHistoryButton;
+exports["default"] = _default;
+
+/***/ }),
+
+/***/ "../modules/ai/assets/js/editor/components/prompt-history/history-modal.js":
+/*!*********************************************************************************!*\
+  !*** ../modules/ai/assets/js/editor/components/prompt-history/history-modal.js ***!
+  \*********************************************************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+/* provided dependency */ var __ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n")["__"];
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+var _typeof = __webpack_require__(/*! @babel/runtime/helpers/typeof */ "../node_modules/@babel/runtime/helpers/typeof.js");
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var _react = _interopRequireWildcard(__webpack_require__(/*! react */ "react"));
+var _regenerator = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/regenerator */ "../node_modules/@babel/runtime/regenerator/index.js"));
+var _asyncToGenerator2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/asyncToGenerator */ "../node_modules/@babel/runtime/helpers/asyncToGenerator.js"));
+var _ui = __webpack_require__(/*! @elementor/ui */ "@elementor/ui");
+var _usePromptHistory2 = _interopRequireDefault(__webpack_require__(/*! ../../hooks/use-prompt-history */ "../modules/ai/assets/js/editor/hooks/use-prompt-history.js"));
+var _modalHeader = _interopRequireDefault(__webpack_require__(/*! ./parts/modal-header */ "../modules/ai/assets/js/editor/components/prompt-history/parts/modal-header.js"));
+var _useDeletePromptHistoryItem = _interopRequireDefault(__webpack_require__(/*! ../../hooks/use-delete-prompt-history-item */ "../modules/ai/assets/js/editor/hooks/use-delete-prompt-history-item.js"));
+var _promptErrorMessage = _interopRequireDefault(__webpack_require__(/*! ../prompt-error-message */ "../modules/ai/assets/js/editor/components/prompt-error-message.js"));
+var _historyPeriodHelpers = __webpack_require__(/*! ./helpers/history-period-helpers */ "../modules/ai/assets/js/editor/components/prompt-history/helpers/history-period-helpers.js");
+var _modalEmpty = _interopRequireDefault(__webpack_require__(/*! ./parts/modal-empty */ "../modules/ai/assets/js/editor/components/prompt-history/parts/modal-empty.js"));
+var _reactInfiniteScroller = _interopRequireDefault(__webpack_require__(/*! react-infinite-scroller */ "../node_modules/react-infinite-scroller/index.js"));
+var _modalUpgrade = _interopRequireDefault(__webpack_require__(/*! ./parts/modal-upgrade */ "../modules/ai/assets/js/editor/components/prompt-history/parts/modal-upgrade.js"));
+var _promptHistoryContext = __webpack_require__(/*! ./context/prompt-history-context */ "../modules/ai/assets/js/editor/components/prompt-history/context/prompt-history-context.js");
+var _modalContainer = _interopRequireDefault(__webpack_require__(/*! ./parts/modal-container */ "../modules/ai/assets/js/editor/components/prompt-history/parts/modal-container.js"));
+function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
+function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || _typeof(obj) !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+var ITEMS_LIMIT = 10;
+var FREE_PLAN_ERRORS = ['invalid_connect_data', 'no_subscription'];
+var PromptHistoryModal = function PromptHistoryModal(props) {
+  var lastRun = (0, _react.useRef)(function () {});
+  var scrollContainer = (0, _react.useRef)(null);
+  var _usePromptHistoryCont = (0, _promptHistoryContext.usePromptHistoryContext)(),
+    historyType = _usePromptHistoryCont.historyType,
+    onClose = _usePromptHistoryCont.onClose;
+  var _usePromptHistory = (0, _usePromptHistory2.default)(historyType),
+    items = _usePromptHistory.items,
+    meta = _usePromptHistory.meta,
+    isHistoryFetchingInProgress = _usePromptHistory.isLoading,
+    historyFetchingError = _usePromptHistory.error,
+    fetchData = _usePromptHistory.fetchData,
+    deleteItemFromState = _usePromptHistory.deleteItemById;
+  var _useDeletePromptHisto = (0, _useDeletePromptHistoryItem.default)(),
+    isDeletingInProgress = _useDeletePromptHisto.isLoading,
+    historyDeletingError = _useDeletePromptHisto.error,
+    deleteItem = _useDeletePromptHisto.deleteItem;
+  var error = historyFetchingError || historyDeletingError;
+  var isLoading = isHistoryFetchingInProgress || isDeletingInProgress;
+  var isLastPage = meta && (meta === null || meta === void 0 ? void 0 : meta.currentPage) === (meta === null || meta === void 0 ? void 0 : meta.totalPages);
+  var showUpgrade = (items === null || items === void 0 ? void 0 : items.length) > 0 && (meta === null || meta === void 0 ? void 0 : meta.allowedDays) < 90 && isLastPage;
+  (0, _react.useEffect)(function () {
+    lastRun.current = /*#__PURE__*/(0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee() {
+      return _regenerator.default.wrap(function _callee$(_context) {
+        while (1) switch (_context.prev = _context.next) {
+          case 0:
+            return _context.abrupt("return", fetchData({
+              page: 1,
+              limit: ITEMS_LIMIT
+            }));
+          case 1:
+          case "end":
+            return _context.stop();
+        }
+      }, _callee);
+    }));
+    lastRun.current();
+  }, []);
+  var loadNext = function loadNext() {
+    if (isLoading || isLastPage) {
+      return;
+    }
+    lastRun.current = /*#__PURE__*/(0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee2() {
+      return _regenerator.default.wrap(function _callee2$(_context2) {
+        while (1) switch (_context2.prev = _context2.next) {
+          case 0:
+            return _context2.abrupt("return", fetchData({
+              page: meta.currentPage + 1,
+              limit: ITEMS_LIMIT
+            }));
+          case 1:
+          case "end":
+            return _context2.stop();
+        }
+      }, _callee2);
+    }));
+    lastRun.current();
+  };
+  var onHistoryItemDelete = /*#__PURE__*/function () {
+    var _ref3 = (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee4(id) {
+      return _regenerator.default.wrap(function _callee4$(_context4) {
+        while (1) switch (_context4.prev = _context4.next) {
+          case 0:
+            lastRun.current = /*#__PURE__*/(0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee3() {
+              return _regenerator.default.wrap(function _callee3$(_context3) {
+                while (1) switch (_context3.prev = _context3.next) {
+                  case 0:
+                    _context3.next = 2;
+                    return deleteItem(id);
+                  case 2:
+                    return _context3.abrupt("return", _context3.sent);
+                  case 3:
+                  case "end":
+                    return _context3.stop();
+                }
+              }, _callee3);
+            }));
+            _context4.next = 3;
+            return lastRun.current();
+          case 3:
+            if (!historyDeletingError) {
+              deleteItemFromState(id);
+            }
+          case 4:
+          case "end":
+            return _context4.stop();
+        }
+      }, _callee4);
+    }));
+    return function onHistoryItemDelete(_x) {
+      return _ref3.apply(this, arguments);
+    };
+  }();
+  return /*#__PURE__*/_react.default.createElement(_modalContainer.default, props, /*#__PURE__*/_react.default.createElement(_modalHeader.default, {
+    onClose: onClose
+  }), error && !FREE_PLAN_ERRORS.includes(error) && /*#__PURE__*/_react.default.createElement(_promptErrorMessage.default, {
+    error: error,
+    onRetry: lastRun.current,
+    sx: {
+      position: 'absolute',
+      zIndex: 1,
+      marginTop: isLoading ? 0.5 : 'revert'
+    }
+  }), isLoading && /*#__PURE__*/_react.default.createElement(_ui.LinearProgress, {
+    role: "progressbar",
+    "aria-label": __('Loading', 'elementor'),
+    color: "secondary"
+  }), /*#__PURE__*/_react.default.createElement(_ui.Box, {
+    sx: {
+      overflowY: 'scroll',
+      height: '85%'
+    },
+    ref: scrollContainer
+  }, error && FREE_PLAN_ERRORS.includes(error) && /*#__PURE__*/_react.default.createElement(_modalUpgrade.default, {
+    variant: "full",
+    historyType: historyType
+  }), !error && 0 === (items === null || items === void 0 ? void 0 : items.length) && /*#__PURE__*/_react.default.createElement(_modalEmpty.default, {
+    historyType: historyType
+  }), (items === null || items === void 0 ? void 0 : items.length) > 0 && /*#__PURE__*/_react.default.createElement(_reactInfiniteScroller.default, {
+    loadMore: loadNext,
+    getScrollParent: function getScrollParent() {
+      return scrollContainer.current;
+    },
+    useWindow: false,
+    isReverse: false,
+    threshold: 30,
+    initialLoad: false,
+    hasMore: !isLastPage
+  }, (0, _historyPeriodHelpers.renderPeriods)({
+    items: items,
+    onDelete: onHistoryItemDelete
+  })), showUpgrade && /*#__PURE__*/_react.default.createElement(_modalUpgrade.default, {
+    variant: "small",
+    historyType: historyType
+  })));
+};
+var _default = PromptHistoryModal;
+exports["default"] = _default;
+
+/***/ }),
+
+/***/ "../modules/ai/assets/js/editor/components/prompt-history/history-types.js":
+/*!*********************************************************************************!*\
+  !*** ../modules/ai/assets/js/editor/components/prompt-history/history-types.js ***!
+  \*********************************************************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+/* provided dependency */ var __ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n")["__"];
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports.getTranslatedPromptHistoryType = exports.TRANSLATED_HISTORY_TYPES_FALLBACK = exports.TRANSLATED_HISTORY_TYPES = exports.HISTORY_TYPES = void 0;
+var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "../node_modules/@babel/runtime/helpers/defineProperty.js"));
+var _Object$freeze;
+var HISTORY_TYPES = Object.freeze({
+  ALL: 'all',
+  TEXT: 'text',
+  CODE: 'code',
+  IMAGE: 'images',
+  BLOCK: 'blocks'
+});
+exports.HISTORY_TYPES = HISTORY_TYPES;
+var TRANSLATED_HISTORY_TYPES_FALLBACK = __('things', 'elementor');
+exports.TRANSLATED_HISTORY_TYPES_FALLBACK = TRANSLATED_HISTORY_TYPES_FALLBACK;
+var TRANSLATED_HISTORY_TYPES = Object.freeze((_Object$freeze = {}, (0, _defineProperty2.default)(_Object$freeze, HISTORY_TYPES.TEXT, __('texts', 'elementor')), (0, _defineProperty2.default)(_Object$freeze, HISTORY_TYPES.CODE, __('code', 'elementor')), (0, _defineProperty2.default)(_Object$freeze, HISTORY_TYPES.IMAGE, __('images', 'elementor')), (0, _defineProperty2.default)(_Object$freeze, HISTORY_TYPES.BLOCK, __('blocks', 'elementor')), _Object$freeze));
+exports.TRANSLATED_HISTORY_TYPES = TRANSLATED_HISTORY_TYPES;
+var getTranslatedPromptHistoryType = function getTranslatedPromptHistoryType(historyType) {
+  if (TRANSLATED_HISTORY_TYPES[historyType]) {
+    return TRANSLATED_HISTORY_TYPES[historyType];
+  }
+  return TRANSLATED_HISTORY_TYPES_FALLBACK;
+};
+exports.getTranslatedPromptHistoryType = getTranslatedPromptHistoryType;
+
+/***/ }),
+
+/***/ "../modules/ai/assets/js/editor/components/prompt-history/index.js":
+/*!*************************************************************************!*\
+  !*** ../modules/ai/assets/js/editor/components/prompt-history/index.js ***!
+  \*************************************************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var _react = _interopRequireDefault(__webpack_require__(/*! react */ "react"));
+var _historyButton = _interopRequireDefault(__webpack_require__(/*! ./history-button */ "../modules/ai/assets/js/editor/components/prompt-history/history-button.js"));
+var _historyModal = _interopRequireDefault(__webpack_require__(/*! ./history-modal */ "../modules/ai/assets/js/editor/components/prompt-history/history-modal.js"));
+var _promptHistoryContext = __webpack_require__(/*! ./context/prompt-history-context */ "../modules/ai/assets/js/editor/components/prompt-history/context/prompt-history-context.js");
+var PROMPT_HISTORY_MODAL_ID = 'prompt-history-modal';
+var PromptHistory = function PromptHistory() {
+  var _usePromptHistoryCont = (0, _promptHistoryContext.usePromptHistoryContext)(),
+    isOpen = _usePromptHistoryCont.isOpen,
+    isModalOpen = _usePromptHistoryCont.isModalOpen,
+    onOpen = _usePromptHistoryCont.onOpen,
+    onClose = _usePromptHistoryCont.onClose;
+  return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement(_historyButton.default, {
+    isActive: isOpen,
+    onClick: function onClick() {
+      return isOpen ? onClose() : onOpen();
+    },
+    "aria-haspopup": "dialog",
+    "aria-controls": PROMPT_HISTORY_MODAL_ID
+  }), isModalOpen && /*#__PURE__*/_react.default.createElement(_historyModal.default, {
+    id: PROMPT_HISTORY_MODAL_ID
+  }));
+};
+var _default = PromptHistory;
+exports["default"] = _default;
+
+/***/ }),
+
+/***/ "../modules/ai/assets/js/editor/components/prompt-history/parts/action-icon.js":
+/*!*************************************************************************************!*\
+  !*** ../modules/ai/assets/js/editor/components/prompt-history/parts/action-icon.js ***!
+  \*************************************************************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+/* provided dependency */ var PropTypes = __webpack_require__(/*! prop-types */ "../node_modules/prop-types/index.js");
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var _react = _interopRequireDefault(__webpack_require__(/*! react */ "react"));
+var _textIcon = _interopRequireDefault(__webpack_require__(/*! ../../../icons/text-icon */ "../modules/ai/assets/js/editor/icons/text-icon.js"));
+var _icons = __webpack_require__(/*! @elementor/icons */ "@elementor/icons");
+var _codeIcon = _interopRequireDefault(__webpack_require__(/*! ../../../icons/code-icon */ "../modules/ai/assets/js/editor/icons/code-icon.js"));
+var FALLBACK_ICON = /*#__PURE__*/_react.default.createElement(_icons.AIIcon, {
+  "data-testid": "e-ph-fi"
+});
+var ICONS_BY_ACTIONS = Object.freeze({
+  'enhance-image-prompt': /*#__PURE__*/_react.default.createElement(_textIcon.default, null),
+  'get-text': /*#__PURE__*/_react.default.createElement(_textIcon.default, null),
+  'edit-text': /*#__PURE__*/_react.default.createElement(_textIcon.default, null),
+  'custom-css': /*#__PURE__*/_react.default.createElement(_codeIcon.default, null),
+  'custom-code': /*#__PURE__*/_react.default.createElement(_codeIcon.default, null)
+});
+var PromptHistoryActionIcon = function PromptHistoryActionIcon(_ref) {
+  var action = _ref.action;
+  if (ICONS_BY_ACTIONS[action]) {
+    return ICONS_BY_ACTIONS[action];
+  }
+  return FALLBACK_ICON;
+};
+PromptHistoryActionIcon.propTypes = {
+  action: PropTypes.string.isRequired
+};
+var _default = PromptHistoryActionIcon;
+exports["default"] = _default;
+
+/***/ }),
+
+/***/ "../modules/ai/assets/js/editor/components/prompt-history/parts/modal-container.js":
+/*!*****************************************************************************************!*\
+  !*** ../modules/ai/assets/js/editor/components/prompt-history/parts/modal-container.js ***!
+  \*****************************************************************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+/* provided dependency */ var __ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n")["__"];
+/* provided dependency */ var PropTypes = __webpack_require__(/*! prop-types */ "../node_modules/prop-types/index.js");
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var _react = _interopRequireDefault(__webpack_require__(/*! react */ "react"));
+var _extends2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/extends */ "../node_modules/@babel/runtime/helpers/extends.js"));
+var _objectWithoutProperties2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/objectWithoutProperties */ "../node_modules/@babel/runtime/helpers/objectWithoutProperties.js"));
+var _taggedTemplateLiteral2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/taggedTemplateLiteral */ "../node_modules/@babel/runtime/helpers/taggedTemplateLiteral.js"));
+var _ui = __webpack_require__(/*! @elementor/ui */ "@elementor/ui");
+var _promptHistoryContext = __webpack_require__(/*! ../context/prompt-history-context */ "../modules/ai/assets/js/editor/components/prompt-history/context/prompt-history-context.js");
+var _excluded = ["children"];
+var _templateObject;
+var StyledContent = (0, _ui.styled)(_ui.Box)(_templateObject || (_templateObject = (0, _taggedTemplateLiteral2.default)(["\n  width: 360px;\n  position: relative;\n  margin-top: ", ";\n  margin-right: ", ";\n  background-color: ", ";\n  border-radius: ", ";\n  height: ", ";\n\n  @media screen and (max-width: 456px) {\n    width: 320px;\n  }\n\n  @media screen and (max-width: 420px) {\n    width: 230px;\n  }\n"])), function (_ref) {
+  var theme = _ref.theme;
+  return theme.spacing(2);
+}, function (_ref2) {
+  var theme = _ref2.theme;
+  return theme.spacing(2);
+}, function (_ref3) {
+  var theme = _ref3.theme;
+  return theme.palette.background.paper;
+}, function (_ref4) {
+  var theme = _ref4.theme;
+  return "".concat(theme.shape.borderRadius, "px");
+}, function (_ref5) {
+  var height = _ref5.height;
+  return "calc( ".concat(height, "px - 32px )");
+});
+var ModalContainer = function ModalContainer(_ref6) {
+  var children = _ref6.children,
+    props = (0, _objectWithoutProperties2.default)(_ref6, _excluded);
+  var _usePromptHistoryCont = (0, _promptHistoryContext.usePromptHistoryContext)(),
+    isOpen = _usePromptHistoryCont.isOpen,
+    isModalOpen = _usePromptHistoryCont.isModalOpen,
+    onClose = _usePromptHistoryCont.onClose,
+    getContainerHeight = _usePromptHistoryCont.getContainerHeight,
+    getContainer = _usePromptHistoryCont.getContainer;
+  return /*#__PURE__*/_react.default.createElement(_ui.Modal, (0, _extends2.default)({
+    container: getContainer(),
+    open: isModalOpen,
+    hideBackdrop: true,
+    onClose: onClose,
+    sx: {
+      position: 'absolute'
+    }
+  }, props), /*#__PURE__*/_react.default.createElement(_ui.Backdrop, {
+    open: true,
+    sx: {
+      position: 'absolute',
+      justifyContent: 'flex-end',
+      alignItems: 'flex-start'
+    },
+    "aria-hidden": false
+  }, /*#__PURE__*/_react.default.createElement(_ui.Slide, {
+    direction: "left",
+    in: isOpen,
+    timeout: 500,
+    easing: "ease-in-out"
+  }, /*#__PURE__*/_react.default.createElement(StyledContent, {
+    "aria-label": __('Prompt history modal', 'elementor'),
+    height: getContainerHeight()
+  }, children))));
+};
+ModalContainer.propTypes = {
+  isOpen: PropTypes.bool.isRequired,
+  isModalOpen: PropTypes.bool.isRequired,
+  onClose: PropTypes.func.isRequired,
+  children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node])
+};
+var _default = ModalContainer;
+exports["default"] = _default;
+
+/***/ }),
+
+/***/ "../modules/ai/assets/js/editor/components/prompt-history/parts/modal-empty.js":
+/*!*************************************************************************************!*\
+  !*** ../modules/ai/assets/js/editor/components/prompt-history/parts/modal-empty.js ***!
+  \*************************************************************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+/* provided dependency */ var __ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n")["__"];
+/* provided dependency */ var sprintf = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n")["sprintf"];
+/* provided dependency */ var PropTypes = __webpack_require__(/*! prop-types */ "../node_modules/prop-types/index.js");
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var _react = _interopRequireDefault(__webpack_require__(/*! react */ "react"));
+var _ui = __webpack_require__(/*! @elementor/ui */ "@elementor/ui");
+var _historyTypes = __webpack_require__(/*! ../history-types */ "../modules/ai/assets/js/editor/components/prompt-history/history-types.js");
+var PromptHistoryEmpty = function PromptHistoryEmpty(_ref) {
+  var historyType = _ref.historyType;
+  return /*#__PURE__*/_react.default.createElement(_ui.Stack, {
+    justifyContent: "center",
+    sx: {
+      height: '100%',
+      textAlign: 'center'
+    },
+    "data-testid": "e-ph-empty"
+  }, /*#__PURE__*/_react.default.createElement(_ui.Typography, {
+    variant: "h6"
+  }, __('Prepare to be amazed', 'elementor')), /*#__PURE__*/_react.default.createElement(_ui.Typography, {
+    variant: "body1"
+  }, sprintf(
+  // Translators: %s: History type.
+  __('This is where you\'ll find all the %s you\'ve generated using Elementor AI.', 'elementor'), (0, _historyTypes.getTranslatedPromptHistoryType)(historyType))));
+};
+PromptHistoryEmpty.propTypes = {
+  historyType: PropTypes.oneOf(Object.values(_historyTypes.HISTORY_TYPES)).isRequired
+};
+var _default = PromptHistoryEmpty;
+exports["default"] = _default;
+
+/***/ }),
+
+/***/ "../modules/ai/assets/js/editor/components/prompt-history/parts/modal-header.js":
+/*!**************************************************************************************!*\
+  !*** ../modules/ai/assets/js/editor/components/prompt-history/parts/modal-header.js ***!
+  \**************************************************************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+/* provided dependency */ var __ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n")["__"];
+/* provided dependency */ var PropTypes = __webpack_require__(/*! prop-types */ "../node_modules/prop-types/index.js");
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var _react = _interopRequireDefault(__webpack_require__(/*! react */ "react"));
+var _ui = __webpack_require__(/*! @elementor/ui */ "@elementor/ui");
+var _icons = __webpack_require__(/*! @elementor/icons */ "@elementor/icons");
+var StyledContent = (0, _ui.styled)(_ui.Box)(function (_ref) {
+  var theme = _ref.theme;
+  return {
+    marginTop: 0,
+    padding: theme.spacing(1.5),
+    borderBottom: "1px solid ".concat(theme.palette.action.focus),
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'space-between'
+  };
+});
+var PromptHistoryModalHeader = function PromptHistoryModalHeader(_ref2) {
+  var onClose = _ref2.onClose;
+  return /*#__PURE__*/_react.default.createElement(StyledContent, null, /*#__PURE__*/_react.default.createElement(_ui.Typography, {
+    fontWeight: "bolder",
+    variant: "h6",
+    sx: {
+      userSelect: 'none'
+    }
+  }, __('History', 'elementor')), /*#__PURE__*/_react.default.createElement(_ui.IconButton, {
+    size: "small",
+    "aria-label": __('Hide prompt history', 'elementor'),
+    onClick: onClose
+  }, /*#__PURE__*/_react.default.createElement(_icons.XIcon, {
+    fontSize: "small"
+  })));
+};
+PromptHistoryModalHeader.propTypes = {
+  onClose: PropTypes.func.isRequired
+};
+var _default = PromptHistoryModalHeader;
+exports["default"] = _default;
+
+/***/ }),
+
+/***/ "../modules/ai/assets/js/editor/components/prompt-history/parts/modal-item-action-button.js":
+/*!**************************************************************************************************!*\
+  !*** ../modules/ai/assets/js/editor/components/prompt-history/parts/modal-item-action-button.js ***!
+  \**************************************************************************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+/* provided dependency */ var PropTypes = __webpack_require__(/*! prop-types */ "../node_modules/prop-types/index.js");
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var _react = _interopRequireDefault(__webpack_require__(/*! react */ "react"));
+var _extends2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/extends */ "../node_modules/@babel/runtime/helpers/extends.js"));
+var _objectWithoutProperties2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/objectWithoutProperties */ "../node_modules/@babel/runtime/helpers/objectWithoutProperties.js"));
+var _ui = __webpack_require__(/*! @elementor/ui */ "@elementor/ui");
+var _tooltip = _interopRequireDefault(__webpack_require__(/*! ../../tooltip */ "../modules/ai/assets/js/editor/components/tooltip.js"));
+var _excluded = ["tooltipTitle"];
+var ActionButton = function ActionButton(_ref) {
+  var tooltipTitle = _ref.tooltipTitle,
+    props = (0, _objectWithoutProperties2.default)(_ref, _excluded);
+  return /*#__PURE__*/_react.default.createElement(_tooltip.default, {
+    title: tooltipTitle,
+    placement: "top"
+  }, /*#__PURE__*/_react.default.createElement(_ui.IconButton, (0, _extends2.default)({
+    type: "button",
+    size: "small",
+    disableRipple: true,
+    disableFocusRipple: true,
+    disableTouchRipple: true
+  }, props)));
+};
+ActionButton.propTypes = {
+  tooltipTitle: PropTypes.string.isRequired
+};
+var _default = ActionButton;
+exports["default"] = _default;
+
+/***/ }),
+
+/***/ "../modules/ai/assets/js/editor/components/prompt-history/parts/modal-item-secondary-content.js":
+/*!******************************************************************************************************!*\
+  !*** ../modules/ai/assets/js/editor/components/prompt-history/parts/modal-item-secondary-content.js ***!
+  \******************************************************************************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+/* provided dependency */ var PropTypes = __webpack_require__(/*! prop-types */ "../node_modules/prop-types/index.js");
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var _react = _interopRequireDefault(__webpack_require__(/*! react */ "react"));
+var _taggedTemplateLiteral2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/taggedTemplateLiteral */ "../node_modules/@babel/runtime/helpers/taggedTemplateLiteral.js"));
+var _ui = __webpack_require__(/*! @elementor/ui */ "@elementor/ui");
+var _templateObject, _templateObject2;
+var StyledDateSubtitle = (0, _ui.styled)(_ui.Typography)(_templateObject || (_templateObject = (0, _taggedTemplateLiteral2.default)(["\n  color: ", ";\n"])), function (_ref) {
+  var theme = _ref.theme;
+  return theme.palette.secondary.light;
+});
+var StyledImage = (0, _ui.styled)('img')(_templateObject2 || (_templateObject2 = (0, _taggedTemplateLiteral2.default)(["\n  height: 72px;\n  width: 72px;\n  object-fit: cover;\n  margin-right: ", ";\n"])), function (_ref2) {
+  var theme = _ref2.theme;
+  return theme.spacing(0.5);
+});
+var PromptHistoryItemSecondaryContent = function PromptHistoryItemSecondaryContent(_ref3) {
+  var date = _ref3.date,
+    thumbnails = _ref3.thumbnails;
+  return /*#__PURE__*/_react.default.createElement(_ui.Stack, {
+    direction: "column",
+    width: "90%"
+  }, /*#__PURE__*/_react.default.createElement(StyledDateSubtitle, {
+    variant: "caption"
+  }, date), (thumbnails === null || thumbnails === void 0 ? void 0 : thumbnails.length) > 0 && /*#__PURE__*/_react.default.createElement(_ui.Stack, {
+    flexDirection: "row",
+    mt: 1
+  }, thumbnails.map(
+  /**
+   * @param {Object} thumb
+   * @return {React.ReactNode}
+   */
+  function (thumb) {
+    return /*#__PURE__*/_react.default.createElement(StyledImage, {
+      key: "thumbnail-".concat(thumb.seed),
+      alt: "",
+      src: thumb.image_url
+    });
+  })));
+};
+PromptHistoryItemSecondaryContent.propTypes = {
+  date: PropTypes.string.isRequired,
+  thumbnails: PropTypes.array
+};
+var _default = PromptHistoryItemSecondaryContent;
+exports["default"] = _default;
+
+/***/ }),
+
+/***/ "../modules/ai/assets/js/editor/components/prompt-history/parts/modal-item-title.js":
+/*!******************************************************************************************!*\
+  !*** ../modules/ai/assets/js/editor/components/prompt-history/parts/modal-item-title.js ***!
+  \******************************************************************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+/* provided dependency */ var PropTypes = __webpack_require__(/*! prop-types */ "../node_modules/prop-types/index.js");
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var _react = _interopRequireDefault(__webpack_require__(/*! react */ "react"));
+var _taggedTemplateLiteral2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/taggedTemplateLiteral */ "../node_modules/@babel/runtime/helpers/taggedTemplateLiteral.js"));
+var _ui = __webpack_require__(/*! @elementor/ui */ "@elementor/ui");
+var _tooltip = _interopRequireDefault(__webpack_require__(/*! ../../tooltip */ "../modules/ai/assets/js/editor/components/tooltip.js"));
+var _templateObject;
+var StyledTitle = (0, _ui.styled)(_ui.Typography)(_templateObject || (_templateObject = (0, _taggedTemplateLiteral2.default)(["\n  margin-bottom: ", ";\n"])), function (_ref) {
+  var theme = _ref.theme;
+  return theme.spacing(0.5);
+});
+var PromptHistoryItemTitle = function PromptHistoryItemTitle(_ref2) {
+  var prompt = _ref2.prompt;
+  return /*#__PURE__*/_react.default.createElement(_tooltip.default, {
+    title: prompt,
+    arrow: false,
+    placement: "bottom-start"
+  }, /*#__PURE__*/_react.default.createElement(StyledTitle, {
+    variant: "body2",
+    noWrap: true,
+    paragraph: true
+  }, prompt));
+};
+PromptHistoryItemTitle.propTypes = {
+  prompt: PropTypes.string.isRequired
+};
+var _default = PromptHistoryItemTitle;
+exports["default"] = _default;
+
+/***/ }),
+
+/***/ "../modules/ai/assets/js/editor/components/prompt-history/parts/modal-item.js":
+/*!************************************************************************************!*\
+  !*** ../modules/ai/assets/js/editor/components/prompt-history/parts/modal-item.js ***!
+  \************************************************************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+/* provided dependency */ var __ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n")["__"];
+/* provided dependency */ var PropTypes = __webpack_require__(/*! prop-types */ "../node_modules/prop-types/index.js");
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var _react = _interopRequireDefault(__webpack_require__(/*! react */ "react"));
+var _objectWithoutProperties2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/objectWithoutProperties */ "../node_modules/@babel/runtime/helpers/objectWithoutProperties.js"));
+var _taggedTemplateLiteral2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/taggedTemplateLiteral */ "../node_modules/@babel/runtime/helpers/taggedTemplateLiteral.js"));
+var _ui = __webpack_require__(/*! @elementor/ui */ "@elementor/ui");
+var _editIcon = _interopRequireDefault(__webpack_require__(/*! ../../../icons/edit-icon */ "../modules/ai/assets/js/editor/icons/edit-icon.js"));
+var _icons = __webpack_require__(/*! @elementor/icons */ "@elementor/icons");
+var _restoreIcon = _interopRequireDefault(__webpack_require__(/*! ../../../icons/restore-icon */ "../modules/ai/assets/js/editor/icons/restore-icon.js"));
+var _modalItemActionButton = _interopRequireDefault(__webpack_require__(/*! ./modal-item-action-button */ "../modules/ai/assets/js/editor/components/prompt-history/parts/modal-item-action-button.js"));
+var _promptHistoryActionContext = __webpack_require__(/*! ../context/prompt-history-action-context */ "../modules/ai/assets/js/editor/components/prompt-history/context/prompt-history-action-context.js");
+var _actionIcon = _interopRequireDefault(__webpack_require__(/*! ./action-icon */ "../modules/ai/assets/js/editor/components/prompt-history/parts/action-icon.js"));
+var _refreshIcon = _interopRequireDefault(__webpack_require__(/*! ../../../icons/refresh-icon */ "../modules/ai/assets/js/editor/icons/refresh-icon.js"));
+var _modalItemTitle = _interopRequireDefault(__webpack_require__(/*! ./modal-item-title */ "../modules/ai/assets/js/editor/components/prompt-history/parts/modal-item-title.js"));
+var _modalItemSecondaryContent = _interopRequireDefault(__webpack_require__(/*! ./modal-item-secondary-content */ "../modules/ai/assets/js/editor/components/prompt-history/parts/modal-item-secondary-content.js"));
+var _excluded = ["id", "date", "onHistoryItemDelete"];
+var _templateObject, _templateObject2, _templateObject3, _templateObject4;
+var StyledListItem = (0, _ui.styled)(_ui.ListItem)(_templateObject || (_templateObject = (0, _taggedTemplateLiteral2.default)(["\n  & .e-prompt-history-item-actions {\n    position: absolute;\n    top: -9999px;\n  }\n\n  &:hover,\n  &:focus-visible,\n  &:focus-within {\n    .MuiTypography-body2 {\n      font-weight: 700;\n      max-width: ", ";\n    }\n\n    .e-prompt-history-item-actions {\n      position: relative;\n      top: -3px;\n    }\n  }\n"])), function (_ref) {
+  var actionsCount = _ref.actionsCount;
+  return "calc(100% - ".concat(actionsCount, " * 26px)");
+});
+var StyledListItemButton = (0, _ui.styled)(_ui.ListItemButton)(_templateObject2 || (_templateObject2 = (0, _taggedTemplateLiteral2.default)(["\n  padding: ", ";\n  align-items: flex-start;\n  cursor: inherit;\n"])), function (_ref2) {
+  var theme = _ref2.theme;
+  return theme.spacing(0.5, 2);
+});
+var StyledListItemIcon = (0, _ui.styled)(_ui.ListItemIcon)(_templateObject3 || (_templateObject3 = (0, _taggedTemplateLiteral2.default)(["\n  min-width: auto;\n\n  & > .MuiSvgIcon-root {\n    margin-right: ", ";\n    font-size: 1rem;\n    position: relative;\n    top: ", ";\n  }\n"])), function (_ref3) {
+  var theme = _ref3.theme;
+  return theme.spacing(1.5);
+}, function (_ref4) {
+  var theme = _ref4.theme;
+  return theme.spacing(0.5);
+});
+var StyledButtonsWrapper = (0, _ui.styled)(_ui.Box)(_templateObject4 || (_templateObject4 = (0, _taggedTemplateLiteral2.default)(["\n  & .MuiSvgIcon-root {\n    font-size: 1rem;\n  }\n"])));
+var PromptHistoryItem = function PromptHistoryItem(_ref5) {
+  var id = _ref5.id,
+    date = _ref5.date,
+    onHistoryItemDelete = _ref5.onHistoryItemDelete,
+    props = (0, _objectWithoutProperties2.default)(_ref5, _excluded);
+  var _usePromptHistoryActi = (0, _promptHistoryActionContext.usePromptHistoryAction)(),
+    getAllowedActions = _usePromptHistoryActi.getAllowedActions,
+    onPromptReuse = _usePromptHistoryActi.onPromptReuse,
+    onResultEdit = _usePromptHistoryActi.onResultEdit,
+    onImagesRestore = _usePromptHistoryActi.onImagesRestore;
+  var action = props.action,
+    prompt = props.prompt,
+    text = props.text,
+    images = props.images,
+    thumbnails = props.thumbnails,
+    imageType = props.imageType,
+    ratio = props.ratio;
+  var allowedActions = getAllowedActions();
+  return /*#__PURE__*/_react.default.createElement(StyledListItem, {
+    tabIndex: "0",
+    "data-testid": "e-ph-i",
+    disableGutters: true,
+    disablePadding: true,
+    actionsCount: Object.keys(allowedActions).length
+  }, /*#__PURE__*/_react.default.createElement(StyledListItemButton, {
+    component: "div",
+    role: undefined
+  }, /*#__PURE__*/_react.default.createElement(StyledListItemIcon, null, /*#__PURE__*/_react.default.createElement(_actionIcon.default, {
+    action: action
+  })), /*#__PURE__*/_react.default.createElement(_ui.ListItemText, {
+    disableTypography: true,
+    primary: /*#__PURE__*/_react.default.createElement(_ui.Stack, {
+      direction: "row",
+      justifyContent: "space-between",
+      alignItems: "center",
+      height: "16px"
+    }, /*#__PURE__*/_react.default.createElement(_modalItemTitle.default, {
+      prompt: prompt
+    }), /*#__PURE__*/_react.default.createElement(StyledButtonsWrapper, {
+      className: "e-prompt-history-item-actions"
+    }, allowedActions[_promptHistoryActionContext.ACTION_TYPES.REMOVE] && /*#__PURE__*/_react.default.createElement(_modalItemActionButton.default, {
+      onClick: function onClick() {
+        return onHistoryItemDelete(id);
+      },
+      "aria-label": __('Remove item', 'elementor'),
+      tooltipTitle: __('Remove', 'elementor')
+    }, /*#__PURE__*/_react.default.createElement(_icons.TrashIcon, null)), allowedActions[_promptHistoryActionContext.ACTION_TYPES.REUSE] && /*#__PURE__*/_react.default.createElement(_modalItemActionButton.default, {
+      onClick: function onClick() {
+        return onPromptReuse(id, prompt);
+      },
+      "aria-label": __('Reuse prompt', 'elementor'),
+      tooltipTitle: __('Reuse prompt', 'elementor')
+    }, /*#__PURE__*/_react.default.createElement(_refreshIcon.default, null)), allowedActions[_promptHistoryActionContext.ACTION_TYPES.RESTORE] && /*#__PURE__*/_react.default.createElement(_modalItemActionButton.default, {
+      onClick: function onClick() {
+        return onImagesRestore(id, {
+          prompt: prompt,
+          images: images,
+          imageType: imageType,
+          ratio: ratio
+        });
+      },
+      "aria-label": __('Restore', 'elementor'),
+      tooltipTitle: __('Restore', 'elementor')
+    }, /*#__PURE__*/_react.default.createElement(_restoreIcon.default, null)), allowedActions[_promptHistoryActionContext.ACTION_TYPES.EDIT] && /*#__PURE__*/_react.default.createElement(_modalItemActionButton.default, {
+      onClick: function onClick() {
+        return onResultEdit(id, text);
+      },
+      "aria-label": __('Edit result', 'elementor'),
+      tooltipTitle: __('Edit', 'elementor')
+    }, /*#__PURE__*/_react.default.createElement(_editIcon.default, null)))),
+    secondary: /*#__PURE__*/_react.default.createElement(_modalItemSecondaryContent.default, {
+      date: date,
+      thumbnails: thumbnails
+    })
+  })));
+};
+PromptHistoryItem.propTypes = {
+  id: PropTypes.string.isRequired,
+  action: PropTypes.string.isRequired,
+  prompt: PropTypes.string.isRequired,
+  date: PropTypes.string.isRequired,
+  onHistoryItemDelete: PropTypes.func.isRequired,
+  text: PropTypes.string,
+  images: PropTypes.array,
+  thumbnails: PropTypes.array,
+  imageType: PropTypes.string,
+  ratio: PropTypes.string
+};
+var _default = PromptHistoryItem;
+exports["default"] = _default;
+
+/***/ }),
+
+/***/ "../modules/ai/assets/js/editor/components/prompt-history/parts/modal-period.js":
+/*!**************************************************************************************!*\
+  !*** ../modules/ai/assets/js/editor/components/prompt-history/parts/modal-period.js ***!
+  \**************************************************************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+/* provided dependency */ var __ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n")["__"];
+/* provided dependency */ var PropTypes = __webpack_require__(/*! prop-types */ "../node_modules/prop-types/index.js");
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var _react = _interopRequireDefault(__webpack_require__(/*! react */ "react"));
+var _extends2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/extends */ "../node_modules/@babel/runtime/helpers/extends.js"));
+var _objectWithoutProperties2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/objectWithoutProperties */ "../node_modules/@babel/runtime/helpers/objectWithoutProperties.js"));
+var _ui = __webpack_require__(/*! @elementor/ui */ "@elementor/ui");
+var _modalItem = _interopRequireDefault(__webpack_require__(/*! ./modal-item */ "../modules/ai/assets/js/editor/components/prompt-history/parts/modal-item.js"));
+var _dateHelpers = __webpack_require__(/*! ../../../helpers/date-helpers */ "../modules/ai/assets/js/editor/helpers/date-helpers.js");
+var _excluded = ["id", "date"];
+var StyledPeriodList = (0, _ui.styled)(_ui.List)(function (_ref) {
+  var theme = _ref.theme;
+  return {
+    borderBottom: "1px solid ".concat(theme.palette.action.focus)
+  };
+});
+var StyledPeriodTitle = (0, _ui.styled)(_ui.Typography)(function (_ref2) {
+  var theme = _ref2.theme;
+  return {
+    padding: theme.spacing(1.5, 2),
+    color: theme.palette.secondary.light
+  };
+});
+var DATE_FORMAT = __('F j, g:i A', 'elementor');
+var PromptHistoryPeriod = function PromptHistoryPeriod(_ref3) {
+  var periodTitle = _ref3.periodTitle,
+    historyItems = _ref3.historyItems,
+    _onHistoryItemDelete = _ref3.onHistoryItemDelete;
+  return /*#__PURE__*/_react.default.createElement(StyledPeriodList, {
+    "data-testid": "e-ph-p",
+    subheader: /*#__PURE__*/_react.default.createElement(_ui.ListSubheader, {
+      disableSticky: true,
+      disableGutters: true
+    }, /*#__PURE__*/_react.default.createElement(StyledPeriodTitle, {
+      variant: "body2",
+      role: "heading",
+      "aria-level": "6"
+    }, periodTitle))
+  }, historyItems.map(function (_ref4) {
+    var id = _ref4.id,
+      date = _ref4.date,
+      props = (0, _objectWithoutProperties2.default)(_ref4, _excluded);
+    return /*#__PURE__*/_react.default.createElement(_modalItem.default, (0, _extends2.default)({
+      key: id,
+      date: (0, _dateHelpers.translateDate)(DATE_FORMAT, date),
+      onHistoryItemDelete: function onHistoryItemDelete() {
+        return _onHistoryItemDelete(id);
+      },
+      id: id
+    }, props));
+  }));
+};
+PromptHistoryPeriod.propTypes = {
+  periodTitle: PropTypes.string.isRequired,
+  historyItems: PropTypes.array.isRequired,
+  onHistoryItemDelete: PropTypes.func.isRequired
+};
+var _default = PromptHistoryPeriod;
+exports["default"] = _default;
+
+/***/ }),
+
+/***/ "../modules/ai/assets/js/editor/components/prompt-history/parts/modal-upgrade.js":
+/*!***************************************************************************************!*\
+  !*** ../modules/ai/assets/js/editor/components/prompt-history/parts/modal-upgrade.js ***!
+  \***************************************************************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+/* provided dependency */ var __ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n")["__"];
+/* provided dependency */ var sprintf = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n")["sprintf"];
+/* provided dependency */ var PropTypes = __webpack_require__(/*! prop-types */ "../node_modules/prop-types/index.js");
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var _react = _interopRequireDefault(__webpack_require__(/*! react */ "react"));
+var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "../node_modules/@babel/runtime/helpers/defineProperty.js"));
+var _ui = __webpack_require__(/*! @elementor/ui */ "@elementor/ui");
+var _icons = __webpack_require__(/*! @elementor/icons */ "@elementor/icons");
+var _historyTypes = __webpack_require__(/*! ../history-types */ "../modules/ai/assets/js/editor/components/prompt-history/history-types.js");
+var _messages;
+var VARIANT_FULL = 'full';
+var VARIANT_SMALL = 'small';
+var messages = (_messages = {}, (0, _defineProperty2.default)(_messages, VARIANT_FULL, __('Want to see your %s generation history for as far as the past 90 days?', 'elementor')), (0, _defineProperty2.default)(_messages, VARIANT_SMALL, __('Want to see your %s generation history for the past 90 days?', 'elementor')), _messages);
+var actionUrl = 'https://go.elementor.com/ai-popup-purchase-dropdown/';
+var getMessage = function getMessage(variant, historyType) {
+  var placeholder = messages[variant] || messages[VARIANT_FULL];
+  var translatedHistoryType = (0, _historyTypes.getTranslatedPromptHistoryType)(historyType);
+  return sprintf(placeholder, translatedHistoryType);
+};
+var PromptHistoryUpgrade = function PromptHistoryUpgrade(_ref) {
+  var variant = _ref.variant,
+    historyType = _ref.historyType;
+  return /*#__PURE__*/_react.default.createElement(_ui.Stack, {
+    justifyContent: "center",
+    sx: {
+      height: VARIANT_SMALL === variant ? 'auto' : '100%',
+      textAlign: 'center',
+      p: 2
+    },
+    "data-testid": "e-ph-upgrade-".concat(variant)
+  }, /*#__PURE__*/_react.default.createElement(_ui.Typography, {
+    variant: "body1",
+    sx: {
+      marginBottom: 2
+    }
+  }, getMessage(variant, historyType)), /*#__PURE__*/_react.default.createElement(_ui.Button, {
+    variant: "contained",
+    color: "accent",
+    size: "small",
+    href: actionUrl,
+    target: "_blank",
+    rel: "noopener noreferrer",
+    startIcon: /*#__PURE__*/_react.default.createElement(_icons.UpgradeIcon, null),
+    sx: {
+      width: '50%',
+      alignSelf: 'center',
+      '&:hover': {
+        color: 'accent.contrastText'
+      }
+    }
+  }, __('Upgrade now', 'elementor')));
+};
+PromptHistoryUpgrade.propTypes = {
+  variant: PropTypes.oneOf([VARIANT_FULL, VARIANT_SMALL]).isRequired,
+  historyType: PropTypes.oneOf(Object.values(_historyTypes.HISTORY_TYPES)).isRequired
+};
+var _default = PromptHistoryUpgrade;
 exports["default"] = _default;
 
 /***/ }),
@@ -1032,7 +2479,6 @@ Object.defineProperty(exports, "__esModule", ({
 exports["default"] = void 0;
 var _react = _interopRequireDefault(__webpack_require__(/*! react */ "react"));
 var _ui = __webpack_require__(/*! @elementor/ui */ "@elementor/ui");
-var _styledChip = _interopRequireDefault(__webpack_require__(/*! ./ui/styled-chip */ "../modules/ai/assets/js/editor/components/ui/styled-chip.js"));
 var PromptSuggestions = function PromptSuggestions(props) {
   var _props$suggestions;
   return /*#__PURE__*/_react.default.createElement(_ui.Box, null, /*#__PURE__*/_react.default.createElement(_ui.Typography, {
@@ -1041,13 +2487,13 @@ var PromptSuggestions = function PromptSuggestions(props) {
   }, __('Suggested prompts', 'elementor') + ':'), /*#__PURE__*/_react.default.createElement(_ui.Stack, {
     direction: "column",
     alignItems: "flex-start",
-    gap: 3,
+    gap: 1,
     sx: {
-      my: 3
+      my: 1
     }
   }, (_props$suggestions = props.suggestions) === null || _props$suggestions === void 0 ? void 0 : _props$suggestions.map(function (option, index) {
     var _props$suggestionFilt;
-    return /*#__PURE__*/_react.default.createElement(_styledChip.default, {
+    return /*#__PURE__*/_react.default.createElement(_ui.Chip, {
       key: index,
       variant: "outlined",
       size: "large",
@@ -1092,7 +2538,7 @@ function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "functio
 function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || _typeof(obj) !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 var Textarea = (0, _react.forwardRef)(function (props, ref) {
   return /*#__PURE__*/_react.default.createElement(_ui.TextField, (0, _extends2.default)({
-    ref: ref,
+    inputRef: ref,
     multiline: true,
     minRows: 4,
     maxRows: 20,
@@ -1105,6 +2551,54 @@ Textarea.propTypes = {
   helperText: PropTypes.string
 };
 var _default = Textarea;
+exports["default"] = _default;
+
+/***/ }),
+
+/***/ "../modules/ai/assets/js/editor/components/tooltip.js":
+/*!************************************************************!*\
+  !*** ../modules/ai/assets/js/editor/components/tooltip.js ***!
+  \************************************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+/* provided dependency */ var PropTypes = __webpack_require__(/*! prop-types */ "../node_modules/prop-types/index.js");
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var _react = _interopRequireDefault(__webpack_require__(/*! react */ "react"));
+var _extends2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/extends */ "../node_modules/@babel/runtime/helpers/extends.js"));
+var _objectWithoutProperties2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/objectWithoutProperties */ "../node_modules/@babel/runtime/helpers/objectWithoutProperties.js"));
+var _ui = __webpack_require__(/*! @elementor/ui */ "@elementor/ui");
+var _excluded = ["children"];
+var Tooltip = function Tooltip(_ref) {
+  var children = _ref.children,
+    props = (0, _objectWithoutProperties2.default)(_ref, _excluded);
+  return /*#__PURE__*/_react.default.createElement(_ui.Tooltip, (0, _extends2.default)({
+    componentsProps: {
+      tooltip: {
+        sx: {
+          '&.MuiTooltip-tooltip[class*="MuiTooltip-tooltipPlacement"]': {
+            m: 0,
+            fontSize: '10px',
+            fontWeight: 500,
+            lineHeight: '1.4em'
+          },
+          py: 0.5,
+          px: 1
+        }
+      }
+    }
+  }, props), children);
+};
+Tooltip.propTypes = {
+  children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node])
+};
+var _default = Tooltip;
 exports["default"] = _default;
 
 /***/ }),
@@ -1166,7 +2660,7 @@ var OverlayBar = (0, _ui.styled)(_ui.Stack)(function (_ref) {
     width: '100%',
     position: 'absolute',
     left: 0,
-    padding: theme.spacing(6)
+    padding: theme.spacing(2.5)
   };
   if ('top' === position) {
     style.top = 0;
@@ -1240,23 +2734,17 @@ var Panel = function Panel(_ref) {
   var _ref$sx = _ref.sx,
     sx = _ref$sx === void 0 ? {} : _ref$sx,
     props = (0, _objectWithoutProperties2.default)(_ref, _excluded);
-  return /*#__PURE__*/_react.default.createElement(_ui.Drawer, (0, _extends2.default)({
-    open: true,
-    anchor: "left",
-    variant: "persistent",
-    PaperProps: {
-      sx: {
-        position: 'relative',
-        width: 360,
-        px: 8,
-        pt: 8,
-        bgcolor: 'background.default'
-      }
-    },
+  return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement(_ui.Box, (0, _extends2.default)({
     sx: _objectSpread({
-      height: '100%'
+      p: 4,
+      width: 360,
+      flexShrink: 0,
+      height: '100%',
+      overflowY: 'auto'
     }, sx)
-  }, props), props.children);
+  }, props), props.children), /*#__PURE__*/_react.default.createElement(_ui.Divider, {
+    orientation: "vertical"
+  }));
 };
 Panel.propTypes = {
   children: PropTypes.node,
@@ -1289,20 +2777,24 @@ var _ui = __webpack_require__(/*! @elementor/ui */ "@elementor/ui");
 var _icons = __webpack_require__(/*! @elementor/icons */ "@elementor/icons");
 function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
 function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || _typeof(obj) !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
-var StyledTextField = (0, _ui.styled)(_ui.TextField)(function (_ref) {
-  var theme = _ref.theme;
+// Customization for the WP admin global CSS.
+var StyledTextField = (0, _ui.styled)(_ui.TextField)(function () {
   return {
-    // Overwriting the admin global CSS.
-    '& .MuiInputBase-input, & .MuiInputBase-input:focus': {
-      backgroundColor: theme.palette.background.default,
-      border: 'none',
+    '.wp-admin & .MuiInputBase-input, & .MuiInputBase-input:focus': {
+      backgroundColor: 'initial',
       boxShadow: 'none',
-      color: theme.palette.text.primary,
-      padding: theme.spacing(0, 3),
-      outline: 'none'
-    },
-    '& .MuiInputAdornment-root': {
-      color: theme.palette.text.tertiary
+      border: 0,
+      color: 'inherit',
+      outline: 0,
+      /**
+       * TODO:
+       * Find a better solution to get the component padding value dynamically or fix the global CSS override.
+       * These values are taken from Material UI's source code (the left padding reset was added to match the component style).
+       */
+      padding: '16.5px 14px 16.5px 0',
+      '&.MuiInputBase-inputSizeSmall': {
+        padding: '8.5px 14px 8.5px 0'
+      }
     }
   };
 });
@@ -1313,6 +2805,7 @@ var SearchField = (0, _react.forwardRef)(function (props, ref) {
     autoFocus: true,
     fullWidth: true,
     required: true,
+    size: "small",
     color: "secondary",
     InputProps: {
       autoComplete: 'off',
@@ -1325,7 +2818,7 @@ var SearchField = (0, _react.forwardRef)(function (props, ref) {
     value: props.value,
     onChange: props.onChange
   }, props, {
-    ref: ref
+    inputRef: ref
   }));
 });
 SearchField.propTypes = {
@@ -1335,35 +2828,6 @@ SearchField.propTypes = {
   onChange: PropTypes.func
 };
 var _default = SearchField;
-exports["default"] = _default;
-
-/***/ }),
-
-/***/ "../modules/ai/assets/js/editor/components/ui/styled-chip.js":
-/*!*******************************************************************!*\
-  !*** ../modules/ai/assets/js/editor/components/ui/styled-chip.js ***!
-  \*******************************************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", ({
-  value: true
-}));
-exports["default"] = void 0;
-var _ui = __webpack_require__(/*! @elementor/ui */ "@elementor/ui");
-var StyledChip = (0, _ui.styled)(_ui.Chip)(function () {
-  return {
-    '& .MuiChip-label': {
-      lineHeight: 1.5
-    },
-    '& .MuiSvgIcon-root.MuiChip-icon': {
-      fontSize: '1.25rem'
-    }
-  };
-});
-var _default = StyledChip;
 exports["default"] = _default;
 
 /***/ }),
@@ -1392,43 +2856,54 @@ var _icons = __webpack_require__(/*! @elementor/icons */ "@elementor/icons");
 function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
 function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || _typeof(obj) !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 var popoverId = 'e-ai-upgrade-popover';
-var StyledContent = (0, _ui.styled)(_ui.Box)(function (_ref) {
+var StyledContent = (0, _ui.styled)(_ui.Paper)(function (_ref) {
   var theme = _ref.theme;
   return {
     position: 'relative',
-    marginTop: theme.spacing(6),
-    padding: theme.spacing(7),
-    backgroundColor: theme.palette.background.paper,
+    '[data-popper-placement="top"] &': {
+      marginBottom: theme.spacing(2.5)
+    },
+    '[data-popper-placement="bottom"] &': {
+      marginTop: theme.spacing(2.5)
+    },
+    padding: theme.spacing(3),
     boxShadow: theme.shadows[4],
-    borderRadius: theme.border.radius.sm,
     zIndex: '9999'
   };
 });
 var StyledArrow = (0, _ui.styled)(_ui.Box)(function (_ref2) {
   var theme = _ref2.theme;
   return {
-    width: theme.sizing[500],
-    height: theme.sizing[200],
+    width: theme.spacing(5),
+    height: theme.spacing(2.5),
     position: 'absolute',
-    top: "calc(".concat(theme.sizing[200], " * -1)"),
-    left: '50%',
-    transform: 'translateX(-50%) rotate(180deg)',
     overflow: 'hidden',
+    // Override Popper inline styles.
+    left: '50% !important',
+    transform: 'translateX(-50%) rotate(var(--rotate, 0deg)) !important',
+    '[data-popper-placement="top"] &': {
+      top: '100%'
+    },
+    '[data-popper-placement="bottom"] &': {
+      '--rotate': '180deg',
+      top: "calc(".concat(theme.spacing(2.5), " * -1)")
+    },
     '&::after': {
       backgroundColor: theme.palette.background.paper,
       content: '""',
       display: 'block',
       position: 'absolute',
-      width: theme.sizing[200],
-      height: theme.sizing[200],
+      width: theme.spacing(2.5),
+      height: theme.spacing(2.5),
       top: 0,
       left: '50%',
       transform: 'translateX(-50%) translateY(-50%) rotate(45deg)',
-      boxShadow: '1px 1px 5px 0px rgba(0, 0, 0, 0.2)'
+      boxShadow: '1px 1px 5px 0px rgba(0, 0, 0, 0.2)',
+      backgroundImage: 'linear-gradient(rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.05))'
     }
   };
 });
-var upgradeBullets = [__('Generate professional texts about any topic, in any tone.', 'elementor'), __('Translate your content into twenty-five different languages.', 'elementor'), __('Unleash infinite possibilities with the custom code generator.', 'elementor')];
+var upgradeBullets = [__('Generate your website\'s text or create custom code without having to write a single line yourself.', 'elementor'), __('Effortlessly create or enhance stunning images and bring your ideas to life.', 'elementor'), __('Access 30-days of AI History with the AI Starter plan and 90-days with the Power plan.', 'elementor')];
 var Chip = (0, _ui.styled)(_ui.Chip)(function () {
   return {
     '& .MuiChip-label': {
@@ -1449,6 +2924,7 @@ var UpgradeChip = function UpgradeChip(_ref3) {
     isPopoverOpen = _useState2[0],
     setIsPopoverOpen = _useState2[1];
   var anchorEl = (0, _react.useRef)(null);
+  var arrowEl = (0, _react.useRef)(null);
   var showPopover = function showPopover() {
     return setIsPopoverOpen(true);
   };
@@ -1472,34 +2948,39 @@ var UpgradeChip = function UpgradeChip(_ref3) {
   }, /*#__PURE__*/_react.default.createElement(Chip, {
     color: "accent",
     label: __('Upgrade', 'elementor'),
-    icon: /*#__PURE__*/_react.default.createElement(_icons.UpgradeIcon, null)
+    icon: /*#__PURE__*/_react.default.createElement(_icons.UpgradeIcon, null),
+    size: "small"
   }), /*#__PURE__*/_react.default.createElement(_ui.Popper, {
     open: isPopoverOpen,
     anchorEl: anchorEl.current,
     sx: {
       zIndex: '9999',
       maxWidth: 300
-    }
-  }, /*#__PURE__*/_react.default.createElement(StyledContent, null, /*#__PURE__*/_react.default.createElement(StyledArrow, null), /*#__PURE__*/_react.default.createElement(_ui.Typography, {
+    },
+    modifiers: [{
+      name: 'arrow',
+      enabled: true,
+      options: {
+        element: arrowEl.current
+      }
+    }]
+  }, /*#__PURE__*/_react.default.createElement(StyledContent, null, /*#__PURE__*/_react.default.createElement(StyledArrow, {
+    ref: arrowEl
+  }), /*#__PURE__*/_react.default.createElement(_ui.Typography, {
     variant: "h5",
     color: "text.primary"
-  }, __('Unlimited access to Elementor AI', 'elementor')), /*#__PURE__*/_react.default.createElement(_ui.List, {
+  }, __('Maximum access to Elementor AI', 'elementor')), /*#__PURE__*/_react.default.createElement(_ui.List, {
     sx: {
-      mb: 7
+      mb: 1
     }
   }, upgradeBullets.map(function (bullet, index) {
     return /*#__PURE__*/_react.default.createElement(_ui.ListItem, {
       key: index,
       disableGutters: true,
       sx: {
-        alignItems: 'flex-start',
-        my: 4
+        alignItems: 'flex-start'
       }
-    }, /*#__PURE__*/_react.default.createElement(_ui.ListItemIcon, {
-      sx: {
-        mr: 3
-      }
-    }, /*#__PURE__*/_react.default.createElement(_icons.CheckedCircleIcon, null)), /*#__PURE__*/_react.default.createElement(_ui.ListItemText, {
+    }, /*#__PURE__*/_react.default.createElement(_ui.ListItemIcon, null, /*#__PURE__*/_react.default.createElement(_icons.CheckedCircleIcon, null)), /*#__PURE__*/_react.default.createElement(_ui.ListItemText, {
       sx: {
         m: 0
       }
@@ -1596,10 +3077,10 @@ exports["default"] = _default;
 
 /***/ }),
 
-/***/ "../modules/ai/assets/js/editor/helpers.js":
-/*!*************************************************!*\
-  !*** ../modules/ai/assets/js/editor/helpers.js ***!
-  \*************************************************/
+/***/ "../modules/ai/assets/js/editor/helpers/date-helpers.js":
+/*!**************************************************************!*\
+  !*** ../modules/ai/assets/js/editor/helpers/date-helpers.js ***!
+  \**************************************************************/
 /***/ ((__unused_webpack_module, exports) => {
 
 "use strict";
@@ -1608,12 +3089,67 @@ exports["default"] = _default;
 Object.defineProperty(exports, "__esModule", ({
   value: true
 }));
-exports.onConnect = void 0;
+exports.translateDate = exports.daysDiff = exports.MONTH_JANUARY_INDEX = exports.MONTH_DECEMBER_INDEX = void 0;
+var MONTH_DECEMBER_INDEX = 12;
+exports.MONTH_DECEMBER_INDEX = MONTH_DECEMBER_INDEX;
+var MONTH_JANUARY_INDEX = 0;
+/**
+ * Formats a date (like wp_date() in PHP), translating it into site's locale.
+ *
+ * @param {string}                       format   PHP-style formatting string.
+ * @param {Date | string | undefined}    date     Date object
+ * @param {string | number | undefined=} timezone Timezone to output result in or a UTC offset. Defaults to timezone from site.
+ * @return {string}
+ */
+exports.MONTH_JANUARY_INDEX = MONTH_JANUARY_INDEX;
+var translateDate = function translateDate(format, date, timezone) {
+  var _window$wp;
+  var _window$wp$date = (_window$wp = window.wp) === null || _window$wp === void 0 ? void 0 : _window$wp.date,
+    dateI18n = _window$wp$date.dateI18n;
+  return dateI18n(format, date, timezone);
+};
+
+/**
+ * Returns difference in days between two dates
+ *
+ * @param {Date} firstDate
+ * @param {Date} secondDate
+ * @return {number} Positive or negative number in days
+ */
+exports.translateDate = translateDate;
+var daysDiff = function daysDiff(firstDate, secondDate) {
+  var MS_PER_DAY = 1000 * 60 * 60 * 24;
+  var firstUTC = Date.UTC(firstDate.getFullYear(), firstDate.getMonth(), firstDate.getDate());
+  var secondUTC = Date.UTC(secondDate.getFullYear(), secondDate.getMonth(), secondDate.getDate());
+  return Math.floor((secondUTC - firstUTC) / MS_PER_DAY);
+};
+exports.daysDiff = daysDiff;
+
+/***/ }),
+
+/***/ "../modules/ai/assets/js/editor/helpers/index.js":
+/*!*******************************************************!*\
+  !*** ../modules/ai/assets/js/editor/helpers/index.js ***!
+  \*******************************************************/
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports.vh = exports.onConnect = void 0;
 var onConnect = function onConnect(data) {
   elementorCommon.config.library_connect.is_connected = true;
   elementorCommon.config.library_connect.current_access_level = data.accessLevel;
 };
 exports.onConnect = onConnect;
+var vh = function vh(value) {
+  var h = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
+  return value * h / 100;
+};
+exports.vh = vh;
 
 /***/ }),
 
@@ -1676,6 +3212,73 @@ var useCodePrompt = function useCodePrompt(_ref3) {
   return promptData;
 };
 var _default = useCodePrompt;
+exports["default"] = _default;
+
+/***/ }),
+
+/***/ "../modules/ai/assets/js/editor/hooks/use-delete-prompt-history-item.js":
+/*!******************************************************************************!*\
+  !*** ../modules/ai/assets/js/editor/hooks/use-delete-prompt-history-item.js ***!
+  \******************************************************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var _regenerator = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/regenerator */ "../node_modules/@babel/runtime/regenerator/index.js"));
+var _asyncToGenerator2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/asyncToGenerator */ "../node_modules/@babel/runtime/helpers/asyncToGenerator.js"));
+var _slicedToArray2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/slicedToArray */ "../node_modules/@babel/runtime/helpers/slicedToArray.js"));
+var _react = __webpack_require__(/*! react */ "react");
+var _api = __webpack_require__(/*! ../api */ "../modules/ai/assets/js/editor/api/index.js");
+var useDeletePromptHistoryItem = function useDeletePromptHistoryItem() {
+  var _useState = (0, _react.useState)(false),
+    _useState2 = (0, _slicedToArray2.default)(_useState, 2),
+    isLoading = _useState2[0],
+    setIsLoading = _useState2[1];
+  var _useState3 = (0, _react.useState)(''),
+    _useState4 = (0, _slicedToArray2.default)(_useState3, 2),
+    error = _useState4[0],
+    setError = _useState4[1];
+  var deleteItem = /*#__PURE__*/function () {
+    var _ref = (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee(id) {
+      return _regenerator.default.wrap(function _callee$(_context) {
+        while (1) switch (_context.prev = _context.next) {
+          case 0:
+            return _context.abrupt("return", new Promise(function (resolve, reject) {
+              setError('');
+              setIsLoading(true);
+              (0, _api.deleteHistoryItem)(id).then(function () {
+                resolve(true);
+              }).catch(function (err) {
+                var finalError = (err === null || err === void 0 ? void 0 : err.responseText) || err;
+                setError(finalError);
+                reject(finalError);
+              }).finally(function () {
+                return setIsLoading(false);
+              });
+            }));
+          case 1:
+          case "end":
+            return _context.stop();
+        }
+      }, _callee);
+    }));
+    return function deleteItem(_x) {
+      return _ref.apply(this, arguments);
+    };
+  }();
+  return {
+    isLoading: isLoading,
+    error: error,
+    deleteItem: deleteItem
+  };
+};
+var _default = useDeletePromptHistoryItem;
 exports["default"] = _default;
 
 /***/ }),
@@ -1788,6 +3391,178 @@ exports["default"] = _default;
 
 /***/ }),
 
+/***/ "../modules/ai/assets/js/editor/hooks/use-prompt-enhancer.js":
+/*!*******************************************************************!*\
+  !*** ../modules/ai/assets/js/editor/hooks/use-prompt-enhancer.js ***!
+  \*******************************************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var _api = __webpack_require__(/*! ../api */ "../modules/ai/assets/js/editor/api/index.js");
+var _usePrompt2 = _interopRequireDefault(__webpack_require__(/*! ./use-prompt */ "../modules/ai/assets/js/editor/hooks/use-prompt.js"));
+var enhancePromptMap = new Map([['media', _api.getImagePromptEnhanced], ['layout', _api.getLayoutPromptEnhanced]]);
+var getResult = function getResult(prompt, type) {
+  if (!enhancePromptMap.has(type)) {
+    throw new Error("Invalid prompt type: ".concat(type));
+  }
+  return enhancePromptMap.get(type)(prompt);
+};
+
+/**
+ * Hook to enhance a prompt.
+ *
+ * @param {string}             prompt
+ * @param {'media' | 'layout'} type
+ * @return {{enhancedPrompt: string | undefined, isEnhancing: boolean, enhance: (function(...[*]): Promise)}}
+ */
+var usePromptEnhancer = function usePromptEnhancer(prompt, type) {
+  var _usePrompt = (0, _usePrompt2.default)(function () {
+      return getResult(prompt, type);
+    }, prompt),
+    enhancedData = _usePrompt.data,
+    isEnhancing = _usePrompt.isLoading,
+    enhance = _usePrompt.send;
+  return {
+    enhance: enhance,
+    isEnhancing: isEnhancing,
+    enhancedPrompt: enhancedData === null || enhancedData === void 0 ? void 0 : enhancedData.result
+  };
+};
+var _default = usePromptEnhancer;
+exports["default"] = _default;
+
+/***/ }),
+
+/***/ "../modules/ai/assets/js/editor/hooks/use-prompt-history.js":
+/*!******************************************************************!*\
+  !*** ../modules/ai/assets/js/editor/hooks/use-prompt-history.js ***!
+  \******************************************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var _regenerator = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/regenerator */ "../node_modules/@babel/runtime/regenerator/index.js"));
+var _toConsumableArray2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/toConsumableArray */ "../node_modules/@babel/runtime/helpers/toConsumableArray.js"));
+var _asyncToGenerator2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/asyncToGenerator */ "../node_modules/@babel/runtime/helpers/asyncToGenerator.js"));
+var _slicedToArray2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/slicedToArray */ "../node_modules/@babel/runtime/helpers/slicedToArray.js"));
+var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "../node_modules/@babel/runtime/helpers/defineProperty.js"));
+var _react = __webpack_require__(/*! react */ "react");
+var _api = __webpack_require__(/*! ../api */ "../modules/ai/assets/js/editor/api/index.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { (0, _defineProperty2.default)(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+var getImageThumbnailURL = function getImageThumbnailURL(base, imageURL) {
+  if (!base) {
+    return imageURL;
+  }
+  return "".concat(base, "/?o=").concat(btoa(imageURL, false));
+};
+var normalizeItems = function normalizeItems(response) {
+  var meta = response.meta,
+    items = response.items;
+  return items === null || items === void 0 ? void 0 : items.map(function (item) {
+    var _item$request, _item$request2, _item$request3, _item$response, _item$response$result, _item$response2, _item$response2$resul, _item$response3, _item$response3$resul, _item$response3$resul2;
+    return {
+      id: item === null || item === void 0 ? void 0 : item.elementorApiId,
+      date: item === null || item === void 0 ? void 0 : item.createdAt,
+      action: item === null || item === void 0 ? void 0 : item.action,
+      prompt: item === null || item === void 0 ? void 0 : (_item$request = item.request) === null || _item$request === void 0 ? void 0 : _item$request.prompt,
+      imageType: item === null || item === void 0 ? void 0 : (_item$request2 = item.request) === null || _item$request2 === void 0 ? void 0 : _item$request2.image_type,
+      ratio: item === null || item === void 0 ? void 0 : (_item$request3 = item.request) === null || _item$request3 === void 0 ? void 0 : _item$request3.ratio,
+      text: item === null || item === void 0 ? void 0 : (_item$response = item.response) === null || _item$response === void 0 ? void 0 : (_item$response$result = _item$response.results) === null || _item$response$result === void 0 ? void 0 : _item$response$result.text,
+      images: item === null || item === void 0 ? void 0 : (_item$response2 = item.response) === null || _item$response2 === void 0 ? void 0 : (_item$response2$resul = _item$response2.results) === null || _item$response2$resul === void 0 ? void 0 : _item$response2$resul.images,
+      thumbnails: item === null || item === void 0 ? void 0 : (_item$response3 = item.response) === null || _item$response3 === void 0 ? void 0 : (_item$response3$resul = _item$response3.results) === null || _item$response3$resul === void 0 ? void 0 : (_item$response3$resul2 = _item$response3$resul.images) === null || _item$response3$resul2 === void 0 ? void 0 : _item$response3$resul2.map(function (image) {
+        return _objectSpread(_objectSpread({}, image), {}, {
+          image_url: getImageThumbnailURL(meta.thumbnailUrl, image.image_url)
+        });
+      })
+    };
+  });
+};
+var usePromptHistory = function usePromptHistory(historyType) {
+  var _useState = (0, _react.useState)(false),
+    _useState2 = (0, _slicedToArray2.default)(_useState, 2),
+    isLoading = _useState2[0],
+    setIsLoading = _useState2[1];
+  var _useState3 = (0, _react.useState)({}),
+    _useState4 = (0, _slicedToArray2.default)(_useState3, 2),
+    data = _useState4[0],
+    setData = _useState4[1];
+  var _useState5 = (0, _react.useState)(''),
+    _useState6 = (0, _slicedToArray2.default)(_useState5, 2),
+    error = _useState6[0],
+    setError = _useState6[1];
+  var fetchData = /*#__PURE__*/function () {
+    var _ref2 = (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee(_ref) {
+      var page, limit;
+      return _regenerator.default.wrap(function _callee$(_context) {
+        while (1) switch (_context.prev = _context.next) {
+          case 0:
+            page = _ref.page, limit = _ref.limit;
+            return _context.abrupt("return", new Promise(function (resolve, reject) {
+              setIsLoading(true);
+              (0, _api.getHistory)(historyType, page, limit).then(function (response) {
+                var clone = JSON.parse(JSON.stringify(data));
+                clone.meta = response.meta;
+                clone.items = [].concat((0, _toConsumableArray2.default)((clone === null || clone === void 0 ? void 0 : clone.items) || []), (0, _toConsumableArray2.default)(normalizeItems(response)));
+                setData(clone);
+                resolve(true);
+              }).catch(function (err) {
+                var finalError = (err === null || err === void 0 ? void 0 : err.responseText) || err;
+                setError(finalError);
+                reject(finalError);
+              }).finally(function () {
+                return setIsLoading(false);
+              });
+            }));
+          case 2:
+          case "end":
+            return _context.stop();
+        }
+      }, _callee);
+    }));
+    return function fetchData(_x) {
+      return _ref2.apply(this, arguments);
+    };
+  }();
+  var deleteItemById = function deleteItemById(id) {
+    var itemIndex = data.items.findIndex(function (item) {
+      return item.id === id;
+    });
+    if (-1 === itemIndex) {
+      return false;
+    }
+    var clone = JSON.parse(JSON.stringify(data));
+    clone.items.splice(itemIndex, 1);
+    setData(clone);
+    return true;
+  };
+  return {
+    isLoading: isLoading,
+    error: error,
+    items: data.items,
+    meta: data.meta,
+    fetchData: fetchData,
+    deleteItemById: deleteItemById
+  };
+};
+var _default = usePromptHistory;
+exports["default"] = _default;
+
+/***/ }),
+
 /***/ "../modules/ai/assets/js/editor/hooks/use-prompt.js":
 /*!**********************************************************!*\
   !*** ../modules/ai/assets/js/editor/hooks/use-prompt.js ***!
@@ -1803,10 +3578,13 @@ Object.defineProperty(exports, "__esModule", ({
 }));
 exports["default"] = void 0;
 var _regenerator = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/regenerator */ "../node_modules/@babel/runtime/regenerator/index.js"));
+var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "../node_modules/@babel/runtime/helpers/defineProperty.js"));
 var _asyncToGenerator2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/asyncToGenerator */ "../node_modules/@babel/runtime/helpers/asyncToGenerator.js"));
 var _slicedToArray2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/slicedToArray */ "../node_modules/@babel/runtime/helpers/slicedToArray.js"));
 var _react = __webpack_require__(/*! react */ "react");
 var _api = __webpack_require__(/*! ../api */ "../modules/ai/assets/js/editor/api/index.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { (0, _defineProperty2.default)(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
 var normalizeResponse = function normalizeResponse(_ref) {
   var text = _ref.text,
     responseId = _ref.response_id,
@@ -1872,7 +3650,8 @@ var usePrompt = function usePrompt(fetchData, initialState) {
     };
   }();
   var sendUsageData = function sendUsageData() {
-    return data.responseId && (0, _api.setStatusFeedback)(data.responseId);
+    var usageData = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : data;
+    return usageData.responseId && (0, _api.setStatusFeedback)(usageData.responseId);
   };
   var reset = function reset() {
     setData(function (_ref3) {
@@ -1886,10 +3665,20 @@ var usePrompt = function usePrompt(fetchData, initialState) {
     setError('');
     setIsLoading(false);
   };
+  var setResult = function setResult(result) {
+    var responseId = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
+    var updatedResult = _objectSpread({}, data);
+    updatedResult.result = result;
+    if (responseId) {
+      updatedResult.responseId = responseId;
+    }
+    setData(updatedResult);
+  };
   return {
     isLoading: isLoading,
     error: error,
     data: data,
+    setResult: setResult,
     reset: reset,
     send: send,
     sendUsageData: sendUsageData
@@ -2172,6 +3961,39 @@ var ChevronRightIcon = _react.default.forwardRef(function (props, ref) {
   }));
 });
 var _default = ChevronRightIcon;
+exports["default"] = _default;
+
+/***/ }),
+
+/***/ "../modules/ai/assets/js/editor/icons/code-icon.js":
+/*!*********************************************************!*\
+  !*** ../modules/ai/assets/js/editor/icons/code-icon.js ***!
+  \*********************************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var _react = _interopRequireDefault(__webpack_require__(/*! react */ "react"));
+var _extends2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/extends */ "../node_modules/@babel/runtime/helpers/extends.js"));
+var _ui = __webpack_require__(/*! @elementor/ui */ "@elementor/ui");
+var CodeIcon = _react.default.forwardRef(function (props, ref) {
+  return /*#__PURE__*/_react.default.createElement(_ui.SvgIcon, (0, _extends2.default)({
+    viewBox: "0 0 24 24"
+  }, props, {
+    ref: ref
+  }), /*#__PURE__*/_react.default.createElement("path", {
+    fillRule: "evenodd",
+    d: "M7.53 7.47a.75.75 0 0 1 0 1.06L4.06 12l3.47 3.47a.75.75 0 1 1-1.06 1.06l-4-4a.75.75 0 0 1 0-1.06l4-4a.75.75 0 0 1 1.06 0ZM16.47 7.47a.75.75 0 0 1 1.06 0l4 4a.75.75 0 0 1 0 1.06l-4 4a.75.75 0 1 1-1.06-1.06L19.94 12l-3.47-3.47a.75.75 0 0 1 0-1.06ZM14.182 3.272a.75.75 0 0 1 .546.91l-4 16a.75.75 0 0 1-1.456-.364l4-16a.75.75 0 0 1 .91-.546Z",
+    clipRule: "evenodd"
+  }));
+});
+var _default = CodeIcon;
 exports["default"] = _default;
 
 /***/ }),
@@ -2556,6 +4378,80 @@ exports["default"] = _default;
 
 /***/ }),
 
+/***/ "../modules/ai/assets/js/editor/icons/restore-icon.js":
+/*!************************************************************!*\
+  !*** ../modules/ai/assets/js/editor/icons/restore-icon.js ***!
+  \************************************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var _react = _interopRequireDefault(__webpack_require__(/*! react */ "react"));
+var _extends2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/extends */ "../node_modules/@babel/runtime/helpers/extends.js"));
+var _ui = __webpack_require__(/*! @elementor/ui */ "@elementor/ui");
+var RestoreIcon = _react.default.forwardRef(function (props, ref) {
+  return /*#__PURE__*/_react.default.createElement(_ui.SvgIcon, (0, _extends2.default)({
+    viewBox: "0 0 24 24"
+  }, props, {
+    ref: ref
+  }), /*#__PURE__*/_react.default.createElement("path", {
+    fillRule: "evenodd",
+    d: "M11.913 3.22a8.781 8.781 0 0 1 3.367.634.75.75 0 1 1-.56 1.392A7.281 7.281 0 0 0 8.25 18.24V15a.75.75 0 0 1 1.5 0v4.433a.73.73 0 0 1 0 .034V20a.75.75 0 0 1-.75.75H4a.75.75 0 0 1 0-1.5h3.045a8.782 8.782 0 0 1 4.868-16.03ZM18.37 6.41a.75.75 0 0 1 .75.75v.01a.75.75 0 0 1-1.5 0v-.01a.75.75 0 0 1 .75-.75ZM13 19.19a.75.75 0 0 1 .75.75v.01a.75.75 0 0 1-1.5 0v-.01a.75.75 0 0 1 .75-.75ZM16.84 17.62a.75.75 0 0 1 .75.75v.01a.75.75 0 0 1-1.5 0v-.01a.75.75 0 0 1 .75-.75ZM19.37 14.35a.75.75 0 0 1 .75.75v.01a.75.75 0 0 1-1.5 0v-.01a.75.75 0 0 1 .75-.75ZM19.94 10.25a.75.75 0 0 1 .75.75v.01a.75.75 0 0 1-1.5 0V11a.75.75 0 0 1 .75-.75Z",
+    clipRule: "evenodd"
+  }));
+});
+var _default = RestoreIcon;
+exports["default"] = _default;
+
+/***/ }),
+
+/***/ "../modules/ai/assets/js/editor/icons/text-icon.js":
+/*!*********************************************************!*\
+  !*** ../modules/ai/assets/js/editor/icons/text-icon.js ***!
+  \*********************************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var _react = _interopRequireDefault(__webpack_require__(/*! react */ "react"));
+var _extends2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/extends */ "../node_modules/@babel/runtime/helpers/extends.js"));
+var _ui = __webpack_require__(/*! @elementor/ui */ "@elementor/ui");
+var TextIcon = _react.default.forwardRef(function (props, ref) {
+  return /*#__PURE__*/_react.default.createElement(_ui.SvgIcon, (0, _extends2.default)({
+    viewBox: "0 0 24 24"
+  }, props, {
+    ref: ref
+  }), /*#__PURE__*/_react.default.createElement("path", {
+    fillRule: "evenodd",
+    d: "M4.25 5A.75.75 0 0 1 5 4.25h14a.75.75 0 0 1 .75.75v2a.75.75 0 0 1-1.5 0V5.75H5.75V7a.75.75 0 0 1-1.5 0V5Z",
+    clipRule: "evenodd"
+  }), /*#__PURE__*/_react.default.createElement("path", {
+    fillRule: "evenodd",
+    d: "M12 4.25a.75.75 0 0 1 .75.75v14a.75.75 0 0 1-1.5 0V5a.75.75 0 0 1 .75-.75Z",
+    clipRule: "evenodd"
+  }), /*#__PURE__*/_react.default.createElement("path", {
+    fillRule: "evenodd",
+    d: "M9.25 19a.75.75 0 0 1 .75-.75h4a.75.75 0 0 1 0 1.5h-4a.75.75 0 0 1-.75-.75Z",
+    clipRule: "evenodd"
+  }));
+});
+var _default = TextIcon;
+exports["default"] = _default;
+
+/***/ }),
+
 /***/ "../modules/ai/assets/js/editor/icons/undo-icon.js":
 /*!*********************************************************!*\
   !*** ../modules/ai/assets/js/editor/icons/undo-icon.js ***!
@@ -2694,7 +4590,6 @@ var _inherits2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/h
 var _possibleConstructorReturn2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/possibleConstructorReturn */ "../node_modules/@babel/runtime/helpers/possibleConstructorReturn.js"));
 var _getPrototypeOf2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/getPrototypeOf */ "../node_modules/@babel/runtime/helpers/getPrototypeOf.js"));
 var _aiBehavior = _interopRequireDefault(__webpack_require__(/*! ./ai-behavior */ "../modules/ai/assets/js/editor/ai-behavior.js"));
-var _aiPromotionBehavior = _interopRequireDefault(__webpack_require__(/*! ./ai-promotion-behavior */ "../modules/ai/assets/js/editor/ai-promotion-behavior.js"));
 var _constants = __webpack_require__(/*! ./pages/form-media/constants */ "../modules/ai/assets/js/editor/pages/form-media/constants/index.js");
 function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = (0, _getPrototypeOf2.default)(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = (0, _getPrototypeOf2.default)(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return (0, _possibleConstructorReturn2.default)(this, result); }; }
 function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
@@ -2833,6 +4728,10 @@ var _wizardDialog = _interopRequireDefault(__webpack_require__(/*! ./components/
 var _promptDialog = _interopRequireDefault(__webpack_require__(/*! ./components/prompt-dialog */ "../modules/ai/assets/js/editor/components/prompt-dialog.js"));
 var _upgradeChip = _interopRequireDefault(__webpack_require__(/*! ./components/upgrade-chip */ "../modules/ai/assets/js/editor/components/upgrade-chip.js"));
 var _formMedia = _interopRequireDefault(__webpack_require__(/*! ./pages/form-media */ "../modules/ai/assets/js/editor/pages/form-media/index.js"));
+var _promptHistory = _interopRequireDefault(__webpack_require__(/*! ./components/prompt-history */ "../modules/ai/assets/js/editor/components/prompt-history/index.js"));
+var _historyTypes = __webpack_require__(/*! ./components/prompt-history/history-types */ "../modules/ai/assets/js/editor/components/prompt-history/history-types.js");
+var _promptHistoryActionContext = __webpack_require__(/*! ./components/prompt-history/context/prompt-history-action-context */ "../modules/ai/assets/js/editor/components/prompt-history/context/prompt-history-action-context.js");
+var _promptHistoryContext = __webpack_require__(/*! ./components/prompt-history/context/prompt-history-context */ "../modules/ai/assets/js/editor/components/prompt-history/context/prompt-history-context.js");
 var PageContent = function PageContent(_ref) {
   var type = _ref.type,
     controlType = _ref.controlType,
@@ -2856,6 +4755,11 @@ var PageContent = function PageContent(_ref) {
       '& .MuiDialog-container': {
         alignItems: 'flex-start',
         mt: 'media' === type ? '2.5vh' : '18vh'
+      },
+      '& .MuiDialogContent-root': {
+        willChange: 'height',
+        transition: 'height 300ms ease-in-out',
+        position: 'relative'
       }
     },
     PaperProps: {
@@ -2914,7 +4818,9 @@ var PageContent = function PageContent(_ref) {
     })));
   }
   if ('media' === type) {
-    return /*#__PURE__*/_react.default.createElement(_formMedia.default, {
+    return /*#__PURE__*/_react.default.createElement(_promptHistoryContext.PromptHistoryProvider, {
+      historyType: _historyTypes.HISTORY_TYPES.IMAGE
+    }, /*#__PURE__*/_react.default.createElement(_promptHistoryActionContext.PromptHistoryActionProvider, null, /*#__PURE__*/_react.default.createElement(_formMedia.default, {
       onClose: onClose,
       getControlValue: getControlValue,
       controlView: controlView,
@@ -2922,14 +4828,17 @@ var PageContent = function PageContent(_ref) {
       credits: credits,
       maybeRenderUpgradeChip: maybeRenderUpgradeChip,
       DialogProps: promptDialogStyleProps
-    });
+    })));
   }
   if ('code' === type) {
     return /*#__PURE__*/_react.default.createElement(_promptDialog.default, (0, _extends2.default)({
       onClose: onClose
-    }, promptDialogStyleProps), /*#__PURE__*/_react.default.createElement(_promptDialog.default.Header, {
+    }, promptDialogStyleProps), /*#__PURE__*/_react.default.createElement(_promptHistoryContext.PromptHistoryProvider, {
+      historyType: _historyTypes.HISTORY_TYPES.CODE
+    }, /*#__PURE__*/_react.default.createElement(_promptHistoryActionContext.PromptHistoryActionProvider, null, /*#__PURE__*/_react.default.createElement(_promptDialog.default.Header, {
       onClose: onClose
-    }, maybeRenderUpgradeChip()), /*#__PURE__*/_react.default.createElement(_promptDialog.default.Content, {
+    }, /*#__PURE__*/_react.default.createElement(_promptHistory.default, null), maybeRenderUpgradeChip()), /*#__PURE__*/_react.default.createElement(_promptDialog.default.Content, {
+      className: "e-ai-dialog-content",
       dividers: true
     }, /*#__PURE__*/_react.default.createElement(_formCode.default, {
       onClose: onClose,
@@ -2938,13 +4847,16 @@ var PageContent = function PageContent(_ref) {
       additionalOptions: additionalOptions,
       credits: credits,
       usagePercentage: usagePercentage
-    })));
+    })))));
   }
   return /*#__PURE__*/_react.default.createElement(_promptDialog.default, (0, _extends2.default)({
     onClose: onClose
-  }, promptDialogStyleProps), /*#__PURE__*/_react.default.createElement(_promptDialog.default.Header, {
+  }, promptDialogStyleProps), /*#__PURE__*/_react.default.createElement(_promptHistoryContext.PromptHistoryProvider, {
+    historyType: _historyTypes.HISTORY_TYPES.TEXT
+  }, /*#__PURE__*/_react.default.createElement(_promptHistoryActionContext.PromptHistoryActionProvider, null, /*#__PURE__*/_react.default.createElement(_promptDialog.default.Header, {
     onClose: onClose
-  }, maybeRenderUpgradeChip()), /*#__PURE__*/_react.default.createElement(_promptDialog.default.Content, {
+  }, /*#__PURE__*/_react.default.createElement(_promptHistory.default, null), maybeRenderUpgradeChip()), /*#__PURE__*/_react.default.createElement(_promptDialog.default.Content, {
+    className: "e-ai-dialog-content",
     dividers: true
   }, /*#__PURE__*/_react.default.createElement(_formText.default, {
     type: type,
@@ -2955,7 +4867,7 @@ var PageContent = function PageContent(_ref) {
     additionalOptions: additionalOptions,
     credits: credits,
     usagePercentage: usagePercentage
-  })));
+  })))));
 };
 PageContent.propTypes = {
   type: PropTypes.string,
@@ -3009,12 +4921,12 @@ var Connect = function Connect(_ref) {
   }, []);
   return /*#__PURE__*/_react.default.createElement(_ui.Stack, {
     alignItems: "center",
-    gap: 5
+    gap: 2
   }, /*#__PURE__*/_react.default.createElement(_icons.AIIcon, {
     sx: {
       color: 'text.primary',
       fontSize: '60px',
-      mb: 3
+      mb: 1
     }
   }), /*#__PURE__*/_react.default.createElement(_ui.Typography, {
     variant: "h4",
@@ -3042,7 +4954,7 @@ var Connect = function Connect(_ref) {
     href: connectUrl,
     variant: "contained",
     sx: {
-      mt: 3,
+      mt: 1,
       '&:hover': {
         color: 'primary.contrastText'
       }
@@ -3104,7 +5016,7 @@ var CodeBlock = function CodeBlock(_ref) {
     ref: codeBlockInput,
     defaultValue: children[0],
     sx: {
-      mb: 3
+      mb: 1
     },
     helperText: __('Code generated by AI may be inaccurate.', 'elementor')
   }, props)), /*#__PURE__*/_react.default.createElement(_ui.Button, {
@@ -3166,6 +5078,7 @@ var _promptErrorMessage = _interopRequireDefault(__webpack_require__(/*! ../../c
 var _codeBlock = _interopRequireDefault(__webpack_require__(/*! ./code-block */ "../modules/ai/assets/js/editor/pages/form-code/code-block.js"));
 var _useCodePrompt2 = _interopRequireDefault(__webpack_require__(/*! ../../hooks/use-code-prompt */ "../modules/ai/assets/js/editor/hooks/use-code-prompt.js"));
 var _promptCredits = _interopRequireDefault(__webpack_require__(/*! ../../components/prompt-credits */ "../modules/ai/assets/js/editor/components/prompt-credits.js"));
+var _promptHistoryActionContext = __webpack_require__(/*! ../../components/prompt-history/context/prompt-history-action-context */ "../modules/ai/assets/js/editor/components/prompt-history/context/prompt-history-action-context.js");
 function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
 function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || _typeof(obj) !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
@@ -3206,6 +5119,13 @@ var FormCode = function FormCode(_ref) {
     _useState2 = (0, _slicedToArray2.default)(_useState, 2),
     prompt = _useState2[0],
     setPrompt = _useState2[1];
+  (0, _promptHistoryActionContext.useSubscribeOnPromptHistoryAction)([{
+    type: _promptHistoryActionContext.ACTION_TYPES.REUSE,
+    handler: function handler(action) {
+      reset();
+      setPrompt(action.data);
+    }
+  }]);
   var lastRun = (0, _react.useRef)(function () {});
   var autocompleteItems = 'css' === (additionalOptions === null || additionalOptions === void 0 ? void 0 : additionalOptions.codeLanguage) ? _actionsData.codeCssAutocomplete : _actionsData.codeHtmlAutocomplete;
   var showSuggestions = !prompt;
@@ -3241,14 +5161,14 @@ var FormCode = function FormCode(_ref) {
     error: error,
     onRetry: lastRun.current,
     sx: {
-      mb: 6
+      mb: 2.5
     }
   }), !data.result && /*#__PURE__*/_react.default.createElement(_ui.Box, {
     component: "form",
     onSubmit: handleSubmit
   }, /*#__PURE__*/_react.default.createElement(_ui.Box, {
     sx: {
-      pb: 4
+      pb: 1.5
     }
   }, /*#__PURE__*/_react.default.createElement(_promptSearch.default, {
     placeholder: __('Describe the code you want to use...', 'elementor'),
@@ -3265,8 +5185,8 @@ var FormCode = function FormCode(_ref) {
     direction: "row",
     alignItems: "center",
     sx: {
-      py: 4,
-      mt: 8
+      py: 1.5,
+      mt: 4
     }
   }, /*#__PURE__*/_react.default.createElement(_promptCredits.default, {
     usagePercentage: usagePercentage
@@ -3287,13 +5207,13 @@ var FormCode = function FormCode(_ref) {
     direction: "row",
     alignItems: "center",
     sx: {
-      mt: 8
+      mt: 4
     }
   }, /*#__PURE__*/_react.default.createElement(_promptCredits.default, {
     usagePercentage: usagePercentage
   }), /*#__PURE__*/_react.default.createElement(_ui.Stack, {
     direction: "row",
-    gap: 3,
+    gap: 1,
     justifyContent: "flex-end",
     flexGrow: 1
   }, /*#__PURE__*/_react.default.createElement(_ui.Button, {
@@ -3388,28 +5308,23 @@ var StyledWandIcon = (0, _ui.withDirection)(_wandIcon.default);
 var EnhanceButton = function EnhanceButton(_ref) {
   var isLoading = _ref.isLoading,
     props = (0, _objectWithoutProperties2.default)(_ref, _excluded);
-  if (isLoading) {
-    return /*#__PURE__*/_react.default.createElement(_ui.CircularProgress, {
-      color: "secondary",
-      size: 20,
-      sx: {
-        mr: 2
-      }
-    });
-  }
   return /*#__PURE__*/_react.default.createElement(_ui.Tooltip, {
     title: __('Enhance prompt', 'elementor')
   }, /*#__PURE__*/_react.default.createElement(_ui.Box, {
     component: "span",
     sx: {
-      cursor: 'pointer'
+      cursor: props.disabled ? 'default' : 'pointer'
     }
   }, /*#__PURE__*/_react.default.createElement(_ui.IconButton, (0, _extends2.default)({
     size: "small",
     color: "secondary"
-  }, props), /*#__PURE__*/_react.default.createElement(StyledWandIcon, null))));
+  }, props), isLoading ? /*#__PURE__*/_react.default.createElement(_ui.CircularProgress, {
+    color: "secondary",
+    size: 20
+  }) : /*#__PURE__*/_react.default.createElement(StyledWandIcon, null))));
 };
 EnhanceButton.propTypes = {
+  disabled: PropTypes.bool,
   isLoading: PropTypes.bool
 };
 var _default = EnhanceButton;
@@ -3485,7 +5400,7 @@ var GalleryImage = function GalleryImage(_ref2) {
     justifyContent: "center",
     alignItems: "center",
     sx: {
-      bgcolor: 'secondary.background',
+      bgcolor: 'action.selected',
       height: 'contained' === variant ? 336 : 'auto',
       position: 'relative',
       overflow: 'hidden'
@@ -3495,7 +5410,7 @@ var GalleryImage = function GalleryImage(_ref2) {
     src: src,
     style: style
   })), children && /*#__PURE__*/_react.default.createElement(_overlay.default, null, /*#__PURE__*/_react.default.createElement(_overlayBar.default, (0, _extends2.default)({
-    gap: 3,
+    gap: 1,
     position: "bottom"
   }, OverlayBarProps), text && /*#__PURE__*/_react.default.createElement(_overlayBarText.default, null, text), children)));
 };
@@ -3603,25 +5518,25 @@ var GenerateLoader = function GenerateLoader() {
   return /*#__PURE__*/_react.default.createElement(_ui.Stack, {
     alignItems: "center",
     justifyContent: "center",
-    gap: 5,
+    gap: 2,
     width: "100%"
   }, /*#__PURE__*/_react.default.createElement(_icons.AIIcon, {
     sx: {
       color: 'text.primary',
       fontSize: '60px',
-      mb: 3
+      mb: 1
     }
   }), /*#__PURE__*/_react.default.createElement(_ui.Typography, {
-    variant: "h4",
+    variant: "h5",
     sx: {
       color: 'text.primary'
     }
   }, __('Bringing your vision to life...', 'elementor')), /*#__PURE__*/_react.default.createElement(_ui.Typography, {
-    variant: "body2"
+    variant: "body1"
   }, __('Hold tight, painting dreams might take a moment.', 'elementor')), /*#__PURE__*/_react.default.createElement(_ui.Box, {
     sx: {
-      px: 4,
-      py: 6,
+      px: 1.5,
+      py: 2.5,
       width: '100%',
       maxWidth: 600
     }
@@ -3709,7 +5624,7 @@ var Tooltip = function Tooltip(props) {
     PopperProps: {
       sx: {
         '&.MuiTooltip-popper .MuiTooltip-tooltip.MuiTooltip-tooltipPlacementBottom': {
-          mt: 3
+          mt: 1
         }
       }
     }
@@ -3723,7 +5638,7 @@ var ImageActions = function ImageActions(_ref) {
     justifyContent: "space-between",
     alignItems: "center",
     width: "100%",
-    gap: 3
+    gap: 1
   }, props), children);
 };
 ImageActions.propTypes = {
@@ -3756,8 +5671,8 @@ var EditIcon = function EditIcon(_ref3) {
     title: __('Edit', 'elementor')
   }, /*#__PURE__*/_react.default.createElement(_ui.IconButton, (0, _extends2.default)({
     sx: _objectSpread({
-      mr: -4,
-      ml: 2,
+      mr: -1.5,
+      ml: 0.5,
       color: 'common.white',
       '&:hover': {
         color: 'common.white'
@@ -3796,8 +5711,8 @@ var CopyIcon = function CopyIcon(_ref5) {
     title: __('Copy prompt', 'elementor')
   }, /*#__PURE__*/_react.default.createElement(_ui.IconButton, (0, _extends2.default)({
     sx: _objectSpread({
-      mr: -4,
-      ml: 2,
+      mr: -1.5,
+      ml: 0.5,
       color: 'common.white',
       '&:hover': {
         color: 'common.white'
@@ -3844,7 +5759,7 @@ var ImageForm = function ImageForm(_ref) {
   return /*#__PURE__*/_react.default.createElement(_ui.Box, (0, _extends2.default)({
     component: "form"
   }, props), /*#__PURE__*/_react.default.createElement(_ui.Stack, {
-    spacing: 6
+    spacing: 2.5
   }, children));
 };
 ImageForm.propTypes = {
@@ -3934,10 +5849,10 @@ var ImageSlider = function ImageSlider(_ref) {
     props = (0, _objectWithoutProperties2.default)(_ref, _excluded);
   return /*#__PURE__*/_react.default.createElement(_ui.Stack, (0, _extends2.default)({
     alignItems: "flex-start",
-    spacing: 2
+    spacing: 0.5
   }, props), /*#__PURE__*/_react.default.createElement(_ui.Stack, {
     direction: "row",
-    spacing: 6,
+    spacing: 2.5,
     alignSelf: "center",
     alignItems: "center"
   }, /*#__PURE__*/_react.default.createElement(_ui.IconButton, {
@@ -3945,7 +5860,7 @@ var ImageSlider = function ImageSlider(_ref) {
     size: "large",
     color: "secondary"
   }, /*#__PURE__*/_react.default.createElement(StyledChevronLeftIcon, null)), /*#__PURE__*/_react.default.createElement(_ui.Stack, {
-    spacing: 2,
+    spacing: 0.5,
     justifyContent: "space-around",
     alignItems: "center"
   }, children), /*#__PURE__*/_react.default.createElement(_ui.IconButton, {
@@ -3972,11 +5887,11 @@ var Actions = function Actions(_ref2) {
     width: "100%"
   }, props, {
     sx: _objectSpread({
-      mb: 4
+      mb: 1.5
     }, sx)
   }), startAction, /*#__PURE__*/_react.default.createElement(_ui.Stack, {
     direction: "row",
-    spacing: 3,
+    spacing: 2,
     justifyContent: "flex-end",
     flexGrow: 1,
     width: "100%"
@@ -4211,7 +6126,9 @@ var ImagesDisplay = function ImagesDisplay(_ref2) {
   var images = _ref2.images,
     aspectRatio = _ref2.aspectRatio,
     onUseImage = _ref2.onUseImage,
-    onEditImage = _ref2.onEditImage;
+    onEditImage = _ref2.onEditImage,
+    _ref2$transparentCont = _ref2.transparentContainer,
+    transparentContainer = _ref2$transparentCont === void 0 ? false : _ref2$transparentCont;
   var _useImageNavigation = (0, _useImageNavigation2.default)(images),
     zoomIndex = _useImageNavigation.zoomIndex,
     setZoomIndex = _useImageNavigation.setZoomIndex,
@@ -4247,14 +6164,20 @@ var ImagesDisplay = function ImagesDisplay(_ref2) {
   }
   if (1 === images.length) {
     var image = images[0];
+    var singleImageStyle = {
+      width: width,
+      height: height
+    };
+    if (transparentContainer) {
+      singleImageStyle.backgroundImage = 'linear-gradient(45deg, #bbb 25%, transparent 25%), linear-gradient(-45deg, #bbb 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #bbb 75%), linear-gradient(-45deg, transparent 75%, #bbb 75%)';
+      singleImageStyle.backgroundSize = '20px 20px';
+      singleImageStyle.backgroundPosition = '0 0, 0 10px, 10px -10px, -10px 0px';
+    }
     return /*#__PURE__*/_react.default.createElement(Container, {
       flexDirection: "column"
     }, /*#__PURE__*/_react.default.createElement(_singleImagePreview.default, null, /*#__PURE__*/_react.default.createElement(_singleImagePreview.default.Image, {
       src: image.image_url || image.url,
-      style: {
-        width: width,
-        height: height
-      },
+      style: singleImageStyle,
       alt: "generated-image"
     }, /*#__PURE__*/_react.default.createElement(_singleImagePreview.default.Actions, null, /*#__PURE__*/_react.default.createElement(_imageActions.default.EditImage, {
       onClick: function onClick() {
@@ -4271,7 +6194,8 @@ var ImagesDisplay = function ImagesDisplay(_ref2) {
       key: "result-".concat(image.seed),
       alt: "generated-".concat(index),
       src: image.image_url,
-      aspectRatio: aspectRatio
+      aspectRatio: aspectRatio,
+      "data-testid": "e-gallery-image"
     }, /*#__PURE__*/_react.default.createElement(_imageActions.default, null, /*#__PURE__*/_react.default.createElement(_imageActions.default.UseImage, {
       onClick: function onClick() {
         return onUseImage(image);
@@ -4280,7 +6204,7 @@ var ImagesDisplay = function ImagesDisplay(_ref2) {
       fullWidth: true
     }), /*#__PURE__*/_react.default.createElement(_ui.Stack, {
       direction: "row",
-      spacing: 1,
+      spacing: 0.25,
       alignItems: "center"
     }, /*#__PURE__*/_react.default.createElement(_imageActions.default.ZoomIcon, {
       onClick: function onClick() {
@@ -4299,7 +6223,8 @@ ImagesDisplay.propTypes = {
   images: PropTypes.array,
   aspectRatio: PropTypes.string,
   onUseImage: PropTypes.func,
-  onEditImage: PropTypes.func
+  onEditImage: PropTypes.func,
+  transparentContainer: PropTypes.bool
 };
 ImagesDisplay.Container = Container;
 var _default = ImagesDisplay;
@@ -4358,13 +6283,13 @@ var _objectWithoutProperties2 = _interopRequireDefault(__webpack_require__(/*! @
 var _ui = __webpack_require__(/*! @elementor/ui */ "@elementor/ui");
 var _textarea = _interopRequireDefault(__webpack_require__(/*! ../../../components/textarea */ "../modules/ai/assets/js/editor/components/textarea.js"));
 var _enhanceButton = _interopRequireDefault(__webpack_require__(/*! ./enhance-button */ "../modules/ai/assets/js/editor/pages/form-media/components/enhance-button.js"));
-var _useImagePromptEnhancer = _interopRequireDefault(__webpack_require__(/*! ../hooks/use-image-prompt-enhancer */ "../modules/ai/assets/js/editor/pages/form-media/hooks/use-image-prompt-enhancer.js"));
+var _usePromptEnhancer2 = _interopRequireDefault(__webpack_require__(/*! ../../../hooks/use-prompt-enhancer */ "../modules/ai/assets/js/editor/hooks/use-prompt-enhancer.js"));
 var _excluded = ["disabled", "onChange"];
 var PromptField = function PromptField(_ref) {
   var disabled = _ref.disabled,
     _onChange = _ref.onChange,
     props = (0, _objectWithoutProperties2.default)(_ref, _excluded);
-  var _usePromptEnhancer = (0, _useImagePromptEnhancer.default)(props.value),
+  var _usePromptEnhancer = (0, _usePromptEnhancer2.default)(props.value, 'media'),
     enhance = _usePromptEnhancer.enhance,
     isEnhancing = _usePromptEnhancer.isEnhancing;
   return /*#__PURE__*/_react.default.createElement(_textarea.default, (0, _extends2.default)({
@@ -4391,7 +6316,7 @@ var PromptField = function PromptField(_ref) {
     },
     sx: {
       '& .MuiInputBase-input.MuiOutlinedInput-input.MuiInputBase-inputMultiline': {
-        pb: 9,
+        pb: 5,
         width: '89%'
       }
     },
@@ -4465,11 +6390,11 @@ var Actions = function Actions(_ref2) {
     alignItems: "center"
   }, props, {
     sx: _objectSpread({
-      mb: 4
+      mb: 1.5
     }, sx)
   }), /*#__PURE__*/_react.default.createElement(_ui.Stack, {
     direction: "row",
-    spacing: 3,
+    spacing: 2,
     justifyContent: "flex-end",
     width: "100%"
   }, children));
@@ -4606,7 +6531,7 @@ var ViewBackButton = function ViewBackButton(_ref) {
     }
   }, props, {
     sx: _objectSpread({
-      mb: 3,
+      mb: 1,
       alignSelf: 'flex-start'
     }, sx)
   }));
@@ -4619,12 +6544,12 @@ var PanelHeading = function PanelHeading(_ref2) {
     secondary = _ref2.secondary,
     props = (0, _objectWithoutProperties2.default)(_ref2, _excluded2);
   return /*#__PURE__*/_react.default.createElement(_ui.Stack, (0, _extends2.default)({
-    spacing: 3,
+    spacing: 1,
     sx: {
-      mb: 7
+      mb: 3
     }
   }, props), /*#__PURE__*/_react.default.createElement(_ui.Typography, {
-    variant: "h3"
+    variant: "h4"
   }, primary), secondary && /*#__PURE__*/_react.default.createElement(_ui.Typography, {
     variant: "body1",
     color: "secondary"
@@ -4639,9 +6564,9 @@ var ContentHeading = function ContentHeading(_ref3) {
     secondary = _ref3.secondary,
     props = (0, _objectWithoutProperties2.default)(_ref3, _excluded3);
   return /*#__PURE__*/_react.default.createElement(_ui.Stack, (0, _extends2.default)({
-    gap: 4,
+    gap: 1.5,
     sx: {
-      mb: 7
+      mb: 3
     }
   }, props), /*#__PURE__*/_react.default.createElement(_ui.Typography, {
     variant: "h6"
@@ -4658,9 +6583,11 @@ var View = function View(_ref4) {
   var children = _ref4.children,
     props = (0, _objectWithoutProperties2.default)(_ref4, _excluded4);
   return /*#__PURE__*/_react.default.createElement(_ui.Box, (0, _extends2.default)({
+    className: "e-ai-dialog-content",
     display: "flex",
     sx: {
-      overflowY: 'auto'
+      overflowY: 'auto',
+      position: 'relative'
     },
     height: "100%"
   }, props), children);
@@ -4690,7 +6617,7 @@ var Content = function Content(_ref5) {
   return /*#__PURE__*/_react.default.createElement(_ui.Box, (0, _extends2.default)({
     sx: {
       overflowY: 'scroll',
-      p: 8
+      p: 4
     },
     flexGrow: 1
   }, props), children);
@@ -4708,7 +6635,7 @@ var ErrorMessage = function ErrorMessage(_ref6) {
     actionPosition: "bottom"
   }, props, {
     sx: _objectSpread({
-      mb: 6
+      mb: 2.5
     }, sx)
   }));
 };
@@ -5337,43 +7264,6 @@ exports["default"] = _default;
 
 /***/ }),
 
-/***/ "../modules/ai/assets/js/editor/pages/form-media/hooks/use-image-prompt-enhancer.js":
-/*!******************************************************************************************!*\
-  !*** ../modules/ai/assets/js/editor/pages/form-media/hooks/use-image-prompt-enhancer.js ***!
-  \******************************************************************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
-
-"use strict";
-
-
-var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../node_modules/@babel/runtime/helpers/interopRequireDefault.js");
-Object.defineProperty(exports, "__esModule", ({
-  value: true
-}));
-exports["default"] = void 0;
-var _api = __webpack_require__(/*! ../../../api */ "../modules/ai/assets/js/editor/api/index.js");
-var _usePrompt2 = _interopRequireDefault(__webpack_require__(/*! ../../../hooks/use-prompt */ "../modules/ai/assets/js/editor/hooks/use-prompt.js"));
-var getResult = function getResult(prompt) {
-  return (0, _api.getImagePromptEnhanced)(prompt);
-};
-var usePromptEnhancer = function usePromptEnhancer(prompt) {
-  var _usePrompt = (0, _usePrompt2.default)(function () {
-      return getResult(prompt);
-    }, prompt),
-    enhancedData = _usePrompt.data,
-    isEnhancing = _usePrompt.isLoading,
-    enhance = _usePrompt.send;
-  return {
-    enhance: enhance,
-    isEnhancing: isEnhancing,
-    enhancedPrompt: enhancedData === null || enhancedData === void 0 ? void 0 : enhancedData.result
-  };
-};
-var _default = usePromptEnhancer;
-exports["default"] = _default;
-
-/***/ }),
-
 /***/ "../modules/ai/assets/js/editor/pages/form-media/hooks/use-image-prompt.js":
 /*!*********************************************************************************!*\
   !*** ../modules/ai/assets/js/editor/pages/form-media/hooks/use-image-prompt.js ***!
@@ -5618,6 +7508,7 @@ var _unsavedChangesAlert = _interopRequireDefault(__webpack_require__(/*! ./comp
 var _editImageContext = __webpack_require__(/*! ./context/edit-image-context */ "../modules/ai/assets/js/editor/pages/form-media/context/edit-image-context.js");
 var _globalActionsContext = __webpack_require__(/*! ./context/global-actions-context */ "../modules/ai/assets/js/editor/pages/form-media/context/global-actions-context.js");
 var _globalSettingsContext = __webpack_require__(/*! ./context/global-settings-context */ "../modules/ai/assets/js/editor/pages/form-media/context/global-settings-context.js");
+var _promptHistory = _interopRequireDefault(__webpack_require__(/*! ../../components/prompt-history */ "../modules/ai/assets/js/editor/components/prompt-history/index.js"));
 function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
 function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || _typeof(obj) !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
@@ -5642,8 +7533,6 @@ var reducer = function reducer(state, _ref) {
         isAllSaved: true,
         hasUnsavedChanges: false
       });
-    case RESET:
-      return initialValue;
     default:
       throw Error('Unknown action.');
   }
@@ -5703,6 +7592,7 @@ var FormMedia = function FormMedia(_ref2) {
     }
   }, [state.isAllSaved]);
   return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement(_promptDialog.default, (0, _extends2.default)({
+    id: "e-form-media",
     onClose: function onClose() {
       return onCloseIntent();
     },
@@ -5711,7 +7601,7 @@ var FormMedia = function FormMedia(_ref2) {
     onClose: function onClose() {
       return onCloseIntent();
     }
-  }, maybeRenderUpgradeChip()), /*#__PURE__*/_react.default.createElement(_ui.Divider, null), /*#__PURE__*/_react.default.createElement(_globalSettingsContext.GlobalSettingsProvider, {
+  }, /*#__PURE__*/_react.default.createElement(_promptHistory.default, null), maybeRenderUpgradeChip()), /*#__PURE__*/_react.default.createElement(_ui.Divider, null), /*#__PURE__*/_react.default.createElement(_globalSettingsContext.GlobalSettingsProvider, {
     settings: globalSettings
   }, /*#__PURE__*/_react.default.createElement(_globalActionsContext.GlobalActionsProvider, {
     actions: globalActions
@@ -5768,6 +7658,7 @@ var _replaceBackground = _interopRequireDefault(__webpack_require__(/*! ./views/
 var _removeBackground = _interopRequireDefault(__webpack_require__(/*! ./views/remove-background */ "../modules/ai/assets/js/editor/pages/form-media/views/remove-background/index.js"));
 var _locationContext = __webpack_require__(/*! ./context/location-context */ "../modules/ai/assets/js/editor/pages/form-media/context/location-context.js");
 var _editImageContext = __webpack_require__(/*! ./context/edit-image-context */ "../modules/ai/assets/js/editor/pages/form-media/context/edit-image-context.js");
+var _promptHistoryActionContext = __webpack_require__(/*! ../../components/prompt-history/context/prompt-history-action-context */ "../modules/ai/assets/js/editor/components/prompt-history/context/prompt-history-action-context.js");
 function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
 function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || _typeof(obj) !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 var MediaOutlet = function MediaOutlet() {
@@ -5784,6 +7675,14 @@ var MediaOutlet = function MediaOutlet() {
       navigate(_constants.LOCATIONS.IMAGE_TOOLS);
     }
   }, [editImage.id]);
+  (0, _promptHistoryActionContext.useSubscribeOnPromptHistoryAction)([{
+    type: _promptHistoryActionContext.ACTION_TYPES.RESTORE,
+    handler: function handler() {
+      if (current !== _constants.LOCATIONS.GENERATE) {
+        navigate(_constants.LOCATIONS.GENERATE);
+      }
+    }
+  }]);
   if (!current) {
     return /*#__PURE__*/_react.default.createElement(_view.default, {
       alignItems: "center"
@@ -5994,6 +7893,7 @@ var _useSuggestedImages2 = _interopRequireDefault(__webpack_require__(/*! ./hook
 var _useTextToImage2 = _interopRequireDefault(__webpack_require__(/*! ./hooks/use-text-to-image */ "../modules/ai/assets/js/editor/pages/form-media/views/generate/hooks/use-text-to-image.js"));
 var _useImageActions2 = _interopRequireDefault(__webpack_require__(/*! ../../hooks/use-image-actions */ "../modules/ai/assets/js/editor/pages/form-media/hooks/use-image-actions.js"));
 var _globalSettingsContext = __webpack_require__(/*! ../../context/global-settings-context */ "../modules/ai/assets/js/editor/pages/form-media/context/global-settings-context.js");
+var _promptHistoryActionContext = __webpack_require__(/*! ../../../../components/prompt-history/context/prompt-history-action-context */ "../modules/ai/assets/js/editor/components/prompt-history/context/prompt-history-action-context.js");
 function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
 function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || _typeof(obj) !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 var getPromptPlaceholder = function getPromptPlaceholder(images) {
@@ -6022,8 +7922,9 @@ var Generate = function Generate() {
     suggestedImages = _useSuggestedImages.imagesData,
     isPreloading = _useSuggestedImages.isLoading;
   var promptPlaceholder = getPromptPlaceholder(suggestedImages);
-  var _useTextToImage = (0, _useTextToImage2.default)(),
+  var _useTextToImage = (0, _useTextToImage2.default)({}),
     generatedImages = _useTextToImage.data,
+    setResult = _useTextToImage.setResult,
     send = _useTextToImage.send,
     isGenerating = _useTextToImage.isLoading,
     error = _useTextToImage.error,
@@ -6034,7 +7935,7 @@ var Generate = function Generate() {
     isUploading = _useImageActions.isLoading;
   var isLoading = isPreloading || isGenerating || isUploading;
 
-  // The aspect ratio in the content view shuld only be updated when the generated images are updated.
+  // The aspect ratio in the content view should only be updated when the generated images are updated.
   var generateAspectRatio = (0, _react.useMemo)(function () {
     return settings[_usePromptSettings2.IMAGE_RATIO];
   }, [generatedImages === null || generatedImages === void 0 ? void 0 : generatedImages.result]);
@@ -6053,6 +7954,18 @@ var Generate = function Generate() {
       style = _imageType$split2[1];
     updateSettings((_updateSettings = {}, (0, _defineProperty2.default)(_updateSettings, _usePromptSettings2.IMAGE_TYPE, type), (0, _defineProperty2.default)(_updateSettings, _usePromptSettings2.IMAGE_STYLE, style), _updateSettings));
   };
+  (0, _promptHistoryActionContext.useSubscribeOnPromptHistoryAction)([{
+    type: _promptHistoryActionContext.ACTION_TYPES.RESTORE,
+    handler: function handler(action) {
+      var _action$data, _action$data2, _action$data3, _action$data4;
+      handleCopyPrompt({
+        prompt: (_action$data = action.data) === null || _action$data === void 0 ? void 0 : _action$data.prompt,
+        imageType: ((_action$data2 = action.data) === null || _action$data2 === void 0 ? void 0 : _action$data2.imageType) || ''
+      });
+      updateSettings((0, _defineProperty2.default)({}, _usePromptSettings2.IMAGE_RATIO, (_action$data3 = action.data) === null || _action$data3 === void 0 ? void 0 : _action$data3.ratio));
+      setResult((_action$data4 = action.data) === null || _action$data4 === void 0 ? void 0 : _action$data4.images, action.id);
+    }
+  }]);
   return /*#__PURE__*/_react.default.createElement(_view.default, null, /*#__PURE__*/_react.default.createElement(_view.default.Panel, null, /*#__PURE__*/_react.default.createElement(_view.default.PanelHeading, {
     primary: __('Imagine anything create everything', 'elementor'),
     secondary: __('Generate images by selecting the desired type and style, and entering a prompt.', 'elementor')
@@ -6062,6 +7975,7 @@ var Generate = function Generate() {
   }), /*#__PURE__*/_react.default.createElement(_imageForm.default, {
     onSubmit: handleSubmit
   }, /*#__PURE__*/_react.default.createElement(_promptField.default, {
+    "data-testid": "e-image-prompt",
     value: prompt,
     disabled: isLoading,
     placeholder: promptPlaceholder,
@@ -6086,9 +8000,9 @@ var Generate = function Generate() {
       return updateSettings((0, _defineProperty2.default)({}, _usePromptSettings2.IMAGE_RATIO, event.target.value));
     }
   }), generatedImages !== null && generatedImages !== void 0 && generatedImages.result ? /*#__PURE__*/_react.default.createElement(_ui.Stack, {
-    gap: 5,
+    gap: 2,
     sx: {
-      my: 6
+      my: 2.5
     }
   }, /*#__PURE__*/_react.default.createElement(_generateAgainSubmit.default, {
     disabled: isLoading || '' === prompt
@@ -6284,14 +8198,15 @@ var TeaserDrawing = function TeaserDrawing() {
 var ImageToolsContainer = (0, _ui.styled)(_ui.Box)(function (_ref) {
   var theme = _ref.theme;
   return {
-    height: "calc(100% - 140px)"
+    height: "calc(100% - ".concat(theme.spacing(13), ")")
   };
 });
 var ToolsTeaserContainer = (0, _ui.styled)(_ui.Box)(function (_ref2) {
   var theme = _ref2.theme;
   return {
     position: 'sticky',
-    top: "calc(100% - ".concat(theme.spacing(10), ")")
+    top: '100%',
+    padding: theme.spacing(4, 0, 1)
   };
 });
 var ImageToolsPanel = function ImageToolsPanel() {
@@ -6337,7 +8252,7 @@ var ImageToolsPanel = function ImageToolsPanel() {
   return /*#__PURE__*/_react.default.createElement(ImageToolsContainer, null, /*#__PURE__*/_react.default.createElement(_ui.Box, {
     display: "grid",
     gridTemplateColumns: "repeat(2, 1fr)",
-    gap: 3,
+    gap: 1,
     justifyContent: "center"
   }, tools.map(function (_ref3) {
     var label = _ref3.label,
@@ -6350,7 +8265,7 @@ var ImageToolsPanel = function ImageToolsPanel() {
       color: "secondary",
       disabled: false,
       sx: {
-        py: 7,
+        py: 3,
         fontSize: '12px',
         height: 'auto',
         borderRadius: '4px'
@@ -6362,7 +8277,7 @@ var ImageToolsPanel = function ImageToolsPanel() {
       flexDirection: "column"
     }, /*#__PURE__*/_react.default.createElement(Icon, {
       sx: {
-        mb: 2
+        mb: 0.5
       }
     }), label));
   })), /*#__PURE__*/_react.default.createElement(ToolsTeaserContainer, {
@@ -6374,7 +8289,7 @@ var ImageToolsPanel = function ImageToolsPanel() {
     align: "center",
     color: "secondary",
     sx: {
-      mt: 5
+      mt: 2
     }
   }, __('Stay tuned! More incredible AI tools are coming your way soon.', 'elementor'))));
 };
@@ -6549,20 +8464,20 @@ var InPaintingContent = function InPaintingContent(_ref3) {
   }, [stroke]);
   return /*#__PURE__*/_react.default.createElement(_ui.Stack, {
     alignItems: "flex-start",
-    spacing: 2,
+    spacing: 0.5,
     flexGrow: 1
   }, /*#__PURE__*/_react.default.createElement(_ui.Stack, {
     width: "100%",
     direction: "row",
-    spacing: 7,
+    spacing: 3,
     alignSelf: "center",
     justifyContent: "center",
     sx: {
-      mb: 6
+      mb: 2.5
     }
   }, /*#__PURE__*/_react.default.createElement(_ui.Stack, {
     direction: "row",
-    gap: 3
+    gap: 1
   }, /*#__PURE__*/_react.default.createElement(_ui.Tooltip, {
     title: __('Undo', 'elementor')
   }, /*#__PURE__*/_react.default.createElement(_ui.Button, {
@@ -6586,6 +8501,8 @@ var InPaintingContent = function InPaintingContent(_ref3) {
       px: 0
     }
   }, /*#__PURE__*/_react.default.createElement(StyledRedoIcon, null)))), /*#__PURE__*/_react.default.createElement(_ui.FormControl, {
+    size: "small",
+    color: "secondary",
     sx: {
       minWidth: STROKE_SELECT_WIDTH
     }
@@ -6595,7 +8512,6 @@ var InPaintingContent = function InPaintingContent(_ref3) {
     autoWidth: true,
     label: "Stroke",
     value: stroke,
-    color: "secondary",
     id: "demo-simple-select",
     labelId: "demo-simple-select-label",
     onChange: function onChange(e) {
@@ -6615,7 +8531,7 @@ var InPaintingContent = function InPaintingContent(_ref3) {
     },
     sx: {
       '& .MuiSelect-select .MuiListItemIcon-root': {
-        mr: 1,
+        mr: 0.25,
         width: 'initial',
         minWidth: 'initial',
         justifyContent: 'flex-start'
@@ -6628,7 +8544,7 @@ var InPaintingContent = function InPaintingContent(_ref3) {
     }, /*#__PURE__*/_react.default.createElement(_ui.Stack, {
       direction: "row",
       alignItems: "center",
-      gap: 3
+      gap: 1
     }, /*#__PURE__*/_react.default.createElement(_ui.ListItemIcon, {
       sx: {
         width: 30,
@@ -6767,9 +8683,9 @@ var InPainting = function InPainting() {
     onChange: setPrompt,
     placeholder: __('Describe what you want to generate in the marked area (English only)', 'elementor')
   }), data !== null && data !== void 0 && data.result ? /*#__PURE__*/_react.default.createElement(_ui.Stack, {
-    gap: 5,
+    gap: 2,
     sx: {
-      my: 6
+      my: 2.5
     }
   }, /*#__PURE__*/_react.default.createElement(_generateAgainSubmit.default, {
     disabled: isLoading
@@ -6920,7 +8836,7 @@ var OutPainting = function OutPainting() {
   }), /*#__PURE__*/_react.default.createElement(_ui.FormControl, {
     sx: {
       width: '100%',
-      mb: 6
+      mb: 2.5
     }
   }, /*#__PURE__*/_react.default.createElement(_ui.Slider, {
     marks: true,
@@ -6948,9 +8864,9 @@ var OutPainting = function OutPainting() {
     onChange: setPrompt,
     placeholder: __('Describe what you want to generate in the expended area (English only)', 'elementor')
   }), data !== null && data !== void 0 && data.result ? /*#__PURE__*/_react.default.createElement(_ui.Stack, {
-    gap: 5,
+    gap: 2,
     sx: {
-      my: 6
+      my: 2.5
     }
   }, /*#__PURE__*/_react.default.createElement(_generateAgainSubmit.default, {
     disabled: isLoading
@@ -7038,7 +8954,7 @@ var OutPaintingContent = function OutPaintingContent(_ref) {
   }();
   return /*#__PURE__*/_react.default.createElement(_ui.Stack, {
     alignItems: 'center',
-    spacing: 2,
+    spacing: 0.5,
     flexGrow: 1
   }, /*#__PURE__*/_react.default.createElement(_reactAvatarEditor.default, {
     ref: cropperRef,
@@ -7133,6 +9049,7 @@ var _useRemoveBackground2 = _interopRequireDefault(__webpack_require__(/*! ./hoo
 var _newPromptButton = _interopRequireDefault(__webpack_require__(/*! ../../components/new-prompt-button */ "../modules/ai/assets/js/editor/pages/form-media/components/new-prompt-button.js"));
 var _constants = __webpack_require__(/*! ../../constants */ "../modules/ai/assets/js/editor/pages/form-media/constants/index.js");
 var _locationContext = __webpack_require__(/*! ../../context/location-context */ "../modules/ai/assets/js/editor/pages/form-media/context/location-context.js");
+var _useImageSize2 = _interopRequireDefault(__webpack_require__(/*! ../../hooks/use-image-size */ "../modules/ai/assets/js/editor/pages/form-media/hooks/use-image-size.js"));
 var RemoveBackground = function RemoveBackground() {
   var _useEditImage = (0, _editImageContext.useEditImage)(),
     editImage = _useEditImage.editImage;
@@ -7148,6 +9065,9 @@ var RemoveBackground = function RemoveBackground() {
   var _useLocation = (0, _locationContext.useLocation)(),
     navigate = _useLocation.navigate;
   var isLoading = isGenerating || isUploading;
+  var _useImageSize = (0, _useImageSize2.default)(editImage.aspectRatio),
+    width = _useImageSize.width,
+    height = _useImageSize.height;
   var handleSubmit = function handleSubmit(event) {
     event.preventDefault();
     send(editImage);
@@ -7161,6 +9081,7 @@ var RemoveBackground = function RemoveBackground() {
   }), /*#__PURE__*/_react.default.createElement(_imageForm.default, {
     onSubmit: handleSubmit
   }, data !== null && data !== void 0 && data.result ? /*#__PURE__*/_react.default.createElement(_newPromptButton.default, {
+    variant: "contained",
     disabled: isLoading,
     onClick: function onClick() {
       return navigate(_constants.LOCATIONS.GENERATE);
@@ -7169,25 +9090,20 @@ var RemoveBackground = function RemoveBackground() {
     disabled: isLoading
   }, __('Remove Background', 'elementor')))), /*#__PURE__*/_react.default.createElement(_view.default.Content, {
     isGenerating: isLoading
-  }, data !== null && data !== void 0 && data.result ? /*#__PURE__*/_react.default.createElement(_ui.Box, {
-    sx: {
-      backgroundImage: 'linear-gradient(45deg, #bbb 25%, transparent 25%), linear-gradient(-45deg, #bbb 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #bbb 75%), linear-gradient(-45deg, transparent 75%, #bbb 75%)',
-      backgroundSize: '20px 20px',
-      backgroundPosition: '0 0, 0 10px, 10px -10px, -10px 0px'
-    }
-  }, /*#__PURE__*/_react.default.createElement(_imagesDisplay.default, {
+  }, data !== null && data !== void 0 && data.result ? /*#__PURE__*/_react.default.createElement(_ui.Box, null, /*#__PURE__*/_react.default.createElement(_imagesDisplay.default, {
+    transparentContainer: true,
     onUseImage: use,
     onEditImage: edit,
     images: data.result,
     aspectRatio: editImage.aspectRatio
-  })) : /*#__PURE__*/_react.default.createElement(_singleImagePreview.default, null, /*#__PURE__*/_react.default.createElement(_singleImagePreview.default.Image, {
+  })) : /*#__PURE__*/_react.default.createElement(_ui.Box, null, /*#__PURE__*/_react.default.createElement(_singleImagePreview.default, null, /*#__PURE__*/_react.default.createElement(_singleImagePreview.default.Image, {
     src: editImage.url,
     alt: editImage.alt,
     style: {
-      width: editImage.width,
-      height: editImage.height
+      width: width,
+      height: height
     }
-  }))));
+  })))));
 };
 var _default = RemoveBackground;
 exports["default"] = _default;
@@ -7248,9 +9164,12 @@ var _editImageContext = __webpack_require__(/*! ../../context/edit-image-context
 var _useImageActions2 = _interopRequireDefault(__webpack_require__(/*! ../../hooks/use-image-actions */ "../modules/ai/assets/js/editor/pages/form-media/hooks/use-image-actions.js"));
 var _useReplaceBackground2 = _interopRequireDefault(__webpack_require__(/*! ./hooks/use-replace-background */ "../modules/ai/assets/js/editor/pages/form-media/views/replace-background/hooks/use-replace-background.js"));
 var _promptField = _interopRequireDefault(__webpack_require__(/*! ../../components/prompt-field */ "../modules/ai/assets/js/editor/pages/form-media/components/prompt-field.js"));
+var _constants = __webpack_require__(/*! ../../constants */ "../modules/ai/assets/js/editor/pages/form-media/constants/index.js");
+var _newPromptButton = _interopRequireDefault(__webpack_require__(/*! ../../components/new-prompt-button */ "../modules/ai/assets/js/editor/pages/form-media/components/new-prompt-button.js"));
+var _locationContext = __webpack_require__(/*! ../../context/location-context */ "../modules/ai/assets/js/editor/pages/form-media/context/location-context.js");
 function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
 function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || _typeof(obj) !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
-var RemoveBackground = function RemoveBackground() {
+var ReplaceBackground = function ReplaceBackground() {
   var _useState = (0, _react.useState)(''),
     _useState2 = (0, _slicedToArray2.default)(_useState, 2),
     prompt = _useState2[0],
@@ -7265,7 +9184,10 @@ var RemoveBackground = function RemoveBackground() {
     data = _useReplaceBackground.data,
     send = _useReplaceBackground.send,
     isGenerating = _useReplaceBackground.isLoading,
-    error = _useReplaceBackground.error;
+    error = _useReplaceBackground.error,
+    reset = _useReplaceBackground.reset;
+  var _useLocation = (0, _locationContext.useLocation)(),
+    navigate = _useLocation.navigate;
   var isLoading = isGenerating || isUploading;
   var handleSubmit = function handleSubmit(event) {
     event.preventDefault();
@@ -7285,8 +9207,14 @@ var RemoveBackground = function RemoveBackground() {
     onChange: setPrompt,
     placeholder: __('Describe what you want to generate in the background (English only)', 'elementor')
   }), /*#__PURE__*/_react.default.createElement(_generateSubmit.default, {
-    disabled: isLoading || '' === prompt
-  }, __('Replace Background', 'elementor')))), /*#__PURE__*/_react.default.createElement(_view.default.Content, {
+    disabled: isLoading || '' === prompt,
+    color: data !== null && data !== void 0 && data.result ? 'secondary' : 'primary'
+  }, data !== null && data !== void 0 && data.result ? __('Generate Again', 'elementor') : __('Replace Background', 'elementor')), (data === null || data === void 0 ? void 0 : data.result) && /*#__PURE__*/_react.default.createElement(_newPromptButton.default, {
+    disabled: isLoading,
+    onClick: function onClick() {
+      return navigate(_constants.LOCATIONS.GENERATE);
+    }
+  }))), /*#__PURE__*/_react.default.createElement(_view.default.Content, {
     isGenerating: isLoading
   }, data !== null && data !== void 0 && data.result ? /*#__PURE__*/_react.default.createElement(_imagesDisplay.default, {
     onUseImage: use,
@@ -7302,7 +9230,7 @@ var RemoveBackground = function RemoveBackground() {
     }
   }))));
 };
-var _default = RemoveBackground;
+var _default = ReplaceBackground;
 exports["default"] = _default;
 
 /***/ }),
@@ -7394,7 +9322,7 @@ var Resize = function Resize() {
   }), /*#__PURE__*/_react.default.createElement(_imageForm.default, {
     onSubmit: handleSubmit
   }, /*#__PURE__*/_react.default.createElement(_ui.Stack, {
-    spacing: 2
+    spacing: 0.2
   }, /*#__PURE__*/_react.default.createElement(_ui.Box, {
     display: "flex",
     justifyContent: "space-between",
@@ -7475,7 +9403,7 @@ var VariationsPlaceholder = function VariationsPlaceholder() {
   }, /*#__PURE__*/_react.default.createElement(_ui.Box, {
     display: "grid",
     gridTemplateColumns: "repeat(2, 1fr)",
-    gap: 7
+    gap: 3
   }, Array(4).fill(true).map(function (_, index) {
     return /*#__PURE__*/_react.default.createElement(_ui.Box, {
       key: "placeholder-".concat(index),
@@ -7483,7 +9411,7 @@ var VariationsPlaceholder = function VariationsPlaceholder() {
       justifyContent: "center",
       alignItems: "center",
       sx: {
-        bgcolor: 'secondary.background',
+        bgcolor: 'action.selected',
         height: 336
       }
     }, /*#__PURE__*/_react.default.createElement(_icons.AIIcon, {
@@ -7610,7 +9538,7 @@ var Variations = function Variations() {
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
-      bgcolor: 'secondary.background'
+      bgcolor: 'action.selected'
     }
   }, /*#__PURE__*/_react.default.createElement("img", {
     src: (editImage === null || editImage === void 0 ? void 0 : editImage.image_url) || (editImage === null || editImage === void 0 ? void 0 : editImage.url),
@@ -7653,9 +9581,9 @@ var Variations = function Variations() {
       return updateSettings((0, _defineProperty2.default)({}, _usePromptSettings2.IMAGE_RATIO, event.target.value));
     }
   }), /*#__PURE__*/_react.default.createElement(_ui.Stack, {
-    gap: 5,
+    gap: 2,
     sx: {
-      my: 6
+      my: 2.5
     }
   }, (data === null || data === void 0 ? void 0 : (_data$result = data.result) === null || _data$result === void 0 ? void 0 : _data$result.length) > 0 ? /*#__PURE__*/_react.default.createElement(_generateAgainSubmit.default, {
     disabled: isLoading || '' === prompt
@@ -7710,23 +9638,32 @@ var _promptErrorMessage = _interopRequireDefault(__webpack_require__(/*! ../../c
 var _useTextPrompt2 = _interopRequireDefault(__webpack_require__(/*! ../../hooks/use-text-prompt */ "../modules/ai/assets/js/editor/hooks/use-text-prompt.js"));
 var _actionsData = __webpack_require__(/*! ../../actions-data */ "../modules/ai/assets/js/editor/actions-data.js");
 var _promptCredits = _interopRequireDefault(__webpack_require__(/*! ../../components/prompt-credits */ "../modules/ai/assets/js/editor/components/prompt-credits.js"));
+var _promptHistoryActionContext = __webpack_require__(/*! ../../components/prompt-history/context/prompt-history-action-context */ "../modules/ai/assets/js/editor/components/prompt-history/context/prompt-history-action-context.js");
 function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
 function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || _typeof(obj) !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 var promptActions = [{
   label: __('Simplify language', 'elementor'),
-  icon: /*#__PURE__*/_react.default.createElement(_icons.MessageIcon, null),
+  icon: /*#__PURE__*/_react.default.createElement(_icons.MessageIcon, {
+    fontSize: "small"
+  }),
   value: 'Simplify the language of the following message'
 }, {
   label: __('Make it longer', 'elementor'),
-  icon: /*#__PURE__*/_react.default.createElement(_icons.ExpandIcon, null),
+  icon: /*#__PURE__*/_react.default.createElement(_icons.ExpandIcon, {
+    fontSize: "small"
+  }),
   value: 'Make the following message longer'
 }, {
   label: __('Make it shorter', 'elementor'),
-  icon: /*#__PURE__*/_react.default.createElement(_icons.ShrinkIcon, null),
+  icon: /*#__PURE__*/_react.default.createElement(_icons.ShrinkIcon, {
+    fontSize: "small"
+  }),
   value: 'Make the following message shorter'
 }, {
   label: __('Fix spelling & grammar', 'elementor'),
-  icon: /*#__PURE__*/_react.default.createElement(_icons.AIIcon, null),
+  icon: /*#__PURE__*/_react.default.createElement(_icons.AIIcon, {
+    fontSize: "small"
+  }),
   value: 'Fix the spelling and grammar of the following message'
 }];
 var promptInstructions = [{
@@ -7758,6 +9695,7 @@ var FormText = function FormText(_ref) {
     data = _useTextPrompt.data,
     isLoading = _useTextPrompt.isLoading,
     error = _useTextPrompt.error,
+    setResult = _useTextPrompt.setResult,
     reset = _useTextPrompt.reset,
     send = _useTextPrompt.send,
     sendUsageData = _useTextPrompt.sendUsageData;
@@ -7765,6 +9703,18 @@ var FormText = function FormText(_ref) {
     _useState2 = (0, _slicedToArray2.default)(_useState, 2),
     prompt = _useState2[0],
     setPrompt = _useState2[1];
+  (0, _promptHistoryActionContext.useSubscribeOnPromptHistoryAction)([{
+    type: _promptHistoryActionContext.ACTION_TYPES.REUSE,
+    handler: function handler(action) {
+      reset();
+      setPrompt(action.data);
+    }
+  }, {
+    type: _promptHistoryActionContext.ACTION_TYPES.EDIT,
+    handler: function handler(action) {
+      setResult(action.data);
+    }
+  }]);
   var searchField = (0, _react.useRef)(null);
   var resultField = (0, _react.useRef)(null);
   var lastRun = (0, _react.useRef)(function () {});
@@ -7812,14 +9762,14 @@ var FormText = function FormText(_ref) {
     error: error,
     onRetry: lastRun.current,
     sx: {
-      mb: 6
+      mb: 2.5
     }
   }), !data.result && /*#__PURE__*/_react.default.createElement(_ui.Box, {
     component: "form",
     onSubmit: handleSubmit
   }, /*#__PURE__*/_react.default.createElement(_ui.Box, {
     sx: {
-      mb: 6
+      mb: 2.5
     }
   }, /*#__PURE__*/_react.default.createElement(_promptSearch.default, {
     ref: searchField,
@@ -7839,8 +9789,8 @@ var FormText = function FormText(_ref) {
     direction: "row",
     alignItems: "center",
     sx: {
-      py: 4,
-      mt: 8
+      py: 1.5,
+      mt: 4
     }
   }, /*#__PURE__*/_react.default.createElement(_promptCredits.default, {
     usagePercentage: usagePercentage
@@ -7850,18 +9800,21 @@ var FormText = function FormText(_ref) {
     flexGrow: 1
   }, /*#__PURE__*/_react.default.createElement(_generateButton.default, null, __('Generate text', 'elementor'))))), data.result && /*#__PURE__*/_react.default.createElement(_ui.Box, {
     sx: {
-      mt: 3
+      mt: 1
     }
   }, /*#__PURE__*/_react.default.createElement(_textarea.default, {
     fullWidth: true,
     ref: resultField,
-    defaultValue: data.result,
-    helperText: __('Text generated by AI may be inaccurate or offensive.', 'elementor')
+    value: data.result,
+    helperText: __('Text generated by AI may be inaccurate or offensive.', 'elementor'),
+    onChange: function onChange(event) {
+      return setResult(event.target.value);
+    }
   }), /*#__PURE__*/_react.default.createElement(_ui.Grid, {
     container: true,
-    spacing: 3,
+    spacing: 1,
     sx: {
-      mt: 6
+      mt: 2.5
     }
   }, promptActions.map(function (_ref3) {
     var label = _ref3.label,
@@ -7877,37 +9830,36 @@ var FormText = function FormText(_ref) {
         return handleCustomInstruction(value);
       }
     }));
-  })), /*#__PURE__*/_react.default.createElement(_ui.Grid, {
-    container: true,
-    spacing: 3,
+  })), /*#__PURE__*/_react.default.createElement(_ui.Stack, {
+    direction: "row",
+    alignItems: "center",
+    spacing: 1,
     sx: {
-      mt: 6
+      mt: 2.5
     }
   }, promptInstructions.map(function (_ref4) {
     var label = _ref4.label,
       options = _ref4.options,
       getInstruction = _ref4.getInstruction;
-    return /*#__PURE__*/_react.default.createElement(_ui.Grid, {
-      item: true,
-      key: label
-    }, /*#__PURE__*/_react.default.createElement(_promptActionSelection.default, {
+    return /*#__PURE__*/_react.default.createElement(_promptActionSelection.default, {
+      key: label,
       label: label,
       options: options,
       onChange: function onChange(event) {
         return handleCustomInstruction(getInstruction(event.target.value));
       }
-    }));
+    });
   })), /*#__PURE__*/_react.default.createElement(_ui.Stack, {
     direction: "row",
     alignItems: "center",
     sx: {
-      my: 8
+      my: 1
     }
   }, /*#__PURE__*/_react.default.createElement(_promptCredits.default, {
     usagePercentage: usagePercentage
   }), /*#__PURE__*/_react.default.createElement(_ui.Stack, {
     direction: "row",
-    gap: 3,
+    gap: 1,
     justifyContent: "flex-end",
     flexGrow: 1
   }, /*#__PURE__*/_react.default.createElement(_ui.Button, {
@@ -7990,12 +9942,12 @@ var GetStarted = function GetStarted(_ref) {
   }();
   return /*#__PURE__*/_react.default.createElement(_ui.Stack, {
     alignItems: "center",
-    gap: 4
+    gap: 1.5
   }, /*#__PURE__*/_react.default.createElement(_icons.AIIcon, {
     sx: {
       color: 'text.primary',
       fontSize: '60px',
-      mb: 3
+      mb: 1
     }
   }), /*#__PURE__*/_react.default.createElement(_ui.Typography, {
     variant: "h4",
@@ -8006,7 +9958,7 @@ var GetStarted = function GetStarted(_ref) {
     variant: "body2"
   }, __('Create smarter with AI text and code generators built right into the editor.', 'elementor')), /*#__PURE__*/_react.default.createElement(_ui.Stack, {
     direction: "row",
-    gap: 4,
+    gap: 1.5,
     alignItems: "flex-start"
   }, /*#__PURE__*/_react.default.createElement(_ui.Checkbox, {
     id: "e-ai-terms-approval",
@@ -8039,7 +9991,7 @@ var GetStarted = function GetStarted(_ref) {
     variant: "contained",
     onClick: onGetStartedClick,
     sx: {
-      mt: 3,
+      mt: 1,
       '&:hover': {
         color: 'primary.contrastText'
       }
@@ -8063,7 +10015,7 @@ exports["default"] = _default;
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "clsx": () => (/* binding */ clsx),
+/* harmony export */   clsx: () => (/* binding */ clsx),
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 function r(e){var t,f,n="";if("string"==typeof e||"number"==typeof e)n+=e;else if("object"==typeof e)if(Array.isArray(e))for(t=0;t<e.length;t++)e[t]&&(f=r(e[t]))&&(n&&(n+=" "),n+=f);else for(t in e)e[t]&&(n&&(n+=" "),n+=t);return n}function clsx(){for(var e,t,f=0,n="";f<arguments.length;)(e=arguments[f++])&&(t=r(e))&&(n&&(n+=" "),n+=t);return n}/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (clsx);
@@ -12180,6 +14132,326 @@ function dontSetMe(props
 
 /***/ }),
 
+/***/ "../node_modules/react-infinite-scroller/dist/InfiniteScroll.js":
+/*!**********************************************************************!*\
+  !*** ../node_modules/react-infinite-scroller/dist/InfiniteScroll.js ***!
+  \**********************************************************************/
+/***/ ((module, exports, __webpack_require__) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(/*! react */ "react");
+
+var _react2 = _interopRequireDefault(_react);
+
+var _propTypes = __webpack_require__(/*! prop-types */ "../node_modules/prop-types/index.js");
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var InfiniteScroll = function (_Component) {
+  _inherits(InfiniteScroll, _Component);
+
+  function InfiniteScroll(props) {
+    _classCallCheck(this, InfiniteScroll);
+
+    var _this = _possibleConstructorReturn(this, (InfiniteScroll.__proto__ || Object.getPrototypeOf(InfiniteScroll)).call(this, props));
+
+    _this.scrollListener = _this.scrollListener.bind(_this);
+    _this.eventListenerOptions = _this.eventListenerOptions.bind(_this);
+    _this.mousewheelListener = _this.mousewheelListener.bind(_this);
+    return _this;
+  }
+
+  _createClass(InfiniteScroll, [{
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      this.pageLoaded = this.props.pageStart;
+      this.options = this.eventListenerOptions();
+      this.attachScrollListener();
+    }
+  }, {
+    key: 'componentDidUpdate',
+    value: function componentDidUpdate() {
+      if (this.props.isReverse && this.loadMore) {
+        var parentElement = this.getParentElement(this.scrollComponent);
+        parentElement.scrollTop = parentElement.scrollHeight - this.beforeScrollHeight + this.beforeScrollTop;
+        this.loadMore = false;
+      }
+      this.attachScrollListener();
+    }
+  }, {
+    key: 'componentWillUnmount',
+    value: function componentWillUnmount() {
+      this.detachScrollListener();
+      this.detachMousewheelListener();
+    }
+  }, {
+    key: 'isPassiveSupported',
+    value: function isPassiveSupported() {
+      var passive = false;
+
+      var testOptions = {
+        get passive() {
+          passive = true;
+        }
+      };
+
+      try {
+        document.addEventListener('test', null, testOptions);
+        document.removeEventListener('test', null, testOptions);
+      } catch (e) {
+        // ignore
+      }
+      return passive;
+    }
+  }, {
+    key: 'eventListenerOptions',
+    value: function eventListenerOptions() {
+      var options = this.props.useCapture;
+
+      if (this.isPassiveSupported()) {
+        options = {
+          useCapture: this.props.useCapture,
+          passive: true
+        };
+      } else {
+        options = {
+          passive: false
+        };
+      }
+      return options;
+    }
+
+    // Set a defaut loader for all your `InfiniteScroll` components
+
+  }, {
+    key: 'setDefaultLoader',
+    value: function setDefaultLoader(loader) {
+      this.defaultLoader = loader;
+    }
+  }, {
+    key: 'detachMousewheelListener',
+    value: function detachMousewheelListener() {
+      var scrollEl = window;
+      if (this.props.useWindow === false) {
+        scrollEl = this.scrollComponent.parentNode;
+      }
+
+      scrollEl.removeEventListener('mousewheel', this.mousewheelListener, this.options ? this.options : this.props.useCapture);
+    }
+  }, {
+    key: 'detachScrollListener',
+    value: function detachScrollListener() {
+      var scrollEl = window;
+      if (this.props.useWindow === false) {
+        scrollEl = this.getParentElement(this.scrollComponent);
+      }
+
+      scrollEl.removeEventListener('scroll', this.scrollListener, this.options ? this.options : this.props.useCapture);
+      scrollEl.removeEventListener('resize', this.scrollListener, this.options ? this.options : this.props.useCapture);
+    }
+  }, {
+    key: 'getParentElement',
+    value: function getParentElement(el) {
+      var scrollParent = this.props.getScrollParent && this.props.getScrollParent();
+      if (scrollParent != null) {
+        return scrollParent;
+      }
+      return el && el.parentNode;
+    }
+  }, {
+    key: 'filterProps',
+    value: function filterProps(props) {
+      return props;
+    }
+  }, {
+    key: 'attachScrollListener',
+    value: function attachScrollListener() {
+      var parentElement = this.getParentElement(this.scrollComponent);
+
+      if (!this.props.hasMore || !parentElement) {
+        return;
+      }
+
+      var scrollEl = window;
+      if (this.props.useWindow === false) {
+        scrollEl = parentElement;
+      }
+
+      scrollEl.addEventListener('mousewheel', this.mousewheelListener, this.options ? this.options : this.props.useCapture);
+      scrollEl.addEventListener('scroll', this.scrollListener, this.options ? this.options : this.props.useCapture);
+      scrollEl.addEventListener('resize', this.scrollListener, this.options ? this.options : this.props.useCapture);
+
+      if (this.props.initialLoad) {
+        this.scrollListener();
+      }
+    }
+  }, {
+    key: 'mousewheelListener',
+    value: function mousewheelListener(e) {
+      // Prevents Chrome hangups
+      // See: https://stackoverflow.com/questions/47524205/random-high-content-download-time-in-chrome/47684257#47684257
+      if (e.deltaY === 1 && !this.isPassiveSupported()) {
+        e.preventDefault();
+      }
+    }
+  }, {
+    key: 'scrollListener',
+    value: function scrollListener() {
+      var el = this.scrollComponent;
+      var scrollEl = window;
+      var parentNode = this.getParentElement(el);
+
+      var offset = void 0;
+      if (this.props.useWindow) {
+        var doc = document.documentElement || document.body.parentNode || document.body;
+        var scrollTop = scrollEl.pageYOffset !== undefined ? scrollEl.pageYOffset : doc.scrollTop;
+        if (this.props.isReverse) {
+          offset = scrollTop;
+        } else {
+          offset = this.calculateOffset(el, scrollTop);
+        }
+      } else if (this.props.isReverse) {
+        offset = parentNode.scrollTop;
+      } else {
+        offset = el.scrollHeight - parentNode.scrollTop - parentNode.clientHeight;
+      }
+
+      // Here we make sure the element is visible as well as checking the offset
+      if (offset < Number(this.props.threshold) && el && el.offsetParent !== null) {
+        this.detachScrollListener();
+        this.beforeScrollHeight = parentNode.scrollHeight;
+        this.beforeScrollTop = parentNode.scrollTop;
+        // Call loadMore after detachScrollListener to allow for non-async loadMore functions
+        if (typeof this.props.loadMore === 'function') {
+          this.props.loadMore(this.pageLoaded += 1);
+          this.loadMore = true;
+        }
+      }
+    }
+  }, {
+    key: 'calculateOffset',
+    value: function calculateOffset(el, scrollTop) {
+      if (!el) {
+        return 0;
+      }
+
+      return this.calculateTopPosition(el) + (el.offsetHeight - scrollTop - window.innerHeight);
+    }
+  }, {
+    key: 'calculateTopPosition',
+    value: function calculateTopPosition(el) {
+      if (!el) {
+        return 0;
+      }
+      return el.offsetTop + this.calculateTopPosition(el.offsetParent);
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      var _this2 = this;
+
+      var renderProps = this.filterProps(this.props);
+
+      var children = renderProps.children,
+          element = renderProps.element,
+          hasMore = renderProps.hasMore,
+          initialLoad = renderProps.initialLoad,
+          isReverse = renderProps.isReverse,
+          loader = renderProps.loader,
+          loadMore = renderProps.loadMore,
+          pageStart = renderProps.pageStart,
+          ref = renderProps.ref,
+          threshold = renderProps.threshold,
+          useCapture = renderProps.useCapture,
+          useWindow = renderProps.useWindow,
+          getScrollParent = renderProps.getScrollParent,
+          props = _objectWithoutProperties(renderProps, ['children', 'element', 'hasMore', 'initialLoad', 'isReverse', 'loader', 'loadMore', 'pageStart', 'ref', 'threshold', 'useCapture', 'useWindow', 'getScrollParent']);
+
+      props.ref = function (node) {
+        _this2.scrollComponent = node;
+        if (ref) {
+          ref(node);
+        }
+      };
+
+      var childrenArray = [children];
+      if (hasMore) {
+        if (loader) {
+          isReverse ? childrenArray.unshift(loader) : childrenArray.push(loader);
+        } else if (this.defaultLoader) {
+          isReverse ? childrenArray.unshift(this.defaultLoader) : childrenArray.push(this.defaultLoader);
+        }
+      }
+      return _react2.default.createElement(element, props, childrenArray);
+    }
+  }]);
+
+  return InfiniteScroll;
+}(_react.Component);
+
+InfiniteScroll.propTypes = {
+  children: _propTypes2.default.node.isRequired,
+  element: _propTypes2.default.node,
+  hasMore: _propTypes2.default.bool,
+  initialLoad: _propTypes2.default.bool,
+  isReverse: _propTypes2.default.bool,
+  loader: _propTypes2.default.node,
+  loadMore: _propTypes2.default.func.isRequired,
+  pageStart: _propTypes2.default.number,
+  ref: _propTypes2.default.func,
+  getScrollParent: _propTypes2.default.func,
+  threshold: _propTypes2.default.number,
+  useCapture: _propTypes2.default.bool,
+  useWindow: _propTypes2.default.bool
+};
+InfiniteScroll.defaultProps = {
+  element: 'div',
+  hasMore: false,
+  initialLoad: true,
+  pageStart: 0,
+  ref: null,
+  threshold: 250,
+  useWindow: true,
+  isReverse: false,
+  useCapture: false,
+  loader: null,
+  getScrollParent: null
+};
+exports["default"] = InfiniteScroll;
+module.exports = exports['default'];
+
+
+/***/ }),
+
+/***/ "../node_modules/react-infinite-scroller/index.js":
+/*!********************************************************!*\
+  !*** ../node_modules/react-infinite-scroller/index.js ***!
+  \********************************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+module.exports = __webpack_require__(/*! ./dist/InfiniteScroll */ "../node_modules/react-infinite-scroller/dist/InfiniteScroll.js")
+
+
+/***/ }),
+
 /***/ "../node_modules/react-is/cjs/react-is.development.js":
 /*!************************************************************!*\
   !*** ../node_modules/react-is/cjs/react-is.development.js ***!
@@ -12437,8 +14709,8 @@ if (false) {} else {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "Canvas": () => (/* binding */ Canvas),
-/* harmony export */   "ReactSketchCanvas": () => (/* binding */ ReactSketchCanvas)
+/* harmony export */   Canvas: () => (/* binding */ Canvas),
+/* harmony export */   ReactSketchCanvas: () => (/* binding */ ReactSketchCanvas)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
@@ -14099,24 +16371,24 @@ module.exports = ReactDOM;
 /***/ }),
 
 /***/ "@elementor/icons":
-/*!******************************************************!*\
-  !*** external "__UNSTABLE__elementorPackages.icons" ***!
-  \******************************************************/
+/*!************************************!*\
+  !*** external "elementorV2.icons" ***!
+  \************************************/
 /***/ ((module) => {
 
 "use strict";
-module.exports = __UNSTABLE__elementorPackages.icons;
+module.exports = elementorV2.icons;
 
 /***/ }),
 
 /***/ "@elementor/ui":
-/*!***************************************************!*\
-  !*** external "__UNSTABLE__elementorPackages.ui" ***!
-  \***************************************************/
+/*!*********************************!*\
+  !*** external "elementorV2.ui" ***!
+  \*********************************/
 /***/ ((module) => {
 
 "use strict";
-module.exports = __UNSTABLE__elementorPackages.ui;
+module.exports = elementorV2.ui;
 
 /***/ }),
 
@@ -14870,6 +17142,26 @@ module.exports = _slicedToArray, module.exports.__esModule = true, module.export
 
 /***/ }),
 
+/***/ "../node_modules/@babel/runtime/helpers/taggedTemplateLiteral.js":
+/*!***********************************************************************!*\
+  !*** ../node_modules/@babel/runtime/helpers/taggedTemplateLiteral.js ***!
+  \***********************************************************************/
+/***/ ((module) => {
+
+function _taggedTemplateLiteral(strings, raw) {
+  if (!raw) {
+    raw = strings.slice(0);
+  }
+  return Object.freeze(Object.defineProperties(strings, {
+    raw: {
+      value: Object.freeze(raw)
+    }
+  }));
+}
+module.exports = _taggedTemplateLiteral, module.exports.__esModule = true, module.exports["default"] = module.exports;
+
+/***/ }),
+
 /***/ "../node_modules/@babel/runtime/helpers/toConsumableArray.js":
 /*!*******************************************************************!*\
   !*** ../node_modules/@babel/runtime/helpers/toConsumableArray.js ***!
@@ -14996,7 +17288,7 @@ try {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "bail": () => (/* binding */ bail)
+/* harmony export */   bail: () => (/* binding */ bail)
 /* harmony export */ });
 /**
  * Throw a given error.
@@ -15023,8 +17315,8 @@ function bail(error) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "parse": () => (/* binding */ parse),
-/* harmony export */   "stringify": () => (/* binding */ stringify)
+/* harmony export */   parse: () => (/* binding */ parse),
+/* harmony export */   stringify: () => (/* binding */ stringify)
 /* harmony export */ });
 /**
  * @typedef Options
@@ -15113,7 +17405,7 @@ function stringify(values, options) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "decodeNamedCharacterReference": () => (/* binding */ decodeNamedCharacterReference)
+/* harmony export */   decodeNamedCharacterReference: () => (/* binding */ decodeNamedCharacterReference)
 /* harmony export */ });
 /// <reference lib="dom" />
 
@@ -15161,7 +17453,7 @@ function decodeNamedCharacterReference(value) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "dequal": () => (/* binding */ dequal)
+/* harmony export */   dequal: () => (/* binding */ dequal)
 /* harmony export */ });
 var has = Object.prototype.hasOwnProperty;
 
@@ -15260,26 +17552,26 @@ function dequal(foo, bar) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "Diff": () => (/* binding */ Diff),
-/* harmony export */   "applyPatch": () => (/* binding */ applyPatch),
-/* harmony export */   "applyPatches": () => (/* binding */ applyPatches),
-/* harmony export */   "canonicalize": () => (/* binding */ canonicalize),
-/* harmony export */   "convertChangesToDMP": () => (/* binding */ convertChangesToDMP),
-/* harmony export */   "convertChangesToXML": () => (/* binding */ convertChangesToXML),
-/* harmony export */   "createPatch": () => (/* binding */ createPatch),
-/* harmony export */   "createTwoFilesPatch": () => (/* binding */ createTwoFilesPatch),
-/* harmony export */   "diffArrays": () => (/* binding */ diffArrays),
-/* harmony export */   "diffChars": () => (/* binding */ diffChars),
-/* harmony export */   "diffCss": () => (/* binding */ diffCss),
-/* harmony export */   "diffJson": () => (/* binding */ diffJson),
-/* harmony export */   "diffLines": () => (/* binding */ diffLines),
-/* harmony export */   "diffSentences": () => (/* binding */ diffSentences),
-/* harmony export */   "diffTrimmedLines": () => (/* binding */ diffTrimmedLines),
-/* harmony export */   "diffWords": () => (/* binding */ diffWords),
-/* harmony export */   "diffWordsWithSpace": () => (/* binding */ diffWordsWithSpace),
-/* harmony export */   "merge": () => (/* binding */ merge),
-/* harmony export */   "parsePatch": () => (/* binding */ parsePatch),
-/* harmony export */   "structuredPatch": () => (/* binding */ structuredPatch)
+/* harmony export */   Diff: () => (/* binding */ Diff),
+/* harmony export */   applyPatch: () => (/* binding */ applyPatch),
+/* harmony export */   applyPatches: () => (/* binding */ applyPatches),
+/* harmony export */   canonicalize: () => (/* binding */ canonicalize),
+/* harmony export */   convertChangesToDMP: () => (/* binding */ convertChangesToDMP),
+/* harmony export */   convertChangesToXML: () => (/* binding */ convertChangesToXML),
+/* harmony export */   createPatch: () => (/* binding */ createPatch),
+/* harmony export */   createTwoFilesPatch: () => (/* binding */ createTwoFilesPatch),
+/* harmony export */   diffArrays: () => (/* binding */ diffArrays),
+/* harmony export */   diffChars: () => (/* binding */ diffChars),
+/* harmony export */   diffCss: () => (/* binding */ diffCss),
+/* harmony export */   diffJson: () => (/* binding */ diffJson),
+/* harmony export */   diffLines: () => (/* binding */ diffLines),
+/* harmony export */   diffSentences: () => (/* binding */ diffSentences),
+/* harmony export */   diffTrimmedLines: () => (/* binding */ diffTrimmedLines),
+/* harmony export */   diffWords: () => (/* binding */ diffWords),
+/* harmony export */   diffWordsWithSpace: () => (/* binding */ diffWordsWithSpace),
+/* harmony export */   merge: () => (/* binding */ merge),
+/* harmony export */   parsePatch: () => (/* binding */ parsePatch),
+/* harmony export */   structuredPatch: () => (/* binding */ structuredPatch)
 /* harmony export */ });
 function Diff() {}
 Diff.prototype = {
@@ -16855,7 +19147,7 @@ function escapeHTML(s) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "whitespace": () => (/* binding */ whitespace)
+/* harmony export */   whitespace: () => (/* binding */ whitespace)
 /* harmony export */ });
 /**
  * Check if the given value is *inter-element whitespace*.
@@ -16918,7 +19210,7 @@ function isPlainObject(value) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "definitions": () => (/* binding */ definitions)
+/* harmony export */   definitions: () => (/* binding */ definitions)
 /* harmony export */ });
 /* harmony import */ var unist_util_visit__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! unist-util-visit */ "../node_modules/unist-util-visit/lib/index.js");
 /**
@@ -16998,7 +19290,7 @@ function clean(value) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "fromMarkdown": () => (/* binding */ fromMarkdown)
+/* harmony export */   fromMarkdown: () => (/* binding */ fromMarkdown)
 /* harmony export */ });
 /* harmony import */ var uvu_assert__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! uvu/assert */ "../node_modules/uvu/assert/index.mjs");
 /* harmony import */ var mdast_util_to_string__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! mdast-util-to-string */ "../node_modules/mdast-util-to-string/lib/index.js");
@@ -17207,7 +19499,6 @@ const fromMarkdown =
 
       return compiler(options)(
         (0,micromark_lib_postprocess_js__WEBPACK_IMPORTED_MODULE_1__.postprocess)(
-          // @ts-expect-error: micromark types need to accept `null`.
           (0,micromark_lib_parse_js__WEBPACK_IMPORTED_MODULE_2__.parse)(options).document().write((0,micromark_lib_preprocess_js__WEBPACK_IMPORTED_MODULE_3__.preprocess)()(value, encoding, true))
         )
       )
@@ -17519,7 +19810,6 @@ function compiler(options) {
             firstBlankLineIndex &&
             (!lineIndex || firstBlankLineIndex < lineIndex)
           ) {
-            // @ts-expect-error Patched.
             listItem._spread = true
           }
 
@@ -17538,9 +19828,10 @@ function compiler(options) {
         if (event[1].type === micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_4__.types.listItemPrefix) {
           listItem = {
             type: 'listItem',
-            // @ts-expect-error Patched
             _spread: false,
-            start: Object.assign({}, event[1].start)
+            start: Object.assign({}, event[1].start),
+            // @ts-expect-error: we’ll add `end` in a second.
+            end: undefined
           }
           // @ts-expect-error: `listItem` is most definitely defined, TS...
           events.splice(index, 0, ['enter', listItem, event[2]])
@@ -17552,7 +19843,6 @@ function compiler(options) {
       }
     }
 
-    // @ts-expect-error Patched.
     events[start][1]._spread = listSpread
     return length
   }
@@ -18354,7 +20644,6 @@ function compiler(options) {
       type: 'list',
       ordered: token.type === 'listOrdered',
       start: null,
-      // @ts-expect-error Patched.
       spread: token._spread,
       children: []
     }
@@ -18367,7 +20656,6 @@ function compiler(options) {
   function listItem(token) {
     return {
       type: 'listItem',
-      // @ts-expect-error Patched.
       spread: token._spread,
       checked: null,
       children: []
@@ -18494,7 +20782,7 @@ function defaultOnError(left, right) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "footer": () => (/* binding */ footer)
+/* harmony export */   footer: () => (/* binding */ footer)
 /* harmony export */ });
 /* harmony import */ var micromark_util_sanitize_uri__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! micromark-util-sanitize-uri */ "../node_modules/micromark-util-sanitize-uri/dev/index.js");
 /**
@@ -18638,7 +20926,7 @@ function footer(state) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "blockquote": () => (/* binding */ blockquote)
+/* harmony export */   blockquote: () => (/* binding */ blockquote)
 /* harmony export */ });
 /**
  * @typedef {import('hast').Element} Element
@@ -18680,7 +20968,7 @@ function blockquote(state, node) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "hardBreak": () => (/* binding */ hardBreak)
+/* harmony export */   hardBreak: () => (/* binding */ hardBreak)
 /* harmony export */ });
 /**
  * @typedef {import('hast').Element} Element
@@ -18718,7 +21006,7 @@ function hardBreak(state, node) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "code": () => (/* binding */ code)
+/* harmony export */   code: () => (/* binding */ code)
 /* harmony export */ });
 /**
  * @typedef {import('hast').Element} Element
@@ -18784,7 +21072,7 @@ function code(state, node) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "strikethrough": () => (/* binding */ strikethrough)
+/* harmony export */   strikethrough: () => (/* binding */ strikethrough)
 /* harmony export */ });
 /**
  * @typedef {import('hast').Element} Element
@@ -18827,7 +21115,7 @@ function strikethrough(state, node) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "emphasis": () => (/* binding */ emphasis)
+/* harmony export */   emphasis: () => (/* binding */ emphasis)
 /* harmony export */ });
 /**
  * @typedef {import('hast').Element} Element
@@ -18869,7 +21157,7 @@ function emphasis(state, node) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "footnoteReference": () => (/* binding */ footnoteReference)
+/* harmony export */   footnoteReference: () => (/* binding */ footnoteReference)
 /* harmony export */ });
 /* harmony import */ var micromark_util_sanitize_uri__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! micromark-util-sanitize-uri */ "../node_modules/micromark-util-sanitize-uri/dev/index.js");
 /**
@@ -18949,7 +21237,7 @@ function footnoteReference(state, node) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "footnote": () => (/* binding */ footnote)
+/* harmony export */   footnote: () => (/* binding */ footnote)
 /* harmony export */ });
 /* harmony import */ var _footnote_reference_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./footnote-reference.js */ "../node_modules/mdast-util-to-hast/lib/handlers/footnote-reference.js");
 /**
@@ -19010,7 +21298,7 @@ function footnote(state, node) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "heading": () => (/* binding */ heading)
+/* harmony export */   heading: () => (/* binding */ heading)
 /* harmony export */ });
 /**
  * @typedef {import('hast').Element} Element
@@ -19052,7 +21340,7 @@ function heading(state, node) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "html": () => (/* binding */ html)
+/* harmony export */   html: () => (/* binding */ html)
 /* harmony export */ });
 /**
  * @typedef {import('hast').Element} Element
@@ -19096,7 +21384,7 @@ function html(state, node) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "imageReference": () => (/* binding */ imageReference)
+/* harmony export */   imageReference: () => (/* binding */ imageReference)
 /* harmony export */ });
 /* harmony import */ var micromark_util_sanitize_uri__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! micromark-util-sanitize-uri */ "../node_modules/micromark-util-sanitize-uri/dev/index.js");
 /* harmony import */ var _revert_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../revert.js */ "../node_modules/mdast-util-to-hast/lib/revert.js");
@@ -19153,7 +21441,7 @@ function imageReference(state, node) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "image": () => (/* binding */ image)
+/* harmony export */   image: () => (/* binding */ image)
 /* harmony export */ });
 /* harmony import */ var micromark_util_sanitize_uri__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! micromark-util-sanitize-uri */ "../node_modules/micromark-util-sanitize-uri/dev/index.js");
 /**
@@ -19205,7 +21493,7 @@ function image(state, node) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "handlers": () => (/* binding */ handlers)
+/* harmony export */   handlers: () => (/* binding */ handlers)
 /* harmony export */ });
 /* harmony import */ var _blockquote_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./blockquote.js */ "../node_modules/mdast-util-to-hast/lib/handlers/blockquote.js");
 /* harmony import */ var _break_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./break.js */ "../node_modules/mdast-util-to-hast/lib/handlers/break.js");
@@ -19308,7 +21596,7 @@ function ignore() {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "inlineCode": () => (/* binding */ inlineCode)
+/* harmony export */   inlineCode: () => (/* binding */ inlineCode)
 /* harmony export */ });
 /**
  * @typedef {import('hast').Element} Element
@@ -19355,7 +21643,7 @@ function inlineCode(state, node) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "linkReference": () => (/* binding */ linkReference)
+/* harmony export */   linkReference: () => (/* binding */ linkReference)
 /* harmony export */ });
 /* harmony import */ var micromark_util_sanitize_uri__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! micromark-util-sanitize-uri */ "../node_modules/micromark-util-sanitize-uri/dev/index.js");
 /* harmony import */ var _revert_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../revert.js */ "../node_modules/mdast-util-to-hast/lib/revert.js");
@@ -19417,7 +21705,7 @@ function linkReference(state, node) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "link": () => (/* binding */ link)
+/* harmony export */   link: () => (/* binding */ link)
 /* harmony export */ });
 /* harmony import */ var micromark_util_sanitize_uri__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! micromark-util-sanitize-uri */ "../node_modules/micromark-util-sanitize-uri/dev/index.js");
 /**
@@ -19470,7 +21758,7 @@ function link(state, node) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "listItem": () => (/* binding */ listItem)
+/* harmony export */   listItem: () => (/* binding */ listItem)
 /* harmony export */ });
 /**
  * @typedef {import('hast').Element} Element
@@ -19614,7 +21902,7 @@ function listItemLoose(node) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "list": () => (/* binding */ list)
+/* harmony export */   list: () => (/* binding */ list)
 /* harmony export */ });
 /**
  * @typedef {import('hast').Element} Element
@@ -19682,7 +21970,7 @@ function list(state, node) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "paragraph": () => (/* binding */ paragraph)
+/* harmony export */   paragraph: () => (/* binding */ paragraph)
 /* harmony export */ });
 /**
  * @typedef {import('hast').Element} Element
@@ -19724,7 +22012,7 @@ function paragraph(state, node) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "root": () => (/* binding */ root)
+/* harmony export */   root: () => (/* binding */ root)
 /* harmony export */ });
 /**
  * @typedef {import('hast').Root} HastRoot
@@ -19762,7 +22050,7 @@ function root(state, node) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "strong": () => (/* binding */ strong)
+/* harmony export */   strong: () => (/* binding */ strong)
 /* harmony export */ });
 /**
  * @typedef {import('hast').Element} Element
@@ -19804,7 +22092,7 @@ function strong(state, node) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "tableCell": () => (/* binding */ tableCell)
+/* harmony export */   tableCell: () => (/* binding */ tableCell)
 /* harmony export */ });
 /**
  * @typedef {import('hast').Element} Element
@@ -19848,7 +22136,7 @@ function tableCell(state, node) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "tableRow": () => (/* binding */ tableRow)
+/* harmony export */   tableRow: () => (/* binding */ tableRow)
 /* harmony export */ });
 /**
  * @typedef {import('hast').Properties} Properties
@@ -19935,7 +22223,7 @@ function tableRow(state, node, parent) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "table": () => (/* binding */ table)
+/* harmony export */   table: () => (/* binding */ table)
 /* harmony export */ });
 /* harmony import */ var unist_util_position__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! unist-util-position */ "../node_modules/unist-util-position/lib/index.js");
 /**
@@ -20012,7 +22300,7 @@ function table(state, node) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "text": () => (/* binding */ text)
+/* harmony export */   text: () => (/* binding */ text)
 /* harmony export */ });
 /* harmony import */ var trim_lines__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! trim-lines */ "../node_modules/trim-lines/index.js");
 /**
@@ -20053,7 +22341,7 @@ function text(state, node) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "thematicBreak": () => (/* binding */ thematicBreak)
+/* harmony export */   thematicBreak: () => (/* binding */ thematicBreak)
 /* harmony export */ });
 /**
  * @typedef {import('hast').Element} Element
@@ -20095,7 +22383,7 @@ function thematicBreak(state, node) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "toHast": () => (/* binding */ toHast)
+/* harmony export */   toHast: () => (/* binding */ toHast)
 /* harmony export */ });
 /* harmony import */ var _footer_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./footer.js */ "../node_modules/mdast-util-to-hast/lib/footer.js");
 /* harmony import */ var _state_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./state.js */ "../node_modules/mdast-util-to-hast/lib/state.js");
@@ -20223,7 +22511,7 @@ function toHast(tree, options) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "revert": () => (/* binding */ revert)
+/* harmony export */   revert: () => (/* binding */ revert)
 /* harmony export */ });
 /**
  * @typedef {import('hast').ElementContent} ElementContent
@@ -20298,10 +22586,10 @@ function revert(state, node) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "all": () => (/* binding */ all),
-/* harmony export */   "createState": () => (/* binding */ createState),
-/* harmony export */   "one": () => (/* binding */ one),
-/* harmony export */   "wrap": () => (/* binding */ wrap)
+/* harmony export */   all: () => (/* binding */ all),
+/* harmony export */   createState: () => (/* binding */ createState),
+/* harmony export */   one: () => (/* binding */ one),
+/* harmony export */   wrap: () => (/* binding */ wrap)
 /* harmony export */ });
 /* harmony import */ var unist_util_visit__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! unist-util-visit */ "../node_modules/unist-util-visit/lib/index.js");
 /* harmony import */ var unist_util_position__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! unist-util-position */ "../node_modules/unist-util-position/lib/index.js");
@@ -20898,7 +23186,7 @@ function wrap(nodes, loose) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "toString": () => (/* binding */ toString)
+/* harmony export */   toString: () => (/* binding */ toString)
 /* harmony export */ });
 /**
  * @typedef {import('mdast').Root|import('mdast').Content} Node
@@ -21021,24 +23309,25 @@ function node(value) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "attention": () => (/* binding */ attention)
+/* harmony export */   attention: () => (/* binding */ attention)
 /* harmony export */ });
-/* harmony import */ var uvu_assert__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! uvu/assert */ "../node_modules/uvu/assert/index.mjs");
 /* harmony import */ var micromark_util_chunked__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! micromark-util-chunked */ "../node_modules/micromark-util-chunked/dev/index.js");
 /* harmony import */ var micromark_util_classify_character__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! micromark-util-classify-character */ "../node_modules/micromark-util-classify-character/dev/index.js");
 /* harmony import */ var micromark_util_resolve_all__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! micromark-util-resolve-all */ "../node_modules/micromark-util-resolve-all/index.js");
 /* harmony import */ var micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! micromark-util-symbol/codes.js */ "../node_modules/micromark-util-symbol/codes.js");
 /* harmony import */ var micromark_util_symbol_constants_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! micromark-util-symbol/constants.js */ "../node_modules/micromark-util-symbol/constants.js");
 /* harmony import */ var micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! micromark-util-symbol/types.js */ "../node_modules/micromark-util-symbol/types.js");
+/* harmony import */ var uvu_assert__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! uvu/assert */ "../node_modules/uvu/assert/index.mjs");
 /**
+ * @typedef {import('micromark-util-types').Code} Code
  * @typedef {import('micromark-util-types').Construct} Construct
- * @typedef {import('micromark-util-types').Tokenizer} Tokenizer
+ * @typedef {import('micromark-util-types').Event} Event
+ * @typedef {import('micromark-util-types').Point} Point
  * @typedef {import('micromark-util-types').Resolver} Resolver
  * @typedef {import('micromark-util-types').State} State
  * @typedef {import('micromark-util-types').Token} Token
- * @typedef {import('micromark-util-types').Event} Event
- * @typedef {import('micromark-util-types').Code} Code
- * @typedef {import('micromark-util-types').Point} Point
+ * @typedef {import('micromark-util-types').TokenizeContext} TokenizeContext
+ * @typedef {import('micromark-util-types').Tokenizer} Tokenizer
  */
 
 
@@ -21075,7 +23364,7 @@ function resolveAllAttention(events, context) {
   let closingSequence
   /** @type {number} */
   let use
-  /** @type {Event[]} */
+  /** @type {Array<Event>} */
   let nextEvents
   /** @type {number} */
   let offset
@@ -21176,6 +23465,12 @@ function resolveAllAttention(events, context) {
             ['enter', text, context]
           ])
 
+          // Always populated by defaults.
+          ;(0,uvu_assert__WEBPACK_IMPORTED_MODULE_0__.ok)(
+            context.parser.constructs.insideSpan.null,
+            'expected `insideSpan` to be populated'
+          )
+
           // Between.
           nextEvents = (0,micromark_util_chunked__WEBPACK_IMPORTED_MODULE_2__.push)(
             nextEvents,
@@ -21226,7 +23521,10 @@ function resolveAllAttention(events, context) {
   return events
 }
 
-/** @type {Tokenizer} */
+/**
+ * @this {TokenizeContext}
+ * @type {Tokenizer}
+ */
 function tokenizeAttention(effects, ok) {
   const attentionMarkers = this.parser.constructs.attentionMarkers.null
   const previous = this.previous
@@ -21237,26 +23535,49 @@ function tokenizeAttention(effects, ok) {
 
   return start
 
-  /** @type {State} */
+  /**
+   * Before a sequence.
+   *
+   * ```markdown
+   * > | **
+   *     ^
+   * ```
+   *
+   * @type {State}
+   */
   function start(code) {
     ;(0,uvu_assert__WEBPACK_IMPORTED_MODULE_0__.ok)(
       code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_5__.codes.asterisk || code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_5__.codes.underscore,
       'expected asterisk or underscore'
     )
-    effects.enter('attentionSequence')
     marker = code
-    return sequence(code)
+    effects.enter('attentionSequence')
+    return inside(code)
   }
 
-  /** @type {State} */
-  function sequence(code) {
+  /**
+   * In a sequence.
+   *
+   * ```markdown
+   * > | **
+   *     ^^
+   * ```
+   *
+   * @type {State}
+   */
+  function inside(code) {
     if (code === marker) {
       effects.consume(code)
-      return sequence
+      return inside
     }
 
     const token = effects.exit('attentionSequence')
+
+    // To do: next major: move this to resolver, just like `markdown-rs`.
     const after = (0,micromark_util_classify_character__WEBPACK_IMPORTED_MODULE_4__.classifyCharacter)(code)
+
+    // Always populated by defaults.
+    ;(0,uvu_assert__WEBPACK_IMPORTED_MODULE_0__.ok)(attentionMarkers, 'expected `attentionMarkers` to be populated')
 
     const open =
       !after ||
@@ -21305,17 +23626,18 @@ function movePoint(point, offset) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "autolink": () => (/* binding */ autolink)
+/* harmony export */   autolink: () => (/* binding */ autolink)
 /* harmony export */ });
-/* harmony import */ var uvu_assert__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! uvu/assert */ "../node_modules/uvu/assert/index.mjs");
 /* harmony import */ var micromark_util_character__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! micromark-util-character */ "../node_modules/micromark-util-character/dev/index.js");
 /* harmony import */ var micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! micromark-util-symbol/codes.js */ "../node_modules/micromark-util-symbol/codes.js");
 /* harmony import */ var micromark_util_symbol_constants_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! micromark-util-symbol/constants.js */ "../node_modules/micromark-util-symbol/constants.js");
 /* harmony import */ var micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! micromark-util-symbol/types.js */ "../node_modules/micromark-util-symbol/types.js");
+/* harmony import */ var uvu_assert__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! uvu/assert */ "../node_modules/uvu/assert/index.mjs");
 /**
  * @typedef {import('micromark-util-types').Construct} Construct
- * @typedef {import('micromark-util-types').Tokenizer} Tokenizer
  * @typedef {import('micromark-util-types').State} State
+ * @typedef {import('micromark-util-types').TokenizeContext} TokenizeContext
+ * @typedef {import('micromark-util-types').Tokenizer} Tokenizer
  */
 
 
@@ -21327,13 +23649,27 @@ __webpack_require__.r(__webpack_exports__);
 /** @type {Construct} */
 const autolink = {name: 'autolink', tokenize: tokenizeAutolink}
 
-/** @type {Tokenizer} */
+/**
+ * @this {TokenizeContext}
+ * @type {Tokenizer}
+ */
 function tokenizeAutolink(effects, ok, nok) {
-  let size = 1
+  let size = 0
 
   return start
 
-  /** @type {State} */
+  /**
+   * Start of an autolink.
+   *
+   * ```markdown
+   * > | a<https://example.com>b
+   *      ^
+   * > | a<user@example.com>b
+   *      ^
+   * ```
+   *
+   * @type {State}
+   */
   function start(code) {
     ;(0,uvu_assert__WEBPACK_IMPORTED_MODULE_0__.ok)(code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.lessThan, 'expected `<`')
     effects.enter(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.autolink)
@@ -21344,33 +23680,75 @@ function tokenizeAutolink(effects, ok, nok) {
     return open
   }
 
-  /** @type {State} */
+  /**
+   * After `<`, at protocol or atext.
+   *
+   * ```markdown
+   * > | a<https://example.com>b
+   *       ^
+   * > | a<user@example.com>b
+   *       ^
+   * ```
+   *
+   * @type {State}
+   */
   function open(code) {
     if ((0,micromark_util_character__WEBPACK_IMPORTED_MODULE_3__.asciiAlpha)(code)) {
       effects.consume(code)
       return schemeOrEmailAtext
     }
 
-    return (0,micromark_util_character__WEBPACK_IMPORTED_MODULE_3__.asciiAtext)(code) ? emailAtext(code) : nok(code)
+    return emailAtext(code)
   }
 
-  /** @type {State} */
+  /**
+   * At second byte of protocol or atext.
+   *
+   * ```markdown
+   * > | a<https://example.com>b
+   *        ^
+   * > | a<user@example.com>b
+   *        ^
+   * ```
+   *
+   * @type {State}
+   */
   function schemeOrEmailAtext(code) {
-    return code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.plusSign ||
+    // ASCII alphanumeric and `+`, `-`, and `.`.
+    if (
+      code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.plusSign ||
       code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.dash ||
       code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.dot ||
       (0,micromark_util_character__WEBPACK_IMPORTED_MODULE_3__.asciiAlphanumeric)(code)
-      ? schemeInsideOrEmailAtext(code)
-      : emailAtext(code)
+    ) {
+      // Count the previous alphabetical from `open` too.
+      size = 1
+      return schemeInsideOrEmailAtext(code)
+    }
+
+    return emailAtext(code)
   }
 
-  /** @type {State} */
+  /**
+   * In ambiguous protocol or atext.
+   *
+   * ```markdown
+   * > | a<https://example.com>b
+   *        ^
+   * > | a<user@example.com>b
+   *        ^
+   * ```
+   *
+   * @type {State}
+   */
   function schemeInsideOrEmailAtext(code) {
     if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.colon) {
       effects.consume(code)
+      size = 0
       return urlInside
     }
 
+    // ASCII alphanumeric and `+`, `-`, and `.`.
     if (
       (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.plusSign ||
         code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.dash ||
@@ -21382,16 +23760,31 @@ function tokenizeAutolink(effects, ok, nok) {
       return schemeInsideOrEmailAtext
     }
 
+    size = 0
     return emailAtext(code)
   }
 
-  /** @type {State} */
+  /**
+   * After protocol, in URL.
+   *
+   * ```markdown
+   * > | a<https://example.com>b
+   *             ^
+   * ```
+   *
+   * @type {State}
+   */
   function urlInside(code) {
     if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.greaterThan) {
       effects.exit(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.autolinkProtocol)
-      return end(code)
+      effects.enter(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.autolinkMarker)
+      effects.consume(code)
+      effects.exit(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.autolinkMarker)
+      effects.exit(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.autolink)
+      return ok
     }
 
+    // ASCII control, space, or `<`.
     if (
       code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.eof ||
       code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.space ||
@@ -21405,11 +23798,19 @@ function tokenizeAutolink(effects, ok, nok) {
     return urlInside
   }
 
-  /** @type {State} */
+  /**
+   * In email atext.
+   *
+   * ```markdown
+   * > | a<user.name@example.com>b
+   *              ^
+   * ```
+   *
+   * @type {State}
+   */
   function emailAtext(code) {
     if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.atSign) {
       effects.consume(code)
-      size = 0
       return emailAtSignOrDot
     }
 
@@ -21421,12 +23822,30 @@ function tokenizeAutolink(effects, ok, nok) {
     return nok(code)
   }
 
-  /** @type {State} */
+  /**
+   * In label, after at-sign or dot.
+   *
+   * ```markdown
+   * > | a<user.name@example.com>b
+   *                 ^       ^
+   * ```
+   *
+   * @type {State}
+   */
   function emailAtSignOrDot(code) {
     return (0,micromark_util_character__WEBPACK_IMPORTED_MODULE_3__.asciiAlphanumeric)(code) ? emailLabel(code) : nok(code)
   }
 
-  /** @type {State} */
+  /**
+   * In label, where `.` and `>` are allowed.
+   *
+   * ```markdown
+   * > | a<user.name@example.com>b
+   *                   ^
+   * ```
+   *
+   * @type {State}
+   */
   function emailLabel(code) {
     if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.dot) {
       effects.consume(code)
@@ -21435,35 +23854,42 @@ function tokenizeAutolink(effects, ok, nok) {
     }
 
     if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.greaterThan) {
-      // Exit, then change the type.
+      // Exit, then change the token type.
       effects.exit(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.autolinkProtocol).type = micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.autolinkEmail
-      return end(code)
+      effects.enter(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.autolinkMarker)
+      effects.consume(code)
+      effects.exit(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.autolinkMarker)
+      effects.exit(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.autolink)
+      return ok
     }
 
     return emailValue(code)
   }
 
-  /** @type {State} */
+  /**
+   * In label, where `.` and `>` are *not* allowed.
+   *
+   * Though, this is also used in `emailLabel` to parse other values.
+   *
+   * ```markdown
+   * > | a<user.name@ex-ample.com>b
+   *                    ^
+   * ```
+   *
+   * @type {State}
+   */
   function emailValue(code) {
+    // ASCII alphanumeric or `-`.
     if (
       (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.dash || (0,micromark_util_character__WEBPACK_IMPORTED_MODULE_3__.asciiAlphanumeric)(code)) &&
       size++ < micromark_util_symbol_constants_js__WEBPACK_IMPORTED_MODULE_4__.constants.autolinkDomainSizeMax
     ) {
+      const next = code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.dash ? emailValue : emailLabel
       effects.consume(code)
-      return code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.dash ? emailValue : emailLabel
+      return next
     }
 
     return nok(code)
-  }
-
-  /** @type {State} */
-  function end(code) {
-    (0,uvu_assert__WEBPACK_IMPORTED_MODULE_0__.ok)(code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.greaterThan, 'expected `>`')
-    effects.enter(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.autolinkMarker)
-    effects.consume(code)
-    effects.exit(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.autolinkMarker)
-    effects.exit(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.autolink)
-    return ok
   }
 }
 
@@ -21479,16 +23905,17 @@ function tokenizeAutolink(effects, ok, nok) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "blankLine": () => (/* binding */ blankLine)
+/* harmony export */   blankLine: () => (/* binding */ blankLine)
 /* harmony export */ });
-/* harmony import */ var micromark_factory_space__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! micromark-factory-space */ "../node_modules/micromark-factory-space/dev/index.js");
-/* harmony import */ var micromark_util_character__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! micromark-util-character */ "../node_modules/micromark-util-character/dev/index.js");
-/* harmony import */ var micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! micromark-util-symbol/codes.js */ "../node_modules/micromark-util-symbol/codes.js");
-/* harmony import */ var micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! micromark-util-symbol/types.js */ "../node_modules/micromark-util-symbol/types.js");
+/* harmony import */ var micromark_factory_space__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! micromark-factory-space */ "../node_modules/micromark-factory-space/dev/index.js");
+/* harmony import */ var micromark_util_character__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! micromark-util-character */ "../node_modules/micromark-util-character/dev/index.js");
+/* harmony import */ var micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! micromark-util-symbol/codes.js */ "../node_modules/micromark-util-symbol/codes.js");
+/* harmony import */ var micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! micromark-util-symbol/types.js */ "../node_modules/micromark-util-symbol/types.js");
 /**
  * @typedef {import('micromark-util-types').Construct} Construct
- * @typedef {import('micromark-util-types').Tokenizer} Tokenizer
  * @typedef {import('micromark-util-types').State} State
+ * @typedef {import('micromark-util-types').TokenizeContext} TokenizeContext
+ * @typedef {import('micromark-util-types').Tokenizer} Tokenizer
  */
 
 
@@ -21499,13 +23926,49 @@ __webpack_require__.r(__webpack_exports__);
 /** @type {Construct} */
 const blankLine = {tokenize: tokenizeBlankLine, partial: true}
 
-/** @type {Tokenizer} */
+/**
+ * @this {TokenizeContext}
+ * @type {Tokenizer}
+ */
 function tokenizeBlankLine(effects, ok, nok) {
-  return (0,micromark_factory_space__WEBPACK_IMPORTED_MODULE_0__.factorySpace)(effects, afterWhitespace, micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.linePrefix)
+  return start
 
-  /** @type {State} */
-  function afterWhitespace(code) {
-    return code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__.codes.eof || (0,micromark_util_character__WEBPACK_IMPORTED_MODULE_3__.markdownLineEnding)(code) ? ok(code) : nok(code)
+  /**
+   * Start of blank line.
+   *
+   * > 👉 **Note**: `␠` represents a space character.
+   *
+   * ```markdown
+   * > | ␠␠␊
+   *     ^
+   * > | ␊
+   *     ^
+   * ```
+   *
+   * @type {State}
+   */
+  function start(code) {
+    return (0,micromark_util_character__WEBPACK_IMPORTED_MODULE_0__.markdownSpace)(code)
+      ? (0,micromark_factory_space__WEBPACK_IMPORTED_MODULE_1__.factorySpace)(effects, after, micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.linePrefix)(code)
+      : after(code)
+  }
+
+  /**
+   * At eof/eol, after optional whitespace.
+   *
+   * > 👉 **Note**: `␠` represents a space character.
+   *
+   * ```markdown
+   * > | ␠␠␊
+   *       ^
+   * > | ␊
+   *     ^
+   * ```
+   *
+   * @type {State}
+   */
+  function after(code) {
+    return code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_3__.codes.eof || (0,micromark_util_character__WEBPACK_IMPORTED_MODULE_0__.markdownLineEnding)(code) ? ok(code) : nok(code)
   }
 }
 
@@ -21521,19 +23984,20 @@ function tokenizeBlankLine(effects, ok, nok) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "blockQuote": () => (/* binding */ blockQuote)
+/* harmony export */   blockQuote: () => (/* binding */ blockQuote)
 /* harmony export */ });
-/* harmony import */ var uvu_assert__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! uvu/assert */ "../node_modules/uvu/assert/index.mjs");
 /* harmony import */ var micromark_factory_space__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! micromark-factory-space */ "../node_modules/micromark-factory-space/dev/index.js");
 /* harmony import */ var micromark_util_character__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! micromark-util-character */ "../node_modules/micromark-util-character/dev/index.js");
 /* harmony import */ var micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! micromark-util-symbol/codes.js */ "../node_modules/micromark-util-symbol/codes.js");
 /* harmony import */ var micromark_util_symbol_constants_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! micromark-util-symbol/constants.js */ "../node_modules/micromark-util-symbol/constants.js");
 /* harmony import */ var micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! micromark-util-symbol/types.js */ "../node_modules/micromark-util-symbol/types.js");
+/* harmony import */ var uvu_assert__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! uvu/assert */ "../node_modules/uvu/assert/index.mjs");
 /**
  * @typedef {import('micromark-util-types').Construct} Construct
- * @typedef {import('micromark-util-types').Tokenizer} Tokenizer
  * @typedef {import('micromark-util-types').Exiter} Exiter
  * @typedef {import('micromark-util-types').State} State
+ * @typedef {import('micromark-util-types').TokenizeContext} TokenizeContext
+ * @typedef {import('micromark-util-types').Tokenizer} Tokenizer
  */
 
 
@@ -21551,13 +24015,25 @@ const blockQuote = {
   exit
 }
 
-/** @type {Tokenizer} */
+/**
+ * @this {TokenizeContext}
+ * @type {Tokenizer}
+ */
 function tokenizeBlockQuoteStart(effects, ok, nok) {
   const self = this
 
   return start
 
-  /** @type {State} */
+  /**
+   * Start of block quote.
+   *
+   * ```markdown
+   * > | > a
+   *     ^
+   * ```
+   *
+   * @type {State}
+   */
   function start(code) {
     if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.greaterThan) {
       const state = self.containerState
@@ -21579,7 +24055,16 @@ function tokenizeBlockQuoteStart(effects, ok, nok) {
     return nok(code)
   }
 
-  /** @type {State} */
+  /**
+   * After `>`, before optional whitespace.
+   *
+   * ```markdown
+   * > | > a
+   *      ^
+   * ```
+   *
+   * @type {State}
+   */
   function after(code) {
     if ((0,micromark_util_character__WEBPACK_IMPORTED_MODULE_3__.markdownSpace)(code)) {
       effects.enter(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.blockQuotePrefixWhitespace)
@@ -21594,16 +24079,73 @@ function tokenizeBlockQuoteStart(effects, ok, nok) {
   }
 }
 
-/** @type {Tokenizer} */
+/**
+ * Start of block quote continuation.
+ *
+ * ```markdown
+ *   | > a
+ * > | > b
+ *     ^
+ * ```
+ *
+ * @this {TokenizeContext}
+ * @type {Tokenizer}
+ */
 function tokenizeBlockQuoteContinuation(effects, ok, nok) {
-  return (0,micromark_factory_space__WEBPACK_IMPORTED_MODULE_4__.factorySpace)(
-    effects,
-    effects.attempt(blockQuote, ok, nok),
-    micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.linePrefix,
-    this.parser.constructs.disable.null.includes('codeIndented')
-      ? undefined
-      : micromark_util_symbol_constants_js__WEBPACK_IMPORTED_MODULE_5__.constants.tabSize
-  )
+  const self = this
+
+  return contStart
+
+  /**
+   * Start of block quote continuation.
+   *
+   * Also used to parse the first block quote opening.
+   *
+   * ```markdown
+   *   | > a
+   * > | > b
+   *     ^
+   * ```
+   *
+   * @type {State}
+   */
+  function contStart(code) {
+    if ((0,micromark_util_character__WEBPACK_IMPORTED_MODULE_3__.markdownSpace)(code)) {
+      // Always populated by defaults.
+      (0,uvu_assert__WEBPACK_IMPORTED_MODULE_0__.ok)(
+        self.parser.constructs.disable.null,
+        'expected `disable.null` to be populated'
+      )
+
+      return (0,micromark_factory_space__WEBPACK_IMPORTED_MODULE_4__.factorySpace)(
+        effects,
+        contBefore,
+        micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.linePrefix,
+        self.parser.constructs.disable.null.includes('codeIndented')
+          ? undefined
+          : micromark_util_symbol_constants_js__WEBPACK_IMPORTED_MODULE_5__.constants.tabSize
+      )(code)
+    }
+
+    return contBefore(code)
+  }
+
+  /**
+   * At `>`, after optional whitespace.
+   *
+   * Also used to parse the first block quote opening.
+   *
+   * ```markdown
+   *   | > a
+   * > | > b
+   *     ^
+   * ```
+   *
+   * @type {State}
+   */
+  function contBefore(code) {
+    return effects.attempt(blockQuote, ok, nok)(code)
+  }
 }
 
 /** @type {Exiter} */
@@ -21623,16 +24165,17 @@ function exit(effects) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "characterEscape": () => (/* binding */ characterEscape)
+/* harmony export */   characterEscape: () => (/* binding */ characterEscape)
 /* harmony export */ });
-/* harmony import */ var uvu_assert__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! uvu/assert */ "../node_modules/uvu/assert/index.mjs");
 /* harmony import */ var micromark_util_character__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! micromark-util-character */ "../node_modules/micromark-util-character/dev/index.js");
 /* harmony import */ var micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! micromark-util-symbol/codes.js */ "../node_modules/micromark-util-symbol/codes.js");
 /* harmony import */ var micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! micromark-util-symbol/types.js */ "../node_modules/micromark-util-symbol/types.js");
+/* harmony import */ var uvu_assert__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! uvu/assert */ "../node_modules/uvu/assert/index.mjs");
 /**
  * @typedef {import('micromark-util-types').Construct} Construct
- * @typedef {import('micromark-util-types').Tokenizer} Tokenizer
  * @typedef {import('micromark-util-types').State} State
+ * @typedef {import('micromark-util-types').TokenizeContext} TokenizeContext
+ * @typedef {import('micromark-util-types').Tokenizer} Tokenizer
  */
 
 
@@ -21646,22 +24189,44 @@ const characterEscape = {
   tokenize: tokenizeCharacterEscape
 }
 
-/** @type {Tokenizer} */
+/**
+ * @this {TokenizeContext}
+ * @type {Tokenizer}
+ */
 function tokenizeCharacterEscape(effects, ok, nok) {
   return start
 
-  /** @type {State} */
+  /**
+   * Start of character escape.
+   *
+   * ```markdown
+   * > | a\*b
+   *      ^
+   * ```
+   *
+   * @type {State}
+   */
   function start(code) {
     ;(0,uvu_assert__WEBPACK_IMPORTED_MODULE_0__.ok)(code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.backslash, 'expected `\\`')
     effects.enter(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.characterEscape)
     effects.enter(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.escapeMarker)
     effects.consume(code)
     effects.exit(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.escapeMarker)
-    return open
+    return inside
   }
 
-  /** @type {State} */
-  function open(code) {
+  /**
+   * After `\`, at punctuation.
+   *
+   * ```markdown
+   * > | a\*b
+   *       ^
+   * ```
+   *
+   * @type {State}
+   */
+  function inside(code) {
+    // ASCII punctuation.
     if ((0,micromark_util_character__WEBPACK_IMPORTED_MODULE_3__.asciiPunctuation)(code)) {
       effects.enter(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.characterEscapeValue)
       effects.consume(code)
@@ -21686,20 +24251,20 @@ function tokenizeCharacterEscape(effects, ok, nok) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "characterReference": () => (/* binding */ characterReference)
+/* harmony export */   characterReference: () => (/* binding */ characterReference)
 /* harmony export */ });
-/* harmony import */ var uvu_assert__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! uvu/assert */ "../node_modules/uvu/assert/index.mjs");
 /* harmony import */ var decode_named_character_reference__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! decode-named-character-reference */ "../node_modules/decode-named-character-reference/index.dom.js");
 /* harmony import */ var micromark_util_character__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! micromark-util-character */ "../node_modules/micromark-util-character/dev/index.js");
 /* harmony import */ var micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! micromark-util-symbol/codes.js */ "../node_modules/micromark-util-symbol/codes.js");
 /* harmony import */ var micromark_util_symbol_constants_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! micromark-util-symbol/constants.js */ "../node_modules/micromark-util-symbol/constants.js");
 /* harmony import */ var micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! micromark-util-symbol/types.js */ "../node_modules/micromark-util-symbol/types.js");
+/* harmony import */ var uvu_assert__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! uvu/assert */ "../node_modules/uvu/assert/index.mjs");
 /**
- * @typedef {import('micromark-util-types').Construct} Construct
- * @typedef {import('micromark-util-types').Tokenizer} Tokenizer
- * @typedef {import('micromark-util-types').Token} Token
- * @typedef {import('micromark-util-types').State} State
  * @typedef {import('micromark-util-types').Code} Code
+ * @typedef {import('micromark-util-types').Construct} Construct
+ * @typedef {import('micromark-util-types').State} State
+ * @typedef {import('micromark-util-types').TokenizeContext} TokenizeContext
+ * @typedef {import('micromark-util-types').Tokenizer} Tokenizer
  */
 
 
@@ -21715,18 +24280,34 @@ const characterReference = {
   tokenize: tokenizeCharacterReference
 }
 
-/** @type {Tokenizer} */
+/**
+ * @this {TokenizeContext}
+ * @type {Tokenizer}
+ */
 function tokenizeCharacterReference(effects, ok, nok) {
   const self = this
   let size = 0
   /** @type {number} */
   let max
-  /** @type {(code: Code) => code is number} */
+  /** @type {(code: Code) => boolean} */
   let test
 
   return start
 
-  /** @type {State} */
+  /**
+   * Start of character reference.
+   *
+   * ```markdown
+   * > | a&amp;b
+   *      ^
+   * > | a&#123;b
+   *      ^
+   * > | a&#x9;b
+   *      ^
+   * ```
+   *
+   * @type {State}
+   */
   function start(code) {
     ;(0,uvu_assert__WEBPACK_IMPORTED_MODULE_0__.ok)(code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.ampersand, 'expected `&`')
     effects.enter(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.characterReference)
@@ -21736,7 +24317,21 @@ function tokenizeCharacterReference(effects, ok, nok) {
     return open
   }
 
-  /** @type {State} */
+  /**
+   * After `&`, at `#` for numeric references or alphanumeric for named
+   * references.
+   *
+   * ```markdown
+   * > | a&amp;b
+   *       ^
+   * > | a&#123;b
+   *       ^
+   * > | a&#x9;b
+   *       ^
+   * ```
+   *
+   * @type {State}
+   */
   function open(code) {
     if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.numberSign) {
       effects.enter(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.characterReferenceMarkerNumeric)
@@ -21751,7 +24346,18 @@ function tokenizeCharacterReference(effects, ok, nok) {
     return value(code)
   }
 
-  /** @type {State} */
+  /**
+   * After `#`, at `x` for hexadecimals or digit for decimals.
+   *
+   * ```markdown
+   * > | a&#123;b
+   *        ^
+   * > | a&#x9;b
+   *        ^
+   * ```
+   *
+   * @type {State}
+   */
   function numeric(code) {
     if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.uppercaseX || code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.lowercaseX) {
       effects.enter(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.characterReferenceMarkerHexadecimal)
@@ -21769,13 +24375,26 @@ function tokenizeCharacterReference(effects, ok, nok) {
     return value(code)
   }
 
-  /** @type {State} */
+  /**
+   * After markers (`&#x`, `&#`, or `&`), in value, before `;`.
+   *
+   * The character reference kind defines what and how many characters are
+   * allowed.
+   *
+   * ```markdown
+   * > | a&amp;b
+   *       ^^^
+   * > | a&#123;b
+   *        ^^^
+   * > | a&#x9;b
+   *         ^
+   * ```
+   *
+   * @type {State}
+   */
   function value(code) {
-    /** @type {Token} */
-    let token
-
     if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.semicolon && size) {
-      token = effects.exit(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.characterReferenceValue)
+      const token = effects.exit(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.characterReferenceValue)
 
       if (
         test === micromark_util_character__WEBPACK_IMPORTED_MODULE_4__.asciiAlphanumeric &&
@@ -21784,6 +24403,8 @@ function tokenizeCharacterReference(effects, ok, nok) {
         return nok(code)
       }
 
+      // To do: `markdown-rs` uses a different name:
+      // `CharacterReferenceMarkerSemi`.
       effects.enter(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.characterReferenceMarker)
       effects.consume(code)
       effects.exit(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.characterReferenceMarker)
@@ -21812,19 +24433,20 @@ function tokenizeCharacterReference(effects, ok, nok) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "codeFenced": () => (/* binding */ codeFenced)
+/* harmony export */   codeFenced: () => (/* binding */ codeFenced)
 /* harmony export */ });
-/* harmony import */ var uvu_assert__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! uvu/assert */ "../node_modules/uvu/assert/index.mjs");
-/* harmony import */ var micromark_factory_space__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! micromark-factory-space */ "../node_modules/micromark-factory-space/dev/index.js");
-/* harmony import */ var micromark_util_character__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! micromark-util-character */ "../node_modules/micromark-util-character/dev/index.js");
-/* harmony import */ var micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! micromark-util-symbol/codes.js */ "../node_modules/micromark-util-symbol/codes.js");
+/* harmony import */ var micromark_factory_space__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! micromark-factory-space */ "../node_modules/micromark-factory-space/dev/index.js");
+/* harmony import */ var micromark_util_character__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! micromark-util-character */ "../node_modules/micromark-util-character/dev/index.js");
+/* harmony import */ var micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! micromark-util-symbol/codes.js */ "../node_modules/micromark-util-symbol/codes.js");
 /* harmony import */ var micromark_util_symbol_constants_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! micromark-util-symbol/constants.js */ "../node_modules/micromark-util-symbol/constants.js");
-/* harmony import */ var micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! micromark-util-symbol/types.js */ "../node_modules/micromark-util-symbol/types.js");
+/* harmony import */ var micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! micromark-util-symbol/types.js */ "../node_modules/micromark-util-symbol/types.js");
+/* harmony import */ var uvu_assert__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! uvu/assert */ "../node_modules/uvu/assert/index.mjs");
 /**
- * @typedef {import('micromark-util-types').Construct} Construct
- * @typedef {import('micromark-util-types').Tokenizer} Tokenizer
- * @typedef {import('micromark-util-types').State} State
  * @typedef {import('micromark-util-types').Code} Code
+ * @typedef {import('micromark-util-types').Construct} Construct
+ * @typedef {import('micromark-util-types').State} State
+ * @typedef {import('micromark-util-types').TokenizeContext} TokenizeContext
+ * @typedef {import('micromark-util-types').Tokenizer} Tokenizer
  */
 
 
@@ -21835,220 +24457,499 @@ __webpack_require__.r(__webpack_exports__);
 
 
 /** @type {Construct} */
+const nonLazyContinuation = {
+  tokenize: tokenizeNonLazyContinuation,
+  partial: true
+}
+
+/** @type {Construct} */
 const codeFenced = {
   name: 'codeFenced',
   tokenize: tokenizeCodeFenced,
   concrete: true
 }
 
-/** @type {Tokenizer} */
+/**
+ * @this {TokenizeContext}
+ * @type {Tokenizer}
+ */
 function tokenizeCodeFenced(effects, ok, nok) {
   const self = this
   /** @type {Construct} */
-  const closingFenceConstruct = {tokenize: tokenizeClosingFence, partial: true}
-  /** @type {Construct} */
-  const nonLazyLine = {tokenize: tokenizeNonLazyLine, partial: true}
-  const tail = this.events[this.events.length - 1]
-  const initialPrefix =
-    tail && tail[1].type === micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.linePrefix
-      ? tail[2].sliceSerialize(tail[1], true).length
-      : 0
+  const closeStart = {tokenize: tokenizeCloseStart, partial: true}
+  let initialPrefix = 0
   let sizeOpen = 0
   /** @type {NonNullable<Code>} */
   let marker
 
   return start
 
-  /** @type {State} */
+  /**
+   * Start of code.
+   *
+   * ```markdown
+   * > | ~~~js
+   *     ^
+   *   | alert(1)
+   *   | ~~~
+   * ```
+   *
+   * @type {State}
+   */
   function start(code) {
-    ;(0,uvu_assert__WEBPACK_IMPORTED_MODULE_0__.ok)(
-      code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__.codes.graveAccent || code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__.codes.tilde,
+    // To do: parse whitespace like `markdown-rs`.
+    return beforeSequenceOpen(code)
+  }
+
+  /**
+   * In opening fence, after prefix, at sequence.
+   *
+   * ```markdown
+   * > | ~~~js
+   *     ^
+   *   | alert(1)
+   *   | ~~~
+   * ```
+   *
+   * @type {State}
+   */
+  function beforeSequenceOpen(code) {
+    (0,uvu_assert__WEBPACK_IMPORTED_MODULE_0__.ok)(
+      code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.graveAccent || code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.tilde,
       'expected `` ` `` or `~`'
     )
-    effects.enter(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.codeFenced)
-    effects.enter(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.codeFencedFence)
-    effects.enter(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.codeFencedFenceSequence)
+
+    const tail = self.events[self.events.length - 1]
+    initialPrefix =
+      tail && tail[1].type === micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.linePrefix
+        ? tail[2].sliceSerialize(tail[1], true).length
+        : 0
+
     marker = code
+    effects.enter(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.codeFenced)
+    effects.enter(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.codeFencedFence)
+    effects.enter(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.codeFencedFenceSequence)
     return sequenceOpen(code)
   }
 
-  /** @type {State} */
+  /**
+   * In opening fence sequence.
+   *
+   * ```markdown
+   * > | ~~~js
+   *      ^
+   *   | alert(1)
+   *   | ~~~
+   * ```
+   *
+   * @type {State}
+   */
   function sequenceOpen(code) {
     if (code === marker) {
-      effects.consume(code)
       sizeOpen++
+      effects.consume(code)
       return sequenceOpen
     }
 
-    effects.exit(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.codeFencedFenceSequence)
-    return sizeOpen < micromark_util_symbol_constants_js__WEBPACK_IMPORTED_MODULE_3__.constants.codeFencedSequenceSizeMin
-      ? nok(code)
-      : (0,micromark_factory_space__WEBPACK_IMPORTED_MODULE_4__.factorySpace)(effects, infoOpen, micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.whitespace)(code)
-  }
-
-  /** @type {State} */
-  function infoOpen(code) {
-    if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__.codes.eof || (0,micromark_util_character__WEBPACK_IMPORTED_MODULE_5__.markdownLineEnding)(code)) {
-      return openAfter(code)
+    if (sizeOpen < micromark_util_symbol_constants_js__WEBPACK_IMPORTED_MODULE_3__.constants.codeFencedSequenceSizeMin) {
+      return nok(code)
     }
 
-    effects.enter(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.codeFencedFenceInfo)
-    effects.enter(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.chunkString, {contentType: micromark_util_symbol_constants_js__WEBPACK_IMPORTED_MODULE_3__.constants.contentTypeString})
+    effects.exit(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.codeFencedFenceSequence)
+    return (0,micromark_util_character__WEBPACK_IMPORTED_MODULE_4__.markdownSpace)(code)
+      ? (0,micromark_factory_space__WEBPACK_IMPORTED_MODULE_5__.factorySpace)(effects, infoBefore, micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.whitespace)(code)
+      : infoBefore(code)
+  }
+
+  /**
+   * In opening fence, after the sequence (and optional whitespace), before info.
+   *
+   * ```markdown
+   * > | ~~~js
+   *        ^
+   *   | alert(1)
+   *   | ~~~
+   * ```
+   *
+   * @type {State}
+   */
+  function infoBefore(code) {
+    if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.eof || (0,micromark_util_character__WEBPACK_IMPORTED_MODULE_4__.markdownLineEnding)(code)) {
+      effects.exit(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.codeFencedFence)
+      return self.interrupt
+        ? ok(code)
+        : effects.check(nonLazyContinuation, atNonLazyBreak, after)(code)
+    }
+
+    effects.enter(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.codeFencedFenceInfo)
+    effects.enter(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.chunkString, {contentType: micromark_util_symbol_constants_js__WEBPACK_IMPORTED_MODULE_3__.constants.contentTypeString})
     return info(code)
   }
 
-  /** @type {State} */
+  /**
+   * In info.
+   *
+   * ```markdown
+   * > | ~~~js
+   *        ^
+   *   | alert(1)
+   *   | ~~~
+   * ```
+   *
+   * @type {State}
+   */
   function info(code) {
-    if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__.codes.eof || (0,micromark_util_character__WEBPACK_IMPORTED_MODULE_5__.markdownLineEndingOrSpace)(code)) {
-      effects.exit(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.chunkString)
-      effects.exit(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.codeFencedFenceInfo)
-      return (0,micromark_factory_space__WEBPACK_IMPORTED_MODULE_4__.factorySpace)(effects, infoAfter, micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.whitespace)(code)
+    if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.eof || (0,micromark_util_character__WEBPACK_IMPORTED_MODULE_4__.markdownLineEnding)(code)) {
+      effects.exit(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.chunkString)
+      effects.exit(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.codeFencedFenceInfo)
+      return infoBefore(code)
     }
 
-    if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__.codes.graveAccent && code === marker) return nok(code)
+    if ((0,micromark_util_character__WEBPACK_IMPORTED_MODULE_4__.markdownSpace)(code)) {
+      effects.exit(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.chunkString)
+      effects.exit(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.codeFencedFenceInfo)
+      return (0,micromark_factory_space__WEBPACK_IMPORTED_MODULE_5__.factorySpace)(effects, metaBefore, micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.whitespace)(code)
+    }
+
+    if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.graveAccent && code === marker) {
+      return nok(code)
+    }
+
     effects.consume(code)
     return info
   }
 
-  /** @type {State} */
-  function infoAfter(code) {
-    if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__.codes.eof || (0,micromark_util_character__WEBPACK_IMPORTED_MODULE_5__.markdownLineEnding)(code)) {
-      return openAfter(code)
+  /**
+   * In opening fence, after info and whitespace, before meta.
+   *
+   * ```markdown
+   * > | ~~~js eval
+   *           ^
+   *   | alert(1)
+   *   | ~~~
+   * ```
+   *
+   * @type {State}
+   */
+  function metaBefore(code) {
+    if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.eof || (0,micromark_util_character__WEBPACK_IMPORTED_MODULE_4__.markdownLineEnding)(code)) {
+      return infoBefore(code)
     }
 
-    effects.enter(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.codeFencedFenceMeta)
-    effects.enter(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.chunkString, {contentType: micromark_util_symbol_constants_js__WEBPACK_IMPORTED_MODULE_3__.constants.contentTypeString})
+    effects.enter(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.codeFencedFenceMeta)
+    effects.enter(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.chunkString, {contentType: micromark_util_symbol_constants_js__WEBPACK_IMPORTED_MODULE_3__.constants.contentTypeString})
     return meta(code)
   }
 
-  /** @type {State} */
+  /**
+   * In meta.
+   *
+   * ```markdown
+   * > | ~~~js eval
+   *           ^
+   *   | alert(1)
+   *   | ~~~
+   * ```
+   *
+   * @type {State}
+   */
   function meta(code) {
-    if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__.codes.eof || (0,micromark_util_character__WEBPACK_IMPORTED_MODULE_5__.markdownLineEnding)(code)) {
-      effects.exit(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.chunkString)
-      effects.exit(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.codeFencedFenceMeta)
-      return openAfter(code)
+    if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.eof || (0,micromark_util_character__WEBPACK_IMPORTED_MODULE_4__.markdownLineEnding)(code)) {
+      effects.exit(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.chunkString)
+      effects.exit(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.codeFencedFenceMeta)
+      return infoBefore(code)
     }
 
-    if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__.codes.graveAccent && code === marker) return nok(code)
+    if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.graveAccent && code === marker) {
+      return nok(code)
+    }
+
     effects.consume(code)
     return meta
   }
 
-  /** @type {State} */
-  function openAfter(code) {
-    effects.exit(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.codeFencedFence)
-    return self.interrupt ? ok(code) : contentStart(code)
+  /**
+   * At eol/eof in code, before a non-lazy closing fence or content.
+   *
+   * ```markdown
+   * > | ~~~js
+   *          ^
+   * > | alert(1)
+   *             ^
+   *   | ~~~
+   * ```
+   *
+   * @type {State}
+   */
+  function atNonLazyBreak(code) {
+    (0,uvu_assert__WEBPACK_IMPORTED_MODULE_0__.ok)((0,micromark_util_character__WEBPACK_IMPORTED_MODULE_4__.markdownLineEnding)(code), 'expected eol')
+    return effects.attempt(closeStart, after, contentBefore)(code)
   }
 
-  /** @type {State} */
+  /**
+   * Before code content, not a closing fence, at eol.
+   *
+   * ```markdown
+   *   | ~~~js
+   * > | alert(1)
+   *             ^
+   *   | ~~~
+   * ```
+   *
+   * @type {State}
+   */
+  function contentBefore(code) {
+    (0,uvu_assert__WEBPACK_IMPORTED_MODULE_0__.ok)((0,micromark_util_character__WEBPACK_IMPORTED_MODULE_4__.markdownLineEnding)(code), 'expected eol')
+    effects.enter(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.lineEnding)
+    effects.consume(code)
+    effects.exit(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.lineEnding)
+    return contentStart
+  }
+
+  /**
+   * Before code content, not a closing fence.
+   *
+   * ```markdown
+   *   | ~~~js
+   * > | alert(1)
+   *     ^
+   *   | ~~~
+   * ```
+   *
+   * @type {State}
+   */
   function contentStart(code) {
-    if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__.codes.eof) {
-      return after(code)
-    }
-
-    if ((0,micromark_util_character__WEBPACK_IMPORTED_MODULE_5__.markdownLineEnding)(code)) {
-      return effects.attempt(
-        nonLazyLine,
-        effects.attempt(
-          closingFenceConstruct,
-          after,
-          initialPrefix
-            ? (0,micromark_factory_space__WEBPACK_IMPORTED_MODULE_4__.factorySpace)(
-                effects,
-                contentStart,
-                micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.linePrefix,
-                initialPrefix + 1
-              )
-            : contentStart
-        ),
-        after
-      )(code)
-    }
-
-    effects.enter(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.codeFlowValue)
-    return contentContinue(code)
+    return initialPrefix > 0 && (0,micromark_util_character__WEBPACK_IMPORTED_MODULE_4__.markdownSpace)(code)
+      ? (0,micromark_factory_space__WEBPACK_IMPORTED_MODULE_5__.factorySpace)(
+          effects,
+          beforeContentChunk,
+          micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.linePrefix,
+          initialPrefix + 1
+        )(code)
+      : beforeContentChunk(code)
   }
 
-  /** @type {State} */
-  function contentContinue(code) {
-    if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__.codes.eof || (0,micromark_util_character__WEBPACK_IMPORTED_MODULE_5__.markdownLineEnding)(code)) {
-      effects.exit(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.codeFlowValue)
-      return contentStart(code)
+  /**
+   * Before code content, after optional prefix.
+   *
+   * ```markdown
+   *   | ~~~js
+   * > | alert(1)
+   *     ^
+   *   | ~~~
+   * ```
+   *
+   * @type {State}
+   */
+  function beforeContentChunk(code) {
+    if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.eof || (0,micromark_util_character__WEBPACK_IMPORTED_MODULE_4__.markdownLineEnding)(code)) {
+      return effects.check(nonLazyContinuation, atNonLazyBreak, after)(code)
+    }
+
+    effects.enter(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.codeFlowValue)
+    return contentChunk(code)
+  }
+
+  /**
+   * In code content.
+   *
+   * ```markdown
+   *   | ~~~js
+   * > | alert(1)
+   *     ^^^^^^^^
+   *   | ~~~
+   * ```
+   *
+   * @type {State}
+   */
+  function contentChunk(code) {
+    if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.eof || (0,micromark_util_character__WEBPACK_IMPORTED_MODULE_4__.markdownLineEnding)(code)) {
+      effects.exit(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.codeFlowValue)
+      return beforeContentChunk(code)
     }
 
     effects.consume(code)
-    return contentContinue
+    return contentChunk
   }
 
-  /** @type {State} */
+  /**
+   * After code.
+   *
+   * ```markdown
+   *   | ~~~js
+   *   | alert(1)
+   * > | ~~~
+   *        ^
+   * ```
+   *
+   * @type {State}
+   */
   function after(code) {
-    effects.exit(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.codeFenced)
+    effects.exit(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.codeFenced)
     return ok(code)
   }
 
-  /** @type {Tokenizer} */
-  function tokenizeNonLazyLine(effects, ok, nok) {
-    const self = this
-
-    return start
-
-    /** @type {State} */
-    function start(code) {
-      ;(0,uvu_assert__WEBPACK_IMPORTED_MODULE_0__.ok)((0,micromark_util_character__WEBPACK_IMPORTED_MODULE_5__.markdownLineEnding)(code), 'expected eol')
-      effects.enter(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.lineEnding)
-      effects.consume(code)
-      effects.exit(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.lineEnding)
-      return lineStart
-    }
-
-    /** @type {State} */
-    function lineStart(code) {
-      return self.parser.lazy[self.now().line] ? nok(code) : ok(code)
-    }
-  }
-
-  /** @type {Tokenizer} */
-  function tokenizeClosingFence(effects, ok, nok) {
+  /**
+   * @this {TokenizeContext}
+   * @type {Tokenizer}
+   */
+  function tokenizeCloseStart(effects, ok, nok) {
     let size = 0
 
-    return (0,micromark_factory_space__WEBPACK_IMPORTED_MODULE_4__.factorySpace)(
-      effects,
-      closingSequenceStart,
-      micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.linePrefix,
-      this.parser.constructs.disable.null.includes('codeIndented')
-        ? undefined
-        : micromark_util_symbol_constants_js__WEBPACK_IMPORTED_MODULE_3__.constants.tabSize
-    )
+    return startBefore
 
-    /** @type {State} */
-    function closingSequenceStart(code) {
-      effects.enter(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.codeFencedFence)
-      effects.enter(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.codeFencedFenceSequence)
-      return closingSequence(code)
+    /**
+     *
+     *
+     * @type {State}
+     */
+    function startBefore(code) {
+      ;(0,uvu_assert__WEBPACK_IMPORTED_MODULE_0__.ok)((0,micromark_util_character__WEBPACK_IMPORTED_MODULE_4__.markdownLineEnding)(code), 'expected eol')
+      effects.enter(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.lineEnding)
+      effects.consume(code)
+      effects.exit(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.lineEnding)
+      return start
     }
 
-    /** @type {State} */
-    function closingSequence(code) {
+    /**
+     * Before closing fence, at optional whitespace.
+     *
+     * ```markdown
+     *   | ~~~js
+     *   | alert(1)
+     * > | ~~~
+     *     ^
+     * ```
+     *
+     * @type {State}
+     */
+    function start(code) {
+      // Always populated by defaults.
+      (0,uvu_assert__WEBPACK_IMPORTED_MODULE_0__.ok)(
+        self.parser.constructs.disable.null,
+        'expected `disable.null` to be populated'
+      )
+
+      // To do: `enter` here or in next state?
+      effects.enter(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.codeFencedFence)
+      return (0,micromark_util_character__WEBPACK_IMPORTED_MODULE_4__.markdownSpace)(code)
+        ? (0,micromark_factory_space__WEBPACK_IMPORTED_MODULE_5__.factorySpace)(
+            effects,
+            beforeSequenceClose,
+            micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.linePrefix,
+            self.parser.constructs.disable.null.includes('codeIndented')
+              ? undefined
+              : micromark_util_symbol_constants_js__WEBPACK_IMPORTED_MODULE_3__.constants.tabSize
+          )(code)
+        : beforeSequenceClose(code)
+    }
+
+    /**
+     * In closing fence, after optional whitespace, at sequence.
+     *
+     * ```markdown
+     *   | ~~~js
+     *   | alert(1)
+     * > | ~~~
+     *     ^
+     * ```
+     *
+     * @type {State}
+     */
+    function beforeSequenceClose(code) {
       if (code === marker) {
-        effects.consume(code)
-        size++
-        return closingSequence
+        effects.enter(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.codeFencedFenceSequence)
+        return sequenceClose(code)
       }
 
-      if (size < sizeOpen) return nok(code)
-      effects.exit(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.codeFencedFenceSequence)
-      return (0,micromark_factory_space__WEBPACK_IMPORTED_MODULE_4__.factorySpace)(effects, closingSequenceEnd, micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.whitespace)(code)
+      return nok(code)
     }
 
-    /** @type {State} */
-    function closingSequenceEnd(code) {
-      if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__.codes.eof || (0,micromark_util_character__WEBPACK_IMPORTED_MODULE_5__.markdownLineEnding)(code)) {
-        effects.exit(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.codeFencedFence)
+    /**
+     * In closing fence sequence.
+     *
+     * ```markdown
+     *   | ~~~js
+     *   | alert(1)
+     * > | ~~~
+     *     ^
+     * ```
+     *
+     * @type {State}
+     */
+    function sequenceClose(code) {
+      if (code === marker) {
+        size++
+        effects.consume(code)
+        return sequenceClose
+      }
+
+      if (size >= sizeOpen) {
+        effects.exit(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.codeFencedFenceSequence)
+        return (0,micromark_util_character__WEBPACK_IMPORTED_MODULE_4__.markdownSpace)(code)
+          ? (0,micromark_factory_space__WEBPACK_IMPORTED_MODULE_5__.factorySpace)(effects, sequenceCloseAfter, micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.whitespace)(code)
+          : sequenceCloseAfter(code)
+      }
+
+      return nok(code)
+    }
+
+    /**
+     * After closing fence sequence, after optional whitespace.
+     *
+     * ```markdown
+     *   | ~~~js
+     *   | alert(1)
+     * > | ~~~
+     *        ^
+     * ```
+     *
+     * @type {State}
+     */
+    function sequenceCloseAfter(code) {
+      if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.eof || (0,micromark_util_character__WEBPACK_IMPORTED_MODULE_4__.markdownLineEnding)(code)) {
+        effects.exit(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.codeFencedFence)
         return ok(code)
       }
 
       return nok(code)
     }
+  }
+}
+
+/**
+ * @this {TokenizeContext}
+ * @type {Tokenizer}
+ */
+function tokenizeNonLazyContinuation(effects, ok, nok) {
+  const self = this
+
+  return start
+
+  /**
+   *
+   *
+   * @type {State}
+   */
+  function start(code) {
+    if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.eof) {
+      return nok(code)
+    }
+
+    (0,uvu_assert__WEBPACK_IMPORTED_MODULE_0__.ok)((0,micromark_util_character__WEBPACK_IMPORTED_MODULE_4__.markdownLineEnding)(code), 'expected eol')
+    effects.enter(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.lineEnding)
+    effects.consume(code)
+    effects.exit(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.lineEnding)
+    return lineStart
+  }
+
+  /**
+   *
+   *
+   * @type {State}
+   */
+  function lineStart(code) {
+    return self.parser.lazy[self.now().line] ? nok(code) : ok(code)
   }
 }
 
@@ -22064,20 +24965,21 @@ function tokenizeCodeFenced(effects, ok, nok) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "codeIndented": () => (/* binding */ codeIndented)
+/* harmony export */   codeIndented: () => (/* binding */ codeIndented)
 /* harmony export */ });
-/* harmony import */ var micromark_factory_space__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! micromark-factory-space */ "../node_modules/micromark-factory-space/dev/index.js");
-/* harmony import */ var micromark_util_character__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! micromark-util-character */ "../node_modules/micromark-util-character/dev/index.js");
-/* harmony import */ var micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! micromark-util-symbol/codes.js */ "../node_modules/micromark-util-symbol/codes.js");
-/* harmony import */ var micromark_util_symbol_constants_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! micromark-util-symbol/constants.js */ "../node_modules/micromark-util-symbol/constants.js");
-/* harmony import */ var micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! micromark-util-symbol/types.js */ "../node_modules/micromark-util-symbol/types.js");
+/* harmony import */ var micromark_factory_space__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! micromark-factory-space */ "../node_modules/micromark-factory-space/dev/index.js");
+/* harmony import */ var micromark_util_character__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! micromark-util-character */ "../node_modules/micromark-util-character/dev/index.js");
+/* harmony import */ var micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! micromark-util-symbol/codes.js */ "../node_modules/micromark-util-symbol/codes.js");
+/* harmony import */ var micromark_util_symbol_constants_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! micromark-util-symbol/constants.js */ "../node_modules/micromark-util-symbol/constants.js");
+/* harmony import */ var micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! micromark-util-symbol/types.js */ "../node_modules/micromark-util-symbol/types.js");
+/* harmony import */ var uvu_assert__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! uvu/assert */ "../node_modules/uvu/assert/index.mjs");
 /**
  * @typedef {import('micromark-util-types').Construct} Construct
- * @typedef {import('micromark-util-types').Tokenizer} Tokenizer
- * @typedef {import('micromark-util-types').Resolver} Resolver
- * @typedef {import('micromark-util-types').Token} Token
  * @typedef {import('micromark-util-types').State} State
+ * @typedef {import('micromark-util-types').TokenizeContext} TokenizeContext
+ * @typedef {import('micromark-util-types').Tokenizer} Tokenizer
  */
+
 
 
 
@@ -22092,103 +24994,182 @@ const codeIndented = {
 }
 
 /** @type {Construct} */
-const indentedContent = {tokenize: tokenizeIndentedContent, partial: true}
+const furtherStart = {tokenize: tokenizeFurtherStart, partial: true}
 
-/** @type {Tokenizer} */
+/**
+ * @this {TokenizeContext}
+ * @type {Tokenizer}
+ */
 function tokenizeCodeIndented(effects, ok, nok) {
   const self = this
   return start
 
-  /** @type {State} */
+  /**
+   * Start of code (indented).
+   *
+   * > **Parsing note**: it is not needed to check if this first line is a
+   * > filled line (that it has a non-whitespace character), because blank lines
+   * > are parsed already, so we never run into that.
+   *
+   * ```markdown
+   * > |     aaa
+   *     ^
+   * ```
+   *
+   * @type {State}
+   */
   function start(code) {
-    effects.enter(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_0__.types.codeIndented)
-    return (0,micromark_factory_space__WEBPACK_IMPORTED_MODULE_1__.factorySpace)(
+    // To do: manually check if interrupting like `markdown-rs`.
+    ;(0,uvu_assert__WEBPACK_IMPORTED_MODULE_0__.ok)((0,micromark_util_character__WEBPACK_IMPORTED_MODULE_1__.markdownSpace)(code))
+    effects.enter(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.codeIndented)
+    // To do: use an improved `space_or_tab` function like `markdown-rs`,
+    // so that we can drop the next state.
+    return (0,micromark_factory_space__WEBPACK_IMPORTED_MODULE_3__.factorySpace)(
       effects,
-      afterStartPrefix,
-      micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_0__.types.linePrefix,
-      micromark_util_symbol_constants_js__WEBPACK_IMPORTED_MODULE_2__.constants.tabSize + 1
+      afterPrefix,
+      micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.linePrefix,
+      micromark_util_symbol_constants_js__WEBPACK_IMPORTED_MODULE_4__.constants.tabSize + 1
     )(code)
   }
 
-  /** @type {State} */
-  function afterStartPrefix(code) {
+  /**
+   * At start, after 1 or 4 spaces.
+   *
+   * ```markdown
+   * > |     aaa
+   *         ^
+   * ```
+   *
+   * @type {State}
+   */
+  function afterPrefix(code) {
     const tail = self.events[self.events.length - 1]
     return tail &&
-      tail[1].type === micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_0__.types.linePrefix &&
-      tail[2].sliceSerialize(tail[1], true).length >= micromark_util_symbol_constants_js__WEBPACK_IMPORTED_MODULE_2__.constants.tabSize
-      ? afterPrefix(code)
+      tail[1].type === micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.linePrefix &&
+      tail[2].sliceSerialize(tail[1], true).length >= micromark_util_symbol_constants_js__WEBPACK_IMPORTED_MODULE_4__.constants.tabSize
+      ? atBreak(code)
       : nok(code)
   }
 
-  /** @type {State} */
-  function afterPrefix(code) {
-    if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_3__.codes.eof) {
+  /**
+   * At a break.
+   *
+   * ```markdown
+   * > |     aaa
+   *         ^  ^
+   * ```
+   *
+   * @type {State}
+   */
+  function atBreak(code) {
+    if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_5__.codes.eof) {
       return after(code)
     }
 
-    if ((0,micromark_util_character__WEBPACK_IMPORTED_MODULE_4__.markdownLineEnding)(code)) {
-      return effects.attempt(indentedContent, afterPrefix, after)(code)
+    if ((0,micromark_util_character__WEBPACK_IMPORTED_MODULE_1__.markdownLineEnding)(code)) {
+      return effects.attempt(furtherStart, atBreak, after)(code)
     }
 
-    effects.enter(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_0__.types.codeFlowValue)
-    return content(code)
+    effects.enter(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.codeFlowValue)
+    return inside(code)
   }
 
-  /** @type {State} */
-  function content(code) {
-    if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_3__.codes.eof || (0,micromark_util_character__WEBPACK_IMPORTED_MODULE_4__.markdownLineEnding)(code)) {
-      effects.exit(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_0__.types.codeFlowValue)
-      return afterPrefix(code)
+  /**
+   * In code content.
+   *
+   * ```markdown
+   * > |     aaa
+   *         ^^^^
+   * ```
+   *
+   * @type {State}
+   */
+  function inside(code) {
+    if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_5__.codes.eof || (0,micromark_util_character__WEBPACK_IMPORTED_MODULE_1__.markdownLineEnding)(code)) {
+      effects.exit(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.codeFlowValue)
+      return atBreak(code)
     }
 
     effects.consume(code)
-    return content
+    return inside
   }
 
   /** @type {State} */
   function after(code) {
-    effects.exit(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_0__.types.codeIndented)
+    effects.exit(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.codeIndented)
+    // To do: allow interrupting like `markdown-rs`.
+    // Feel free to interrupt.
+    // tokenizer.interrupt = false
     return ok(code)
   }
 }
 
-/** @type {Tokenizer} */
-function tokenizeIndentedContent(effects, ok, nok) {
+/**
+ * @this {TokenizeContext}
+ * @type {Tokenizer}
+ */
+function tokenizeFurtherStart(effects, ok, nok) {
   const self = this
 
-  return start
+  return furtherStart
 
-  /** @type {State} */
-  function start(code) {
+  /**
+   * At eol, trying to parse another indent.
+   *
+   * ```markdown
+   * > |     aaa
+   *            ^
+   *   |     bbb
+   * ```
+   *
+   * @type {State}
+   */
+  function furtherStart(code) {
+    // To do: improve `lazy` / `pierce` handling.
     // If this is a lazy line, it can’t be code.
     if (self.parser.lazy[self.now().line]) {
       return nok(code)
     }
 
-    if ((0,micromark_util_character__WEBPACK_IMPORTED_MODULE_4__.markdownLineEnding)(code)) {
-      effects.enter(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_0__.types.lineEnding)
+    if ((0,micromark_util_character__WEBPACK_IMPORTED_MODULE_1__.markdownLineEnding)(code)) {
+      effects.enter(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.lineEnding)
       effects.consume(code)
-      effects.exit(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_0__.types.lineEnding)
-      return start
+      effects.exit(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.lineEnding)
+      return furtherStart
     }
 
-    return (0,micromark_factory_space__WEBPACK_IMPORTED_MODULE_1__.factorySpace)(
+    // To do: the code here in `micromark-js` is a bit different from
+    // `markdown-rs` because there it can attempt spaces.
+    // We can’t yet.
+    //
+    // To do: use an improved `space_or_tab` function like `markdown-rs`,
+    // so that we can drop the next state.
+    return (0,micromark_factory_space__WEBPACK_IMPORTED_MODULE_3__.factorySpace)(
       effects,
       afterPrefix,
-      micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_0__.types.linePrefix,
-      micromark_util_symbol_constants_js__WEBPACK_IMPORTED_MODULE_2__.constants.tabSize + 1
+      micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.linePrefix,
+      micromark_util_symbol_constants_js__WEBPACK_IMPORTED_MODULE_4__.constants.tabSize + 1
     )(code)
   }
 
-  /** @type {State} */
+  /**
+   * At start, after 1 or 4 spaces.
+   *
+   * ```markdown
+   * > |     aaa
+   *         ^
+   * ```
+   *
+   * @type {State}
+   */
   function afterPrefix(code) {
     const tail = self.events[self.events.length - 1]
     return tail &&
-      tail[1].type === micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_0__.types.linePrefix &&
-      tail[2].sliceSerialize(tail[1], true).length >= micromark_util_symbol_constants_js__WEBPACK_IMPORTED_MODULE_2__.constants.tabSize
+      tail[1].type === micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.linePrefix &&
+      tail[2].sliceSerialize(tail[1], true).length >= micromark_util_symbol_constants_js__WEBPACK_IMPORTED_MODULE_4__.constants.tabSize
       ? ok(code)
-      : (0,micromark_util_character__WEBPACK_IMPORTED_MODULE_4__.markdownLineEnding)(code)
-      ? start(code)
+      : (0,micromark_util_character__WEBPACK_IMPORTED_MODULE_1__.markdownLineEnding)(code)
+      ? furtherStart(code)
       : nok(code)
   }
 }
@@ -22205,19 +25186,20 @@ function tokenizeIndentedContent(effects, ok, nok) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "codeText": () => (/* binding */ codeText)
+/* harmony export */   codeText: () => (/* binding */ codeText)
 /* harmony export */ });
-/* harmony import */ var uvu_assert__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! uvu/assert */ "../node_modules/uvu/assert/index.mjs");
 /* harmony import */ var micromark_util_character__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! micromark-util-character */ "../node_modules/micromark-util-character/dev/index.js");
 /* harmony import */ var micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! micromark-util-symbol/codes.js */ "../node_modules/micromark-util-symbol/codes.js");
 /* harmony import */ var micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! micromark-util-symbol/types.js */ "../node_modules/micromark-util-symbol/types.js");
+/* harmony import */ var uvu_assert__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! uvu/assert */ "../node_modules/uvu/assert/index.mjs");
 /**
  * @typedef {import('micromark-util-types').Construct} Construct
- * @typedef {import('micromark-util-types').Resolver} Resolver
- * @typedef {import('micromark-util-types').Tokenizer} Tokenizer
  * @typedef {import('micromark-util-types').Previous} Previous
- * @typedef {import('micromark-util-types').Token} Token
+ * @typedef {import('micromark-util-types').Resolver} Resolver
  * @typedef {import('micromark-util-types').State} State
+ * @typedef {import('micromark-util-types').Token} Token
+ * @typedef {import('micromark-util-types').TokenizeContext} TokenizeContext
+ * @typedef {import('micromark-util-types').Tokenizer} Tokenizer
  */
 
 
@@ -22233,13 +25215,14 @@ const codeText = {
   previous
 }
 
+// To do: next major: don’t resolve, like `markdown-rs`.
 /** @type {Resolver} */
 function resolveCodeText(events) {
   let tailExitIndex = events.length - 4
   let headEnterIndex = 3
   /** @type {number} */
   let index
-  /** @type {number|undefined} */
+  /** @type {number | undefined} */
   let enter
 
   // If we start and end with an EOL or a space.
@@ -22296,7 +25279,10 @@ function resolveCodeText(events) {
   return events
 }
 
-/** @type {Previous} */
+/**
+ * @this {TokenizeContext}
+ * @type {Previous}
+ */
 function previous(code) {
   // If there is a previous code, there will always be a tail.
   return (
@@ -22305,7 +25291,10 @@ function previous(code) {
   )
 }
 
-/** @type {Tokenizer} */
+/**
+ * @this {TokenizeContext}
+ * @type {Tokenizer}
+ */
 function tokenizeCodeText(effects, ok, nok) {
   const self = this
   let sizeOpen = 0
@@ -22316,55 +25305,85 @@ function tokenizeCodeText(effects, ok, nok) {
 
   return start
 
-  /** @type {State} */
+  /**
+   * Start of code (text).
+   *
+   * ```markdown
+   * > | `a`
+   *     ^
+   * > | \`a`
+   *      ^
+   * ```
+   *
+   * @type {State}
+   */
   function start(code) {
     ;(0,uvu_assert__WEBPACK_IMPORTED_MODULE_0__.ok)(code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__.codes.graveAccent, 'expected `` ` ``')
     ;(0,uvu_assert__WEBPACK_IMPORTED_MODULE_0__.ok)(previous.call(self, self.previous), 'expected correct previous')
     effects.enter(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.codeText)
     effects.enter(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.codeTextSequence)
-    return openingSequence(code)
+    return sequenceOpen(code)
   }
 
-  /** @type {State} */
-  function openingSequence(code) {
+  /**
+   * In opening sequence.
+   *
+   * ```markdown
+   * > | `a`
+   *     ^
+   * ```
+   *
+   * @type {State}
+   */
+  function sequenceOpen(code) {
     if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__.codes.graveAccent) {
       effects.consume(code)
       sizeOpen++
-      return openingSequence
+      return sequenceOpen
     }
 
     effects.exit(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.codeTextSequence)
-    return gap(code)
+    return between(code)
   }
 
-  /** @type {State} */
-  function gap(code) {
+  /**
+   * Between something and something else.
+   *
+   * ```markdown
+   * > | `a`
+   *      ^^
+   * ```
+   *
+   * @type {State}
+   */
+  function between(code) {
     // EOF.
     if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__.codes.eof) {
       return nok(code)
     }
 
-    // Closing fence?
-    // Could also be data.
-    if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__.codes.graveAccent) {
-      token = effects.enter(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.codeTextSequence)
-      size = 0
-      return closingSequence(code)
-    }
-
+    // To do: next major: don’t do spaces in resolve, but when compiling,
+    // like `markdown-rs`.
     // Tabs don’t work, and virtual spaces don’t make sense.
     if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__.codes.space) {
       effects.enter('space')
       effects.consume(code)
       effects.exit('space')
-      return gap
+      return between
+    }
+
+    // Closing fence? Could also be data.
+    if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__.codes.graveAccent) {
+      token = effects.enter(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.codeTextSequence)
+      size = 0
+      return sequenceClose(code)
     }
 
     if ((0,micromark_util_character__WEBPACK_IMPORTED_MODULE_3__.markdownLineEnding)(code)) {
       effects.enter(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.lineEnding)
       effects.consume(code)
       effects.exit(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.lineEnding)
-      return gap
+      return between
     }
 
     // Data.
@@ -22372,8 +25391,16 @@ function tokenizeCodeText(effects, ok, nok) {
     return data(code)
   }
 
-  // In code.
-  /** @type {State} */
+  /**
+   * In data.
+   *
+   * ```markdown
+   * > | `a`
+   *      ^
+   * ```
+   *
+   * @type {State}
+   */
   function data(code) {
     if (
       code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__.codes.eof ||
@@ -22382,21 +25409,29 @@ function tokenizeCodeText(effects, ok, nok) {
       (0,micromark_util_character__WEBPACK_IMPORTED_MODULE_3__.markdownLineEnding)(code)
     ) {
       effects.exit(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.codeTextData)
-      return gap(code)
+      return between(code)
     }
 
     effects.consume(code)
     return data
   }
 
-  // Closing fence.
-  /** @type {State} */
-  function closingSequence(code) {
+  /**
+   * In closing sequence.
+   *
+   * ```markdown
+   * > | `a`
+   *       ^
+   * ```
+   *
+   * @type {State}
+   */
+  function sequenceClose(code) {
     // More.
     if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__.codes.graveAccent) {
       effects.consume(code)
       size++
-      return closingSequence
+      return sequenceClose
     }
 
     // Done!
@@ -22424,21 +25459,22 @@ function tokenizeCodeText(effects, ok, nok) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "content": () => (/* binding */ content)
+/* harmony export */   content: () => (/* binding */ content)
 /* harmony export */ });
-/* harmony import */ var uvu_assert__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! uvu/assert */ "../node_modules/uvu/assert/index.mjs");
 /* harmony import */ var micromark_factory_space__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! micromark-factory-space */ "../node_modules/micromark-factory-space/dev/index.js");
 /* harmony import */ var micromark_util_character__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! micromark-util-character */ "../node_modules/micromark-util-character/dev/index.js");
 /* harmony import */ var micromark_util_subtokenize__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! micromark-util-subtokenize */ "../node_modules/micromark-util-subtokenize/dev/index.js");
 /* harmony import */ var micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! micromark-util-symbol/codes.js */ "../node_modules/micromark-util-symbol/codes.js");
 /* harmony import */ var micromark_util_symbol_constants_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! micromark-util-symbol/constants.js */ "../node_modules/micromark-util-symbol/constants.js");
 /* harmony import */ var micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! micromark-util-symbol/types.js */ "../node_modules/micromark-util-symbol/types.js");
+/* harmony import */ var uvu_assert__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! uvu/assert */ "../node_modules/uvu/assert/index.mjs");
 /**
  * @typedef {import('micromark-util-types').Construct} Construct
  * @typedef {import('micromark-util-types').Resolver} Resolver
- * @typedef {import('micromark-util-types').Tokenizer} Tokenizer
- * @typedef {import('micromark-util-types').Token} Token
  * @typedef {import('micromark-util-types').State} State
+ * @typedef {import('micromark-util-types').Token} Token
+ * @typedef {import('micromark-util-types').TokenizeContext} TokenizeContext
+ * @typedef {import('micromark-util-types').Tokenizer} Tokenizer
  */
 
 
@@ -22469,15 +25505,27 @@ function resolveContent(events) {
   return events
 }
 
-/** @type {Tokenizer} */
+/**
+ * @this {TokenizeContext}
+ * @type {Tokenizer}
+ */
 function tokenizeContent(effects, ok) {
-  /** @type {Token} */
+  /** @type {Token | undefined} */
   let previous
 
-  return start
+  return chunkStart
 
-  /** @type {State} */
-  function start(code) {
+  /**
+   * Before a content chunk.
+   *
+   * ```markdown
+   * > | abc
+   *     ^
+   * ```
+   *
+   * @type {State}
+   */
+  function chunkStart(code) {
     ;(0,uvu_assert__WEBPACK_IMPORTED_MODULE_0__.ok)(
       code !== micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__.codes.eof && !(0,micromark_util_character__WEBPACK_IMPORTED_MODULE_3__.markdownLineEnding)(code),
       'expected no eof or eol'
@@ -22487,15 +25535,26 @@ function tokenizeContent(effects, ok) {
     previous = effects.enter(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_4__.types.chunkContent, {
       contentType: micromark_util_symbol_constants_js__WEBPACK_IMPORTED_MODULE_5__.constants.contentTypeContent
     })
-    return data(code)
+    return chunkInside(code)
   }
 
-  /** @type {State} */
-  function data(code) {
+  /**
+   * In a content chunk.
+   *
+   * ```markdown
+   * > | abc
+   *     ^^^
+   * ```
+   *
+   * @type {State}
+   */
+  function chunkInside(code) {
     if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__.codes.eof) {
       return contentEnd(code)
     }
 
+    // To do: in `markdown-rs`, each line is parsed on its own, and everything
+    // is stitched together resolving.
     if ((0,micromark_util_character__WEBPACK_IMPORTED_MODULE_3__.markdownLineEnding)(code)) {
       return effects.check(
         continuationConstruct,
@@ -22506,37 +25565,53 @@ function tokenizeContent(effects, ok) {
 
     // Data.
     effects.consume(code)
-    return data
+    return chunkInside
   }
 
-  /** @type {State} */
+  /**
+   *
+   *
+   * @type {State}
+   */
   function contentEnd(code) {
     effects.exit(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_4__.types.chunkContent)
     effects.exit(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_4__.types.content)
     return ok(code)
   }
 
-  /** @type {State} */
+  /**
+   *
+   *
+   * @type {State}
+   */
   function contentContinue(code) {
     (0,uvu_assert__WEBPACK_IMPORTED_MODULE_0__.ok)((0,micromark_util_character__WEBPACK_IMPORTED_MODULE_3__.markdownLineEnding)(code), 'expected eol')
     effects.consume(code)
     effects.exit(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_4__.types.chunkContent)
+    ;(0,uvu_assert__WEBPACK_IMPORTED_MODULE_0__.ok)(previous, 'expected previous token')
     previous.next = effects.enter(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_4__.types.chunkContent, {
       contentType: micromark_util_symbol_constants_js__WEBPACK_IMPORTED_MODULE_5__.constants.contentTypeContent,
       previous
     })
     previous = previous.next
-    return data
+    return chunkInside
   }
 }
 
-/** @type {Tokenizer} */
+/**
+ * @this {TokenizeContext}
+ * @type {Tokenizer}
+ */
 function tokenizeContinuation(effects, ok, nok) {
   const self = this
 
   return startLookahead
 
-  /** @type {State} */
+  /**
+   *
+   *
+   * @type {State}
+   */
   function startLookahead(code) {
     ;(0,uvu_assert__WEBPACK_IMPORTED_MODULE_0__.ok)((0,micromark_util_character__WEBPACK_IMPORTED_MODULE_3__.markdownLineEnding)(code), 'expected a line ending')
     effects.exit(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_4__.types.chunkContent)
@@ -22546,11 +25621,21 @@ function tokenizeContinuation(effects, ok, nok) {
     return (0,micromark_factory_space__WEBPACK_IMPORTED_MODULE_6__.factorySpace)(effects, prefixed, micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_4__.types.linePrefix)
   }
 
-  /** @type {State} */
+  /**
+   *
+   *
+   * @type {State}
+   */
   function prefixed(code) {
     if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__.codes.eof || (0,micromark_util_character__WEBPACK_IMPORTED_MODULE_3__.markdownLineEnding)(code)) {
       return nok(code)
     }
+
+    // Always populated by defaults.
+    (0,uvu_assert__WEBPACK_IMPORTED_MODULE_0__.ok)(
+      self.parser.constructs.disable.null,
+      'expected `disable.null` to be populated'
+    )
 
     const tail = self.events[self.events.length - 1]
 
@@ -22579,22 +25664,23 @@ function tokenizeContinuation(effects, ok, nok) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "definition": () => (/* binding */ definition)
+/* harmony export */   definition: () => (/* binding */ definition)
 /* harmony export */ });
-/* harmony import */ var uvu_assert__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! uvu/assert */ "../node_modules/uvu/assert/index.mjs");
-/* harmony import */ var micromark_factory_destination__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! micromark-factory-destination */ "../node_modules/micromark-factory-destination/dev/index.js");
+/* harmony import */ var micromark_factory_destination__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! micromark-factory-destination */ "../node_modules/micromark-factory-destination/dev/index.js");
 /* harmony import */ var micromark_factory_label__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! micromark-factory-label */ "../node_modules/micromark-factory-label/dev/index.js");
-/* harmony import */ var micromark_factory_space__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! micromark-factory-space */ "../node_modules/micromark-factory-space/dev/index.js");
+/* harmony import */ var micromark_factory_space__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! micromark-factory-space */ "../node_modules/micromark-factory-space/dev/index.js");
 /* harmony import */ var micromark_factory_title__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! micromark-factory-title */ "../node_modules/micromark-factory-title/dev/index.js");
-/* harmony import */ var micromark_factory_whitespace__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! micromark-factory-whitespace */ "../node_modules/micromark-factory-whitespace/dev/index.js");
+/* harmony import */ var micromark_factory_whitespace__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! micromark-factory-whitespace */ "../node_modules/micromark-factory-whitespace/dev/index.js");
+/* harmony import */ var micromark_util_character__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! micromark-util-character */ "../node_modules/micromark-util-character/dev/index.js");
 /* harmony import */ var micromark_util_normalize_identifier__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! micromark-util-normalize-identifier */ "../node_modules/micromark-util-normalize-identifier/dev/index.js");
-/* harmony import */ var micromark_util_character__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! micromark-util-character */ "../node_modules/micromark-util-character/dev/index.js");
-/* harmony import */ var micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! micromark-util-symbol/codes.js */ "../node_modules/micromark-util-symbol/codes.js");
-/* harmony import */ var micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! micromark-util-symbol/types.js */ "../node_modules/micromark-util-symbol/types.js");
+/* harmony import */ var micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! micromark-util-symbol/codes.js */ "../node_modules/micromark-util-symbol/codes.js");
+/* harmony import */ var micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! micromark-util-symbol/types.js */ "../node_modules/micromark-util-symbol/types.js");
+/* harmony import */ var uvu_assert__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! uvu/assert */ "../node_modules/uvu/assert/index.mjs");
 /**
  * @typedef {import('micromark-util-types').Construct} Construct
- * @typedef {import('micromark-util-types').Tokenizer} Tokenizer
  * @typedef {import('micromark-util-types').State} State
+ * @typedef {import('micromark-util-types').TokenizeContext} TokenizeContext
+ * @typedef {import('micromark-util-types').Tokenizer} Tokenizer
  */
 
 
@@ -22612,9 +25698,12 @@ __webpack_require__.r(__webpack_exports__);
 const definition = {name: 'definition', tokenize: tokenizeDefinition}
 
 /** @type {Construct} */
-const titleConstruct = {tokenize: tokenizeTitle, partial: true}
+const titleBefore = {tokenize: tokenizeTitleBefore, partial: true}
 
-/** @type {Tokenizer} */
+/**
+ * @this {TokenizeContext}
+ * @type {Tokenizer}
+ */
 function tokenizeDefinition(effects, ok, nok) {
   const self = this
   /** @type {string} */
@@ -22622,64 +25711,171 @@ function tokenizeDefinition(effects, ok, nok) {
 
   return start
 
-  /** @type {State} */
+  /**
+   * At start of a definition.
+   *
+   * ```markdown
+   * > | [a]: b "c"
+   *     ^
+   * ```
+   *
+   * @type {State}
+   */
   function start(code) {
-    ;(0,uvu_assert__WEBPACK_IMPORTED_MODULE_0__.ok)(code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.leftSquareBracket, 'expected `[`')
-    effects.enter(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.definition)
+    // Do not interrupt paragraphs (but do follow definitions).
+    // To do: do `interrupt` the way `markdown-rs` does.
+    // To do: parse whitespace the way `markdown-rs` does.
+    effects.enter(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.definition)
+    return before(code)
+  }
+
+  /**
+   * After optional whitespace, at `[`.
+   *
+   * ```markdown
+   * > | [a]: b "c"
+   *     ^
+   * ```
+   *
+   * @type {State}
+   */
+  function before(code) {
+    // To do: parse whitespace the way `markdown-rs` does.
+    (0,uvu_assert__WEBPACK_IMPORTED_MODULE_0__.ok)(code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__.codes.leftSquareBracket, 'expected `[`')
     return micromark_factory_label__WEBPACK_IMPORTED_MODULE_3__.factoryLabel.call(
       self,
       effects,
       labelAfter,
+      // Note: we don’t need to reset the way `markdown-rs` does.
       nok,
-      micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.definitionLabel,
-      micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.definitionLabelMarker,
-      micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.definitionLabelString
+      micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.definitionLabel,
+      micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.definitionLabelMarker,
+      micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.definitionLabelString
     )(code)
   }
 
-  /** @type {State} */
+  /**
+   * After label.
+   *
+   * ```markdown
+   * > | [a]: b "c"
+   *        ^
+   * ```
+   *
+   * @type {State}
+   */
   function labelAfter(code) {
     identifier = (0,micromark_util_normalize_identifier__WEBPACK_IMPORTED_MODULE_4__.normalizeIdentifier)(
       self.sliceSerialize(self.events[self.events.length - 1][1]).slice(1, -1)
     )
 
-    if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.colon) {
-      effects.enter(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.definitionMarker)
+    if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__.codes.colon) {
+      effects.enter(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.definitionMarker)
       effects.consume(code)
-      effects.exit(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.definitionMarker)
-
-      // Note: blank lines can’t exist in content.
-      return (0,micromark_factory_whitespace__WEBPACK_IMPORTED_MODULE_5__.factoryWhitespace)(
-        effects,
-        (0,micromark_factory_destination__WEBPACK_IMPORTED_MODULE_6__.factoryDestination)(
-          effects,
-          effects.attempt(
-            titleConstruct,
-            (0,micromark_factory_space__WEBPACK_IMPORTED_MODULE_7__.factorySpace)(effects, after, micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.whitespace),
-            (0,micromark_factory_space__WEBPACK_IMPORTED_MODULE_7__.factorySpace)(effects, after, micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.whitespace)
-          ),
-          nok,
-          micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.definitionDestination,
-          micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.definitionDestinationLiteral,
-          micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.definitionDestinationLiteralMarker,
-          micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.definitionDestinationRaw,
-          micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.definitionDestinationString
-        )
-      )
+      effects.exit(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.definitionMarker)
+      return markerAfter
     }
 
     return nok(code)
   }
 
-  /** @type {State} */
+  /**
+   * After marker.
+   *
+   * ```markdown
+   * > | [a]: b "c"
+   *         ^
+   * ```
+   *
+   * @type {State}
+   */
+  function markerAfter(code) {
+    // Note: whitespace is optional.
+    return (0,micromark_util_character__WEBPACK_IMPORTED_MODULE_5__.markdownLineEndingOrSpace)(code)
+      ? (0,micromark_factory_whitespace__WEBPACK_IMPORTED_MODULE_6__.factoryWhitespace)(effects, destinationBefore)(code)
+      : destinationBefore(code)
+  }
+
+  /**
+   * Before destination.
+   *
+   * ```markdown
+   * > | [a]: b "c"
+   *          ^
+   * ```
+   *
+   * @type {State}
+   */
+  function destinationBefore(code) {
+    return (0,micromark_factory_destination__WEBPACK_IMPORTED_MODULE_7__.factoryDestination)(
+      effects,
+      destinationAfter,
+      // Note: we don’t need to reset the way `markdown-rs` does.
+      nok,
+      micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.definitionDestination,
+      micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.definitionDestinationLiteral,
+      micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.definitionDestinationLiteralMarker,
+      micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.definitionDestinationRaw,
+      micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.definitionDestinationString
+    )(code)
+  }
+
+  /**
+   * After destination.
+   *
+   * ```markdown
+   * > | [a]: b "c"
+   *           ^
+   * ```
+   *
+   * @type {State}
+   */
+  function destinationAfter(code) {
+    return effects.attempt(titleBefore, after, after)(code)
+  }
+
+  /**
+   * After definition.
+   *
+   * ```markdown
+   * > | [a]: b
+   *           ^
+   * > | [a]: b "c"
+   *               ^
+   * ```
+   *
+   * @type {State}
+   */
   function after(code) {
-    if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.eof || (0,micromark_util_character__WEBPACK_IMPORTED_MODULE_8__.markdownLineEnding)(code)) {
-      effects.exit(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.definition)
+    return (0,micromark_util_character__WEBPACK_IMPORTED_MODULE_5__.markdownSpace)(code)
+      ? (0,micromark_factory_space__WEBPACK_IMPORTED_MODULE_8__.factorySpace)(effects, afterWhitespace, micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.whitespace)(code)
+      : afterWhitespace(code)
+  }
 
-      if (!self.parser.defined.includes(identifier)) {
-        self.parser.defined.push(identifier)
-      }
+  /**
+   * After definition, after optional whitespace.
+   *
+   * ```markdown
+   * > | [a]: b
+   *           ^
+   * > | [a]: b "c"
+   *               ^
+   * ```
+   *
+   * @type {State}
+   */
+  function afterWhitespace(code) {
+    if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__.codes.eof || (0,micromark_util_character__WEBPACK_IMPORTED_MODULE_5__.markdownLineEnding)(code)) {
+      effects.exit(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.definition)
 
+      // Note: we don’t care about uniqueness.
+      // It’s likely that that doesn’t happen very frequently.
+      // It is more likely that it wastes precious time.
+      self.parser.defined.push(identifier)
+
+      // To do: `markdown-rs` interrupt.
+      // // You’d be interrupting.
+      // tokenizer.interrupt = true
       return ok(code)
     }
 
@@ -22687,40 +25883,85 @@ function tokenizeDefinition(effects, ok, nok) {
   }
 }
 
-/** @type {Tokenizer} */
-function tokenizeTitle(effects, ok, nok) {
-  return start
+/**
+ * @this {TokenizeContext}
+ * @type {Tokenizer}
+ */
+function tokenizeTitleBefore(effects, ok, nok) {
+  return titleBefore
 
-  /** @type {State} */
-  function start(code) {
-    return (0,micromark_util_character__WEBPACK_IMPORTED_MODULE_8__.markdownLineEndingOrSpace)(code)
-      ? (0,micromark_factory_whitespace__WEBPACK_IMPORTED_MODULE_5__.factoryWhitespace)(effects, before)(code)
+  /**
+   * After destination, at whitespace.
+   *
+   * ```markdown
+   * > | [a]: b
+   *           ^
+   * > | [a]: b "c"
+   *           ^
+   * ```
+   *
+   * @type {State}
+   */
+  function titleBefore(code) {
+    return (0,micromark_util_character__WEBPACK_IMPORTED_MODULE_5__.markdownLineEndingOrSpace)(code)
+      ? (0,micromark_factory_whitespace__WEBPACK_IMPORTED_MODULE_6__.factoryWhitespace)(effects, beforeMarker)(code)
       : nok(code)
   }
 
-  /** @type {State} */
-  function before(code) {
-    if (
-      code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.quotationMark ||
-      code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.apostrophe ||
-      code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.leftParenthesis
-    ) {
-      return (0,micromark_factory_title__WEBPACK_IMPORTED_MODULE_9__.factoryTitle)(
-        effects,
-        (0,micromark_factory_space__WEBPACK_IMPORTED_MODULE_7__.factorySpace)(effects, after, micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.whitespace),
-        nok,
-        micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.definitionTitle,
-        micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.definitionTitleMarker,
-        micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.definitionTitleString
-      )(code)
-    }
-
-    return nok(code)
+  /**
+   * At title.
+   *
+   * ```markdown
+   *   | [a]: b
+   * > | "c"
+   *     ^
+   * ```
+   *
+   * @type {State}
+   */
+  function beforeMarker(code) {
+    return (0,micromark_factory_title__WEBPACK_IMPORTED_MODULE_9__.factoryTitle)(
+      effects,
+      titleAfter,
+      nok,
+      micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.definitionTitle,
+      micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.definitionTitleMarker,
+      micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.definitionTitleString
+    )(code)
   }
 
-  /** @type {State} */
-  function after(code) {
-    return code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.eof || (0,micromark_util_character__WEBPACK_IMPORTED_MODULE_8__.markdownLineEnding)(code) ? ok(code) : nok(code)
+  /**
+   * After title.
+   *
+   * ```markdown
+   * > | [a]: b "c"
+   *               ^
+   * ```
+   *
+   * @type {State}
+   */
+  function titleAfter(code) {
+    return (0,micromark_util_character__WEBPACK_IMPORTED_MODULE_5__.markdownSpace)(code)
+      ? (0,micromark_factory_space__WEBPACK_IMPORTED_MODULE_8__.factorySpace)(
+          effects,
+          titleAfterOptionalWhitespace,
+          micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.whitespace
+        )(code)
+      : titleAfterOptionalWhitespace(code)
+  }
+
+  /**
+   * After title, after optional whitespace.
+   *
+   * ```markdown
+   * > | [a]: b "c"
+   *               ^
+   * ```
+   *
+   * @type {State}
+   */
+  function titleAfterOptionalWhitespace(code) {
+    return code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__.codes.eof || (0,micromark_util_character__WEBPACK_IMPORTED_MODULE_5__.markdownLineEnding)(code) ? ok(code) : nok(code)
   }
 }
 
@@ -22736,16 +25977,17 @@ function tokenizeTitle(effects, ok, nok) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "hardBreakEscape": () => (/* binding */ hardBreakEscape)
+/* harmony export */   hardBreakEscape: () => (/* binding */ hardBreakEscape)
 /* harmony export */ });
-/* harmony import */ var uvu_assert__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! uvu/assert */ "../node_modules/uvu/assert/index.mjs");
 /* harmony import */ var micromark_util_character__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! micromark-util-character */ "../node_modules/micromark-util-character/dev/index.js");
 /* harmony import */ var micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! micromark-util-symbol/codes.js */ "../node_modules/micromark-util-symbol/codes.js");
 /* harmony import */ var micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! micromark-util-symbol/types.js */ "../node_modules/micromark-util-symbol/types.js");
+/* harmony import */ var uvu_assert__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! uvu/assert */ "../node_modules/uvu/assert/index.mjs");
 /**
  * @typedef {import('micromark-util-types').Construct} Construct
- * @typedef {import('micromark-util-types').Tokenizer} Tokenizer
  * @typedef {import('micromark-util-types').State} State
+ * @typedef {import('micromark-util-types').TokenizeContext} TokenizeContext
+ * @typedef {import('micromark-util-types').Tokenizer} Tokenizer
  */
 
 
@@ -22759,23 +26001,44 @@ const hardBreakEscape = {
   tokenize: tokenizeHardBreakEscape
 }
 
-/** @type {Tokenizer} */
+/**
+ * @this {TokenizeContext}
+ * @type {Tokenizer}
+ */
 function tokenizeHardBreakEscape(effects, ok, nok) {
   return start
 
-  /** @type {State} */
+  /**
+   * Start of a hard break (escape).
+   *
+   * ```markdown
+   * > | a\
+   *      ^
+   *   | b
+   * ```
+   *
+   * @type {State}
+   */
   function start(code) {
     ;(0,uvu_assert__WEBPACK_IMPORTED_MODULE_0__.ok)(code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.backslash, 'expected `\\`')
     effects.enter(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.hardBreakEscape)
-    effects.enter(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.escapeMarker)
     effects.consume(code)
-    return open
+    return after
   }
 
-  /** @type {State} */
-  function open(code) {
+  /**
+   * After `\`, at eol.
+   *
+   * ```markdown
+   * > | a\
+   *       ^
+   *   | b
+   * ```
+   *
+   *  @type {State}
+   */
+  function after(code) {
     if ((0,micromark_util_character__WEBPACK_IMPORTED_MODULE_3__.markdownLineEnding)(code)) {
-      effects.exit(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.escapeMarker)
       effects.exit(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.hardBreakEscape)
       return ok(code)
     }
@@ -22796,21 +26059,22 @@ function tokenizeHardBreakEscape(effects, ok, nok) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "headingAtx": () => (/* binding */ headingAtx)
+/* harmony export */   headingAtx: () => (/* binding */ headingAtx)
 /* harmony export */ });
-/* harmony import */ var uvu_assert__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! uvu/assert */ "../node_modules/uvu/assert/index.mjs");
 /* harmony import */ var micromark_factory_space__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! micromark-factory-space */ "../node_modules/micromark-factory-space/dev/index.js");
 /* harmony import */ var micromark_util_character__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! micromark-util-character */ "../node_modules/micromark-util-character/dev/index.js");
 /* harmony import */ var micromark_util_chunked__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! micromark-util-chunked */ "../node_modules/micromark-util-chunked/dev/index.js");
 /* harmony import */ var micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! micromark-util-symbol/codes.js */ "../node_modules/micromark-util-symbol/codes.js");
 /* harmony import */ var micromark_util_symbol_constants_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! micromark-util-symbol/constants.js */ "../node_modules/micromark-util-symbol/constants.js");
 /* harmony import */ var micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! micromark-util-symbol/types.js */ "../node_modules/micromark-util-symbol/types.js");
+/* harmony import */ var uvu_assert__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! uvu/assert */ "../node_modules/uvu/assert/index.mjs");
 /**
  * @typedef {import('micromark-util-types').Construct} Construct
  * @typedef {import('micromark-util-types').Resolver} Resolver
- * @typedef {import('micromark-util-types').Tokenizer} Tokenizer
- * @typedef {import('micromark-util-types').Token} Token
  * @typedef {import('micromark-util-types').State} State
+ * @typedef {import('micromark-util-types').Token} Token
+ * @typedef {import('micromark-util-types').TokenizeContext} TokenizeContext
+ * @typedef {import('micromark-util-types').Tokenizer} Tokenizer
  */
 
 
@@ -22869,7 +26133,6 @@ function resolveHeadingAtx(events, context) {
       type: micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.chunkText,
       start: events[contentStart][1].start,
       end: events[contentEnd][1].end,
-      // @ts-expect-error Constants are fine to assign.
       contentType: micromark_util_symbol_constants_js__WEBPACK_IMPORTED_MODULE_2__.constants.contentTypeText
     }
 
@@ -22884,71 +26147,141 @@ function resolveHeadingAtx(events, context) {
   return events
 }
 
-/** @type {Tokenizer} */
+/**
+ * @this {TokenizeContext}
+ * @type {Tokenizer}
+ */
 function tokenizeHeadingAtx(effects, ok, nok) {
-  const self = this
   let size = 0
 
   return start
 
-  /** @type {State} */
+  /**
+   * Start of a heading (atx).
+   *
+   * ```markdown
+   * > | ## aa
+   *     ^
+   * ```
+   *
+   * @type {State}
+   */
   function start(code) {
-    ;(0,uvu_assert__WEBPACK_IMPORTED_MODULE_0__.ok)(code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_4__.codes.numberSign, 'expected `#`')
+    // To do: parse indent like `markdown-rs`.
     effects.enter(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.atxHeading)
-    effects.enter(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.atxHeadingSequence)
-    return fenceOpenInside(code)
+    return before(code)
   }
 
-  /** @type {State} */
-  function fenceOpenInside(code) {
+  /**
+   * After optional whitespace, at `#`.
+   *
+   * ```markdown
+   * > | ## aa
+   *     ^
+   * ```
+   *
+   * @type {State}
+   */
+  function before(code) {
+    (0,uvu_assert__WEBPACK_IMPORTED_MODULE_0__.ok)(code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_4__.codes.numberSign, 'expected `#`')
+    effects.enter(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.atxHeadingSequence)
+    return sequenceOpen(code)
+  }
+
+  /**
+   * In opening sequence.
+   *
+   * ```markdown
+   * > | ## aa
+   *     ^
+   * ```
+   *
+   * @type {State}
+   */
+  function sequenceOpen(code) {
     if (
       code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_4__.codes.numberSign &&
       size++ < micromark_util_symbol_constants_js__WEBPACK_IMPORTED_MODULE_2__.constants.atxHeadingOpeningFenceSizeMax
     ) {
       effects.consume(code)
-      return fenceOpenInside
+      return sequenceOpen
     }
 
+    // Always at least one `#`.
     if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_4__.codes.eof || (0,micromark_util_character__WEBPACK_IMPORTED_MODULE_5__.markdownLineEndingOrSpace)(code)) {
       effects.exit(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.atxHeadingSequence)
-      return self.interrupt ? ok(code) : headingBreak(code)
+      return atBreak(code)
     }
 
     return nok(code)
   }
 
-  /** @type {State} */
-  function headingBreak(code) {
+  /**
+   * After something, before something else.
+   *
+   * ```markdown
+   * > | ## aa
+   *       ^
+   * ```
+   *
+   * @type {State}
+   */
+  function atBreak(code) {
     if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_4__.codes.numberSign) {
       effects.enter(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.atxHeadingSequence)
-      return sequence(code)
+      return sequenceFurther(code)
     }
 
     if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_4__.codes.eof || (0,micromark_util_character__WEBPACK_IMPORTED_MODULE_5__.markdownLineEnding)(code)) {
       effects.exit(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.atxHeading)
+      // To do: interrupt like `markdown-rs`.
+      // // Feel free to interrupt.
+      // tokenizer.interrupt = false
       return ok(code)
     }
 
     if ((0,micromark_util_character__WEBPACK_IMPORTED_MODULE_5__.markdownSpace)(code)) {
-      return (0,micromark_factory_space__WEBPACK_IMPORTED_MODULE_6__.factorySpace)(effects, headingBreak, micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.whitespace)(code)
+      return (0,micromark_factory_space__WEBPACK_IMPORTED_MODULE_6__.factorySpace)(effects, atBreak, micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.whitespace)(code)
     }
 
+    // To do: generate `data` tokens, add the `text` token later.
+    // Needs edit map, see: `markdown.rs`.
     effects.enter(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.atxHeadingText)
     return data(code)
   }
 
-  /** @type {State} */
-  function sequence(code) {
+  /**
+   * In further sequence (after whitespace).
+   *
+   * Could be normal “visible” hashes in the heading or a final sequence.
+   *
+   * ```markdown
+   * > | ## aa ##
+   *           ^
+   * ```
+   *
+   * @type {State}
+   */
+  function sequenceFurther(code) {
     if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_4__.codes.numberSign) {
       effects.consume(code)
-      return sequence
+      return sequenceFurther
     }
 
     effects.exit(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.atxHeadingSequence)
-    return headingBreak(code)
+    return atBreak(code)
   }
 
-  /** @type {State} */
+  /**
+   * In text.
+   *
+   * ```markdown
+   * > | ## aa
+   *        ^
+   * ```
+   *
+   * @type {State}
+   */
   function data(code) {
     if (
       code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_4__.codes.eof ||
@@ -22956,7 +26289,7 @@ function tokenizeHeadingAtx(effects, ok, nok) {
       (0,micromark_util_character__WEBPACK_IMPORTED_MODULE_5__.markdownLineEndingOrSpace)(code)
     ) {
       effects.exit(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.atxHeadingText)
-      return headingBreak(code)
+      return atBreak(code)
     }
 
     effects.consume(code)
@@ -22976,21 +26309,22 @@ function tokenizeHeadingAtx(effects, ok, nok) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "htmlFlow": () => (/* binding */ htmlFlow)
+/* harmony export */   htmlFlow: () => (/* binding */ htmlFlow)
 /* harmony export */ });
-/* harmony import */ var uvu_assert__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! uvu/assert */ "../node_modules/uvu/assert/index.mjs");
 /* harmony import */ var micromark_util_character__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! micromark-util-character */ "../node_modules/micromark-util-character/dev/index.js");
 /* harmony import */ var micromark_util_html_tag_name__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! micromark-util-html-tag-name */ "../node_modules/micromark-util-html-tag-name/index.js");
 /* harmony import */ var micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! micromark-util-symbol/codes.js */ "../node_modules/micromark-util-symbol/codes.js");
 /* harmony import */ var micromark_util_symbol_constants_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! micromark-util-symbol/constants.js */ "../node_modules/micromark-util-symbol/constants.js");
 /* harmony import */ var micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! micromark-util-symbol/types.js */ "../node_modules/micromark-util-symbol/types.js");
+/* harmony import */ var uvu_assert__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! uvu/assert */ "../node_modules/uvu/assert/index.mjs");
 /* harmony import */ var _blank_line_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./blank-line.js */ "../node_modules/micromark-core-commonmark/dev/lib/blank-line.js");
 /**
+ * @typedef {import('micromark-util-types').Code} Code
  * @typedef {import('micromark-util-types').Construct} Construct
  * @typedef {import('micromark-util-types').Resolver} Resolver
- * @typedef {import('micromark-util-types').Tokenizer} Tokenizer
  * @typedef {import('micromark-util-types').State} State
- * @typedef {import('micromark-util-types').Code} Code
+ * @typedef {import('micromark-util-types').TokenizeContext} TokenizeContext
+ * @typedef {import('micromark-util-types').Tokenizer} Tokenizer
  */
 
 
@@ -23010,7 +26344,11 @@ const htmlFlow = {
 }
 
 /** @type {Construct} */
-const nextBlankConstruct = {tokenize: tokenizeNextBlank, partial: true}
+const blankLineBefore = {tokenize: tokenizeBlankLineBefore, partial: true}
+const nonLazyContinuationStart = {
+  tokenize: tokenizeNonLazyContinuationStart,
+  partial: true
+}
 
 /** @type {Resolver} */
 function resolveToHtmlFlow(events) {
@@ -23037,114 +26375,209 @@ function resolveToHtmlFlow(events) {
   return events
 }
 
-/** @type {Tokenizer} */
+/**
+ * @this {TokenizeContext}
+ * @type {Tokenizer}
+ */
 function tokenizeHtmlFlow(effects, ok, nok) {
   const self = this
   /** @type {number} */
-  let kind
+  let marker
   /** @type {boolean} */
-  let startTag
+  let closingTag
   /** @type {string} */
   let buffer
   /** @type {number} */
   let index
   /** @type {Code} */
-  let marker
+  let markerB
 
   return start
 
-  /** @type {State} */
+  /**
+   * Start of HTML (flow).
+   *
+   * ```markdown
+   * > | <x />
+   *     ^
+   * ```
+   *
+   * @type {State}
+   */
   function start(code) {
-    ;(0,uvu_assert__WEBPACK_IMPORTED_MODULE_0__.ok)(code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__.codes.lessThan, 'expected `<`')
+    // To do: parse indent like `markdown-rs`.
+    return before(code)
+  }
+
+  /**
+   * At `<`, after optional whitespace.
+   *
+   * ```markdown
+   * > | <x />
+   *     ^
+   * ```
+   *
+   * @type {State}
+   */
+  function before(code) {
+    (0,uvu_assert__WEBPACK_IMPORTED_MODULE_0__.ok)(code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__.codes.lessThan, 'expected `<`')
     effects.enter(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.htmlFlow)
     effects.enter(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.htmlFlowData)
     effects.consume(code)
     return open
   }
 
-  /** @type {State} */
+  /**
+   * After `<`, at tag name or other stuff.
+   *
+   * ```markdown
+   * > | <x />
+   *      ^
+   * > | <!doctype>
+   *      ^
+   * > | <!--xxx-->
+   *      ^
+   * ```
+   *
+   * @type {State}
+   */
   function open(code) {
     if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__.codes.exclamationMark) {
       effects.consume(code)
-      return declarationStart
+      return declarationOpen
     }
 
     if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__.codes.slash) {
       effects.consume(code)
+      closingTag = true
       return tagCloseStart
     }
 
     if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__.codes.questionMark) {
       effects.consume(code)
-      kind = micromark_util_symbol_constants_js__WEBPACK_IMPORTED_MODULE_3__.constants.htmlInstruction
+      marker = micromark_util_symbol_constants_js__WEBPACK_IMPORTED_MODULE_3__.constants.htmlInstruction
+      // To do:
+      // tokenizer.concrete = true
+      // To do: use `markdown-rs` style interrupt.
       // While we’re in an instruction instead of a declaration, we’re on a `?`
       // right now, so we do need to search for `>`, similar to declarations.
       return self.interrupt ? ok : continuationDeclarationInside
     }
 
+    // ASCII alphabetical.
     if ((0,micromark_util_character__WEBPACK_IMPORTED_MODULE_4__.asciiAlpha)(code)) {
       effects.consume(code)
+      // @ts-expect-error: not null.
       buffer = String.fromCharCode(code)
-      startTag = true
       return tagName
     }
 
     return nok(code)
   }
 
-  /** @type {State} */
-  function declarationStart(code) {
+  /**
+   * After `<!`, at declaration, comment, or CDATA.
+   *
+   * ```markdown
+   * > | <!doctype>
+   *       ^
+   * > | <!--xxx-->
+   *       ^
+   * > | <![CDATA[>&<]]>
+   *       ^
+   * ```
+   *
+   * @type {State}
+   */
+  function declarationOpen(code) {
     if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__.codes.dash) {
       effects.consume(code)
-      kind = micromark_util_symbol_constants_js__WEBPACK_IMPORTED_MODULE_3__.constants.htmlComment
+      marker = micromark_util_symbol_constants_js__WEBPACK_IMPORTED_MODULE_3__.constants.htmlComment
       return commentOpenInside
     }
 
     if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__.codes.leftSquareBracket) {
       effects.consume(code)
-      kind = micromark_util_symbol_constants_js__WEBPACK_IMPORTED_MODULE_3__.constants.htmlCdata
-      buffer = micromark_util_symbol_constants_js__WEBPACK_IMPORTED_MODULE_3__.constants.cdataOpeningString
+      marker = micromark_util_symbol_constants_js__WEBPACK_IMPORTED_MODULE_3__.constants.htmlCdata
       index = 0
       return cdataOpenInside
     }
 
+    // ASCII alphabetical.
     if ((0,micromark_util_character__WEBPACK_IMPORTED_MODULE_4__.asciiAlpha)(code)) {
       effects.consume(code)
-      kind = micromark_util_symbol_constants_js__WEBPACK_IMPORTED_MODULE_3__.constants.htmlDeclaration
+      marker = micromark_util_symbol_constants_js__WEBPACK_IMPORTED_MODULE_3__.constants.htmlDeclaration
+      // // Do not form containers.
+      // tokenizer.concrete = true
       return self.interrupt ? ok : continuationDeclarationInside
     }
 
     return nok(code)
   }
 
-  /** @type {State} */
+  /**
+   * After `<!-`, inside a comment, at another `-`.
+   *
+   * ```markdown
+   * > | <!--xxx-->
+   *        ^
+   * ```
+   *
+   * @type {State}
+   */
   function commentOpenInside(code) {
     if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__.codes.dash) {
       effects.consume(code)
+      // // Do not form containers.
+      // tokenizer.concrete = true
       return self.interrupt ? ok : continuationDeclarationInside
     }
 
     return nok(code)
   }
 
-  /** @type {State} */
+  /**
+   * After `<![`, inside CDATA, expecting `CDATA[`.
+   *
+   * ```markdown
+   * > | <![CDATA[>&<]]>
+   *        ^^^^^^
+   * ```
+   *
+   * @type {State}
+   */
   function cdataOpenInside(code) {
-    if (code === buffer.charCodeAt(index++)) {
+    const value = micromark_util_symbol_constants_js__WEBPACK_IMPORTED_MODULE_3__.constants.cdataOpeningString
+
+    if (code === value.charCodeAt(index++)) {
       effects.consume(code)
-      return index === buffer.length
-        ? self.interrupt
-          ? ok
-          : continuation
-        : cdataOpenInside
+
+      if (index === value.length) {
+        // // Do not form containers.
+        // tokenizer.concrete = true
+        return self.interrupt ? ok : continuation
+      }
+
+      return cdataOpenInside
     }
 
     return nok(code)
   }
 
-  /** @type {State} */
+  /**
+   * After `</`, in closing tag, at tag name.
+   *
+   * ```markdown
+   * > | </x>
+   *       ^
+   * ```
+   *
+   * @type {State}
+   */
   function tagCloseStart(code) {
     if ((0,micromark_util_character__WEBPACK_IMPORTED_MODULE_4__.asciiAlpha)(code)) {
       effects.consume(code)
+      // @ts-expect-error: not null.
       buffer = String.fromCharCode(code)
       return tagName
     }
@@ -23152,7 +26585,18 @@ function tokenizeHtmlFlow(effects, ok, nok) {
     return nok(code)
   }
 
-  /** @type {State} */
+  /**
+   * In tag name.
+   *
+   * ```markdown
+   * > | <ab>
+   *      ^^
+   * > | </ab>
+   *       ^^
+   * ```
+   *
+   * @type {State}
+   */
   function tagName(code) {
     if (
       code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__.codes.eof ||
@@ -23160,35 +26604,39 @@ function tokenizeHtmlFlow(effects, ok, nok) {
       code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__.codes.greaterThan ||
       (0,micromark_util_character__WEBPACK_IMPORTED_MODULE_4__.markdownLineEndingOrSpace)(code)
     ) {
-      if (
-        code !== micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__.codes.slash &&
-        startTag &&
-        micromark_util_html_tag_name__WEBPACK_IMPORTED_MODULE_5__.htmlRawNames.includes(buffer.toLowerCase())
-      ) {
-        kind = micromark_util_symbol_constants_js__WEBPACK_IMPORTED_MODULE_3__.constants.htmlRaw
+      const slash = code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__.codes.slash
+      const name = buffer.toLowerCase()
+
+      if (!slash && !closingTag && micromark_util_html_tag_name__WEBPACK_IMPORTED_MODULE_5__.htmlRawNames.includes(name)) {
+        marker = micromark_util_symbol_constants_js__WEBPACK_IMPORTED_MODULE_3__.constants.htmlRaw
+        // // Do not form containers.
+        // tokenizer.concrete = true
         return self.interrupt ? ok(code) : continuation(code)
       }
 
       if (micromark_util_html_tag_name__WEBPACK_IMPORTED_MODULE_5__.htmlBlockNames.includes(buffer.toLowerCase())) {
-        kind = micromark_util_symbol_constants_js__WEBPACK_IMPORTED_MODULE_3__.constants.htmlBasic
+        marker = micromark_util_symbol_constants_js__WEBPACK_IMPORTED_MODULE_3__.constants.htmlBasic
 
-        if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__.codes.slash) {
+        if (slash) {
           effects.consume(code)
           return basicSelfClosing
         }
 
+        // // Do not form containers.
+        // tokenizer.concrete = true
         return self.interrupt ? ok(code) : continuation(code)
       }
 
-      kind = micromark_util_symbol_constants_js__WEBPACK_IMPORTED_MODULE_3__.constants.htmlComplete
-      // Do not support complete HTML when interrupting
+      marker = micromark_util_symbol_constants_js__WEBPACK_IMPORTED_MODULE_3__.constants.htmlComplete
+      // Do not support complete HTML when interrupting.
       return self.interrupt && !self.parser.lazy[self.now().line]
         ? nok(code)
-        : startTag
-        ? completeAttributeNameBefore(code)
-        : completeClosingTagAfter(code)
+        : closingTag
+        ? completeClosingTagAfter(code)
+        : completeAttributeNameBefore(code)
     }
 
+    // ASCII alphanumerical and `-`.
     if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__.codes.dash || (0,micromark_util_character__WEBPACK_IMPORTED_MODULE_4__.asciiAlphanumeric)(code)) {
       effects.consume(code)
       buffer += String.fromCharCode(code)
@@ -23198,17 +26646,37 @@ function tokenizeHtmlFlow(effects, ok, nok) {
     return nok(code)
   }
 
-  /** @type {State} */
+  /**
+   * After closing slash of a basic tag name.
+   *
+   * ```markdown
+   * > | <div/>
+   *          ^
+   * ```
+   *
+   * @type {State}
+   */
   function basicSelfClosing(code) {
     if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__.codes.greaterThan) {
       effects.consume(code)
+      // // Do not form containers.
+      // tokenizer.concrete = true
       return self.interrupt ? ok : continuation
     }
 
     return nok(code)
   }
 
-  /** @type {State} */
+  /**
+   * After closing slash of a complete tag name.
+   *
+   * ```markdown
+   * > | <x/>
+   *        ^
+   * ```
+   *
+   * @type {State}
+   */
   function completeClosingTagAfter(code) {
     if ((0,micromark_util_character__WEBPACK_IMPORTED_MODULE_4__.markdownSpace)(code)) {
       effects.consume(code)
@@ -23218,13 +26686,36 @@ function tokenizeHtmlFlow(effects, ok, nok) {
     return completeEnd(code)
   }
 
-  /** @type {State} */
+  /**
+   * At an attribute name.
+   *
+   * At first, this state is used after a complete tag name, after whitespace,
+   * where it expects optional attributes or the end of the tag.
+   * It is also reused after attributes, when expecting more optional
+   * attributes.
+   *
+   * ```markdown
+   * > | <a />
+   *        ^
+   * > | <a :b>
+   *        ^
+   * > | <a _b>
+   *        ^
+   * > | <a b>
+   *        ^
+   * > | <a >
+   *        ^
+   * ```
+   *
+   * @type {State}
+   */
   function completeAttributeNameBefore(code) {
     if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__.codes.slash) {
       effects.consume(code)
       return completeEnd
     }
 
+    // ASCII alphanumerical and `:` and `_`.
     if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__.codes.colon || code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__.codes.underscore || (0,micromark_util_character__WEBPACK_IMPORTED_MODULE_4__.asciiAlpha)(code)) {
       effects.consume(code)
       return completeAttributeName
@@ -23238,8 +26729,22 @@ function tokenizeHtmlFlow(effects, ok, nok) {
     return completeEnd(code)
   }
 
-  /** @type {State} */
+  /**
+   * In attribute name.
+   *
+   * ```markdown
+   * > | <a :b>
+   *         ^
+   * > | <a _b>
+   *         ^
+   * > | <a b>
+   *         ^
+   * ```
+   *
+   * @type {State}
+   */
   function completeAttributeName(code) {
+    // ASCII alphanumerical and `-`, `.`, `:`, and `_`.
     if (
       code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__.codes.dash ||
       code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__.codes.dot ||
@@ -23254,7 +26759,19 @@ function tokenizeHtmlFlow(effects, ok, nok) {
     return completeAttributeNameAfter(code)
   }
 
-  /** @type {State} */
+  /**
+   * After attribute name, at an optional initializer, the end of the tag, or
+   * whitespace.
+   *
+   * ```markdown
+   * > | <a b>
+   *         ^
+   * > | <a b=c>
+   *         ^
+   * ```
+   *
+   * @type {State}
+   */
   function completeAttributeNameAfter(code) {
     if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__.codes.equalsTo) {
       effects.consume(code)
@@ -23269,7 +26786,19 @@ function tokenizeHtmlFlow(effects, ok, nok) {
     return completeAttributeNameBefore(code)
   }
 
-  /** @type {State} */
+  /**
+   * Before unquoted, double quoted, or single quoted attribute value, allowing
+   * whitespace.
+   *
+   * ```markdown
+   * > | <a b=c>
+   *          ^
+   * > | <a b="c">
+   *          ^
+   * ```
+   *
+   * @type {State}
+   */
   function completeAttributeValueBefore(code) {
     if (
       code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__.codes.eof ||
@@ -23283,7 +26812,7 @@ function tokenizeHtmlFlow(effects, ok, nok) {
 
     if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__.codes.quotationMark || code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__.codes.apostrophe) {
       effects.consume(code)
-      marker = code
+      markerB = code
       return completeAttributeValueQuoted
     }
 
@@ -23292,31 +26821,52 @@ function tokenizeHtmlFlow(effects, ok, nok) {
       return completeAttributeValueBefore
     }
 
-    marker = null
     return completeAttributeValueUnquoted(code)
   }
 
-  /** @type {State} */
+  /**
+   * In double or single quoted attribute value.
+   *
+   * ```markdown
+   * > | <a b="c">
+   *           ^
+   * > | <a b='c'>
+   *           ^
+   * ```
+   *
+   * @type {State}
+   */
   function completeAttributeValueQuoted(code) {
-    if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__.codes.eof || (0,micromark_util_character__WEBPACK_IMPORTED_MODULE_4__.markdownLineEnding)(code)) {
-      return nok(code)
+    if (code === markerB) {
+      effects.consume(code)
+      markerB = null
+      return completeAttributeValueQuotedAfter
     }
 
-    if (code === marker) {
-      effects.consume(code)
-      return completeAttributeValueQuotedAfter
+    if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__.codes.eof || (0,micromark_util_character__WEBPACK_IMPORTED_MODULE_4__.markdownLineEnding)(code)) {
+      return nok(code)
     }
 
     effects.consume(code)
     return completeAttributeValueQuoted
   }
 
-  /** @type {State} */
+  /**
+   * In unquoted attribute value.
+   *
+   * ```markdown
+   * > | <a b=c>
+   *          ^
+   * ```
+   *
+   * @type {State}
+   */
   function completeAttributeValueUnquoted(code) {
     if (
       code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__.codes.eof ||
       code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__.codes.quotationMark ||
       code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__.codes.apostrophe ||
+      code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__.codes.slash ||
       code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__.codes.lessThan ||
       code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__.codes.equalsTo ||
       code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__.codes.greaterThan ||
@@ -23330,7 +26880,17 @@ function tokenizeHtmlFlow(effects, ok, nok) {
     return completeAttributeValueUnquoted
   }
 
-  /** @type {State} */
+  /**
+   * After double or single quoted attribute value, before whitespace or the
+   * end of the tag.
+   *
+   * ```markdown
+   * > | <a b="c">
+   *            ^
+   * ```
+   *
+   * @type {State}
+   */
   function completeAttributeValueQuotedAfter(code) {
     if (
       code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__.codes.slash ||
@@ -23343,7 +26903,16 @@ function tokenizeHtmlFlow(effects, ok, nok) {
     return nok(code)
   }
 
-  /** @type {State} */
+  /**
+   * In certain circumstances of a complete tag where only an `>` is allowed.
+   *
+   * ```markdown
+   * > | <a b="c">
+   *             ^
+   * ```
+   *
+   * @type {State}
+   */
   function completeEnd(code) {
     if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__.codes.greaterThan) {
       effects.consume(code)
@@ -23353,108 +26922,156 @@ function tokenizeHtmlFlow(effects, ok, nok) {
     return nok(code)
   }
 
-  /** @type {State} */
+  /**
+   * After `>` in a complete tag.
+   *
+   * ```markdown
+   * > | <x>
+   *        ^
+   * ```
+   *
+   * @type {State}
+   */
   function completeAfter(code) {
+    if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__.codes.eof || (0,micromark_util_character__WEBPACK_IMPORTED_MODULE_4__.markdownLineEnding)(code)) {
+      // // Do not form containers.
+      // tokenizer.concrete = true
+      return continuation(code)
+    }
+
     if ((0,micromark_util_character__WEBPACK_IMPORTED_MODULE_4__.markdownSpace)(code)) {
       effects.consume(code)
       return completeAfter
     }
 
-    return code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__.codes.eof || (0,micromark_util_character__WEBPACK_IMPORTED_MODULE_4__.markdownLineEnding)(code)
-      ? continuation(code)
-      : nok(code)
+    return nok(code)
   }
 
-  /** @type {State} */
+  /**
+   * In continuation of any HTML kind.
+   *
+   * ```markdown
+   * > | <!--xxx-->
+   *          ^
+   * ```
+   *
+   * @type {State}
+   */
   function continuation(code) {
-    if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__.codes.dash && kind === micromark_util_symbol_constants_js__WEBPACK_IMPORTED_MODULE_3__.constants.htmlComment) {
+    if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__.codes.dash && marker === micromark_util_symbol_constants_js__WEBPACK_IMPORTED_MODULE_3__.constants.htmlComment) {
       effects.consume(code)
       return continuationCommentInside
     }
 
-    if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__.codes.lessThan && kind === micromark_util_symbol_constants_js__WEBPACK_IMPORTED_MODULE_3__.constants.htmlRaw) {
+    if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__.codes.lessThan && marker === micromark_util_symbol_constants_js__WEBPACK_IMPORTED_MODULE_3__.constants.htmlRaw) {
       effects.consume(code)
       return continuationRawTagOpen
     }
 
-    if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__.codes.greaterThan && kind === micromark_util_symbol_constants_js__WEBPACK_IMPORTED_MODULE_3__.constants.htmlDeclaration) {
+    if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__.codes.greaterThan && marker === micromark_util_symbol_constants_js__WEBPACK_IMPORTED_MODULE_3__.constants.htmlDeclaration) {
       effects.consume(code)
       return continuationClose
     }
 
-    if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__.codes.questionMark && kind === micromark_util_symbol_constants_js__WEBPACK_IMPORTED_MODULE_3__.constants.htmlInstruction) {
+    if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__.codes.questionMark && marker === micromark_util_symbol_constants_js__WEBPACK_IMPORTED_MODULE_3__.constants.htmlInstruction) {
       effects.consume(code)
       return continuationDeclarationInside
     }
 
-    if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__.codes.rightSquareBracket && kind === micromark_util_symbol_constants_js__WEBPACK_IMPORTED_MODULE_3__.constants.htmlCdata) {
+    if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__.codes.rightSquareBracket && marker === micromark_util_symbol_constants_js__WEBPACK_IMPORTED_MODULE_3__.constants.htmlCdata) {
       effects.consume(code)
-      return continuationCharacterDataInside
+      return continuationCdataInside
     }
 
     if (
       (0,micromark_util_character__WEBPACK_IMPORTED_MODULE_4__.markdownLineEnding)(code) &&
-      (kind === micromark_util_symbol_constants_js__WEBPACK_IMPORTED_MODULE_3__.constants.htmlBasic || kind === micromark_util_symbol_constants_js__WEBPACK_IMPORTED_MODULE_3__.constants.htmlComplete)
+      (marker === micromark_util_symbol_constants_js__WEBPACK_IMPORTED_MODULE_3__.constants.htmlBasic || marker === micromark_util_symbol_constants_js__WEBPACK_IMPORTED_MODULE_3__.constants.htmlComplete)
     ) {
+      effects.exit(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.htmlFlowData)
       return effects.check(
-        nextBlankConstruct,
-        continuationClose,
-        continuationAtLineEnding
+        blankLineBefore,
+        continuationAfter,
+        continuationStart
       )(code)
     }
 
     if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__.codes.eof || (0,micromark_util_character__WEBPACK_IMPORTED_MODULE_4__.markdownLineEnding)(code)) {
-      return continuationAtLineEnding(code)
+      effects.exit(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.htmlFlowData)
+      return continuationStart(code)
     }
 
     effects.consume(code)
     return continuation
   }
 
-  /** @type {State} */
-  function continuationAtLineEnding(code) {
-    effects.exit(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.htmlFlowData)
-    return htmlContinueStart(code)
+  /**
+   * In continuation, at eol.
+   *
+   * ```markdown
+   * > | <x>
+   *        ^
+   *   | asd
+   * ```
+   *
+   * @type {State}
+   */
+  function continuationStart(code) {
+    return effects.check(
+      nonLazyContinuationStart,
+      continuationStartNonLazy,
+      continuationAfter
+    )(code)
   }
 
-  /** @type {State} */
-  function htmlContinueStart(code) {
-    if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__.codes.eof) {
-      return done(code)
-    }
+  /**
+   * In continuation, at eol, before non-lazy content.
+   *
+   * ```markdown
+   * > | <x>
+   *        ^
+   *   | asd
+   * ```
+   *
+   * @type {State}
+   */
+  function continuationStartNonLazy(code) {
+    (0,uvu_assert__WEBPACK_IMPORTED_MODULE_0__.ok)((0,micromark_util_character__WEBPACK_IMPORTED_MODULE_4__.markdownLineEnding)(code))
+    effects.enter(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.lineEnding)
+    effects.consume(code)
+    effects.exit(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.lineEnding)
+    return continuationBefore
+  }
 
-    if ((0,micromark_util_character__WEBPACK_IMPORTED_MODULE_4__.markdownLineEnding)(code)) {
-      return effects.attempt(
-        {tokenize: htmlLineEnd, partial: true},
-        htmlContinueStart,
-        done
-      )(code)
+  /**
+   * In continuation, before non-lazy content.
+   *
+   * ```markdown
+   *   | <x>
+   * > | asd
+   *     ^
+   * ```
+   *
+   * @type {State}
+   */
+  function continuationBefore(code) {
+    if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__.codes.eof || (0,micromark_util_character__WEBPACK_IMPORTED_MODULE_4__.markdownLineEnding)(code)) {
+      return continuationStart(code)
     }
 
     effects.enter(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.htmlFlowData)
     return continuation(code)
   }
 
-  /** @type {Tokenizer} */
-  function htmlLineEnd(effects, ok, nok) {
-    return start
-
-    /** @type {State} */
-    function start(code) {
-      ;(0,uvu_assert__WEBPACK_IMPORTED_MODULE_0__.ok)((0,micromark_util_character__WEBPACK_IMPORTED_MODULE_4__.markdownLineEnding)(code), 'expected eol')
-      effects.enter(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.lineEnding)
-      effects.consume(code)
-      effects.exit(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.lineEnding)
-      return lineStart
-    }
-
-    /** @type {State} */
-    function lineStart(code) {
-      return self.parser.lazy[self.now().line] ? nok(code) : ok(code)
-    }
-  }
-
-  /** @type {State} */
+  /**
+   * In comment continuation, after one `-`, expecting another.
+   *
+   * ```markdown
+   * > | <!--xxx-->
+   *             ^
+   * ```
+   *
+   * @type {State}
+   */
   function continuationCommentInside(code) {
     if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__.codes.dash) {
       effects.consume(code)
@@ -23464,7 +27081,16 @@ function tokenizeHtmlFlow(effects, ok, nok) {
     return continuation(code)
   }
 
-  /** @type {State} */
+  /**
+   * In raw continuation, after `<`, at `/`.
+   *
+   * ```markdown
+   * > | <script>console.log(1)</script>
+   *                            ^
+   * ```
+   *
+   * @type {State}
+   */
   function continuationRawTagOpen(code) {
     if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__.codes.slash) {
       effects.consume(code)
@@ -23475,18 +27101,31 @@ function tokenizeHtmlFlow(effects, ok, nok) {
     return continuation(code)
   }
 
-  /** @type {State} */
+  /**
+   * In raw continuation, after `</`, in a raw tag name.
+   *
+   * ```markdown
+   * > | <script>console.log(1)</script>
+   *                             ^^^^^^
+   * ```
+   *
+   * @type {State}
+   */
   function continuationRawEndTag(code) {
-    if (
-      code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__.codes.greaterThan &&
-      micromark_util_html_tag_name__WEBPACK_IMPORTED_MODULE_5__.htmlRawNames.includes(buffer.toLowerCase())
-    ) {
-      effects.consume(code)
-      return continuationClose
+    if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__.codes.greaterThan) {
+      const name = buffer.toLowerCase()
+
+      if (micromark_util_html_tag_name__WEBPACK_IMPORTED_MODULE_5__.htmlRawNames.includes(name)) {
+        effects.consume(code)
+        return continuationClose
+      }
+
+      return continuation(code)
     }
 
     if ((0,micromark_util_character__WEBPACK_IMPORTED_MODULE_4__.asciiAlpha)(code) && buffer.length < micromark_util_symbol_constants_js__WEBPACK_IMPORTED_MODULE_3__.constants.htmlRawSizeMax) {
       effects.consume(code)
+      // @ts-expect-error: not null.
       buffer += String.fromCharCode(code)
       return continuationRawEndTag
     }
@@ -23494,8 +27133,17 @@ function tokenizeHtmlFlow(effects, ok, nok) {
     return continuation(code)
   }
 
-  /** @type {State} */
-  function continuationCharacterDataInside(code) {
+  /**
+   * In cdata continuation, after `]`, expecting `]>`.
+   *
+   * ```markdown
+   * > | <![CDATA[>&<]]>
+   *                  ^
+   * ```
+   *
+   * @type {State}
+   */
+  function continuationCdataInside(code) {
     if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__.codes.rightSquareBracket) {
       effects.consume(code)
       return continuationDeclarationInside
@@ -23504,7 +27152,24 @@ function tokenizeHtmlFlow(effects, ok, nok) {
     return continuation(code)
   }
 
-  /** @type {State} */
+  /**
+   * In declaration or instruction continuation, at `>`.
+   *
+   * ```markdown
+   * > | <!-->
+   *         ^
+   * > | <?>
+   *       ^
+   * > | <!q>
+   *        ^
+   * > | <!--ab-->
+   *             ^
+   * > | <![CDATA[>&<]]>
+   *                   ^
+   * ```
+   *
+   * @type {State}
+   */
   function continuationDeclarationInside(code) {
     if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__.codes.greaterThan) {
       effects.consume(code)
@@ -23512,7 +27177,7 @@ function tokenizeHtmlFlow(effects, ok, nok) {
     }
 
     // More dashes.
-    if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__.codes.dash && kind === micromark_util_symbol_constants_js__WEBPACK_IMPORTED_MODULE_3__.constants.htmlComment) {
+    if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__.codes.dash && marker === micromark_util_symbol_constants_js__WEBPACK_IMPORTED_MODULE_3__.constants.htmlComment) {
       effects.consume(code)
       return continuationDeclarationInside
     }
@@ -23520,35 +27185,116 @@ function tokenizeHtmlFlow(effects, ok, nok) {
     return continuation(code)
   }
 
-  /** @type {State} */
+  /**
+   * In closed continuation: everything we get until the eol/eof is part of it.
+   *
+   * ```markdown
+   * > | <!doctype>
+   *               ^
+   * ```
+   *
+   * @type {State}
+   */
   function continuationClose(code) {
     if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__.codes.eof || (0,micromark_util_character__WEBPACK_IMPORTED_MODULE_4__.markdownLineEnding)(code)) {
       effects.exit(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.htmlFlowData)
-      return done(code)
+      return continuationAfter(code)
     }
 
     effects.consume(code)
     return continuationClose
   }
 
-  /** @type {State} */
-  function done(code) {
+  /**
+   * Done.
+   *
+   * ```markdown
+   * > | <!doctype>
+   *               ^
+   * ```
+   *
+   * @type {State}
+   */
+  function continuationAfter(code) {
     effects.exit(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.htmlFlow)
+    // // Feel free to interrupt.
+    // tokenizer.interrupt = false
+    // // No longer concrete.
+    // tokenizer.concrete = false
     return ok(code)
   }
 }
 
-/** @type {Tokenizer} */
-function tokenizeNextBlank(effects, ok, nok) {
+/**
+ * @this {TokenizeContext}
+ * @type {Tokenizer}
+ */
+function tokenizeNonLazyContinuationStart(effects, ok, nok) {
+  const self = this
+
   return start
 
-  /** @type {State} */
+  /**
+   * At eol, before continuation.
+   *
+   * ```markdown
+   * > | * ```js
+   *            ^
+   *   | b
+   * ```
+   *
+   * @type {State}
+   */
+  function start(code) {
+    if ((0,micromark_util_character__WEBPACK_IMPORTED_MODULE_4__.markdownLineEnding)(code)) {
+      effects.enter(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.lineEnding)
+      effects.consume(code)
+      effects.exit(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.lineEnding)
+      return after
+    }
+
+    return nok(code)
+  }
+
+  /**
+   * A continuation.
+   *
+   * ```markdown
+   *   | * ```js
+   * > | b
+   *     ^
+   * ```
+   *
+   * @type {State}
+   */
+  function after(code) {
+    return self.parser.lazy[self.now().line] ? nok(code) : ok(code)
+  }
+}
+
+/**
+ * @this {TokenizeContext}
+ * @type {Tokenizer}
+ */
+function tokenizeBlankLineBefore(effects, ok, nok) {
+  return start
+
+  /**
+   * Before eol, expecting blank line.
+   *
+   * ```markdown
+   * > | <div>
+   *          ^
+   *   |
+   * ```
+   *
+   * @type {State}
+   */
   function start(code) {
     ;(0,uvu_assert__WEBPACK_IMPORTED_MODULE_0__.ok)((0,micromark_util_character__WEBPACK_IMPORTED_MODULE_4__.markdownLineEnding)(code), 'expected a line ending')
-    effects.exit(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.htmlFlowData)
-    effects.enter(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.lineEndingBlank)
+    effects.enter(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.lineEnding)
     effects.consume(code)
-    effects.exit(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.lineEndingBlank)
+    effects.exit(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.lineEnding)
     return effects.attempt(_blank_line_js__WEBPACK_IMPORTED_MODULE_6__.blankLine, ok, nok)
   }
 }
@@ -23565,19 +27311,20 @@ function tokenizeNextBlank(effects, ok, nok) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "htmlText": () => (/* binding */ htmlText)
+/* harmony export */   htmlText: () => (/* binding */ htmlText)
 /* harmony export */ });
-/* harmony import */ var uvu_assert__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! uvu/assert */ "../node_modules/uvu/assert/index.mjs");
 /* harmony import */ var micromark_factory_space__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! micromark-factory-space */ "../node_modules/micromark-factory-space/dev/index.js");
 /* harmony import */ var micromark_util_character__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! micromark-util-character */ "../node_modules/micromark-util-character/dev/index.js");
 /* harmony import */ var micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! micromark-util-symbol/codes.js */ "../node_modules/micromark-util-symbol/codes.js");
 /* harmony import */ var micromark_util_symbol_constants_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! micromark-util-symbol/constants.js */ "../node_modules/micromark-util-symbol/constants.js");
 /* harmony import */ var micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! micromark-util-symbol/types.js */ "../node_modules/micromark-util-symbol/types.js");
+/* harmony import */ var uvu_assert__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! uvu/assert */ "../node_modules/uvu/assert/index.mjs");
 /**
- * @typedef {import('micromark-util-types').Construct} Construct
- * @typedef {import('micromark-util-types').Tokenizer} Tokenizer
- * @typedef {import('micromark-util-types').State} State
  * @typedef {import('micromark-util-types').Code} Code
+ * @typedef {import('micromark-util-types').Construct} Construct
+ * @typedef {import('micromark-util-types').State} State
+ * @typedef {import('micromark-util-types').TokenizeContext} TokenizeContext
+ * @typedef {import('micromark-util-types').Tokenizer} Tokenizer
  */
 
 
@@ -23590,13 +27337,14 @@ __webpack_require__.r(__webpack_exports__);
 /** @type {Construct} */
 const htmlText = {name: 'htmlText', tokenize: tokenizeHtmlText}
 
-/** @type {Tokenizer} */
+/**
+ * @this {TokenizeContext}
+ * @type {Tokenizer}
+ */
 function tokenizeHtmlText(effects, ok, nok) {
   const self = this
-  /** @type {NonNullable<Code>|undefined} */
+  /** @type {NonNullable<Code> | undefined} */
   let marker
-  /** @type {string} */
-  let buffer
   /** @type {number} */
   let index
   /** @type {State} */
@@ -23604,7 +27352,16 @@ function tokenizeHtmlText(effects, ok, nok) {
 
   return start
 
-  /** @type {State} */
+  /**
+   * Start of HTML (text).
+   *
+   * ```markdown
+   * > | a <b> c
+   *       ^
+   * ```
+   *
+   * @type {State}
+   */
   function start(code) {
     ;(0,uvu_assert__WEBPACK_IMPORTED_MODULE_0__.ok)(code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.lessThan, 'expected `<`')
     effects.enter(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.htmlText)
@@ -23613,7 +27370,20 @@ function tokenizeHtmlText(effects, ok, nok) {
     return open
   }
 
-  /** @type {State} */
+  /**
+   * After `<`, at tag name or other stuff.
+   *
+   * ```markdown
+   * > | a <b> c
+   *        ^
+   * > | a <!doctype> c
+   *        ^
+   * > | a <!--b--> c
+   *        ^
+   * ```
+   *
+   * @type {State}
+   */
   function open(code) {
     if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.exclamationMark) {
       effects.consume(code)
@@ -23630,6 +27400,7 @@ function tokenizeHtmlText(effects, ok, nok) {
       return instruction
     }
 
+    // ASCII alphabetical.
     if ((0,micromark_util_character__WEBPACK_IMPORTED_MODULE_3__.asciiAlpha)(code)) {
       effects.consume(code)
       return tagOpen
@@ -23638,18 +27409,30 @@ function tokenizeHtmlText(effects, ok, nok) {
     return nok(code)
   }
 
-  /** @type {State} */
+  /**
+   * After `<!`, at declaration, comment, or CDATA.
+   *
+   * ```markdown
+   * > | a <!doctype> c
+   *         ^
+   * > | a <!--b--> c
+   *         ^
+   * > | a <![CDATA[>&<]]> c
+   *         ^
+   * ```
+   *
+   * @type {State}
+   */
   function declarationOpen(code) {
     if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.dash) {
       effects.consume(code)
-      return commentOpen
+      return commentOpenInside
     }
 
     if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.leftSquareBracket) {
       effects.consume(code)
-      buffer = micromark_util_symbol_constants_js__WEBPACK_IMPORTED_MODULE_4__.constants.cdataOpeningString
       index = 0
-      return cdataOpen
+      return cdataOpenInside
     }
 
     if ((0,micromark_util_character__WEBPACK_IMPORTED_MODULE_3__.asciiAlpha)(code)) {
@@ -23660,40 +27443,35 @@ function tokenizeHtmlText(effects, ok, nok) {
     return nok(code)
   }
 
-  /** @type {State} */
-  function commentOpen(code) {
+  /**
+   * In a comment, after `<!-`, at another `-`.
+   *
+   * ```markdown
+   * > | a <!--b--> c
+   *          ^
+   * ```
+   *
+   * @type {State}
+   */
+  function commentOpenInside(code) {
     if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.dash) {
       effects.consume(code)
-      return commentStart
+      return commentEnd
     }
 
     return nok(code)
   }
 
-  /** @type {State} */
-  function commentStart(code) {
-    if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.eof || code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.greaterThan) {
-      return nok(code)
-    }
-
-    if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.dash) {
-      effects.consume(code)
-      return commentStartDash
-    }
-
-    return comment(code)
-  }
-
-  /** @type {State} */
-  function commentStartDash(code) {
-    if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.eof || code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.greaterThan) {
-      return nok(code)
-    }
-
-    return comment(code)
-  }
-
-  /** @type {State} */
+  /**
+   * In comment.
+   *
+   * ```markdown
+   * > | a <!--b--> c
+   *           ^
+   * ```
+   *
+   * @type {State}
+   */
   function comment(code) {
     if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.eof) {
       return nok(code)
@@ -23706,34 +27484,81 @@ function tokenizeHtmlText(effects, ok, nok) {
 
     if ((0,micromark_util_character__WEBPACK_IMPORTED_MODULE_3__.markdownLineEnding)(code)) {
       returnState = comment
-      return atLineEnding(code)
+      return lineEndingBefore(code)
     }
 
     effects.consume(code)
     return comment
   }
 
-  /** @type {State} */
+  /**
+   * In comment, after `-`.
+   *
+   * ```markdown
+   * > | a <!--b--> c
+   *             ^
+   * ```
+   *
+   * @type {State}
+   */
   function commentClose(code) {
     if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.dash) {
       effects.consume(code)
-      return end
+      return commentEnd
     }
 
     return comment(code)
   }
 
-  /** @type {State} */
-  function cdataOpen(code) {
-    if (code === buffer.charCodeAt(index++)) {
+  /**
+   * In comment, after `--`.
+   *
+   * ```markdown
+   * > | a <!--b--> c
+   *              ^
+   * ```
+   *
+   * @type {State}
+   */
+  function commentEnd(code) {
+    return code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.greaterThan
+      ? end(code)
+      : code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.dash
+      ? commentClose(code)
+      : comment(code)
+  }
+
+  /**
+   * After `<![`, in CDATA, expecting `CDATA[`.
+   *
+   * ```markdown
+   * > | a <![CDATA[>&<]]> b
+   *          ^^^^^^
+   * ```
+   *
+   * @type {State}
+   */
+  function cdataOpenInside(code) {
+    const value = micromark_util_symbol_constants_js__WEBPACK_IMPORTED_MODULE_4__.constants.cdataOpeningString
+
+    if (code === value.charCodeAt(index++)) {
       effects.consume(code)
-      return index === buffer.length ? cdata : cdataOpen
+      return index === value.length ? cdata : cdataOpenInside
     }
 
     return nok(code)
   }
 
-  /** @type {State} */
+  /**
+   * In CDATA.
+   *
+   * ```markdown
+   * > | a <![CDATA[>&<]]> b
+   *                ^^^
+   * ```
+   *
+   * @type {State}
+   */
   function cdata(code) {
     if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.eof) {
       return nok(code)
@@ -23746,14 +27571,23 @@ function tokenizeHtmlText(effects, ok, nok) {
 
     if ((0,micromark_util_character__WEBPACK_IMPORTED_MODULE_3__.markdownLineEnding)(code)) {
       returnState = cdata
-      return atLineEnding(code)
+      return lineEndingBefore(code)
     }
 
     effects.consume(code)
     return cdata
   }
 
-  /** @type {State} */
+  /**
+   * In CDATA, after `]`, at another `]`.
+   *
+   * ```markdown
+   * > | a <![CDATA[>&<]]> b
+   *                    ^
+   * ```
+   *
+   * @type {State}
+   */
   function cdataClose(code) {
     if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.rightSquareBracket) {
       effects.consume(code)
@@ -23763,7 +27597,16 @@ function tokenizeHtmlText(effects, ok, nok) {
     return cdata(code)
   }
 
-  /** @type {State} */
+  /**
+   * In CDATA, after `]]`, at `>`.
+   *
+   * ```markdown
+   * > | a <![CDATA[>&<]]> b
+   *                     ^
+   * ```
+   *
+   * @type {State}
+   */
   function cdataEnd(code) {
     if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.greaterThan) {
       return end(code)
@@ -23777,7 +27620,16 @@ function tokenizeHtmlText(effects, ok, nok) {
     return cdata(code)
   }
 
-  /** @type {State} */
+  /**
+   * In declaration.
+   *
+   * ```markdown
+   * > | a <!b> c
+   *          ^
+   * ```
+   *
+   * @type {State}
+   */
   function declaration(code) {
     if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.eof || code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.greaterThan) {
       return end(code)
@@ -23785,14 +27637,23 @@ function tokenizeHtmlText(effects, ok, nok) {
 
     if ((0,micromark_util_character__WEBPACK_IMPORTED_MODULE_3__.markdownLineEnding)(code)) {
       returnState = declaration
-      return atLineEnding(code)
+      return lineEndingBefore(code)
     }
 
     effects.consume(code)
     return declaration
   }
 
-  /** @type {State} */
+  /**
+   * In instruction.
+   *
+   * ```markdown
+   * > | a <?b?> c
+   *         ^
+   * ```
+   *
+   * @type {State}
+   */
   function instruction(code) {
     if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.eof) {
       return nok(code)
@@ -23805,20 +27666,39 @@ function tokenizeHtmlText(effects, ok, nok) {
 
     if ((0,micromark_util_character__WEBPACK_IMPORTED_MODULE_3__.markdownLineEnding)(code)) {
       returnState = instruction
-      return atLineEnding(code)
+      return lineEndingBefore(code)
     }
 
     effects.consume(code)
     return instruction
   }
 
-  /** @type {State} */
+  /**
+   * In instruction, after `?`, at `>`.
+   *
+   * ```markdown
+   * > | a <?b?> c
+   *           ^
+   * ```
+   *
+   * @type {State}
+   */
   function instructionClose(code) {
     return code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.greaterThan ? end(code) : instruction(code)
   }
 
-  /** @type {State} */
+  /**
+   * After `</`, in closing tag, at tag name.
+   *
+   * ```markdown
+   * > | a </b> c
+   *         ^
+   * ```
+   *
+   * @type {State}
+   */
   function tagCloseStart(code) {
+    // ASCII alphabetical.
     if ((0,micromark_util_character__WEBPACK_IMPORTED_MODULE_3__.asciiAlpha)(code)) {
       effects.consume(code)
       return tagClose
@@ -23827,8 +27707,18 @@ function tokenizeHtmlText(effects, ok, nok) {
     return nok(code)
   }
 
-  /** @type {State} */
+  /**
+   * After `</x`, in a tag name.
+   *
+   * ```markdown
+   * > | a </b> c
+   *          ^
+   * ```
+   *
+   * @type {State}
+   */
   function tagClose(code) {
+    // ASCII alphanumerical and `-`.
     if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.dash || (0,micromark_util_character__WEBPACK_IMPORTED_MODULE_3__.asciiAlphanumeric)(code)) {
       effects.consume(code)
       return tagClose
@@ -23837,11 +27727,20 @@ function tokenizeHtmlText(effects, ok, nok) {
     return tagCloseBetween(code)
   }
 
-  /** @type {State} */
+  /**
+   * In closing tag, after tag name.
+   *
+   * ```markdown
+   * > | a </b> c
+   *          ^
+   * ```
+   *
+   * @type {State}
+   */
   function tagCloseBetween(code) {
     if ((0,micromark_util_character__WEBPACK_IMPORTED_MODULE_3__.markdownLineEnding)(code)) {
       returnState = tagCloseBetween
-      return atLineEnding(code)
+      return lineEndingBefore(code)
     }
 
     if ((0,micromark_util_character__WEBPACK_IMPORTED_MODULE_3__.markdownSpace)(code)) {
@@ -23852,8 +27751,18 @@ function tokenizeHtmlText(effects, ok, nok) {
     return end(code)
   }
 
-  /** @type {State} */
+  /**
+   * After `<x`, in opening tag name.
+   *
+   * ```markdown
+   * > | a <b> c
+   *         ^
+   * ```
+   *
+   * @type {State}
+   */
   function tagOpen(code) {
+    // ASCII alphanumerical and `-`.
     if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.dash || (0,micromark_util_character__WEBPACK_IMPORTED_MODULE_3__.asciiAlphanumeric)(code)) {
       effects.consume(code)
       return tagOpen
@@ -23870,13 +27779,23 @@ function tokenizeHtmlText(effects, ok, nok) {
     return nok(code)
   }
 
-  /** @type {State} */
+  /**
+   * In opening tag, after tag name.
+   *
+   * ```markdown
+   * > | a <b> c
+   *         ^
+   * ```
+   *
+   * @type {State}
+   */
   function tagOpenBetween(code) {
     if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.slash) {
       effects.consume(code)
       return end
     }
 
+    // ASCII alphabetical and `:` and `_`.
     if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.colon || code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.underscore || (0,micromark_util_character__WEBPACK_IMPORTED_MODULE_3__.asciiAlpha)(code)) {
       effects.consume(code)
       return tagOpenAttributeName
@@ -23884,7 +27803,7 @@ function tokenizeHtmlText(effects, ok, nok) {
 
     if ((0,micromark_util_character__WEBPACK_IMPORTED_MODULE_3__.markdownLineEnding)(code)) {
       returnState = tagOpenBetween
-      return atLineEnding(code)
+      return lineEndingBefore(code)
     }
 
     if ((0,micromark_util_character__WEBPACK_IMPORTED_MODULE_3__.markdownSpace)(code)) {
@@ -23895,8 +27814,18 @@ function tokenizeHtmlText(effects, ok, nok) {
     return end(code)
   }
 
-  /** @type {State} */
+  /**
+   * In attribute name.
+   *
+   * ```markdown
+   * > | a <b c> d
+   *          ^
+   * ```
+   *
+   * @type {State}
+   */
   function tagOpenAttributeName(code) {
+    // ASCII alphabetical and `-`, `.`, `:`, and `_`.
     if (
       code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.dash ||
       code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.dot ||
@@ -23911,7 +27840,17 @@ function tokenizeHtmlText(effects, ok, nok) {
     return tagOpenAttributeNameAfter(code)
   }
 
-  /** @type {State} */
+  /**
+   * After attribute name, before initializer, the end of the tag, or
+   * whitespace.
+   *
+   * ```markdown
+   * > | a <b c> d
+   *           ^
+   * ```
+   *
+   * @type {State}
+   */
   function tagOpenAttributeNameAfter(code) {
     if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.equalsTo) {
       effects.consume(code)
@@ -23920,7 +27859,7 @@ function tokenizeHtmlText(effects, ok, nok) {
 
     if ((0,micromark_util_character__WEBPACK_IMPORTED_MODULE_3__.markdownLineEnding)(code)) {
       returnState = tagOpenAttributeNameAfter
-      return atLineEnding(code)
+      return lineEndingBefore(code)
     }
 
     if ((0,micromark_util_character__WEBPACK_IMPORTED_MODULE_3__.markdownSpace)(code)) {
@@ -23931,7 +27870,17 @@ function tokenizeHtmlText(effects, ok, nok) {
     return tagOpenBetween(code)
   }
 
-  /** @type {State} */
+  /**
+   * Before unquoted, double quoted, or single quoted attribute value, allowing
+   * whitespace.
+   *
+   * ```markdown
+   * > | a <b c=d> e
+   *            ^
+   * ```
+   *
+   * @type {State}
+   */
   function tagOpenAttributeValueBefore(code) {
     if (
       code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.eof ||
@@ -23951,7 +27900,7 @@ function tokenizeHtmlText(effects, ok, nok) {
 
     if ((0,micromark_util_character__WEBPACK_IMPORTED_MODULE_3__.markdownLineEnding)(code)) {
       returnState = tagOpenAttributeValueBefore
-      return atLineEnding(code)
+      return lineEndingBefore(code)
     }
 
     if ((0,micromark_util_character__WEBPACK_IMPORTED_MODULE_3__.markdownSpace)(code)) {
@@ -23960,14 +27909,23 @@ function tokenizeHtmlText(effects, ok, nok) {
     }
 
     effects.consume(code)
-    marker = undefined
     return tagOpenAttributeValueUnquoted
   }
 
-  /** @type {State} */
+  /**
+   * In double or single quoted attribute value.
+   *
+   * ```markdown
+   * > | a <b c="d"> e
+   *             ^
+   * ```
+   *
+   * @type {State}
+   */
   function tagOpenAttributeValueQuoted(code) {
     if (code === marker) {
       effects.consume(code)
+      marker = undefined
       return tagOpenAttributeValueQuotedAfter
     }
 
@@ -23977,27 +27935,23 @@ function tokenizeHtmlText(effects, ok, nok) {
 
     if ((0,micromark_util_character__WEBPACK_IMPORTED_MODULE_3__.markdownLineEnding)(code)) {
       returnState = tagOpenAttributeValueQuoted
-      return atLineEnding(code)
+      return lineEndingBefore(code)
     }
 
     effects.consume(code)
     return tagOpenAttributeValueQuoted
   }
 
-  /** @type {State} */
-  function tagOpenAttributeValueQuotedAfter(code) {
-    if (
-      code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.greaterThan ||
-      code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.slash ||
-      (0,micromark_util_character__WEBPACK_IMPORTED_MODULE_3__.markdownLineEndingOrSpace)(code)
-    ) {
-      return tagOpenBetween(code)
-    }
-
-    return nok(code)
-  }
-
-  /** @type {State} */
+  /**
+   * In unquoted attribute value.
+   *
+   * ```markdown
+   * > | a <b c=d> e
+   *            ^
+   * ```
+   *
+   * @type {State}
+   */
   function tagOpenAttributeValueUnquoted(code) {
     if (
       code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.eof ||
@@ -24010,7 +27964,11 @@ function tokenizeHtmlText(effects, ok, nok) {
       return nok(code)
     }
 
-    if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.greaterThan || (0,micromark_util_character__WEBPACK_IMPORTED_MODULE_3__.markdownLineEndingOrSpace)(code)) {
+    if (
+      code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.slash ||
+      code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.greaterThan ||
+      (0,micromark_util_character__WEBPACK_IMPORTED_MODULE_3__.markdownLineEndingOrSpace)(code)
+    ) {
       return tagOpenBetween(code)
     }
 
@@ -24018,33 +27976,39 @@ function tokenizeHtmlText(effects, ok, nok) {
     return tagOpenAttributeValueUnquoted
   }
 
-  // We can’t have blank lines in content, so no need to worry about empty
-  // tokens.
-  /** @type {State} */
-  function atLineEnding(code) {
-    (0,uvu_assert__WEBPACK_IMPORTED_MODULE_0__.ok)(returnState, 'expected return state')
-    ;(0,uvu_assert__WEBPACK_IMPORTED_MODULE_0__.ok)((0,micromark_util_character__WEBPACK_IMPORTED_MODULE_3__.markdownLineEnding)(code), 'expected eol')
-    effects.exit(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.htmlTextData)
-    effects.enter(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.lineEnding)
-    effects.consume(code)
-    effects.exit(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.lineEnding)
-    return (0,micromark_factory_space__WEBPACK_IMPORTED_MODULE_5__.factorySpace)(
-      effects,
-      afterPrefix,
-      micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.linePrefix,
-      self.parser.constructs.disable.null.includes('codeIndented')
-        ? undefined
-        : micromark_util_symbol_constants_js__WEBPACK_IMPORTED_MODULE_4__.constants.tabSize
-    )
+  /**
+   * After double or single quoted attribute value, before whitespace or the end
+   * of the tag.
+   *
+   * ```markdown
+   * > | a <b c="d"> e
+   *               ^
+   * ```
+   *
+   * @type {State}
+   */
+  function tagOpenAttributeValueQuotedAfter(code) {
+    if (
+      code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.slash ||
+      code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.greaterThan ||
+      (0,micromark_util_character__WEBPACK_IMPORTED_MODULE_3__.markdownLineEndingOrSpace)(code)
+    ) {
+      return tagOpenBetween(code)
+    }
+
+    return nok(code)
   }
 
-  /** @type {State} */
-  function afterPrefix(code) {
-    effects.enter(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.htmlTextData)
-    return returnState(code)
-  }
-
-  /** @type {State} */
+  /**
+   * In certain circumstances of a tag where only an `>` is allowed.
+   *
+   * ```markdown
+   * > | a <b c="d"> e
+   *               ^
+   * ```
+   *
+   * @type {State}
+   */
   function end(code) {
     if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.greaterThan) {
       effects.consume(code)
@@ -24054,6 +28018,81 @@ function tokenizeHtmlText(effects, ok, nok) {
     }
 
     return nok(code)
+  }
+
+  /**
+   * At eol.
+   *
+   * > 👉 **Note**: we can’t have blank lines in text, so no need to worry about
+   * > empty tokens.
+   *
+   * ```markdown
+   * > | a <!--a
+   *            ^
+   *   | b-->
+   * ```
+   *
+   * @type {State}
+   */
+  function lineEndingBefore(code) {
+    (0,uvu_assert__WEBPACK_IMPORTED_MODULE_0__.ok)(returnState, 'expected return state')
+    ;(0,uvu_assert__WEBPACK_IMPORTED_MODULE_0__.ok)((0,micromark_util_character__WEBPACK_IMPORTED_MODULE_3__.markdownLineEnding)(code), 'expected eol')
+    effects.exit(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.htmlTextData)
+    effects.enter(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.lineEnding)
+    effects.consume(code)
+    effects.exit(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.lineEnding)
+    return lineEndingAfter
+  }
+
+  /**
+   * After eol, at optional whitespace.
+   *
+   * > 👉 **Note**: we can’t have blank lines in text, so no need to worry about
+   * > empty tokens.
+   *
+   * ```markdown
+   *   | a <!--a
+   * > | b-->
+   *     ^
+   * ```
+   *
+   * @type {State}
+   */
+  function lineEndingAfter(code) {
+    // Always populated by defaults.
+    (0,uvu_assert__WEBPACK_IMPORTED_MODULE_0__.ok)(
+      self.parser.constructs.disable.null,
+      'expected `disable.null` to be populated'
+    )
+    return (0,micromark_util_character__WEBPACK_IMPORTED_MODULE_3__.markdownSpace)(code)
+      ? (0,micromark_factory_space__WEBPACK_IMPORTED_MODULE_5__.factorySpace)(
+          effects,
+          lineEndingAfterPrefix,
+          micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.linePrefix,
+          self.parser.constructs.disable.null.includes('codeIndented')
+            ? undefined
+            : micromark_util_symbol_constants_js__WEBPACK_IMPORTED_MODULE_4__.constants.tabSize
+        )(code)
+      : lineEndingAfterPrefix(code)
+  }
+
+  /**
+   * After eol, after optional whitespace.
+   *
+   * > 👉 **Note**: we can’t have blank lines in text, so no need to worry about
+   * > empty tokens.
+   *
+   * ```markdown
+   *   | a <!--a
+   * > | b-->
+   *     ^
+   * ```
+   *
+   * @type {State}
+   */
+  function lineEndingAfterPrefix(code) {
+    effects.enter(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.htmlTextData)
+    return returnState(code)
   }
 }
 
@@ -24069,28 +28108,28 @@ function tokenizeHtmlText(effects, ok, nok) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "labelEnd": () => (/* binding */ labelEnd)
+/* harmony export */   labelEnd: () => (/* binding */ labelEnd)
 /* harmony export */ });
-/* harmony import */ var uvu_assert__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! uvu/assert */ "../node_modules/uvu/assert/index.mjs");
-/* harmony import */ var micromark_factory_destination__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! micromark-factory-destination */ "../node_modules/micromark-factory-destination/dev/index.js");
+/* harmony import */ var micromark_factory_destination__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! micromark-factory-destination */ "../node_modules/micromark-factory-destination/dev/index.js");
 /* harmony import */ var micromark_factory_label__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! micromark-factory-label */ "../node_modules/micromark-factory-label/dev/index.js");
 /* harmony import */ var micromark_factory_title__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! micromark-factory-title */ "../node_modules/micromark-factory-title/dev/index.js");
-/* harmony import */ var micromark_factory_whitespace__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! micromark-factory-whitespace */ "../node_modules/micromark-factory-whitespace/dev/index.js");
-/* harmony import */ var micromark_util_character__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! micromark-util-character */ "../node_modules/micromark-util-character/dev/index.js");
+/* harmony import */ var micromark_factory_whitespace__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! micromark-factory-whitespace */ "../node_modules/micromark-factory-whitespace/dev/index.js");
+/* harmony import */ var micromark_util_character__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! micromark-util-character */ "../node_modules/micromark-util-character/dev/index.js");
 /* harmony import */ var micromark_util_chunked__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! micromark-util-chunked */ "../node_modules/micromark-util-chunked/dev/index.js");
 /* harmony import */ var micromark_util_normalize_identifier__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! micromark-util-normalize-identifier */ "../node_modules/micromark-util-normalize-identifier/dev/index.js");
 /* harmony import */ var micromark_util_resolve_all__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! micromark-util-resolve-all */ "../node_modules/micromark-util-resolve-all/index.js");
 /* harmony import */ var micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! micromark-util-symbol/codes.js */ "../node_modules/micromark-util-symbol/codes.js");
-/* harmony import */ var micromark_util_symbol_constants_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! micromark-util-symbol/constants.js */ "../node_modules/micromark-util-symbol/constants.js");
+/* harmony import */ var micromark_util_symbol_constants_js__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! micromark-util-symbol/constants.js */ "../node_modules/micromark-util-symbol/constants.js");
 /* harmony import */ var micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! micromark-util-symbol/types.js */ "../node_modules/micromark-util-symbol/types.js");
+/* harmony import */ var uvu_assert__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! uvu/assert */ "../node_modules/uvu/assert/index.mjs");
 /**
  * @typedef {import('micromark-util-types').Construct} Construct
- * @typedef {import('micromark-util-types').Resolver} Resolver
- * @typedef {import('micromark-util-types').Tokenizer} Tokenizer
  * @typedef {import('micromark-util-types').Event} Event
- * @typedef {import('micromark-util-types').Token} Token
+ * @typedef {import('micromark-util-types').Resolver} Resolver
  * @typedef {import('micromark-util-types').State} State
- * @typedef {import('micromark-util-types').Code} Code
+ * @typedef {import('micromark-util-types').Token} Token
+ * @typedef {import('micromark-util-types').TokenizeContext} TokenizeContext
+ * @typedef {import('micromark-util-types').Tokenizer} Tokenizer
  */
 
 
@@ -24117,18 +28156,16 @@ const labelEnd = {
 /** @type {Construct} */
 const resourceConstruct = {tokenize: tokenizeResource}
 /** @type {Construct} */
-const fullReferenceConstruct = {tokenize: tokenizeFullReference}
+const referenceFullConstruct = {tokenize: tokenizeReferenceFull}
 /** @type {Construct} */
-const collapsedReferenceConstruct = {tokenize: tokenizeCollapsedReference}
+const referenceCollapsedConstruct = {tokenize: tokenizeReferenceCollapsed}
 
 /** @type {Resolver} */
 function resolveAllLabelEnd(events) {
   let index = -1
-  /** @type {Token} */
-  let token
 
   while (++index < events.length) {
-    token = events[index][1]
+    const token = events[index][1]
 
     if (
       token.type === micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.labelImage ||
@@ -24151,11 +28188,11 @@ function resolveToLabelEnd(events, context) {
   let offset = 0
   /** @type {Token} */
   let token
-  /** @type {number|undefined} */
+  /** @type {number | undefined} */
   let open
-  /** @type {number|undefined} */
+  /** @type {number | undefined} */
   let close
-  /** @type {Event[]} */
+  /** @type {Array<Event>} */
   let media
 
   // Find an opening.
@@ -24226,6 +28263,11 @@ function resolveToLabelEnd(events, context) {
   // Text open.
   media = (0,micromark_util_chunked__WEBPACK_IMPORTED_MODULE_2__.push)(media, [['enter', text, context]])
 
+  // Always populated by defaults.
+  ;(0,uvu_assert__WEBPACK_IMPORTED_MODULE_0__.ok)(
+    context.parser.constructs.insideSpan.null,
+    'expected `insideSpan.null` to be populated'
+  )
   // Between.
   media = (0,micromark_util_chunked__WEBPACK_IMPORTED_MODULE_2__.push)(
     media,
@@ -24255,7 +28297,10 @@ function resolveToLabelEnd(events, context) {
   return events
 }
 
-/** @type {Tokenizer} */
+/**
+ * @this {TokenizeContext}
+ * @type {Tokenizer}
+ */
 function tokenizeLabelEnd(effects, ok, nok) {
   const self = this
   let index = self.events.length
@@ -24278,16 +28323,42 @@ function tokenizeLabelEnd(effects, ok, nok) {
 
   return start
 
-  /** @type {State} */
+  /**
+   * Start of label end.
+   *
+   * ```markdown
+   * > | [a](b) c
+   *       ^
+   * > | [a][b] c
+   *       ^
+   * > | [a][] b
+   *       ^
+   * > | [a] b
+   * ```
+   *
+   * @type {State}
+   */
   function start(code) {
     ;(0,uvu_assert__WEBPACK_IMPORTED_MODULE_0__.ok)(code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_4__.codes.rightSquareBracket, 'expected `]`')
 
+    // If there is not an okay opening.
     if (!labelStart) {
       return nok(code)
     }
 
-    // It’s a balanced bracket, but contains a link.
-    if (labelStart._inactive) return balanced(code)
+    // If the corresponding label (link) start is marked as inactive,
+    // it means we’d be wrapping a link, like this:
+    //
+    // ```markdown
+    // > | a [b [c](d) e](f) g.
+    //                  ^
+    // ```
+    //
+    // We can’t have that, so it’s just balanced brackets.
+    if (labelStart._inactive) {
+      return labelEndNok(code)
+    }
+
     defined = self.parser.defined.includes(
       (0,micromark_util_normalize_identifier__WEBPACK_IMPORTED_MODULE_5__.normalizeIdentifier)(
         self.sliceSerialize({start: labelStart.end, end: self.now()})
@@ -24298,84 +28369,227 @@ function tokenizeLabelEnd(effects, ok, nok) {
     effects.consume(code)
     effects.exit(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.labelMarker)
     effects.exit(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.labelEnd)
-    return afterLabelEnd
+    return after
   }
 
-  /** @type {State} */
-  function afterLabelEnd(code) {
-    // Resource: `[asd](fgh)`.
+  /**
+   * After `]`.
+   *
+   * ```markdown
+   * > | [a](b) c
+   *       ^
+   * > | [a][b] c
+   *       ^
+   * > | [a][] b
+   *       ^
+   * > | [a] b
+   *       ^
+   * ```
+   *
+   * @type {State}
+   */
+  function after(code) {
+    // Note: `markdown-rs` also parses GFM footnotes here, which for us is in
+    // an extension.
+
+    // Resource (`[asd](fgh)`)?
     if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_4__.codes.leftParenthesis) {
       return effects.attempt(
         resourceConstruct,
-        ok,
-        defined ? ok : balanced
+        labelEndOk,
+        defined ? labelEndOk : labelEndNok
       )(code)
     }
 
-    // Collapsed (`[asd][]`) or full (`[asd][fgh]`) reference?
+    // Full (`[asd][fgh]`) or collapsed (`[asd][]`) reference?
     if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_4__.codes.leftSquareBracket) {
       return effects.attempt(
-        fullReferenceConstruct,
-        ok,
-        defined
-          ? effects.attempt(collapsedReferenceConstruct, ok, balanced)
-          : balanced
+        referenceFullConstruct,
+        labelEndOk,
+        defined ? referenceNotFull : labelEndNok
       )(code)
     }
 
-    // Shortcut reference: `[asd]`?
-    return defined ? ok(code) : balanced(code)
+    // Shortcut (`[asd]`) reference?
+    return defined ? labelEndOk(code) : labelEndNok(code)
   }
 
-  /** @type {State} */
-  function balanced(code) {
+  /**
+   * After `]`, at `[`, but not at a full reference.
+   *
+   * > 👉 **Note**: we only get here if the label is defined.
+   *
+   * ```markdown
+   * > | [a][] b
+   *        ^
+   * > | [a] b
+   *        ^
+   * ```
+   *
+   * @type {State}
+   */
+  function referenceNotFull(code) {
+    return effects.attempt(
+      referenceCollapsedConstruct,
+      labelEndOk,
+      labelEndNok
+    )(code)
+  }
+
+  /**
+   * Done, we found something.
+   *
+   * ```markdown
+   * > | [a](b) c
+   *           ^
+   * > | [a][b] c
+   *           ^
+   * > | [a][] b
+   *          ^
+   * > | [a] b
+   *        ^
+   * ```
+   *
+   * @type {State}
+   */
+  function labelEndOk(code) {
+    // Note: `markdown-rs` does a bunch of stuff here.
+    return ok(code)
+  }
+
+  /**
+   * Done, it’s nothing.
+   *
+   * There was an okay opening, but we didn’t match anything.
+   *
+   * ```markdown
+   * > | [a](b c
+   *        ^
+   * > | [a][b c
+   *        ^
+   * > | [a] b
+   *        ^
+   * ```
+   *
+   * @type {State}
+   */
+  function labelEndNok(code) {
     labelStart._balanced = true
     return nok(code)
   }
 }
 
-/** @type {Tokenizer} */
+/**
+ * @this {TokenizeContext}
+ * @type {Tokenizer}
+ */
 function tokenizeResource(effects, ok, nok) {
-  return start
+  return resourceStart
 
-  /** @type {State} */
-  function start(code) {
+  /**
+   * At a resource.
+   *
+   * ```markdown
+   * > | [a](b) c
+   *        ^
+   * ```
+   *
+   * @type {State}
+   */
+  function resourceStart(code) {
     ;(0,uvu_assert__WEBPACK_IMPORTED_MODULE_0__.ok)(code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_4__.codes.leftParenthesis, 'expected left paren')
     effects.enter(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.resource)
     effects.enter(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.resourceMarker)
     effects.consume(code)
     effects.exit(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.resourceMarker)
-    return (0,micromark_factory_whitespace__WEBPACK_IMPORTED_MODULE_6__.factoryWhitespace)(effects, open)
+    return resourceBefore
   }
 
-  /** @type {State} */
-  function open(code) {
+  /**
+   * In resource, after `(`, at optional whitespace.
+   *
+   * ```markdown
+   * > | [a](b) c
+   *         ^
+   * ```
+   *
+   * @type {State}
+   */
+  function resourceBefore(code) {
+    return (0,micromark_util_character__WEBPACK_IMPORTED_MODULE_6__.markdownLineEndingOrSpace)(code)
+      ? (0,micromark_factory_whitespace__WEBPACK_IMPORTED_MODULE_7__.factoryWhitespace)(effects, resourceOpen)(code)
+      : resourceOpen(code)
+  }
+
+  /**
+   * In resource, after optional whitespace, at `)` or a destination.
+   *
+   * ```markdown
+   * > | [a](b) c
+   *         ^
+   * ```
+   *
+   * @type {State}
+   */
+  function resourceOpen(code) {
     if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_4__.codes.rightParenthesis) {
-      return end(code)
+      return resourceEnd(code)
     }
 
-    return (0,micromark_factory_destination__WEBPACK_IMPORTED_MODULE_7__.factoryDestination)(
+    return (0,micromark_factory_destination__WEBPACK_IMPORTED_MODULE_8__.factoryDestination)(
       effects,
-      destinationAfter,
-      nok,
+      resourceDestinationAfter,
+      resourceDestinationMissing,
       micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.resourceDestination,
       micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.resourceDestinationLiteral,
       micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.resourceDestinationLiteralMarker,
       micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.resourceDestinationRaw,
       micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.resourceDestinationString,
-      micromark_util_symbol_constants_js__WEBPACK_IMPORTED_MODULE_8__.constants.linkResourceDestinationBalanceMax
+      micromark_util_symbol_constants_js__WEBPACK_IMPORTED_MODULE_9__.constants.linkResourceDestinationBalanceMax
     )(code)
   }
 
-  /** @type {State} */
-  function destinationAfter(code) {
-    return (0,micromark_util_character__WEBPACK_IMPORTED_MODULE_9__.markdownLineEndingOrSpace)(code)
-      ? (0,micromark_factory_whitespace__WEBPACK_IMPORTED_MODULE_6__.factoryWhitespace)(effects, between)(code)
-      : end(code)
+  /**
+   * In resource, after destination, at optional whitespace.
+   *
+   * ```markdown
+   * > | [a](b) c
+   *          ^
+   * ```
+   *
+   * @type {State}
+   */
+  function resourceDestinationAfter(code) {
+    return (0,micromark_util_character__WEBPACK_IMPORTED_MODULE_6__.markdownLineEndingOrSpace)(code)
+      ? (0,micromark_factory_whitespace__WEBPACK_IMPORTED_MODULE_7__.factoryWhitespace)(effects, resourceBetween)(code)
+      : resourceEnd(code)
   }
 
-  /** @type {State} */
-  function between(code) {
+  /**
+   * At invalid destination.
+   *
+   * ```markdown
+   * > | [a](<<) b
+   *         ^
+   * ```
+   *
+   * @type {State}
+   */
+  function resourceDestinationMissing(code) {
+    return nok(code)
+  }
+
+  /**
+   * In resource, after destination and whitespace, at `(` or title.
+   *
+   * ```markdown
+   * > | [a](b ) c
+   *           ^
+   * ```
+   *
+   * @type {State}
+   */
+  function resourceBetween(code) {
     if (
       code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_4__.codes.quotationMark ||
       code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_4__.codes.apostrophe ||
@@ -24383,7 +28597,7 @@ function tokenizeResource(effects, ok, nok) {
     ) {
       return (0,micromark_factory_title__WEBPACK_IMPORTED_MODULE_10__.factoryTitle)(
         effects,
-        (0,micromark_factory_whitespace__WEBPACK_IMPORTED_MODULE_6__.factoryWhitespace)(effects, end),
+        resourceTitleAfter,
         nok,
         micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.resourceTitle,
         micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.resourceTitleMarker,
@@ -24391,11 +28605,36 @@ function tokenizeResource(effects, ok, nok) {
       )(code)
     }
 
-    return end(code)
+    return resourceEnd(code)
   }
 
-  /** @type {State} */
-  function end(code) {
+  /**
+   * In resource, after title, at optional whitespace.
+   *
+   * ```markdown
+   * > | [a](b "c") d
+   *              ^
+   * ```
+   *
+   * @type {State}
+   */
+  function resourceTitleAfter(code) {
+    return (0,micromark_util_character__WEBPACK_IMPORTED_MODULE_6__.markdownLineEndingOrSpace)(code)
+      ? (0,micromark_factory_whitespace__WEBPACK_IMPORTED_MODULE_7__.factoryWhitespace)(effects, resourceEnd)(code)
+      : resourceEnd(code)
+  }
+
+  /**
+   * In resource, at `)`.
+   *
+   * ```markdown
+   * > | [a](b) d
+   *          ^
+   * ```
+   *
+   * @type {State}
+   */
+  function resourceEnd(code) {
     if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_4__.codes.rightParenthesis) {
       effects.enter(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.resourceMarker)
       effects.consume(code)
@@ -24408,28 +28647,49 @@ function tokenizeResource(effects, ok, nok) {
   }
 }
 
-/** @type {Tokenizer} */
-function tokenizeFullReference(effects, ok, nok) {
+/**
+ * @this {TokenizeContext}
+ * @type {Tokenizer}
+ */
+function tokenizeReferenceFull(effects, ok, nok) {
   const self = this
 
-  return start
+  return referenceFull
 
-  /** @type {State} */
-  function start(code) {
+  /**
+   * In a reference (full), at the `[`.
+   *
+   * ```markdown
+   * > | [a][b] d
+   *        ^
+   * ```
+   *
+   * @type {State}
+   */
+  function referenceFull(code) {
     ;(0,uvu_assert__WEBPACK_IMPORTED_MODULE_0__.ok)(code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_4__.codes.leftSquareBracket, 'expected left bracket')
     return micromark_factory_label__WEBPACK_IMPORTED_MODULE_11__.factoryLabel.call(
       self,
       effects,
-      afterLabel,
-      nok,
+      referenceFullAfter,
+      referenceFullMissing,
       micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.reference,
       micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.referenceMarker,
       micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.referenceString
     )(code)
   }
 
-  /** @type {State} */
-  function afterLabel(code) {
+  /**
+   * In a reference (full), after `]`.
+   *
+   * ```markdown
+   * > | [a][b] d
+   *          ^
+   * ```
+   *
+   * @type {State}
+   */
+  function referenceFullAfter(code) {
     return self.parser.defined.includes(
       (0,micromark_util_normalize_identifier__WEBPACK_IMPORTED_MODULE_5__.normalizeIdentifier)(
         self.sliceSerialize(self.events[self.events.length - 1][1]).slice(1, -1)
@@ -24438,24 +28698,64 @@ function tokenizeFullReference(effects, ok, nok) {
       ? ok(code)
       : nok(code)
   }
+
+  /**
+   * In reference (full) that was missing.
+   *
+   * ```markdown
+   * > | [a][b d
+   *        ^
+   * ```
+   *
+   * @type {State}
+   */
+  function referenceFullMissing(code) {
+    return nok(code)
+  }
 }
 
-/** @type {Tokenizer} */
-function tokenizeCollapsedReference(effects, ok, nok) {
-  return start
+/**
+ * @this {TokenizeContext}
+ * @type {Tokenizer}
+ */
+function tokenizeReferenceCollapsed(effects, ok, nok) {
+  return referenceCollapsedStart
 
-  /** @type {State} */
-  function start(code) {
+  /**
+   * In reference (collapsed), at `[`.
+   *
+   * > 👉 **Note**: we only get here if the label is defined.
+   *
+   * ```markdown
+   * > | [a][] d
+   *        ^
+   * ```
+   *
+   * @type {State}
+   */
+  function referenceCollapsedStart(code) {
+    // We only attempt a collapsed label if there’s a `[`.
     ;(0,uvu_assert__WEBPACK_IMPORTED_MODULE_0__.ok)(code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_4__.codes.leftSquareBracket, 'expected left bracket')
     effects.enter(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.reference)
     effects.enter(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.referenceMarker)
     effects.consume(code)
     effects.exit(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.referenceMarker)
-    return open
+    return referenceCollapsedOpen
   }
 
-  /** @type {State} */
-  function open(code) {
+  /**
+   * In reference (collapsed), at `]`.
+   *
+   * > 👉 **Note**: we only get here if the label is defined.
+   *
+   * ```markdown
+   * > | [a][] d
+   *         ^
+   * ```
+   *
+   *  @type {State}
+   */
+  function referenceCollapsedOpen(code) {
     if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_4__.codes.rightSquareBracket) {
       effects.enter(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.referenceMarker)
       effects.consume(code)
@@ -24480,16 +28780,17 @@ function tokenizeCollapsedReference(effects, ok, nok) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "labelStartImage": () => (/* binding */ labelStartImage)
+/* harmony export */   labelStartImage: () => (/* binding */ labelStartImage)
 /* harmony export */ });
-/* harmony import */ var uvu_assert__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! uvu/assert */ "../node_modules/uvu/assert/index.mjs");
 /* harmony import */ var micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! micromark-util-symbol/codes.js */ "../node_modules/micromark-util-symbol/codes.js");
 /* harmony import */ var micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! micromark-util-symbol/types.js */ "../node_modules/micromark-util-symbol/types.js");
+/* harmony import */ var uvu_assert__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! uvu/assert */ "../node_modules/uvu/assert/index.mjs");
 /* harmony import */ var _label_end_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./label-end.js */ "../node_modules/micromark-core-commonmark/dev/lib/label-end.js");
 /**
  * @typedef {import('micromark-util-types').Construct} Construct
- * @typedef {import('micromark-util-types').Tokenizer} Tokenizer
  * @typedef {import('micromark-util-types').State} State
+ * @typedef {import('micromark-util-types').TokenizeContext} TokenizeContext
+ * @typedef {import('micromark-util-types').Tokenizer} Tokenizer
  */
 
 
@@ -24504,13 +28805,25 @@ const labelStartImage = {
   resolveAll: _label_end_js__WEBPACK_IMPORTED_MODULE_1__.labelEnd.resolveAll
 }
 
-/** @type {Tokenizer} */
+/**
+ * @this {TokenizeContext}
+ * @type {Tokenizer}
+ */
 function tokenizeLabelStartImage(effects, ok, nok) {
   const self = this
 
   return start
 
-  /** @type {State} */
+  /**
+   * Start of label (image) start.
+   *
+   * ```markdown
+   * > | a ![b] c
+   *       ^
+   * ```
+   *
+   * @type {State}
+   */
   function start(code) {
     ;(0,uvu_assert__WEBPACK_IMPORTED_MODULE_0__.ok)(code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__.codes.exclamationMark, 'expected `!`')
     effects.enter(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_3__.types.labelImage)
@@ -24520,7 +28833,16 @@ function tokenizeLabelStartImage(effects, ok, nok) {
     return open
   }
 
-  /** @type {State} */
+  /**
+   * After `!`, at `[`.
+   *
+   * ```markdown
+   * > | a ![b] c
+   *        ^
+   * ```
+   *
+   * @type {State}
+   */
   function open(code) {
     if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__.codes.leftSquareBracket) {
       effects.enter(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_3__.types.labelMarker)
@@ -24533,12 +28855,38 @@ function tokenizeLabelStartImage(effects, ok, nok) {
     return nok(code)
   }
 
-  /** @type {State} */
+  /**
+   * After `![`.
+   *
+   * ```markdown
+   * > | a ![b] c
+   *         ^
+   * ```
+   *
+   * This is needed in because, when GFM footnotes are enabled, images never
+   * form when started with a `^`.
+   * Instead, links form:
+   *
+   * ```markdown
+   * ![^a](b)
+   *
+   * ![^a][b]
+   *
+   * [b]: c
+   * ```
+   *
+   * ```html
+   * <p>!<a href=\"b\">^a</a></p>
+   * <p>!<a href=\"c\">^a</a></p>
+   * ```
+   *
+   * @type {State}
+   */
   function after(code) {
-    /* To do: remove in the future once we’ve switched from
-     * `micromark-extension-footnote` to `micromark-extension-gfm-footnote`,
-     * which doesn’t need this */
-    /* Hidden footnotes hook */
+    // To do: use a new field to do this, this is still needed for
+    // `micromark-extension-gfm-footnote`, but the `label-start-link`
+    // behavior isn’t.
+    // Hidden footnotes hook.
     /* c8 ignore next 3 */
     return code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__.codes.caret &&
       '_hiddenFootnoteSupport' in self.parser.constructs
@@ -24559,16 +28907,17 @@ function tokenizeLabelStartImage(effects, ok, nok) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "labelStartLink": () => (/* binding */ labelStartLink)
+/* harmony export */   labelStartLink: () => (/* binding */ labelStartLink)
 /* harmony export */ });
-/* harmony import */ var uvu_assert__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! uvu/assert */ "../node_modules/uvu/assert/index.mjs");
 /* harmony import */ var micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! micromark-util-symbol/codes.js */ "../node_modules/micromark-util-symbol/codes.js");
 /* harmony import */ var micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! micromark-util-symbol/types.js */ "../node_modules/micromark-util-symbol/types.js");
+/* harmony import */ var uvu_assert__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! uvu/assert */ "../node_modules/uvu/assert/index.mjs");
 /* harmony import */ var _label_end_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./label-end.js */ "../node_modules/micromark-core-commonmark/dev/lib/label-end.js");
 /**
  * @typedef {import('micromark-util-types').Construct} Construct
- * @typedef {import('micromark-util-types').Tokenizer} Tokenizer
  * @typedef {import('micromark-util-types').State} State
+ * @typedef {import('micromark-util-types').TokenizeContext} TokenizeContext
+ * @typedef {import('micromark-util-types').Tokenizer} Tokenizer
  */
 
 
@@ -24583,13 +28932,25 @@ const labelStartLink = {
   resolveAll: _label_end_js__WEBPACK_IMPORTED_MODULE_1__.labelEnd.resolveAll
 }
 
-/** @type {Tokenizer} */
+/**
+ * @this {TokenizeContext}
+ * @type {Tokenizer}
+ */
 function tokenizeLabelStartLink(effects, ok, nok) {
   const self = this
 
   return start
 
-  /** @type {State} */
+  /**
+   * Start of label (link) start.
+   *
+   * ```markdown
+   * > | a [b] c
+   *       ^
+   * ```
+   *
+   * @type {State}
+   */
   function start(code) {
     ;(0,uvu_assert__WEBPACK_IMPORTED_MODULE_0__.ok)(code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__.codes.leftSquareBracket, 'expected `[`')
     effects.enter(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_3__.types.labelLink)
@@ -24602,10 +28963,9 @@ function tokenizeLabelStartLink(effects, ok, nok) {
 
   /** @type {State} */
   function after(code) {
-    /* To do: remove in the future once we’ve switched from
-     * `micromark-extension-footnote` to `micromark-extension-gfm-footnote`,
-     * which doesn’t need this */
-    /* Hidden footnotes hook. */
+    // To do: this isn’t needed in `micromark-extension-gfm-footnote`,
+    // remove.
+    // Hidden footnotes hook.
     /* c8 ignore next 3 */
     return code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__.codes.caret &&
       '_hiddenFootnoteSupport' in self.parser.constructs
@@ -24626,16 +28986,17 @@ function tokenizeLabelStartLink(effects, ok, nok) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "lineEnding": () => (/* binding */ lineEnding)
+/* harmony export */   lineEnding: () => (/* binding */ lineEnding)
 /* harmony export */ });
-/* harmony import */ var uvu_assert__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! uvu/assert */ "../node_modules/uvu/assert/index.mjs");
 /* harmony import */ var micromark_factory_space__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! micromark-factory-space */ "../node_modules/micromark-factory-space/dev/index.js");
 /* harmony import */ var micromark_util_character__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! micromark-util-character */ "../node_modules/micromark-util-character/dev/index.js");
 /* harmony import */ var micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! micromark-util-symbol/types.js */ "../node_modules/micromark-util-symbol/types.js");
+/* harmony import */ var uvu_assert__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! uvu/assert */ "../node_modules/uvu/assert/index.mjs");
 /**
  * @typedef {import('micromark-util-types').Construct} Construct
- * @typedef {import('micromark-util-types').Tokenizer} Tokenizer
  * @typedef {import('micromark-util-types').State} State
+ * @typedef {import('micromark-util-types').TokenizeContext} TokenizeContext
+ * @typedef {import('micromark-util-types').Tokenizer} Tokenizer
  */
 
 
@@ -24646,7 +29007,10 @@ __webpack_require__.r(__webpack_exports__);
 /** @type {Construct} */
 const lineEnding = {name: 'lineEnding', tokenize: tokenizeLineEnding}
 
-/** @type {Tokenizer} */
+/**
+ * @this {TokenizeContext}
+ * @type {Tokenizer}
+ */
 function tokenizeLineEnding(effects, ok) {
   return start
 
@@ -24672,28 +29036,24 @@ function tokenizeLineEnding(effects, ok) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "list": () => (/* binding */ list)
+/* harmony export */   list: () => (/* binding */ list)
 /* harmony export */ });
-/* harmony import */ var uvu_assert__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! uvu/assert */ "../node_modules/uvu/assert/index.mjs");
 /* harmony import */ var micromark_factory_space__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! micromark-factory-space */ "../node_modules/micromark-factory-space/dev/index.js");
 /* harmony import */ var micromark_util_character__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! micromark-util-character */ "../node_modules/micromark-util-character/dev/index.js");
 /* harmony import */ var micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! micromark-util-symbol/codes.js */ "../node_modules/micromark-util-symbol/codes.js");
 /* harmony import */ var micromark_util_symbol_constants_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! micromark-util-symbol/constants.js */ "../node_modules/micromark-util-symbol/constants.js");
 /* harmony import */ var micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! micromark-util-symbol/types.js */ "../node_modules/micromark-util-symbol/types.js");
+/* harmony import */ var uvu_assert__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! uvu/assert */ "../node_modules/uvu/assert/index.mjs");
 /* harmony import */ var _blank_line_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./blank-line.js */ "../node_modules/micromark-core-commonmark/dev/lib/blank-line.js");
 /* harmony import */ var _thematic_break_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./thematic-break.js */ "../node_modules/micromark-core-commonmark/dev/lib/thematic-break.js");
 /**
- * @typedef {import('micromark-util-types').Construct} Construct
- * @typedef {import('micromark-util-types').TokenizeContext} TokenizeContext
- * @typedef {import('micromark-util-types').Exiter} Exiter
- * @typedef {import('micromark-util-types').Tokenizer} Tokenizer
- * @typedef {import('micromark-util-types').State} State
  * @typedef {import('micromark-util-types').Code} Code
- */
-
-/**
- * @typedef {Record<string, unknown> & {marker: Code, type: string, size: number}} ListContainerState
- * @typedef {TokenizeContext & {containerState: ListContainerState}} TokenizeContextWithState
+ * @typedef {import('micromark-util-types').Construct} Construct
+ * @typedef {import('micromark-util-types').ContainerState} ContainerState
+ * @typedef {import('micromark-util-types').Exiter} Exiter
+ * @typedef {import('micromark-util-types').State} State
+ * @typedef {import('micromark-util-types').TokenizeContext} TokenizeContext
+ * @typedef {import('micromark-util-types').Tokenizer} Tokenizer
  */
 
 
@@ -24722,9 +29082,12 @@ const listItemPrefixWhitespaceConstruct = {
 /** @type {Construct} */
 const indentConstruct = {tokenize: tokenizeIndent, partial: true}
 
+// To do: `markdown-rs` parses list items on their own and later stitches them
+// together.
+
 /**
  * @type {Tokenizer}
- * @this {TokenizeContextWithState}
+ * @this {TokenizeContext}
  */
 function tokenizeListStart(effects, ok, nok) {
   const self = this
@@ -24739,6 +29102,7 @@ function tokenizeListStart(effects, ok, nok) {
 
   /** @type {State} */
   function start(code) {
+    ;(0,uvu_assert__WEBPACK_IMPORTED_MODULE_0__.ok)(self.containerState, 'expected state')
     const kind =
       self.containerState.type ||
       (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__.codes.asterisk || code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__.codes.plusSign || code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__.codes.dash
@@ -24774,6 +29138,7 @@ function tokenizeListStart(effects, ok, nok) {
 
   /** @type {State} */
   function inside(code) {
+    (0,uvu_assert__WEBPACK_IMPORTED_MODULE_0__.ok)(self.containerState, 'expected state')
     if ((0,micromark_util_character__WEBPACK_IMPORTED_MODULE_3__.asciiDigit)(code) && ++size < micromark_util_symbol_constants_js__WEBPACK_IMPORTED_MODULE_5__.constants.listItemValueSizeMax) {
       effects.consume(code)
       return inside
@@ -24796,7 +29161,8 @@ function tokenizeListStart(effects, ok, nok) {
    * @type {State}
    **/
   function atMarker(code) {
-    (0,uvu_assert__WEBPACK_IMPORTED_MODULE_0__.ok)(code !== micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__.codes.eof, 'eof (`null`) is not a marker')
+    (0,uvu_assert__WEBPACK_IMPORTED_MODULE_0__.ok)(self.containerState, 'expected state')
+    ;(0,uvu_assert__WEBPACK_IMPORTED_MODULE_0__.ok)(code !== micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__.codes.eof, 'eof (`null`) is not a marker')
     effects.enter(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.listItemMarker)
     effects.consume(code)
     effects.exit(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.listItemMarker)
@@ -24815,6 +29181,7 @@ function tokenizeListStart(effects, ok, nok) {
 
   /** @type {State} */
   function onBlank(code) {
+    (0,uvu_assert__WEBPACK_IMPORTED_MODULE_0__.ok)(self.containerState, 'expected state')
     self.containerState.initialBlankLine = true
     initialSize++
     return endOfPrefix(code)
@@ -24834,6 +29201,7 @@ function tokenizeListStart(effects, ok, nok) {
 
   /** @type {State} */
   function endOfPrefix(code) {
+    (0,uvu_assert__WEBPACK_IMPORTED_MODULE_0__.ok)(self.containerState, 'expected state')
     self.containerState.size =
       initialSize +
       self.sliceSerialize(effects.exit(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.listItemPrefix), true).length
@@ -24843,17 +29211,20 @@ function tokenizeListStart(effects, ok, nok) {
 
 /**
  * @type {Tokenizer}
- * @this {TokenizeContextWithState}
+ * @this {TokenizeContext}
  */
 function tokenizeListContinuation(effects, ok, nok) {
   const self = this
 
+  ;(0,uvu_assert__WEBPACK_IMPORTED_MODULE_0__.ok)(self.containerState, 'expected state')
   self.containerState._closeFlow = undefined
 
   return effects.check(_blank_line_js__WEBPACK_IMPORTED_MODULE_6__.blankLine, onBlank, notBlank)
 
   /** @type {State} */
   function onBlank(code) {
+    ;(0,uvu_assert__WEBPACK_IMPORTED_MODULE_0__.ok)(self.containerState, 'expected state')
+    ;(0,uvu_assert__WEBPACK_IMPORTED_MODULE_0__.ok)(typeof self.containerState.size === 'number', 'expected size')
     self.containerState.furtherBlankLines =
       self.containerState.furtherBlankLines ||
       self.containerState.initialBlankLine
@@ -24870,6 +29241,7 @@ function tokenizeListContinuation(effects, ok, nok) {
 
   /** @type {State} */
   function notBlank(code) {
+    (0,uvu_assert__WEBPACK_IMPORTED_MODULE_0__.ok)(self.containerState, 'expected state')
     if (self.containerState.furtherBlankLines || !(0,micromark_util_character__WEBPACK_IMPORTED_MODULE_3__.markdownSpace)(code)) {
       self.containerState.furtherBlankLines = undefined
       self.containerState.initialBlankLine = undefined
@@ -24883,10 +29255,16 @@ function tokenizeListContinuation(effects, ok, nok) {
 
   /** @type {State} */
   function notInCurrentItem(code) {
+    (0,uvu_assert__WEBPACK_IMPORTED_MODULE_0__.ok)(self.containerState, 'expected state')
     // While we do continue, we signal that the flow should be closed.
     self.containerState._closeFlow = true
     // As we’re closing flow, we’re no longer interrupting.
     self.interrupt = undefined
+    // Always populated by defaults.
+    ;(0,uvu_assert__WEBPACK_IMPORTED_MODULE_0__.ok)(
+      self.parser.constructs.disable.null,
+      'expected `disable.null` to be populated'
+    )
     return (0,micromark_factory_space__WEBPACK_IMPORTED_MODULE_7__.factorySpace)(
       effects,
       effects.attempt(list, ok, nok),
@@ -24900,10 +29278,13 @@ function tokenizeListContinuation(effects, ok, nok) {
 
 /**
  * @type {Tokenizer}
- * @this {TokenizeContextWithState}
+ * @this {TokenizeContext}
  */
 function tokenizeIndent(effects, ok, nok) {
   const self = this
+
+  ;(0,uvu_assert__WEBPACK_IMPORTED_MODULE_0__.ok)(self.containerState, 'expected state')
+  ;(0,uvu_assert__WEBPACK_IMPORTED_MODULE_0__.ok)(typeof self.containerState.size === 'number', 'expected size')
 
   return (0,micromark_factory_space__WEBPACK_IMPORTED_MODULE_7__.factorySpace)(
     effects,
@@ -24914,6 +29295,7 @@ function tokenizeIndent(effects, ok, nok) {
 
   /** @type {State} */
   function afterPrefix(code) {
+    ;(0,uvu_assert__WEBPACK_IMPORTED_MODULE_0__.ok)(self.containerState, 'expected state')
     const tail = self.events[self.events.length - 1]
     return tail &&
       tail[1].type === micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.listItemIndent &&
@@ -24925,18 +29307,26 @@ function tokenizeIndent(effects, ok, nok) {
 
 /**
  * @type {Exiter}
- * @this {TokenizeContextWithState}
+ * @this {TokenizeContext}
  */
 function tokenizeListEnd(effects) {
+  (0,uvu_assert__WEBPACK_IMPORTED_MODULE_0__.ok)(this.containerState, 'expected state')
+  ;(0,uvu_assert__WEBPACK_IMPORTED_MODULE_0__.ok)(typeof this.containerState.type === 'string', 'expected type')
   effects.exit(this.containerState.type)
 }
 
 /**
  * @type {Tokenizer}
- * @this {TokenizeContextWithState}
+ * @this {TokenizeContext}
  */
 function tokenizeListItemPrefixWhitespace(effects, ok, nok) {
   const self = this
+
+  // Always populated by defaults.
+  ;(0,uvu_assert__WEBPACK_IMPORTED_MODULE_0__.ok)(
+    self.parser.constructs.disable.null,
+    'expected `disable.null` to be populated'
+  )
 
   return (0,micromark_factory_space__WEBPACK_IMPORTED_MODULE_7__.factorySpace)(
     effects,
@@ -24971,19 +29361,20 @@ function tokenizeListItemPrefixWhitespace(effects, ok, nok) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "setextUnderline": () => (/* binding */ setextUnderline)
+/* harmony export */   setextUnderline: () => (/* binding */ setextUnderline)
 /* harmony export */ });
-/* harmony import */ var uvu_assert__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! uvu/assert */ "../node_modules/uvu/assert/index.mjs");
-/* harmony import */ var micromark_factory_space__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! micromark-factory-space */ "../node_modules/micromark-factory-space/dev/index.js");
-/* harmony import */ var micromark_util_character__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! micromark-util-character */ "../node_modules/micromark-util-character/dev/index.js");
+/* harmony import */ var micromark_factory_space__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! micromark-factory-space */ "../node_modules/micromark-factory-space/dev/index.js");
+/* harmony import */ var micromark_util_character__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! micromark-util-character */ "../node_modules/micromark-util-character/dev/index.js");
 /* harmony import */ var micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! micromark-util-symbol/codes.js */ "../node_modules/micromark-util-symbol/codes.js");
 /* harmony import */ var micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! micromark-util-symbol/types.js */ "../node_modules/micromark-util-symbol/types.js");
+/* harmony import */ var uvu_assert__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! uvu/assert */ "../node_modules/uvu/assert/index.mjs");
 /**
+ * @typedef {import('micromark-util-types').Code} Code
  * @typedef {import('micromark-util-types').Construct} Construct
  * @typedef {import('micromark-util-types').Resolver} Resolver
- * @typedef {import('micromark-util-types').Tokenizer} Tokenizer
  * @typedef {import('micromark-util-types').State} State
- * @typedef {import('micromark-util-types').Code} Code
+ * @typedef {import('micromark-util-types').TokenizeContext} TokenizeContext
+ * @typedef {import('micromark-util-types').Tokenizer} Tokenizer
  */
 
 
@@ -25001,12 +29392,13 @@ const setextUnderline = {
 
 /** @type {Resolver} */
 function resolveToSetextUnderline(events, context) {
+  // To do: resolve like `markdown-rs`.
   let index = events.length
-  /** @type {number|undefined} */
+  /** @type {number | undefined} */
   let content
-  /** @type {number|undefined} */
+  /** @type {number | undefined} */
   let text
-  /** @type {number|undefined} */
+  /** @type {number | undefined} */
   let definition
 
   // Find the opening of the content.
@@ -25063,62 +29455,116 @@ function resolveToSetextUnderline(events, context) {
   return events
 }
 
-/** @type {Tokenizer} */
+/**
+ * @this {TokenizeContext}
+ * @type {Tokenizer}
+ */
 function tokenizeSetextUnderline(effects, ok, nok) {
   const self = this
-  let index = self.events.length
   /** @type {NonNullable<Code>} */
   let marker
-  /** @type {boolean} */
-  let paragraph
-
-  // Find an opening.
-  while (index--) {
-    // Skip enter/exit of line ending, line prefix, and content.
-    // We can now either have a definition or a paragraph.
-    if (
-      self.events[index][1].type !== micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.lineEnding &&
-      self.events[index][1].type !== micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.linePrefix &&
-      self.events[index][1].type !== micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.content
-    ) {
-      paragraph = self.events[index][1].type === micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.paragraph
-      break
-    }
-  }
 
   return start
 
-  /** @type {State} */
+  /**
+   * At start of heading (setext) underline.
+   *
+   * ```markdown
+   *   | aa
+   * > | ==
+   *     ^
+   * ```
+   *
+   * @type {State}
+   */
   function start(code) {
+    let index = self.events.length
+    /** @type {boolean | undefined} */
+    let paragraph
+
     ;(0,uvu_assert__WEBPACK_IMPORTED_MODULE_0__.ok)(
       code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__.codes.dash || code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__.codes.equalsTo,
       'expected `=` or `-`'
     )
 
+    // Find an opening.
+    while (index--) {
+      // Skip enter/exit of line ending, line prefix, and content.
+      // We can now either have a definition or a paragraph.
+      if (
+        self.events[index][1].type !== micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.lineEnding &&
+        self.events[index][1].type !== micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.linePrefix &&
+        self.events[index][1].type !== micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.content
+      ) {
+        paragraph = self.events[index][1].type === micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.paragraph
+        break
+      }
+    }
+
+    // To do: handle lazy/pierce like `markdown-rs`.
+    // To do: parse indent like `markdown-rs`.
     if (!self.parser.lazy[self.now().line] && (self.interrupt || paragraph)) {
       effects.enter(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.setextHeadingLine)
-      effects.enter(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.setextHeadingLineSequence)
       marker = code
-      return closingSequence(code)
+      return before(code)
     }
 
     return nok(code)
   }
 
-  /** @type {State} */
-  function closingSequence(code) {
+  /**
+   * After optional whitespace, at `-` or `=`.
+   *
+   * ```markdown
+   *   | aa
+   * > | ==
+   *     ^
+   * ```
+   *
+   * @type {State}
+   */
+  function before(code) {
+    effects.enter(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.setextHeadingLineSequence)
+    return inside(code)
+  }
+
+  /**
+   * In sequence.
+   *
+   * ```markdown
+   *   | aa
+   * > | ==
+   *     ^
+   * ```
+   *
+   * @type {State}
+   */
+  function inside(code) {
     if (code === marker) {
       effects.consume(code)
-      return closingSequence
+      return inside
     }
 
     effects.exit(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.setextHeadingLineSequence)
-    return (0,micromark_factory_space__WEBPACK_IMPORTED_MODULE_3__.factorySpace)(effects, closingSequenceEnd, micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.lineSuffix)(code)
+
+    return (0,micromark_util_character__WEBPACK_IMPORTED_MODULE_3__.markdownSpace)(code)
+      ? (0,micromark_factory_space__WEBPACK_IMPORTED_MODULE_4__.factorySpace)(effects, after, micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.lineSuffix)(code)
+      : after(code)
   }
 
-  /** @type {State} */
-  function closingSequenceEnd(code) {
-    if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__.codes.eof || (0,micromark_util_character__WEBPACK_IMPORTED_MODULE_4__.markdownLineEnding)(code)) {
+  /**
+   * After sequence, after optional whitespace.
+   *
+   * ```markdown
+   *   | aa
+   * > | ==
+   *       ^
+   * ```
+   *
+   * @type {State}
+   */
+  function after(code) {
+    if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__.codes.eof || (0,micromark_util_character__WEBPACK_IMPORTED_MODULE_3__.markdownLineEnding)(code)) {
       effects.exit(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.setextHeadingLine)
       return ok(code)
     }
@@ -25139,19 +29585,20 @@ function tokenizeSetextUnderline(effects, ok, nok) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "thematicBreak": () => (/* binding */ thematicBreak)
+/* harmony export */   thematicBreak: () => (/* binding */ thematicBreak)
 /* harmony export */ });
+/* harmony import */ var micromark_factory_space__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! micromark-factory-space */ "../node_modules/micromark-factory-space/dev/index.js");
+/* harmony import */ var micromark_util_character__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! micromark-util-character */ "../node_modules/micromark-util-character/dev/index.js");
+/* harmony import */ var micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! micromark-util-symbol/codes.js */ "../node_modules/micromark-util-symbol/codes.js");
+/* harmony import */ var micromark_util_symbol_constants_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! micromark-util-symbol/constants.js */ "../node_modules/micromark-util-symbol/constants.js");
+/* harmony import */ var micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! micromark-util-symbol/types.js */ "../node_modules/micromark-util-symbol/types.js");
 /* harmony import */ var uvu_assert__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! uvu/assert */ "../node_modules/uvu/assert/index.mjs");
-/* harmony import */ var micromark_factory_space__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! micromark-factory-space */ "../node_modules/micromark-factory-space/dev/index.js");
-/* harmony import */ var micromark_util_character__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! micromark-util-character */ "../node_modules/micromark-util-character/dev/index.js");
-/* harmony import */ var micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! micromark-util-symbol/codes.js */ "../node_modules/micromark-util-symbol/codes.js");
-/* harmony import */ var micromark_util_symbol_constants_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! micromark-util-symbol/constants.js */ "../node_modules/micromark-util-symbol/constants.js");
-/* harmony import */ var micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! micromark-util-symbol/types.js */ "../node_modules/micromark-util-symbol/types.js");
 /**
- * @typedef {import('micromark-util-types').Construct} Construct
- * @typedef {import('micromark-util-types').Tokenizer} Tokenizer
- * @typedef {import('micromark-util-types').State} State
  * @typedef {import('micromark-util-types').Code} Code
+ * @typedef {import('micromark-util-types').Construct} Construct
+ * @typedef {import('micromark-util-types').State} State
+ * @typedef {import('micromark-util-types').TokenizeContext} TokenizeContext
+ * @typedef {import('micromark-util-types').Tokenizer} Tokenizer
  */
 
 
@@ -25167,7 +29614,10 @@ const thematicBreak = {
   tokenize: tokenizeThematicBreak
 }
 
-/** @type {Tokenizer} */
+/**
+ * @this {TokenizeContext}
+ * @type {Tokenizer}
+ */
 function tokenizeThematicBreak(effects, ok, nok) {
   let size = 0
   /** @type {NonNullable<Code>} */
@@ -25175,43 +29625,80 @@ function tokenizeThematicBreak(effects, ok, nok) {
 
   return start
 
-  /** @type {State} */
+  /**
+   * Start of thematic break.
+   *
+   * ```markdown
+   * > | ***
+   *     ^
+   * ```
+   *
+   * @type {State}
+   */
   function start(code) {
-    ;(0,uvu_assert__WEBPACK_IMPORTED_MODULE_0__.ok)(
-      code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.asterisk ||
-        code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.dash ||
-        code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.underscore,
+    effects.enter(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.thematicBreak)
+    // To do: parse indent like `markdown-rs`.
+    return before(code)
+  }
+
+  /**
+   * After optional whitespace, at marker.
+   *
+   * ```markdown
+   * > | ***
+   *     ^
+   * ```
+   *
+   * @type {State}
+   */
+  function before(code) {
+    (0,uvu_assert__WEBPACK_IMPORTED_MODULE_0__.ok)(
+      code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__.codes.asterisk ||
+        code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__.codes.dash ||
+        code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__.codes.underscore,
       'expected `*`, `-`, or `_`'
     )
-
-    effects.enter(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.thematicBreak)
     marker = code
     return atBreak(code)
   }
 
-  /** @type {State} */
+  /**
+   * After something, before something else.
+   *
+   * ```markdown
+   * > | ***
+   *     ^
+   * ```
+   *
+   * @type {State}
+   */
   function atBreak(code) {
     if (code === marker) {
-      effects.enter(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.thematicBreakSequence)
+      effects.enter(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.thematicBreakSequence)
       return sequence(code)
     }
 
-    if ((0,micromark_util_character__WEBPACK_IMPORTED_MODULE_3__.markdownSpace)(code)) {
-      return (0,micromark_factory_space__WEBPACK_IMPORTED_MODULE_4__.factorySpace)(effects, atBreak, micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.whitespace)(code)
-    }
-
     if (
-      size < micromark_util_symbol_constants_js__WEBPACK_IMPORTED_MODULE_5__.constants.thematicBreakMarkerCountMin ||
-      (code !== micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.eof && !(0,micromark_util_character__WEBPACK_IMPORTED_MODULE_3__.markdownLineEnding)(code))
+      size >= micromark_util_symbol_constants_js__WEBPACK_IMPORTED_MODULE_3__.constants.thematicBreakMarkerCountMin &&
+      (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__.codes.eof || (0,micromark_util_character__WEBPACK_IMPORTED_MODULE_4__.markdownLineEnding)(code))
     ) {
-      return nok(code)
+      effects.exit(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.thematicBreak)
+      return ok(code)
     }
 
-    effects.exit(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.thematicBreak)
-    return ok(code)
+    return nok(code)
   }
 
-  /** @type {State} */
+  /**
+   * In sequence.
+   *
+   * ```markdown
+   * > | ***
+   *     ^
+   * ```
+   *
+   * @type {State}
+   */
   function sequence(code) {
     if (code === marker) {
       effects.consume(code)
@@ -25219,8 +29706,10 @@ function tokenizeThematicBreak(effects, ok, nok) {
       return sequence
     }
 
-    effects.exit(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.thematicBreakSequence)
-    return atBreak(code)
+    effects.exit(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.thematicBreakSequence)
+    return (0,micromark_util_character__WEBPACK_IMPORTED_MODULE_4__.markdownSpace)(code)
+      ? (0,micromark_factory_space__WEBPACK_IMPORTED_MODULE_5__.factorySpace)(effects, atBreak, micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.whitespace)(code)
+      : atBreak(code)
   }
 }
 
@@ -25236,7 +29725,7 @@ function tokenizeThematicBreak(effects, ok, nok) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "factoryDestination": () => (/* binding */ factoryDestination)
+/* harmony export */   factoryDestination: () => (/* binding */ factoryDestination)
 /* harmony export */ });
 /* harmony import */ var micromark_util_character__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! micromark-util-character */ "../node_modules/micromark-util-character/dev/index.js");
 /* harmony import */ var micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! micromark-util-symbol/codes.js */ "../node_modules/micromark-util-symbol/codes.js");
@@ -25245,6 +29734,7 @@ __webpack_require__.r(__webpack_exports__);
 /**
  * @typedef {import('micromark-util-types').Effects} Effects
  * @typedef {import('micromark-util-types').State} State
+ * @typedef {import('micromark-util-types').TokenType} TokenType
  */
 
 
@@ -25253,16 +29743,41 @@ __webpack_require__.r(__webpack_exports__);
 
 
 /**
+ * Parse destinations.
+ *
+ * ###### Examples
+ *
+ * ```markdown
+ * <a>
+ * <a\>b>
+ * <a b>
+ * <a)>
+ * a
+ * a\)b
+ * a(b)c
+ * a(b)
+ * ```
+ *
  * @param {Effects} effects
+ *   Context.
  * @param {State} ok
+ *   State switched to when successful.
  * @param {State} nok
- * @param {string} type
- * @param {string} literalType
- * @param {string} literalMarkerType
- * @param {string} rawType
- * @param {string} stringType
- * @param {number} [max=Infinity]
+ *   State switched to when unsuccessful.
+ * @param {TokenType} type
+ *   Type for whole (`<a>` or `b`).
+ * @param {TokenType} literalType
+ *   Type when enclosed (`<a>`).
+ * @param {TokenType} literalMarkerType
+ *   Type for enclosing (`<` and `>`).
+ * @param {TokenType} rawType
+ *   Type when not enclosed (`b`).
+ * @param {TokenType} stringType
+ *   Type for the value (`a` or `b`).
+ * @param {number | undefined} [max=Infinity]
+ *   Depth of nested parens (inclusive).
  * @returns {State}
+ *   Start state.
  */
 // eslint-disable-next-line max-params
 function factoryDestination(
@@ -25281,7 +29796,18 @@ function factoryDestination(
 
   return start
 
-  /** @type {State} */
+  /**
+   * Start of destination.
+   *
+   * ```markdown
+   * > | <aa>
+   *     ^
+   * > | aa
+   *     ^
+   * ```
+   *
+   * @type {State}
+   */
   function start(code) {
     if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_0__.codes.lessThan) {
       effects.enter(type)
@@ -25289,11 +29815,13 @@ function factoryDestination(
       effects.enter(literalMarkerType)
       effects.consume(code)
       effects.exit(literalMarkerType)
-      return destinationEnclosedBefore
+      return enclosedBefore
     }
 
+    // ASCII control, space, closing paren.
     if (
       code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_0__.codes.eof ||
+      code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_0__.codes.space ||
       code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_0__.codes.rightParenthesis ||
       (0,micromark_util_character__WEBPACK_IMPORTED_MODULE_1__.asciiControl)(code)
     ) {
@@ -25304,11 +29832,20 @@ function factoryDestination(
     effects.enter(rawType)
     effects.enter(stringType)
     effects.enter(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.chunkString, {contentType: micromark_util_symbol_constants_js__WEBPACK_IMPORTED_MODULE_3__.constants.contentTypeString})
-    return destinationRaw(code)
+    return raw(code)
   }
 
-  /** @type {State} */
-  function destinationEnclosedBefore(code) {
+  /**
+   * After `<`, at an enclosed destination.
+   *
+   * ```markdown
+   * > | <aa>
+   *      ^
+   * ```
+   *
+   * @type {State}
+   */
+  function enclosedBefore(code) {
     if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_0__.codes.greaterThan) {
       effects.enter(literalMarkerType)
       effects.consume(code)
@@ -25320,15 +29857,24 @@ function factoryDestination(
 
     effects.enter(stringType)
     effects.enter(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.chunkString, {contentType: micromark_util_symbol_constants_js__WEBPACK_IMPORTED_MODULE_3__.constants.contentTypeString})
-    return destinationEnclosed(code)
+    return enclosed(code)
   }
 
-  /** @type {State} */
-  function destinationEnclosed(code) {
+  /**
+   * In enclosed destination.
+   *
+   * ```markdown
+   * > | <aa>
+   *      ^
+   * ```
+   *
+   * @type {State}
+   */
+  function enclosed(code) {
     if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_0__.codes.greaterThan) {
       effects.exit(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.chunkString)
       effects.exit(stringType)
-      return destinationEnclosedBefore(code)
+      return enclosedBefore(code)
     }
 
     if (
@@ -25340,48 +29886,49 @@ function factoryDestination(
     }
 
     effects.consume(code)
-    return code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_0__.codes.backslash
-      ? destinationEnclosedEscape
-      : destinationEnclosed
+    return code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_0__.codes.backslash ? enclosedEscape : enclosed
   }
 
-  /** @type {State} */
-  function destinationEnclosedEscape(code) {
+  /**
+   * After `\`, at a special character.
+   *
+   * ```markdown
+   * > | <a\*a>
+   *        ^
+   * ```
+   *
+   * @type {State}
+   */
+  function enclosedEscape(code) {
     if (
       code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_0__.codes.lessThan ||
       code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_0__.codes.greaterThan ||
       code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_0__.codes.backslash
     ) {
       effects.consume(code)
-      return destinationEnclosed
+      return enclosed
     }
 
-    return destinationEnclosed(code)
+    return enclosed(code)
   }
 
-  /** @type {State} */
-  function destinationRaw(code) {
-    if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_0__.codes.leftParenthesis) {
-      if (++balance > limit) return nok(code)
-      effects.consume(code)
-      return destinationRaw
-    }
-
-    if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_0__.codes.rightParenthesis) {
-      if (!balance--) {
-        effects.exit(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.chunkString)
-        effects.exit(stringType)
-        effects.exit(rawType)
-        effects.exit(type)
-        return ok(code)
-      }
-
-      effects.consume(code)
-      return destinationRaw
-    }
-
-    if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_0__.codes.eof || (0,micromark_util_character__WEBPACK_IMPORTED_MODULE_1__.markdownLineEndingOrSpace)(code)) {
-      if (balance) return nok(code)
+  /**
+   * In raw destination.
+   *
+   * ```markdown
+   * > | aa
+   *     ^
+   * ```
+   *
+   * @type {State}
+   */
+  function raw(code) {
+    if (
+      !balance &&
+      (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_0__.codes.eof ||
+        code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_0__.codes.rightParenthesis ||
+        (0,micromark_util_character__WEBPACK_IMPORTED_MODULE_1__.markdownLineEndingOrSpace)(code))
+    ) {
       effects.exit(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.chunkString)
       effects.exit(stringType)
       effects.exit(rawType)
@@ -25389,23 +29936,55 @@ function factoryDestination(
       return ok(code)
     }
 
-    if ((0,micromark_util_character__WEBPACK_IMPORTED_MODULE_1__.asciiControl)(code)) return nok(code)
+    if (balance < limit && code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_0__.codes.leftParenthesis) {
+      effects.consume(code)
+      balance++
+      return raw
+    }
+
+    if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_0__.codes.rightParenthesis) {
+      effects.consume(code)
+      balance--
+      return raw
+    }
+
+    // ASCII control (but *not* `\0`) and space and `(`.
+    // Note: in `markdown-rs`, `\0` exists in codes, in `micromark-js` it
+    // doesn’t.
+    if (
+      code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_0__.codes.eof ||
+      code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_0__.codes.space ||
+      code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_0__.codes.leftParenthesis ||
+      (0,micromark_util_character__WEBPACK_IMPORTED_MODULE_1__.asciiControl)(code)
+    ) {
+      return nok(code)
+    }
+
     effects.consume(code)
-    return code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_0__.codes.backslash ? destinationRawEscape : destinationRaw
+    return code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_0__.codes.backslash ? rawEscape : raw
   }
 
-  /** @type {State} */
-  function destinationRawEscape(code) {
+  /**
+   * After `\`, at special character.
+   *
+   * ```markdown
+   * > | a\*a
+   *       ^
+   * ```
+   *
+   * @type {State}
+   */
+  function rawEscape(code) {
     if (
       code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_0__.codes.leftParenthesis ||
       code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_0__.codes.rightParenthesis ||
       code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_0__.codes.backslash
     ) {
       effects.consume(code)
-      return destinationRaw
+      return raw
     }
 
-    return destinationRaw(code)
+    return raw(code)
   }
 }
 
@@ -25421,17 +30000,18 @@ function factoryDestination(
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "factoryLabel": () => (/* binding */ factoryLabel)
+/* harmony export */   factoryLabel: () => (/* binding */ factoryLabel)
 /* harmony export */ });
-/* harmony import */ var uvu_assert__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! uvu/assert */ "../node_modules/uvu/assert/index.mjs");
 /* harmony import */ var micromark_util_character__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! micromark-util-character */ "../node_modules/micromark-util-character/dev/index.js");
 /* harmony import */ var micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! micromark-util-symbol/codes.js */ "../node_modules/micromark-util-symbol/codes.js");
 /* harmony import */ var micromark_util_symbol_constants_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! micromark-util-symbol/constants.js */ "../node_modules/micromark-util-symbol/constants.js");
 /* harmony import */ var micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! micromark-util-symbol/types.js */ "../node_modules/micromark-util-symbol/types.js");
+/* harmony import */ var uvu_assert__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! uvu/assert */ "../node_modules/uvu/assert/index.mjs");
 /**
  * @typedef {import('micromark-util-types').Effects} Effects
- * @typedef {import('micromark-util-types').TokenizeContext} TokenizeContext
  * @typedef {import('micromark-util-types').State} State
+ * @typedef {import('micromark-util-types').TokenizeContext} TokenizeContext
+ * @typedef {import('micromark-util-types').TokenType} TokenType
  */
 
 
@@ -25441,25 +30021,55 @@ __webpack_require__.r(__webpack_exports__);
 
 
 /**
+ * Parse labels.
+ *
+ * > 👉 **Note**: labels in markdown are capped at 999 characters in the string.
+ *
+ * ###### Examples
+ *
+ * ```markdown
+ * [a]
+ * [a
+ * b]
+ * [a\]b]
+ * ```
+ *
  * @this {TokenizeContext}
+ *   Tokenize context.
  * @param {Effects} effects
+ *   Context.
  * @param {State} ok
+ *   State switched to when successful.
  * @param {State} nok
- * @param {string} type
- * @param {string} markerType
- * @param {string} stringType
+ *   State switched to when unsuccessful.
+ * @param {TokenType} type
+ *   Type of the whole label (`[a]`).
+ * @param {TokenType} markerType
+ *   Type for the markers (`[` and `]`).
+ * @param {TokenType} stringType
+ *   Type for the identifier (`a`).
  * @returns {State}
+ *   Start state.
  */
 // eslint-disable-next-line max-params
 function factoryLabel(effects, ok, nok, type, markerType, stringType) {
   const self = this
   let size = 0
   /** @type {boolean} */
-  let data
+  let seen
 
   return start
 
-  /** @type {State} */
+  /**
+   * Start of label.
+   *
+   * ```markdown
+   * > | [a]
+   *     ^
+   * ```
+   *
+   * @type {State}
+   */
   function start(code) {
     ;(0,uvu_assert__WEBPACK_IMPORTED_MODULE_0__.ok)(code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.leftSquareBracket, 'expected `[`')
     effects.enter(type)
@@ -25470,21 +30080,30 @@ function factoryLabel(effects, ok, nok, type, markerType, stringType) {
     return atBreak
   }
 
-  /** @type {State} */
+  /**
+   * In label, at something, before something else.
+   *
+   * ```markdown
+   * > | [a]
+   *      ^
+   * ```
+   *
+   * @type {State}
+   */
   function atBreak(code) {
     if (
+      size > micromark_util_symbol_constants_js__WEBPACK_IMPORTED_MODULE_2__.constants.linkReferenceSizeMax ||
       code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.eof ||
       code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.leftSquareBracket ||
-      (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.rightSquareBracket && !data) ||
-      /* To do: remove in the future once we’ve switched from
-       * `micromark-extension-footnote` to `micromark-extension-gfm-footnote`,
-       * which doesn’t need this */
-      /* Hidden footnotes hook */
+      (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.rightSquareBracket && !seen) ||
+      // To do: remove in the future once we’ve switched from
+      // `micromark-extension-footnote` to `micromark-extension-gfm-footnote`,
+      // which doesn’t need this.
+      // Hidden footnotes hook.
       /* c8 ignore next 3 */
       (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.caret &&
         !size &&
-        '_hiddenFootnoteSupport' in self.parser.constructs) ||
-      size > micromark_util_symbol_constants_js__WEBPACK_IMPORTED_MODULE_2__.constants.linkReferenceSizeMax
+        '_hiddenFootnoteSupport' in self.parser.constructs)
     ) {
       return nok(code)
     }
@@ -25498,6 +30117,7 @@ function factoryLabel(effects, ok, nok, type, markerType, stringType) {
       return ok
     }
 
+    // To do: indent? Link chunks and EOLs together?
     if ((0,micromark_util_character__WEBPACK_IMPORTED_MODULE_3__.markdownLineEnding)(code)) {
       effects.enter(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_4__.types.lineEnding)
       effects.consume(code)
@@ -25506,11 +30126,20 @@ function factoryLabel(effects, ok, nok, type, markerType, stringType) {
     }
 
     effects.enter(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_4__.types.chunkString, {contentType: micromark_util_symbol_constants_js__WEBPACK_IMPORTED_MODULE_2__.constants.contentTypeString})
-    return label(code)
+    return labelInside(code)
   }
 
-  /** @type {State} */
-  function label(code) {
+  /**
+   * In label, in text.
+   *
+   * ```markdown
+   * > | [a]
+   *      ^
+   * ```
+   *
+   * @type {State}
+   */
+  function labelInside(code) {
     if (
       code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.eof ||
       code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.leftSquareBracket ||
@@ -25523,11 +30152,20 @@ function factoryLabel(effects, ok, nok, type, markerType, stringType) {
     }
 
     effects.consume(code)
-    data = data || !(0,micromark_util_character__WEBPACK_IMPORTED_MODULE_3__.markdownSpace)(code)
-    return code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.backslash ? labelEscape : label
+    if (!seen) seen = !(0,micromark_util_character__WEBPACK_IMPORTED_MODULE_3__.markdownSpace)(code)
+    return code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.backslash ? labelEscape : labelInside
   }
 
-  /** @type {State} */
+  /**
+   * After `\`, at a special character.
+   *
+   * ```markdown
+   * > | [a\*a]
+   *        ^
+   * ```
+   *
+   * @type {State}
+   */
   function labelEscape(code) {
     if (
       code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.leftSquareBracket ||
@@ -25536,10 +30174,10 @@ function factoryLabel(effects, ok, nok, type, markerType, stringType) {
     ) {
       effects.consume(code)
       size++
-      return label
+      return labelInside
     }
 
-    return label(code)
+    return labelInside(code)
   }
 }
 
@@ -25555,22 +30193,50 @@ function factoryLabel(effects, ok, nok, type, markerType, stringType) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "factorySpace": () => (/* binding */ factorySpace)
+/* harmony export */   factorySpace: () => (/* binding */ factorySpace)
 /* harmony export */ });
 /* harmony import */ var micromark_util_character__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! micromark-util-character */ "../node_modules/micromark-util-character/dev/index.js");
 /**
  * @typedef {import('micromark-util-types').Effects} Effects
  * @typedef {import('micromark-util-types').State} State
+ * @typedef {import('micromark-util-types').TokenType} TokenType
  */
 
 
 
+// To do: implement `spaceOrTab`, `spaceOrTabMinMax`, `spaceOrTabWithOptions`.
+
 /**
+ * Parse spaces and tabs.
+ *
+ * There is no `nok` parameter:
+ *
+ * *   spaces in markdown are often optional, in which case this factory can be
+ *     used and `ok` will be switched to whether spaces were found or not
+ * *   one line ending or space can be detected with `markdownSpace(code)` right
+ *     before using `factorySpace`
+ *
+ * ###### Examples
+ *
+ * Where `␉` represents a tab (plus how much it expands) and `␠` represents a
+ * single space.
+ *
+ * ```markdown
+ * ␉
+ * ␠␠␠␠
+ * ␉␠
+ * ```
+ *
  * @param {Effects} effects
+ *   Context.
  * @param {State} ok
- * @param {string} type
- * @param {number} [max=Infinity]
- * @returns {State}
+ *   State switched to when successful.
+ * @param {TokenType} type
+ *   Type (`' \t'`).
+ * @param {number | undefined} [max=Infinity]
+ *   Max (exclusive).
+ * @returns
+ *   Start state.
  */
 function factorySpace(effects, ok, type, max) {
   const limit = max ? max - 1 : Number.POSITIVE_INFINITY
@@ -25612,18 +30278,18 @@ function factorySpace(effects, ok, type, max) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "factoryTitle": () => (/* binding */ factoryTitle)
+/* harmony export */   factoryTitle: () => (/* binding */ factoryTitle)
 /* harmony export */ });
-/* harmony import */ var uvu_assert__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! uvu/assert */ "../node_modules/uvu/assert/index.mjs");
-/* harmony import */ var micromark_factory_space__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! micromark-factory-space */ "../node_modules/micromark-factory-space/dev/index.js");
-/* harmony import */ var micromark_util_character__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! micromark-util-character */ "../node_modules/micromark-util-character/dev/index.js");
-/* harmony import */ var micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! micromark-util-symbol/codes.js */ "../node_modules/micromark-util-symbol/codes.js");
-/* harmony import */ var micromark_util_symbol_constants_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! micromark-util-symbol/constants.js */ "../node_modules/micromark-util-symbol/constants.js");
-/* harmony import */ var micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! micromark-util-symbol/types.js */ "../node_modules/micromark-util-symbol/types.js");
+/* harmony import */ var micromark_factory_space__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! micromark-factory-space */ "../node_modules/micromark-factory-space/dev/index.js");
+/* harmony import */ var micromark_util_character__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! micromark-util-character */ "../node_modules/micromark-util-character/dev/index.js");
+/* harmony import */ var micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! micromark-util-symbol/codes.js */ "../node_modules/micromark-util-symbol/codes.js");
+/* harmony import */ var micromark_util_symbol_constants_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! micromark-util-symbol/constants.js */ "../node_modules/micromark-util-symbol/constants.js");
+/* harmony import */ var micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! micromark-util-symbol/types.js */ "../node_modules/micromark-util-symbol/types.js");
 /**
+ * @typedef {import('micromark-util-types').Code} Code
  * @typedef {import('micromark-util-types').Effects} Effects
  * @typedef {import('micromark-util-types').State} State
- * @typedef {import('micromark-util-types').Code} Code
+ * @typedef {import('micromark-util-types').TokenType} TokenType
  */
 
 
@@ -25632,15 +30298,36 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-
 /**
+ * Parse titles.
+ *
+ * ###### Examples
+ *
+ * ```markdown
+ * "a"
+ * 'b'
+ * (c)
+ * "a
+ * b"
+ * 'a
+ *     b'
+ * (a\)b)
+ * ```
+ *
  * @param {Effects} effects
+ *   Context.
  * @param {State} ok
+ *   State switched to when successful.
  * @param {State} nok
- * @param {string} type
- * @param {string} markerType
- * @param {string} stringType
+ *   State switched to when unsuccessful.
+ * @param {TokenType} type
+ *   Type of the whole title (`"a"`, `'b'`, `(c)`).
+ * @param {TokenType} markerType
+ *   Type for the markers (`"`, `'`, `(`, and `)`).
+ * @param {TokenType} stringType
+ *   Type for the value (`a`).
  * @returns {State}
+ *   Start state.
  */
 // eslint-disable-next-line max-params
 function factoryTitle(effects, ok, nok, type, markerType, stringType) {
@@ -25649,24 +30336,46 @@ function factoryTitle(effects, ok, nok, type, markerType, stringType) {
 
   return start
 
-  /** @type {State} */
+  /**
+   * Start of title.
+   *
+   * ```markdown
+   * > | "a"
+   *     ^
+   * ```
+   *
+   * @type {State}
+   */
   function start(code) {
-    ;(0,uvu_assert__WEBPACK_IMPORTED_MODULE_0__.ok)(
-      code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.quotationMark ||
-        code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.apostrophe ||
-        code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.leftParenthesis,
-      'expected `"`, `\'`, or `(`'
-    )
-    effects.enter(type)
-    effects.enter(markerType)
-    effects.consume(code)
-    effects.exit(markerType)
-    marker = code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.leftParenthesis ? micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.rightParenthesis : code
-    return atFirstTitleBreak
+    if (
+      code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_0__.codes.quotationMark ||
+      code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_0__.codes.apostrophe ||
+      code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_0__.codes.leftParenthesis
+    ) {
+      effects.enter(type)
+      effects.enter(markerType)
+      effects.consume(code)
+      effects.exit(markerType)
+      marker = code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_0__.codes.leftParenthesis ? micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_0__.codes.rightParenthesis : code
+      return begin
+    }
+
+    return nok(code)
   }
 
-  /** @type {State} */
-  function atFirstTitleBreak(code) {
+  /**
+   * After opening marker.
+   *
+   * This is also used at the closing marker.
+   *
+   * ```markdown
+   * > | "a"
+   *      ^
+   * ```
+   *
+   * @type {State}
+   */
+  function begin(code) {
     if (code === marker) {
       effects.enter(markerType)
       effects.consume(code)
@@ -25676,51 +30385,74 @@ function factoryTitle(effects, ok, nok, type, markerType, stringType) {
     }
 
     effects.enter(stringType)
-    return atTitleBreak(code)
+    return atBreak(code)
   }
 
-  /** @type {State} */
-  function atTitleBreak(code) {
+  /**
+   * At something, before something else.
+   *
+   * ```markdown
+   * > | "a"
+   *      ^
+   * ```
+   *
+   * @type {State}
+   */
+  function atBreak(code) {
     if (code === marker) {
       effects.exit(stringType)
-      return atFirstTitleBreak(marker)
+      return begin(marker)
     }
 
-    if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.eof) {
+    if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_0__.codes.eof) {
       return nok(code)
     }
 
     // Note: blank lines can’t exist in content.
-    if ((0,micromark_util_character__WEBPACK_IMPORTED_MODULE_2__.markdownLineEnding)(code)) {
-      effects.enter(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_3__.types.lineEnding)
+    if ((0,micromark_util_character__WEBPACK_IMPORTED_MODULE_1__.markdownLineEnding)(code)) {
+      // To do: use `space_or_tab_eol_with_options`, connect.
+      effects.enter(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.lineEnding)
       effects.consume(code)
-      effects.exit(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_3__.types.lineEnding)
-      return (0,micromark_factory_space__WEBPACK_IMPORTED_MODULE_4__.factorySpace)(effects, atTitleBreak, micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_3__.types.linePrefix)
+      effects.exit(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.lineEnding)
+      return (0,micromark_factory_space__WEBPACK_IMPORTED_MODULE_3__.factorySpace)(effects, atBreak, micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.linePrefix)
     }
 
-    effects.enter(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_3__.types.chunkString, {contentType: micromark_util_symbol_constants_js__WEBPACK_IMPORTED_MODULE_5__.constants.contentTypeString})
-    return title(code)
+    effects.enter(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.chunkString, {contentType: micromark_util_symbol_constants_js__WEBPACK_IMPORTED_MODULE_4__.constants.contentTypeString})
+    return inside(code)
   }
 
-  /** @type {State} */
-  function title(code) {
-    if (code === marker || code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.eof || (0,micromark_util_character__WEBPACK_IMPORTED_MODULE_2__.markdownLineEnding)(code)) {
-      effects.exit(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_3__.types.chunkString)
-      return atTitleBreak(code)
+  /**
+   *
+   *
+   * @type {State}
+   */
+  function inside(code) {
+    if (code === marker || code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_0__.codes.eof || (0,micromark_util_character__WEBPACK_IMPORTED_MODULE_1__.markdownLineEnding)(code)) {
+      effects.exit(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.chunkString)
+      return atBreak(code)
     }
 
     effects.consume(code)
-    return code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.backslash ? titleEscape : title
+    return code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_0__.codes.backslash ? escape : inside
   }
 
-  /** @type {State} */
-  function titleEscape(code) {
-    if (code === marker || code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.backslash) {
+  /**
+   * After `\`, at a special character.
+   *
+   * ```markdown
+   * > | "a\*b"
+   *      ^
+   * ```
+   *
+   * @type {State}
+   */
+  function escape(code) {
+    if (code === marker || code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_0__.codes.backslash) {
       effects.consume(code)
-      return title
+      return inside
     }
 
-    return title(code)
+    return inside(code)
   }
 }
 
@@ -25736,7 +30468,7 @@ function factoryTitle(effects, ok, nok, type, markerType, stringType) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "factoryWhitespace": () => (/* binding */ factoryWhitespace)
+/* harmony export */   factoryWhitespace: () => (/* binding */ factoryWhitespace)
 /* harmony export */ });
 /* harmony import */ var micromark_factory_space__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! micromark-factory-space */ "../node_modules/micromark-factory-space/dev/index.js");
 /* harmony import */ var micromark_util_character__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! micromark-util-character */ "../node_modules/micromark-util-character/dev/index.js");
@@ -25751,8 +30483,22 @@ __webpack_require__.r(__webpack_exports__);
 
 
 /**
+ * Parse spaces and tabs.
+ *
+ * There is no `nok` parameter:
+ *
+ * *   line endings or spaces in markdown are often optional, in which case this
+ *     factory can be used and `ok` will be switched to whether spaces were found
+ *     or not
+ * *   one line ending or space can be detected with
+ *     `markdownLineEndingOrSpace(code)` right before using `factoryWhitespace`
+ *
  * @param {Effects} effects
+ *   Context.
  * @param {State} ok
+ *   State switched to when successful.
+ * @returns
+ *   Start state.
  */
 function factoryWhitespace(effects, ok) {
   /** @type {boolean} */
@@ -25794,18 +30540,18 @@ function factoryWhitespace(effects, ok) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "asciiAlpha": () => (/* binding */ asciiAlpha),
-/* harmony export */   "asciiAlphanumeric": () => (/* binding */ asciiAlphanumeric),
-/* harmony export */   "asciiAtext": () => (/* binding */ asciiAtext),
-/* harmony export */   "asciiControl": () => (/* binding */ asciiControl),
-/* harmony export */   "asciiDigit": () => (/* binding */ asciiDigit),
-/* harmony export */   "asciiHexDigit": () => (/* binding */ asciiHexDigit),
-/* harmony export */   "asciiPunctuation": () => (/* binding */ asciiPunctuation),
-/* harmony export */   "markdownLineEnding": () => (/* binding */ markdownLineEnding),
-/* harmony export */   "markdownLineEndingOrSpace": () => (/* binding */ markdownLineEndingOrSpace),
-/* harmony export */   "markdownSpace": () => (/* binding */ markdownSpace),
-/* harmony export */   "unicodePunctuation": () => (/* binding */ unicodePunctuation),
-/* harmony export */   "unicodeWhitespace": () => (/* binding */ unicodeWhitespace)
+/* harmony export */   asciiAlpha: () => (/* binding */ asciiAlpha),
+/* harmony export */   asciiAlphanumeric: () => (/* binding */ asciiAlphanumeric),
+/* harmony export */   asciiAtext: () => (/* binding */ asciiAtext),
+/* harmony export */   asciiControl: () => (/* binding */ asciiControl),
+/* harmony export */   asciiDigit: () => (/* binding */ asciiDigit),
+/* harmony export */   asciiHexDigit: () => (/* binding */ asciiHexDigit),
+/* harmony export */   asciiPunctuation: () => (/* binding */ asciiPunctuation),
+/* harmony export */   markdownLineEnding: () => (/* binding */ markdownLineEnding),
+/* harmony export */   markdownLineEndingOrSpace: () => (/* binding */ markdownLineEndingOrSpace),
+/* harmony export */   markdownSpace: () => (/* binding */ markdownSpace),
+/* harmony export */   unicodePunctuation: () => (/* binding */ unicodePunctuation),
+/* harmony export */   unicodeWhitespace: () => (/* binding */ unicodeWhitespace)
 /* harmony export */ });
 /* harmony import */ var micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! micromark-util-symbol/codes.js */ "../node_modules/micromark-util-symbol/codes.js");
 /* harmony import */ var _lib_unicode_punctuation_regex_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./lib/unicode-punctuation-regex.js */ "../node_modules/micromark-util-character/dev/lib/unicode-punctuation-regex.js");
@@ -25827,31 +30573,13 @@ __webpack_require__.r(__webpack_exports__);
  *
  * An **ASCII lower alpha** is a character in the inclusive range U+0061 (`a`)
  * to U+007A (`z`).
+ *
+ * @param code
+ *   Code.
+ * @returns
+ *   Whether it matches.
  */
 const asciiAlpha = regexCheck(/[A-Za-z]/)
-
-/**
- * Check whether the character code represents an ASCII digit (`0` through `9`).
- *
- * An **ASCII digit** is a character in the inclusive range U+0030 (`0`) to
- * U+0039 (`9`).
- */
-const asciiDigit = regexCheck(/\d/)
-
-/**
- * Check whether the character code represents an ASCII hex digit (`a` through
- * `f`, case insensitive, or `0` through `9`).
- *
- * An **ASCII hex digit** is an ASCII digit (see `asciiDigit`), ASCII upper hex
- * digit, or an ASCII lower hex digit.
- *
- * An **ASCII upper hex digit** is a character in the inclusive range U+0041
- * (`A`) to U+0046 (`F`).
- *
- * An **ASCII lower hex digit** is a character in the inclusive range U+0061
- * (`a`) to U+0066 (`f`).
- */
-const asciiHexDigit = regexCheck(/[\dA-Fa-f]/)
 
 /**
  * Check whether the character code represents an ASCII alphanumeric (`a`
@@ -25859,18 +30587,13 @@ const asciiHexDigit = regexCheck(/[\dA-Fa-f]/)
  *
  * An **ASCII alphanumeric** is an ASCII digit (see `asciiDigit`) or ASCII alpha
  * (see `asciiAlpha`).
+ *
+ * @param code
+ *   Code.
+ * @returns
+ *   Whether it matches.
  */
 const asciiAlphanumeric = regexCheck(/[\dA-Za-z]/)
-
-/**
- * Check whether the character code represents ASCII punctuation.
- *
- * An **ASCII punctuation** is a character in the inclusive ranges U+0021
- * EXCLAMATION MARK (`!`) to U+002F SLASH (`/`), U+003A COLON (`:`) to U+0040 AT
- * SIGN (`@`), U+005B LEFT SQUARE BRACKET (`[`) to U+0060 GRAVE ACCENT
- * (`` ` ``), or U+007B LEFT CURLY BRACE (`{`) to U+007E TILDE (`~`).
- */
-const asciiPunctuation = regexCheck(/[!-/:-@[-`{-~]/)
 
 /**
  * Check whether the character code represents an ASCII atext.
@@ -25887,6 +30610,11 @@ const asciiPunctuation = regexCheck(/[!-/:-@[-`{-~]/)
  * [Internet Message Format](https://tools.ietf.org/html/rfc5322).
  * P. Resnick.
  * IETF.
+ *
+ * @param code
+ *   Code.
+ * @returns
+ *   Whether it matches.
  */
 const asciiAtext = regexCheck(/[#-'*+\--9=?A-Z^-~]/)
 
@@ -25897,7 +30625,9 @@ const asciiAtext = regexCheck(/[#-'*+\--9=?A-Z^-~]/)
  * to U+001F (US), or U+007F (DEL).
  *
  * @param {Code} code
- * @returns {code is number}
+ *   Code.
+ * @returns {boolean}
+ *   Whether it matches.
  */
 function asciiControl(code) {
   return (
@@ -25908,15 +30638,52 @@ function asciiControl(code) {
 }
 
 /**
- * Check whether a character code is a markdown line ending (see
- * `markdownLineEnding`) or markdown space (see `markdownSpace`).
+ * Check whether the character code represents an ASCII digit (`0` through `9`).
  *
- * @param {Code} code
- * @returns {code is number}
+ * An **ASCII digit** is a character in the inclusive range U+0030 (`0`) to
+ * U+0039 (`9`).
+ *
+ * @param code
+ *   Code.
+ * @returns
+ *   Whether it matches.
  */
-function markdownLineEndingOrSpace(code) {
-  return code !== null && (code < micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_0__.codes.nul || code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_0__.codes.space)
-}
+const asciiDigit = regexCheck(/\d/)
+
+/**
+ * Check whether the character code represents an ASCII hex digit (`a` through
+ * `f`, case insensitive, or `0` through `9`).
+ *
+ * An **ASCII hex digit** is an ASCII digit (see `asciiDigit`), ASCII upper hex
+ * digit, or an ASCII lower hex digit.
+ *
+ * An **ASCII upper hex digit** is a character in the inclusive range U+0041
+ * (`A`) to U+0046 (`F`).
+ *
+ * An **ASCII lower hex digit** is a character in the inclusive range U+0061
+ * (`a`) to U+0066 (`f`).
+ *
+ * @param code
+ *   Code.
+ * @returns
+ *   Whether it matches.
+ */
+const asciiHexDigit = regexCheck(/[\dA-Fa-f]/)
+
+/**
+ * Check whether the character code represents ASCII punctuation.
+ *
+ * An **ASCII punctuation** is a character in the inclusive ranges U+0021
+ * EXCLAMATION MARK (`!`) to U+002F SLASH (`/`), U+003A COLON (`:`) to U+0040 AT
+ * SIGN (`@`), U+005B LEFT SQUARE BRACKET (`[`) to U+0060 GRAVE ACCENT
+ * (`` ` ``), or U+007B LEFT CURLY BRACE (`{`) to U+007E TILDE (`~`).
+ *
+ * @param code
+ *   Code.
+ * @returns
+ *   Whether it matches.
+ */
+const asciiPunctuation = regexCheck(/[!-/:-@[-`{-~]/)
 
 /**
  * Check whether a character code is a markdown line ending.
@@ -25929,10 +30696,25 @@ function markdownLineEndingOrSpace(code) {
  * they occurred together.
  *
  * @param {Code} code
- * @returns {code is number}
+ *   Code.
+ * @returns {boolean}
+ *   Whether it matches.
  */
 function markdownLineEnding(code) {
   return code !== null && code < micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_0__.codes.horizontalTab
+}
+
+/**
+ * Check whether a character code is a markdown line ending (see
+ * `markdownLineEnding`) or markdown space (see `markdownSpace`).
+ *
+ * @param {Code} code
+ *   Code.
+ * @returns {boolean}
+ *   Whether it matches.
+ */
+function markdownLineEndingOrSpace(code) {
+  return code !== null && (code < micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_0__.codes.nul || code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_0__.codes.space)
 }
 
 /**
@@ -25946,7 +30728,9 @@ function markdownLineEnding(code) {
  * SPACE (VS) characters, depending on the column at which the tab occurred.
  *
  * @param {Code} code
- * @returns {code is number}
+ *   Code.
+ * @returns {boolean}
+ *   Whether it matches.
  */
 function markdownSpace(code) {
   return (
@@ -25955,6 +30739,29 @@ function markdownSpace(code) {
     code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_0__.codes.space
   )
 }
+
+// Size note: removing ASCII from the regex and using `asciiPunctuation` here
+// In fact adds to the bundle size.
+/**
+ * Check whether the character code represents Unicode punctuation.
+ *
+ * A **Unicode punctuation** is a character in the Unicode `Pc` (Punctuation,
+ * Connector), `Pd` (Punctuation, Dash), `Pe` (Punctuation, Close), `Pf`
+ * (Punctuation, Final quote), `Pi` (Punctuation, Initial quote), `Po`
+ * (Punctuation, Other), or `Ps` (Punctuation, Open) categories, or an ASCII
+ * punctuation (see `asciiPunctuation`).
+ *
+ * See:
+ * **\[UNICODE]**:
+ * [The Unicode Standard](https://www.unicode.org/versions/).
+ * Unicode Consortium.
+ *
+ * @param code
+ *   Code.
+ * @returns
+ *   Whether it matches.
+ */
+const unicodePunctuation = regexCheck(_lib_unicode_punctuation_regex_js__WEBPACK_IMPORTED_MODULE_1__.unicodePunctuationRegex)
 
 /**
  * Check whether the character code represents Unicode whitespace.
@@ -25970,32 +30777,19 @@ function markdownSpace(code) {
  * **\[UNICODE]**:
  * [The Unicode Standard](https://www.unicode.org/versions/).
  * Unicode Consortium.
+ *
+ * @param code
+ *   Code.
+ * @returns
+ *   Whether it matches.
  */
 const unicodeWhitespace = regexCheck(/\s/)
-
-/**
- * Check whether the character code represents Unicode punctuation.
- *
- * A **Unicode punctuation** is a character in the Unicode `Pc` (Punctuation,
- * Connector), `Pd` (Punctuation, Dash), `Pe` (Punctuation, Close), `Pf`
- * (Punctuation, Final quote), `Pi` (Punctuation, Initial quote), `Po`
- * (Punctuation, Other), or `Ps` (Punctuation, Open) categories, or an ASCII
- * punctuation (see `asciiPunctuation`).
- *
- * See:
- * **\[UNICODE]**:
- * [The Unicode Standard](https://www.unicode.org/versions/).
- * Unicode Consortium.
- */
-// Size note: removing ASCII from the regex and using `asciiPunctuation` here
-// In fact adds to the bundle size.
-const unicodePunctuation = regexCheck(_lib_unicode_punctuation_regex_js__WEBPACK_IMPORTED_MODULE_1__.unicodePunctuationRegex)
 
 /**
  * Create a code check from a regex.
  *
  * @param {RegExp} regex
- * @returns {(code: Code) => code is number}
+ * @returns {(code: Code) => boolean}
  */
 function regexCheck(regex) {
   return check
@@ -26003,8 +30797,10 @@ function regexCheck(regex) {
   /**
    * Check whether a code matches the bound regex.
    *
-   * @param {Code} code Character code
-   * @returns {code is number} Whether the character code matches the bound regex
+   * @param {Code} code
+   *   Character code.
+   * @returns {boolean}
+   *   Whether the character code matches the bound regex.
    */
   function check(code) {
     return code !== null && regex.test(String.fromCharCode(code))
@@ -26023,7 +30819,7 @@ function regexCheck(regex) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "unicodePunctuationRegex": () => (/* binding */ unicodePunctuationRegex)
+/* harmony export */   unicodePunctuationRegex: () => (/* binding */ unicodePunctuationRegex)
 /* harmony export */ });
 // This module is generated by `script/`.
 //
@@ -26031,6 +30827,10 @@ __webpack_require__.r(__webpack_exports__);
 // before or after them.
 // One such difference is if those characters are Unicode punctuation.
 // This script is generated from the Unicode data.
+
+/**
+ * Regular expression that matches a unicode punctuation character.
+ */
 const unicodePunctuationRegex =
   /[!-/:-@[-`{-~\u00A1\u00A7\u00AB\u00B6\u00B7\u00BB\u00BF\u037E\u0387\u055A-\u055F\u0589\u058A\u05BE\u05C0\u05C3\u05C6\u05F3\u05F4\u0609\u060A\u060C\u060D\u061B\u061D-\u061F\u066A-\u066D\u06D4\u0700-\u070D\u07F7-\u07F9\u0830-\u083E\u085E\u0964\u0965\u0970\u09FD\u0A76\u0AF0\u0C77\u0C84\u0DF4\u0E4F\u0E5A\u0E5B\u0F04-\u0F12\u0F14\u0F3A-\u0F3D\u0F85\u0FD0-\u0FD4\u0FD9\u0FDA\u104A-\u104F\u10FB\u1360-\u1368\u1400\u166E\u169B\u169C\u16EB-\u16ED\u1735\u1736\u17D4-\u17D6\u17D8-\u17DA\u1800-\u180A\u1944\u1945\u1A1E\u1A1F\u1AA0-\u1AA6\u1AA8-\u1AAD\u1B5A-\u1B60\u1B7D\u1B7E\u1BFC-\u1BFF\u1C3B-\u1C3F\u1C7E\u1C7F\u1CC0-\u1CC7\u1CD3\u2010-\u2027\u2030-\u2043\u2045-\u2051\u2053-\u205E\u207D\u207E\u208D\u208E\u2308-\u230B\u2329\u232A\u2768-\u2775\u27C5\u27C6\u27E6-\u27EF\u2983-\u2998\u29D8-\u29DB\u29FC\u29FD\u2CF9-\u2CFC\u2CFE\u2CFF\u2D70\u2E00-\u2E2E\u2E30-\u2E4F\u2E52-\u2E5D\u3001-\u3003\u3008-\u3011\u3014-\u301F\u3030\u303D\u30A0\u30FB\uA4FE\uA4FF\uA60D-\uA60F\uA673\uA67E\uA6F2-\uA6F7\uA874-\uA877\uA8CE\uA8CF\uA8F8-\uA8FA\uA8FC\uA92E\uA92F\uA95F\uA9C1-\uA9CD\uA9DE\uA9DF\uAA5C-\uAA5F\uAADE\uAADF\uAAF0\uAAF1\uABEB\uFD3E\uFD3F\uFE10-\uFE19\uFE30-\uFE52\uFE54-\uFE61\uFE63\uFE68\uFE6A\uFE6B\uFF01-\uFF03\uFF05-\uFF0A\uFF0C-\uFF0F\uFF1A\uFF1B\uFF1F\uFF20\uFF3B-\uFF3D\uFF3F\uFF5B\uFF5D\uFF5F-\uFF65]/
 
@@ -26046,8 +30846,8 @@ const unicodePunctuationRegex =
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "push": () => (/* binding */ push),
-/* harmony export */   "splice": () => (/* binding */ splice)
+/* harmony export */   push: () => (/* binding */ push),
+/* harmony export */   splice: () => (/* binding */ splice)
 /* harmony export */ });
 /* harmony import */ var micromark_util_symbol_constants_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! micromark-util-symbol/constants.js */ "../node_modules/micromark-util-symbol/constants.js");
 
@@ -26062,16 +30862,22 @@ __webpack_require__.r(__webpack_exports__);
  * array instead of rest parameters.
  *
  * @template {unknown} T
- * @param {T[]} list
+ *   Item type.
+ * @param {Array<T>} list
+ *   List to operate on.
  * @param {number} start
+ *   Index to remove/insert at (can be negative).
  * @param {number} remove
- * @param {T[]} items
+ *   Number of items to remove.
+ * @param {Array<T>} items
+ *   Items to inject into `list`.
  * @returns {void}
+ *   Nothing.
  */
 function splice(list, start, remove, items) {
   const end = list.length
   let chunkStart = 0
-  /** @type {unknown[]} */
+  /** @type {Array<unknown>} */
   let parameters
 
   // Make start between zero and `end` (included).
@@ -26088,10 +30894,10 @@ function splice(list, start, remove, items) {
     parameters = Array.from(items)
     parameters.unshift(start, remove)
     // @ts-expect-error Hush, it’s fine.
-    ;[].splice.apply(list, parameters)
+    list.splice(...parameters)
   } else {
     // Delete `remove` items starting from `start`
-    if (remove) [].splice.apply(list, [start, remove])
+    if (remove) list.splice(start, remove)
 
     // Insert the items in chunks to not cause stack overflows.
     while (chunkStart < items.length) {
@@ -26101,7 +30907,7 @@ function splice(list, start, remove, items) {
       )
       parameters.unshift(start, 0)
       // @ts-expect-error Hush, it’s fine.
-      ;[].splice.apply(list, parameters)
+      list.splice(...parameters)
 
       chunkStart += micromark_util_symbol_constants_js__WEBPACK_IMPORTED_MODULE_0__.constants.v8MaxSafeChunkSize
       start += micromark_util_symbol_constants_js__WEBPACK_IMPORTED_MODULE_0__.constants.v8MaxSafeChunkSize
@@ -26117,9 +30923,13 @@ function splice(list, start, remove, items) {
  * and adds items in batches to prevent V8 from hanging.
  *
  * @template {unknown} T
- * @param {T[]} list
- * @param {T[]} items
- * @returns {T[]}
+ *   Item type.
+ * @param {Array<T>} list
+ *   List to operate on.
+ * @param {Array<T>} items
+ *   Items to add to `list`.
+ * @returns {Array<T>}
+ *   Either `list` or `items`.
  */
 function push(list, items) {
   if (list.length > 0) {
@@ -26142,7 +30952,7 @@ function push(list, items) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "classifyCharacter": () => (/* binding */ classifyCharacter)
+/* harmony export */   classifyCharacter: () => (/* binding */ classifyCharacter)
 /* harmony export */ });
 /* harmony import */ var micromark_util_character__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! micromark-util-character */ "../node_modules/micromark-util-character/dev/index.js");
 /* harmony import */ var micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! micromark-util-symbol/codes.js */ "../node_modules/micromark-util-symbol/codes.js");
@@ -26156,16 +30966,18 @@ __webpack_require__.r(__webpack_exports__);
 
 
 /**
- * Classify whether a character code represents whitespace, punctuation, or
- * something else.
+ * Classify whether a code represents whitespace, punctuation, or something
+ * else.
  *
  * Used for attention (emphasis, strong), whose sequences can open or close
  * based on the class of surrounding characters.
  *
- * Note that eof (`null`) is seen as whitespace.
+ * > 👉 **Note**: eof (`null`) is seen as whitespace.
  *
  * @param {Code} code
- * @returns {number|undefined}
+ *   Code.
+ * @returns {typeof constants.characterGroupWhitespace | typeof constants.characterGroupPunctuation | undefined}
+ *   Group.
  */
 function classifyCharacter(code) {
   if (
@@ -26193,15 +31005,15 @@ function classifyCharacter(code) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "combineExtensions": () => (/* binding */ combineExtensions),
-/* harmony export */   "combineHtmlExtensions": () => (/* binding */ combineHtmlExtensions)
+/* harmony export */   combineExtensions: () => (/* binding */ combineExtensions),
+/* harmony export */   combineHtmlExtensions: () => (/* binding */ combineHtmlExtensions)
 /* harmony export */ });
 /* harmony import */ var micromark_util_chunked__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! micromark-util-chunked */ "../node_modules/micromark-util-chunked/dev/index.js");
 /**
- * @typedef {import('micromark-util-types').NormalizedExtension} NormalizedExtension
  * @typedef {import('micromark-util-types').Extension} Extension
- * @typedef {import('micromark-util-types').Construct} Construct
+ * @typedef {import('micromark-util-types').Handles} Handles
  * @typedef {import('micromark-util-types').HtmlExtension} HtmlExtension
+ * @typedef {import('micromark-util-types').NormalizedExtension} NormalizedExtension
  */
 
 
@@ -26209,10 +31021,12 @@ __webpack_require__.r(__webpack_exports__);
 const hasOwnProperty = {}.hasOwnProperty
 
 /**
- * Combine several syntax extensions into one.
+ * Combine multiple syntax extensions into one.
  *
- * @param {Extension[]} extensions List of syntax extensions.
- * @returns {NormalizedExtension} A single combined extension.
+ * @param {Array<Extension>} extensions
+ *   List of syntax extensions.
+ * @returns {NormalizedExtension}
+ *   A single combined extension.
  */
 function combineExtensions(extensions) {
   /** @type {NormalizedExtension} */
@@ -26229,29 +31043,35 @@ function combineExtensions(extensions) {
 /**
  * Merge `extension` into `all`.
  *
- * @param {NormalizedExtension} all Extension to merge into.
- * @param {Extension} extension Extension to merge.
+ * @param {NormalizedExtension} all
+ *   Extension to merge into.
+ * @param {Extension} extension
+ *   Extension to merge.
  * @returns {void}
  */
 function syntaxExtension(all, extension) {
-  /** @type {string} */
+  /** @type {keyof Extension} */
   let hook
 
   for (hook in extension) {
     const maybe = hasOwnProperty.call(all, hook) ? all[hook] : undefined
+    /** @type {Record<string, unknown>} */
     const left = maybe || (all[hook] = {})
+    /** @type {Record<string, unknown> | undefined} */
     const right = extension[hook]
     /** @type {string} */
     let code
 
-    for (code in right) {
-      if (!hasOwnProperty.call(left, code)) left[code] = []
-      const value = right[code]
-      constructs(
-        // @ts-expect-error Looks like a list.
-        left[code],
-        Array.isArray(value) ? value : value ? [value] : []
-      )
+    if (right) {
+      for (code in right) {
+        if (!hasOwnProperty.call(left, code)) left[code] = []
+        const value = right[code]
+        constructs(
+          // @ts-expect-error Looks like a list.
+          left[code],
+          Array.isArray(value) ? value : value ? [value] : []
+        )
+      }
     }
   }
 }
@@ -26260,13 +31080,13 @@ function syntaxExtension(all, extension) {
  * Merge `list` into `existing` (both lists of constructs).
  * Mutates `existing`.
  *
- * @param {unknown[]} existing
- * @param {unknown[]} list
+ * @param {Array<unknown>} existing
+ * @param {Array<unknown>} list
  * @returns {void}
  */
 function constructs(existing, list) {
   let index = -1
-  /** @type {unknown[]} */
+  /** @type {Array<unknown>} */
   const before = []
 
   while (++index < list.length) {
@@ -26278,10 +31098,12 @@ function constructs(existing, list) {
 }
 
 /**
- * Combine several HTML extensions into one.
+ * Combine multiple HTML extensions into one.
  *
- * @param {HtmlExtension[]} htmlExtensions List of HTML extensions.
- * @returns {HtmlExtension} A single combined extension.
+ * @param {Array<HtmlExtension>} htmlExtensions
+ *   List of HTML extensions.
+ * @returns {HtmlExtension}
+ *   A single combined HTML extension.
  */
 function combineHtmlExtensions(htmlExtensions) {
   /** @type {HtmlExtension} */
@@ -26298,23 +31120,26 @@ function combineHtmlExtensions(htmlExtensions) {
 /**
  * Merge `extension` into `all`.
  *
- * @param {HtmlExtension} all Extension to merge into.
- * @param {HtmlExtension} extension Extension to merge.
+ * @param {HtmlExtension} all
+ *   Extension to merge into.
+ * @param {HtmlExtension} extension
+ *   Extension to merge.
  * @returns {void}
  */
 function htmlExtension(all, extension) {
-  /** @type {string} */
+  /** @type {keyof HtmlExtension} */
   let hook
 
   for (hook in extension) {
     const maybe = hasOwnProperty.call(all, hook) ? all[hook] : undefined
     const left = maybe || (all[hook] = {})
     const right = extension[hook]
-    /** @type {string} */
+    /** @type {keyof Handles} */
     let type
 
     if (right) {
       for (type in right) {
+        // @ts-expect-error assume document vs regular handler are managed correctly.
         left[type] = right[type]
       }
     }
@@ -26333,7 +31158,7 @@ function htmlExtension(all, extension) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "decodeNumericCharacterReference": () => (/* binding */ decodeNumericCharacterReference)
+/* harmony export */   decodeNumericCharacterReference: () => (/* binding */ decodeNumericCharacterReference)
 /* harmony export */ });
 /* harmony import */ var micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! micromark-util-symbol/codes.js */ "../node_modules/micromark-util-symbol/codes.js");
 /* harmony import */ var micromark_util_symbol_values_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! micromark-util-symbol/values.js */ "../node_modules/micromark-util-symbol/values.js");
@@ -26344,28 +31169,34 @@ __webpack_require__.r(__webpack_exports__);
  * Turn the number (in string form as either hexa- or plain decimal) coming from
  * a numeric character reference into a character.
  *
+ * Sort of like `String.fromCharCode(Number.parseInt(value, base))`, but makes
+ * non-characters and control characters safe.
+ *
  * @param {string} value
  *   Value to decode.
  * @param {number} base
  *   Numeric base.
  * @returns {string}
+ *   Character.
  */
 function decodeNumericCharacterReference(value, base) {
   const code = Number.parseInt(value, base)
 
   if (
-    // C0 except for HT, LF, FF, CR, space
+    // C0 except for HT, LF, FF, CR, space.
     code < micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_0__.codes.ht ||
     code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_0__.codes.vt ||
     (code > micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_0__.codes.cr && code < micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_0__.codes.space) ||
-    // Control character (DEL) of the basic block and C1 controls.
+    // Control character (DEL) of C0, and C1 controls.
     (code > micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_0__.codes.tilde && code < 160) ||
     // Lone high surrogates and low surrogates.
     (code > 55295 && code < 57344) ||
     // Noncharacters.
     (code > 64975 && code < 65008) ||
+    /* eslint-disable no-bitwise */
     (code & 65535) === 65535 ||
     (code & 65535) === 65534 ||
+    /* eslint-enable no-bitwise */
     // Out of range
     code > 1114111
   ) {
@@ -26387,7 +31218,7 @@ function decodeNumericCharacterReference(value, base) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "decodeString": () => (/* binding */ decodeString)
+/* harmony export */   decodeString: () => (/* binding */ decodeString)
 /* harmony export */ });
 /* harmony import */ var decode_named_character_reference__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! decode-named-character-reference */ "../node_modules/decode-named-character-reference/index.dom.js");
 /* harmony import */ var micromark_util_decode_numeric_character_reference__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! micromark-util-decode-numeric-character-reference */ "../node_modules/micromark-util-decode-numeric-character-reference/dev/index.js");
@@ -26402,13 +31233,16 @@ const characterEscapeOrReference =
   /\\([!-/:-@[-`{-~])|&(#(?:\d{1,7}|x[\da-f]{1,6})|[\da-z]{1,31});/gi
 
 /**
- * Utility to decode markdown strings (which occur in places such as fenced
- * code info strings, destinations, labels, and titles).
+ * Decode markdown strings (which occur in places such as fenced code info
+ * strings, destinations, labels, and titles).
+ *
  * The “string” content type allows character escapes and -references.
  * This decodes those.
  *
  * @param {string} value
+ *   Value to decode.
  * @returns {string}
+ *   Decoded value.
  */
 function decodeString(value) {
   return value.replace(characterEscapeOrReference, decode)
@@ -26453,7 +31287,7 @@ function decode($0, $1, $2) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "encode": () => (/* binding */ encode)
+/* harmony export */   encode: () => (/* binding */ encode)
 /* harmony export */ });
 const characterReferences = {'"': 'quot', '&': 'amp', '<': 'lt', '>': 'gt'}
 
@@ -26465,7 +31299,9 @@ const characterReferences = {'"': 'quot', '&': 'amp', '<': 'lt', '>': 'gt'}
  * Technically, we can skip `>` and `"` in many cases, but CM includes them.
  *
  * @param {string} value
+ *   Value to encode.
  * @returns {string}
+ *   Encoded value.
  */
 function encode(value) {
   return value.replace(/["&<>]/g, replace)
@@ -26492,18 +31328,23 @@ function encode(value) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "htmlBlockNames": () => (/* binding */ htmlBlockNames),
-/* harmony export */   "htmlRawNames": () => (/* binding */ htmlRawNames)
+/* harmony export */   htmlBlockNames: () => (/* binding */ htmlBlockNames),
+/* harmony export */   htmlRawNames: () => (/* binding */ htmlRawNames)
 /* harmony export */ });
 /**
- * List of lowercase HTML tag names which when parsing HTML (flow), result
- * in more relaxed rules (condition 6): because they are known blocks, the
- * HTML-like syntax doesn’t have to be strictly parsed.
+ * List of lowercase HTML “block” tag names.
+ *
+ * The list, when parsing HTML (flow), results in more relaxed rules (condition
+ * 6).
+ * Because they are known blocks, the HTML-like syntax doesn’t have to be
+ * strictly parsed.
  * For tag names not in this list, a more strict algorithm (condition 7) is used
  * to detect whether the HTML-like syntax is seen as HTML (flow) or not.
  *
  * This is copied from:
  * <https://spec.commonmark.org/0.30/#html-blocks>.
+ *
+ * > 👉 **Note**: `search` was added in `CommonMark@0.31`.
  */
 const htmlBlockNames = [
   'address',
@@ -26555,6 +31396,7 @@ const htmlBlockNames = [
   'option',
   'p',
   'param',
+  'search',
   'section',
   'summary',
   'table',
@@ -26570,14 +31412,16 @@ const htmlBlockNames = [
 ]
 
 /**
- * List of lowercase HTML tag names which when parsing HTML (flow), result in
- * HTML that can include lines w/o exiting, until a closing tag also in this
- * list is found (condition 1).
+ * List of lowercase HTML “raw” tag names.
+ *
+ * The list, when parsing HTML (flow), results in HTML that can include lines
+ * without exiting, until a closing tag also in this list is found (condition
+ * 1).
  *
  * This module is copied from:
  * <https://spec.commonmark.org/0.30/#html-blocks>.
  *
- * Note that `textarea` was added in `CommonMark@0.30`.
+ * > 👉 **Note**: `textarea` was added in `CommonMark@0.30`.
  */
 const htmlRawNames = ['pre', 'script', 'style', 'textarea']
 
@@ -26593,21 +31437,34 @@ const htmlRawNames = ['pre', 'script', 'style', 'textarea']
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "normalizeIdentifier": () => (/* binding */ normalizeIdentifier)
+/* harmony export */   normalizeIdentifier: () => (/* binding */ normalizeIdentifier)
 /* harmony export */ });
 /* harmony import */ var micromark_util_symbol_values_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! micromark-util-symbol/values.js */ "../node_modules/micromark-util-symbol/values.js");
 
 
 /**
- * Normalize an identifier (such as used in definitions).
+ * Normalize an identifier (as found in references, definitions).
+ *
+ * Collapses markdown whitespace, trim, and then lower- and uppercase.
+ *
+ * Some characters are considered “uppercase”, such as U+03F4 (`ϴ`), but if their
+ * lowercase counterpart (U+03B8 (`θ`)) is uppercased will result in a different
+ * uppercase character (U+0398 (`Θ`)).
+ * So, to get a canonical form, we perform both lower- and uppercase.
+ *
+ * Using uppercase last makes sure keys will never interact with default
+ * prototypal values (such as `constructor`): nothing in the prototype of
+ * `Object` is uppercase.
  *
  * @param {string} value
+ *   Identifier to normalize.
  * @returns {string}
+ *   Normalized identifier.
  */
 function normalizeIdentifier(value) {
   return (
     value
-      // Collapse Markdown whitespace.
+      // Collapse markdown whitespace.
       .replace(/[\t\n\r ]+/g, micromark_util_symbol_values_js__WEBPACK_IMPORTED_MODULE_0__.values.space)
       // Trim.
       .replace(/^ | $/g, '')
@@ -26634,24 +31491,28 @@ function normalizeIdentifier(value) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "resolveAll": () => (/* binding */ resolveAll)
+/* harmony export */   resolveAll: () => (/* binding */ resolveAll)
 /* harmony export */ });
 /**
- * @typedef {import('micromark-util-types').TokenizeContext} TokenizeContext
  * @typedef {import('micromark-util-types').Event} Event
  * @typedef {import('micromark-util-types').Resolver} Resolver
+ * @typedef {import('micromark-util-types').TokenizeContext} TokenizeContext
  */
 
 /**
  * Call all `resolveAll`s.
  *
- * @param {{resolveAll?: Resolver}[]} constructs
- * @param {Event[]} events
+ * @param {Array<{resolveAll?: Resolver | undefined}>} constructs
+ *   List of constructs, optionally with `resolveAll`s.
+ * @param {Array<Event>} events
+ *   List of events.
  * @param {TokenizeContext} context
- * @returns {Event[]}
+ *   Context used by `tokenize`.
+ * @returns {Array<Event>}
+ *   Changed events.
  */
 function resolveAll(constructs, events, context) {
-  /** @type {Resolver[]} */
+  /** @type {Array<Resolver>} */
   const called = []
   let index = -1
 
@@ -26679,8 +31540,8 @@ function resolveAll(constructs, events, context) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "normalizeUri": () => (/* binding */ normalizeUri),
-/* harmony export */   "sanitizeUri": () => (/* binding */ sanitizeUri)
+/* harmony export */   normalizeUri: () => (/* binding */ normalizeUri),
+/* harmony export */   sanitizeUri: () => (/* binding */ sanitizeUri)
 /* harmony export */ });
 /* harmony import */ var micromark_util_character__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! micromark-util-character */ "../node_modules/micromark-util-character/dev/index.js");
 /* harmony import */ var micromark_util_encode__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! micromark-util-encode */ "../node_modules/micromark-util-encode/index.js");
@@ -26695,20 +31556,23 @@ __webpack_require__.r(__webpack_exports__);
  * Make a value safe for injection as a URL.
  *
  * This encodes unsafe characters with percent-encoding and skips already
- * encoded sequences (see `normalizeUri` below).
+ * encoded sequences (see `normalizeUri`).
  * Further unsafe characters are encoded as character references (see
  * `micromark-util-encode`).
  *
- * Then, a regex of allowed protocols can be given, in which case the URL is
+ * A regex of allowed protocols can be given, in which case the URL is
  * sanitized.
- * For example, `/^(https?|ircs?|mailto|xmpp)$/i` can be used for `a[href]`,
- * or `/^https?$/i` for `img[src]`.
+ * For example, `/^(https?|ircs?|mailto|xmpp)$/i` can be used for `a[href]`, or
+ * `/^https?$/i` for `img[src]` (this is what `github.com` allows).
  * If the URL includes an unknown protocol (one not matched by `protocol`, such
  * as a dangerous example, `javascript:`), the value is ignored.
  *
- * @param {string|undefined} url
- * @param {RegExp} [protocol]
+ * @param {string | undefined} url
+ *   URI to sanitize.
+ * @param {RegExp | null | undefined} [protocol]
+ *   Allowed protocols.
  * @returns {string}
+ *   Sanitized URI.
  */
 function sanitizeUri(url, protocol) {
   const value = (0,micromark_util_encode__WEBPACK_IMPORTED_MODULE_0__.encode)(normalizeUri(url || ''))
@@ -26739,13 +31603,15 @@ function sanitizeUri(url, protocol) {
 }
 
 /**
- * Normalize a URL (such as used in definitions).
+ * Normalize a URL.
  *
  * Encode unsafe characters with percent-encoding, skipping already encoded
  * sequences.
  *
  * @param {string} value
+ *   URI to normalize.
  * @returns {string}
+ *   Normalized URI.
  */
 function normalizeUri(value) {
   /** @type {Array<string>} */
@@ -26819,16 +31685,16 @@ function normalizeUri(value) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "subtokenize": () => (/* binding */ subtokenize)
+/* harmony export */   subtokenize: () => (/* binding */ subtokenize)
 /* harmony export */ });
-/* harmony import */ var uvu_assert__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! uvu/assert */ "../node_modules/uvu/assert/index.mjs");
 /* harmony import */ var micromark_util_chunked__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! micromark-util-chunked */ "../node_modules/micromark-util-chunked/dev/index.js");
 /* harmony import */ var micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! micromark-util-symbol/codes.js */ "../node_modules/micromark-util-symbol/codes.js");
 /* harmony import */ var micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! micromark-util-symbol/types.js */ "../node_modules/micromark-util-symbol/types.js");
+/* harmony import */ var uvu_assert__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! uvu/assert */ "../node_modules/uvu/assert/index.mjs");
 /**
- * @typedef {import('micromark-util-types').Token} Token
  * @typedef {import('micromark-util-types').Chunk} Chunk
  * @typedef {import('micromark-util-types').Event} Event
+ * @typedef {import('micromark-util-types').Token} Token
  */
 
 
@@ -26839,8 +31705,10 @@ __webpack_require__.r(__webpack_exports__);
 /**
  * Tokenize subcontent.
  *
- * @param {Event[]} events
+ * @param {Array<Event>} events
+ *   List of events.
  * @returns {boolean}
+ *   Whether subtokens were found.
  */
 function subtokenize(events) {
   /** @type {Record<string, number>} */
@@ -26848,17 +31716,17 @@ function subtokenize(events) {
   let index = -1
   /** @type {Event} */
   let event
-  /** @type {number|undefined} */
+  /** @type {number | undefined} */
   let lineIndex
   /** @type {number} */
   let otherIndex
   /** @type {Event} */
   let otherEvent
-  /** @type {Event[]} */
+  /** @type {Array<Event>} */
   let parameters
-  /** @type {Event[]} */
+  /** @type {Array<Event>} */
   let subevents
-  /** @type {boolean|undefined} */
+  /** @type {boolean | undefined} */
   let more
 
   while (++index < events.length) {
@@ -26954,7 +31822,7 @@ function subtokenize(events) {
 /**
  * Tokenize embedded tokens.
  *
- * @param {Event[]} events
+ * @param {Array<Event>} events
  * @param {number} eventIndex
  * @returns {Record<string, number>}
  */
@@ -26962,22 +31830,22 @@ function subcontent(events, eventIndex) {
   const token = events[eventIndex][1]
   const context = events[eventIndex][2]
   let startPosition = eventIndex - 1
-  /** @type {number[]} */
+  /** @type {Array<number>} */
   const startPositions = []
   ;(0,uvu_assert__WEBPACK_IMPORTED_MODULE_0__.ok)(token.contentType, 'expected `contentType` on subtokens')
   const tokenizer =
     token._tokenizer || context.parser[token.contentType](token.start)
   const childEvents = tokenizer.events
-  /** @type {[number, number][]} */
+  /** @type {Array<[number, number]>} */
   const jumps = []
   /** @type {Record<string, number>} */
   const gaps = {}
-  /** @type {Chunk[]} */
+  /** @type {Array<Chunk>} */
   let stream
-  /** @type {Token|undefined} */
+  /** @type {Token | undefined} */
   let previous
   let index = -1
-  /** @type {Token|undefined} */
+  /** @type {Token | undefined} */
   let current = token
   let adjust = 0
   let start = 0
@@ -27097,7 +31965,7 @@ function subcontent(events, eventIndex) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "codes": () => (/* binding */ codes)
+/* harmony export */   codes: () => (/* binding */ codes)
 /* harmony export */ });
 /**
  * Character codes.
@@ -27117,7 +31985,7 @@ __webpack_require__.r(__webpack_exports__);
  *
  * Unicode basic latin block.
  */
-const codes = {
+const codes = /** @type {const} */ ({
   carriageReturn: -5,
   lineFeed: -4,
   carriageReturnLineFeed: -3,
@@ -27256,7 +32124,7 @@ const codes = {
   byteOrderMarker: 65279,
   // Unicode Specials block.
   replacementCharacter: 65533 // ``
-}
+})
 
 
 /***/ }),
@@ -27270,7 +32138,7 @@ const codes = {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "constants": () => (/* binding */ constants)
+/* harmony export */   constants: () => (/* binding */ constants)
 /* harmony export */ });
 /**
  * This module is compiled away!
@@ -27280,7 +32148,7 @@ __webpack_require__.r(__webpack_exports__);
  * Additionally, there are a couple symbols used inside micromark.
  * These are all defined here, but compiled away by scripts.
  */
-const constants = {
+const constants = /** @type {const} */ ({
   attentionSideBefore: 1, // Symbol to mark an attention sequence as before content: `*a`
   attentionSideAfter: 2, // Symbol to mark an attention sequence as after content: `a*`
   atxHeadingOpeningFenceSizeMax: 6, // 6 number signs is fine, 7 isn’t.
@@ -27315,7 +32183,7 @@ const constants = {
   tabSize: 4, // Tabs have a hard-coded size of 4, per CommonMark.
   thematicBreakMarkerCountMin: 3, // At least 3 asterisks, dashes, or underscores are needed.
   v8MaxSafeChunkSize: 10000 // V8 (and potentially others) have problems injecting giant arrays into other arrays, hence we operate in chunks.
-}
+})
 
 
 /***/ }),
@@ -27329,7 +32197,7 @@ const constants = {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "types": () => (/* binding */ types)
+/* harmony export */   types: () => (/* binding */ types)
 /* harmony export */ });
 /**
  * This module is compiled away!
@@ -27342,7 +32210,9 @@ __webpack_require__.r(__webpack_exports__);
  * instead of one shared name.
  */
 
-const types = {
+// Note: when changing the next record, you must also change `TokenTypeMap`
+// in `micromark-util-types/index.d.ts`.
+const types = /** @type {const} */ ({
   // Generic type for data, such as in a title, a destination, etc.
   data: 'data',
 
@@ -27554,7 +32424,7 @@ const types = {
   escapeMarker: 'escapeMarker',
 
   // A hard break created with a backslash (`\\n`).
-  // Includes `escapeMarker` (does not include the line ending)
+  // Note: does not include the line ending.
   hardBreakEscape: 'hardBreakEscape',
 
   // A hard break created with trailing spaces (`  \n`).
@@ -27781,7 +32651,7 @@ const types = {
   chunkFlow: 'chunkFlow',
   chunkText: 'chunkText',
   chunkString: 'chunkString'
-}
+})
 
 
 /***/ }),
@@ -27795,15 +32665,17 @@ const types = {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "values": () => (/* binding */ values)
+/* harmony export */   values: () => (/* binding */ values)
 /* harmony export */ });
-// This module is compiled away!
-//
-// While micromark works based on character codes, this module includes the
-// string versions of ’em.
-// The C0 block, except for LF, CR, HT, and w/ the replacement character added,
-// are available here.
-const values = {
+/**
+ * This module is compiled away!
+ *
+ * While micromark works based on character codes, this module includes the
+ * string versions of ’em.
+ * The C0 block, except for LF, CR, HT, and w/ the replacement character added,
+ * are available here.
+ */
+const values = /** @type {const} */ ({
   ht: '\t',
   lf: '\n',
   cr: '\r',
@@ -27903,7 +32775,7 @@ const values = {
   rightCurlyBrace: '}',
   tilde: '~',
   replacementCharacter: ''
-}
+})
 
 
 /***/ }),
@@ -27917,15 +32789,15 @@ const values = {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "attentionMarkers": () => (/* binding */ attentionMarkers),
-/* harmony export */   "contentInitial": () => (/* binding */ contentInitial),
-/* harmony export */   "disable": () => (/* binding */ disable),
-/* harmony export */   "document": () => (/* binding */ document),
-/* harmony export */   "flow": () => (/* binding */ flow),
-/* harmony export */   "flowInitial": () => (/* binding */ flowInitial),
-/* harmony export */   "insideSpan": () => (/* binding */ insideSpan),
-/* harmony export */   "string": () => (/* binding */ string),
-/* harmony export */   "text": () => (/* binding */ text)
+/* harmony export */   attentionMarkers: () => (/* binding */ attentionMarkers),
+/* harmony export */   contentInitial: () => (/* binding */ contentInitial),
+/* harmony export */   disable: () => (/* binding */ disable),
+/* harmony export */   document: () => (/* binding */ document),
+/* harmony export */   flow: () => (/* binding */ flow),
+/* harmony export */   flowInitial: () => (/* binding */ flowInitial),
+/* harmony export */   insideSpan: () => (/* binding */ insideSpan),
+/* harmony export */   string: () => (/* binding */ string),
+/* harmony export */   text: () => (/* binding */ text)
 /* harmony export */ });
 /* harmony import */ var micromark_core_commonmark__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! micromark-core-commonmark */ "../node_modules/micromark-core-commonmark/dev/lib/list.js");
 /* harmony import */ var micromark_core_commonmark__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! micromark-core-commonmark */ "../node_modules/micromark-core-commonmark/dev/lib/block-quote.js");
@@ -27957,7 +32829,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-/** @type {Extension['document']} */
+/** @satisfies {Extension['document']} */
 const document = {
   [micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_0__.codes.asterisk]: micromark_core_commonmark__WEBPACK_IMPORTED_MODULE_1__.list,
   [micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_0__.codes.plusSign]: micromark_core_commonmark__WEBPACK_IMPORTED_MODULE_1__.list,
@@ -27975,19 +32847,19 @@ const document = {
   [micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_0__.codes.greaterThan]: micromark_core_commonmark__WEBPACK_IMPORTED_MODULE_2__.blockQuote
 }
 
-/** @type {Extension['contentInitial']} */
+/** @satisfies {Extension['contentInitial']} */
 const contentInitial = {
   [micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_0__.codes.leftSquareBracket]: micromark_core_commonmark__WEBPACK_IMPORTED_MODULE_3__.definition
 }
 
-/** @type {Extension['flowInitial']} */
+/** @satisfies {Extension['flowInitial']} */
 const flowInitial = {
   [micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_0__.codes.horizontalTab]: micromark_core_commonmark__WEBPACK_IMPORTED_MODULE_4__.codeIndented,
   [micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_0__.codes.virtualSpace]: micromark_core_commonmark__WEBPACK_IMPORTED_MODULE_4__.codeIndented,
   [micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_0__.codes.space]: micromark_core_commonmark__WEBPACK_IMPORTED_MODULE_4__.codeIndented
 }
 
-/** @type {Extension['flow']} */
+/** @satisfies {Extension['flow']} */
 const flow = {
   [micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_0__.codes.numberSign]: micromark_core_commonmark__WEBPACK_IMPORTED_MODULE_5__.headingAtx,
   [micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_0__.codes.asterisk]: micromark_core_commonmark__WEBPACK_IMPORTED_MODULE_6__.thematicBreak,
@@ -27999,13 +32871,13 @@ const flow = {
   [micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_0__.codes.tilde]: micromark_core_commonmark__WEBPACK_IMPORTED_MODULE_9__.codeFenced
 }
 
-/** @type {Extension['string']} */
+/** @satisfies {Extension['string']} */
 const string = {
   [micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_0__.codes.ampersand]: micromark_core_commonmark__WEBPACK_IMPORTED_MODULE_10__.characterReference,
   [micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_0__.codes.backslash]: micromark_core_commonmark__WEBPACK_IMPORTED_MODULE_11__.characterEscape
 }
 
-/** @type {Extension['text']} */
+/** @satisfies {Extension['text']} */
 const text = {
   [micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_0__.codes.carriageReturn]: micromark_core_commonmark__WEBPACK_IMPORTED_MODULE_12__.lineEnding,
   [micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_0__.codes.lineFeed]: micromark_core_commonmark__WEBPACK_IMPORTED_MODULE_12__.lineEnding,
@@ -28021,13 +32893,13 @@ const text = {
   [micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_0__.codes.graveAccent]: micromark_core_commonmark__WEBPACK_IMPORTED_MODULE_20__.codeText
 }
 
-/** @type {Extension['insideSpan']} */
+/** @satisfies {Extension['insideSpan']} */
 const insideSpan = {null: [micromark_core_commonmark__WEBPACK_IMPORTED_MODULE_14__.attention, _initialize_text_js__WEBPACK_IMPORTED_MODULE_21__.resolver]}
 
-/** @type {Extension['attentionMarkers']} */
+/** @satisfies {Extension['attentionMarkers']} */
 const attentionMarkers = {null: [micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_0__.codes.asterisk, micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_0__.codes.underscore]}
 
-/** @type {Extension['disable']} */
+/** @satisfies {Extension['disable']} */
 const disable = {null: []}
 
 
@@ -28042,32 +32914,36 @@ const disable = {null: []}
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "createTokenizer": () => (/* binding */ createTokenizer)
+/* harmony export */   createTokenizer: () => (/* binding */ createTokenizer)
 /* harmony export */ });
-/* harmony import */ var uvu_assert__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! uvu/assert */ "../node_modules/uvu/assert/index.mjs");
-/* harmony import */ var debug__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! debug */ "../node_modules/debug/src/browser.js");
+/* harmony import */ var debug__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! debug */ "../node_modules/debug/src/browser.js");
 /* harmony import */ var micromark_util_character__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! micromark-util-character */ "../node_modules/micromark-util-character/dev/index.js");
 /* harmony import */ var micromark_util_chunked__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! micromark-util-chunked */ "../node_modules/micromark-util-chunked/dev/index.js");
 /* harmony import */ var micromark_util_resolve_all__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! micromark-util-resolve-all */ "../node_modules/micromark-util-resolve-all/index.js");
 /* harmony import */ var micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! micromark-util-symbol/codes.js */ "../node_modules/micromark-util-symbol/codes.js");
 /* harmony import */ var micromark_util_symbol_values_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! micromark-util-symbol/values.js */ "../node_modules/micromark-util-symbol/values.js");
+/* harmony import */ var uvu_assert__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! uvu/assert */ "../node_modules/uvu/assert/index.mjs");
 /**
- * @typedef {import('micromark-util-types').Code} Code
  * @typedef {import('micromark-util-types').Chunk} Chunk
- * @typedef {import('micromark-util-types').Point} Point
- * @typedef {import('micromark-util-types').Token} Token
- * @typedef {import('micromark-util-types').Effects} Effects
- * @typedef {import('micromark-util-types').State} State
+ * @typedef {import('micromark-util-types').Code} Code
  * @typedef {import('micromark-util-types').Construct} Construct
- * @typedef {import('micromark-util-types').InitialConstruct} InitialConstruct
  * @typedef {import('micromark-util-types').ConstructRecord} ConstructRecord
- * @typedef {import('micromark-util-types').TokenizeContext} TokenizeContext
+ * @typedef {import('micromark-util-types').Effects} Effects
+ * @typedef {import('micromark-util-types').InitialConstruct} InitialConstruct
  * @typedef {import('micromark-util-types').ParseContext} ParseContext
+ * @typedef {import('micromark-util-types').Point} Point
+ * @typedef {import('micromark-util-types').State} State
+ * @typedef {import('micromark-util-types').Token} Token
+ * @typedef {import('micromark-util-types').TokenType} TokenType
+ * @typedef {import('micromark-util-types').TokenizeContext} TokenizeContext
  */
 
 /**
+ * @callback Restore
+ * @returns {void}
+ *
  * @typedef Info
- * @property {() => void} restore
+ * @property {Restore} restore
  * @property {number} from
  *
  * @callback ReturnHandle
@@ -28085,7 +32961,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-const debug = debug__WEBPACK_IMPORTED_MODULE_1__('micromark')
+const debug = debug__WEBPACK_IMPORTED_MODULE_0__('micromark')
 
 /**
  * Create a tokenizer.
@@ -28098,7 +32974,7 @@ const debug = debug__WEBPACK_IMPORTED_MODULE_1__('micromark')
  *
  * @param {ParseContext} parser
  * @param {InitialConstruct} initialize
- * @param {Omit<Point, '_index'|'_bufferIndex'>} [from]
+ * @param {Omit<Point, '_bufferIndex' | '_index'> | undefined} [from]
  * @returns {TokenizeContext}
  */
 function createTokenizer(parser, initialize, from) {
@@ -28115,7 +32991,7 @@ function createTokenizer(parser, initialize, from) {
   let chunks = []
   /** @type {Array<Token>} */
   let stack = []
-  /** @type {boolean|undefined} */
+  /** @type {boolean | undefined} */
   let consumed = true
 
   /**
@@ -28153,7 +33029,7 @@ function createTokenizer(parser, initialize, from) {
   /**
    * The state function.
    *
-   * @type {State|void}
+   * @type {State | void}
    */
   let state = initialize.tokenize.call(context, effects)
 
@@ -28205,7 +33081,9 @@ function createTokenizer(parser, initialize, from) {
 
   /** @type {TokenizeContext['now']} */
   function now() {
-    return Object.assign({}, point)
+    // This is a hot path, so we clone manually instead of `Object.assign({}, point)`
+    const {line, column, offset, _index, _bufferIndex} = point
+    return {line, column, offset, _index, _bufferIndex}
   }
 
   /** @type {TokenizeContext['defineSkip']} */
@@ -28263,25 +33141,25 @@ function createTokenizer(parser, initialize, from) {
    * @returns {void}
    */
   function go(code) {
-    (0,uvu_assert__WEBPACK_IMPORTED_MODULE_0__.ok)(consumed === true, 'expected character to be consumed')
+    (0,uvu_assert__WEBPACK_IMPORTED_MODULE_1__.ok)(consumed === true, 'expected character to be consumed')
     consumed = undefined
     debug('main: passing `%s` to %s', code, state && state.name)
     expectedCode = code
-    ;(0,uvu_assert__WEBPACK_IMPORTED_MODULE_0__.ok)(typeof state === 'function', 'expected state')
+    ;(0,uvu_assert__WEBPACK_IMPORTED_MODULE_1__.ok)(typeof state === 'function', 'expected state')
     state = state(code)
   }
 
   /** @type {Effects['consume']} */
   function consume(code) {
-    (0,uvu_assert__WEBPACK_IMPORTED_MODULE_0__.ok)(code === expectedCode, 'expected given code to equal expected code')
+    (0,uvu_assert__WEBPACK_IMPORTED_MODULE_1__.ok)(code === expectedCode, 'expected given code to equal expected code')
 
     debug('consume: `%s`', code)
 
-    ;(0,uvu_assert__WEBPACK_IMPORTED_MODULE_0__.ok)(
+    ;(0,uvu_assert__WEBPACK_IMPORTED_MODULE_1__.ok)(
       consumed === undefined,
       'expected code to not have been consumed: this might be because `return x(code)` instead of `return x` was used'
     )
-    ;(0,uvu_assert__WEBPACK_IMPORTED_MODULE_0__.ok)(
+    ;(0,uvu_assert__WEBPACK_IMPORTED_MODULE_1__.ok)(
       code === null
         ? context.events.length === 0 ||
             context.events[context.events.length - 1][0] === 'exit'
@@ -28330,8 +33208,8 @@ function createTokenizer(parser, initialize, from) {
     token.type = type
     token.start = now()
 
-    ;(0,uvu_assert__WEBPACK_IMPORTED_MODULE_0__.ok)(typeof type === 'string', 'expected string type')
-    ;(0,uvu_assert__WEBPACK_IMPORTED_MODULE_0__.ok)(type.length > 0, 'expected non-empty string')
+    ;(0,uvu_assert__WEBPACK_IMPORTED_MODULE_1__.ok)(typeof type === 'string', 'expected string type')
+    ;(0,uvu_assert__WEBPACK_IMPORTED_MODULE_1__.ok)(type.length > 0, 'expected non-empty string')
     debug('enter: `%s`', type)
 
     context.events.push(['enter', token, context])
@@ -28343,16 +33221,16 @@ function createTokenizer(parser, initialize, from) {
 
   /** @type {Effects['exit']} */
   function exit(type) {
-    (0,uvu_assert__WEBPACK_IMPORTED_MODULE_0__.ok)(typeof type === 'string', 'expected string type')
-    ;(0,uvu_assert__WEBPACK_IMPORTED_MODULE_0__.ok)(type.length > 0, 'expected non-empty string')
+    (0,uvu_assert__WEBPACK_IMPORTED_MODULE_1__.ok)(typeof type === 'string', 'expected string type')
+    ;(0,uvu_assert__WEBPACK_IMPORTED_MODULE_1__.ok)(type.length > 0, 'expected non-empty string')
 
     const token = stack.pop()
-    ;(0,uvu_assert__WEBPACK_IMPORTED_MODULE_0__.ok)(token, 'cannot close w/o open tokens')
+    ;(0,uvu_assert__WEBPACK_IMPORTED_MODULE_1__.ok)(token, 'cannot close w/o open tokens')
     token.end = now()
 
-    ;(0,uvu_assert__WEBPACK_IMPORTED_MODULE_0__.ok)(type === token.type, 'expected exit token to match current token')
+    ;(0,uvu_assert__WEBPACK_IMPORTED_MODULE_1__.ok)(type === token.type, 'expected exit token to match current token')
 
-    ;(0,uvu_assert__WEBPACK_IMPORTED_MODULE_0__.ok)(
+    ;(0,uvu_assert__WEBPACK_IMPORTED_MODULE_1__.ok)(
       !(
         token.start._index === token.end._index &&
         token.start._bufferIndex === token.end._bufferIndex
@@ -28388,7 +33266,7 @@ function createTokenizer(parser, initialize, from) {
    * Factory to attempt/check/interrupt.
    *
    * @param {ReturnHandle} onreturn
-   * @param {Record<string, unknown>} [fields]
+   * @param {{interrupt?: boolean | undefined} | undefined} [fields]
    */
   function constructFactory(onreturn, fields) {
     return hook
@@ -28397,9 +33275,9 @@ function createTokenizer(parser, initialize, from) {
      * Handle either an object mapping codes to constructs, a list of
      * constructs, or a single construct.
      *
-     * @param {Construct|Array<Construct>|ConstructRecord} constructs
+     * @param {Array<Construct> | Construct | ConstructRecord} constructs
      * @param {State} returnState
-     * @param {State} [bogusState]
+     * @param {State | undefined} [bogusState]
      * @returns {State}
      */
     function hook(constructs, returnState, bogusState) {
@@ -28455,7 +33333,7 @@ function createTokenizer(parser, initialize, from) {
         constructIndex = 0
 
         if (list.length === 0) {
-          (0,uvu_assert__WEBPACK_IMPORTED_MODULE_0__.ok)(bogusState, 'expected `bogusState` to be given')
+          (0,uvu_assert__WEBPACK_IMPORTED_MODULE_1__.ok)(bogusState, 'expected `bogusState` to be given')
           return bogusState
         }
 
@@ -28484,6 +33362,12 @@ function createTokenizer(parser, initialize, from) {
             context.currentConstruct = construct
           }
 
+          // Always populated by defaults.
+          (0,uvu_assert__WEBPACK_IMPORTED_MODULE_1__.ok)(
+            context.parser.constructs.disable.null,
+            'expected `disable.null` to be populated'
+          )
+
           if (
             construct.name &&
             context.parser.constructs.disable.null.includes(construct.name)
@@ -28505,7 +33389,7 @@ function createTokenizer(parser, initialize, from) {
 
       /** @type {State} */
       function ok(code) {
-        (0,uvu_assert__WEBPACK_IMPORTED_MODULE_0__.ok)(code === expectedCode, 'expected code')
+        (0,uvu_assert__WEBPACK_IMPORTED_MODULE_1__.ok)(code === expectedCode, 'expected code')
         consumed = true
         onreturn(currentConstruct, info)
         return returnState
@@ -28513,7 +33397,7 @@ function createTokenizer(parser, initialize, from) {
 
       /** @type {State} */
       function nok(code) {
-        (0,uvu_assert__WEBPACK_IMPORTED_MODULE_0__.ok)(code === expectedCode, 'expected code')
+        (0,uvu_assert__WEBPACK_IMPORTED_MODULE_1__.ok)(code === expectedCode, 'expected code')
         consumed = true
         info.restore()
 
@@ -28549,7 +33433,7 @@ function createTokenizer(parser, initialize, from) {
       context.events = construct.resolveTo(context.events, context)
     }
 
-    (0,uvu_assert__WEBPACK_IMPORTED_MODULE_0__.ok)(
+    (0,uvu_assert__WEBPACK_IMPORTED_MODULE_1__.ok)(
       construct.partial ||
         context.events.length === 0 ||
         context.events[context.events.length - 1][0] === 'exit',
@@ -28605,7 +33489,7 @@ function createTokenizer(parser, initialize, from) {
  * Get the chunks from a slice of chunks in the range of a token.
  *
  * @param {Array<Chunk>} chunks
- * @param {Pick<Token, 'start'|'end'>} token
+ * @param {Pick<Token, 'end' | 'start'>} token
  * @returns {Array<Chunk>}
  */
 function sliceChunks(chunks, token) {
@@ -28617,16 +33501,21 @@ function sliceChunks(chunks, token) {
   let view
 
   if (startIndex === endIndex) {
-    (0,uvu_assert__WEBPACK_IMPORTED_MODULE_0__.ok)(endBufferIndex > -1, 'expected non-negative end buffer index')
-    ;(0,uvu_assert__WEBPACK_IMPORTED_MODULE_0__.ok)(startBufferIndex > -1, 'expected non-negative start buffer index')
+    (0,uvu_assert__WEBPACK_IMPORTED_MODULE_1__.ok)(endBufferIndex > -1, 'expected non-negative end buffer index')
+    ;(0,uvu_assert__WEBPACK_IMPORTED_MODULE_1__.ok)(startBufferIndex > -1, 'expected non-negative start buffer index')
     // @ts-expect-error `_bufferIndex` is used on string chunks.
     view = [chunks[startIndex].slice(startBufferIndex, endBufferIndex)]
   } else {
     view = chunks.slice(startIndex, endIndex)
 
     if (startBufferIndex > -1) {
-      // @ts-expect-error `_bufferIndex` is used on string chunks.
-      view[0] = view[0].slice(startBufferIndex)
+      const head = view[0]
+      if (typeof head === 'string') {
+        view[0] = head.slice(startBufferIndex)
+      } else {
+        (0,uvu_assert__WEBPACK_IMPORTED_MODULE_1__.ok)(startBufferIndex === 0, 'expected `startBufferIndex` to be `0`')
+        view.shift()
+      }
     }
 
     if (endBufferIndex > 0) {
@@ -28642,14 +33531,14 @@ function sliceChunks(chunks, token) {
  * Get the string value of a slice of chunks.
  *
  * @param {Array<Chunk>} chunks
- * @param {boolean} [expandTabs=false]
+ * @param {boolean | undefined} [expandTabs=false]
  * @returns {string}
  */
 function serializeChunks(chunks, expandTabs) {
   let index = -1
   /** @type {Array<string>} */
   const result = []
-  /** @type {boolean|undefined} */
+  /** @type {boolean | undefined} */
   let atTab
 
   while (++index < chunks.length) {
@@ -28693,7 +33582,7 @@ function serializeChunks(chunks, expandTabs) {
         }
 
         default: {
-          (0,uvu_assert__WEBPACK_IMPORTED_MODULE_0__.ok)(typeof chunk === 'number', 'expected number')
+          (0,uvu_assert__WEBPACK_IMPORTED_MODULE_1__.ok)(typeof chunk === 'number', 'expected number')
           // Currently only replacement character.
           value = String.fromCharCode(chunk)
         }
@@ -28718,19 +33607,20 @@ function serializeChunks(chunks, expandTabs) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "content": () => (/* binding */ content)
+/* harmony export */   content: () => (/* binding */ content)
 /* harmony export */ });
-/* harmony import */ var uvu_assert__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! uvu/assert */ "../node_modules/uvu/assert/index.mjs");
 /* harmony import */ var micromark_factory_space__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! micromark-factory-space */ "../node_modules/micromark-factory-space/dev/index.js");
 /* harmony import */ var micromark_util_character__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! micromark-util-character */ "../node_modules/micromark-util-character/dev/index.js");
 /* harmony import */ var micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! micromark-util-symbol/codes.js */ "../node_modules/micromark-util-symbol/codes.js");
 /* harmony import */ var micromark_util_symbol_constants_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! micromark-util-symbol/constants.js */ "../node_modules/micromark-util-symbol/constants.js");
 /* harmony import */ var micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! micromark-util-symbol/types.js */ "../node_modules/micromark-util-symbol/types.js");
+/* harmony import */ var uvu_assert__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! uvu/assert */ "../node_modules/uvu/assert/index.mjs");
 /**
  * @typedef {import('micromark-util-types').InitialConstruct} InitialConstruct
  * @typedef {import('micromark-util-types').Initializer} Initializer
- * @typedef {import('micromark-util-types').Token} Token
  * @typedef {import('micromark-util-types').State} State
+ * @typedef {import('micromark-util-types').Token} Token
+ * @typedef {import('micromark-util-types').TokenizeContext} TokenizeContext
  */
 
 
@@ -28743,7 +33633,10 @@ __webpack_require__.r(__webpack_exports__);
 /** @type {InitialConstruct} */
 const content = {tokenize: initializeContent}
 
-/** @type {Initializer} */
+/**
+ * @this {TokenizeContext}
+ * @type {Initializer}
+ */
 function initializeContent(effects) {
   const contentStart = effects.attempt(
     this.parser.constructs.contentInitial,
@@ -28832,29 +33725,29 @@ function initializeContent(effects) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "document": () => (/* binding */ document)
+/* harmony export */   document: () => (/* binding */ document)
 /* harmony export */ });
-/* harmony import */ var uvu_assert__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! uvu/assert */ "../node_modules/uvu/assert/index.mjs");
 /* harmony import */ var micromark_factory_space__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! micromark-factory-space */ "../node_modules/micromark-factory-space/dev/index.js");
 /* harmony import */ var micromark_util_character__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! micromark-util-character */ "../node_modules/micromark-util-character/dev/index.js");
+/* harmony import */ var micromark_util_chunked__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! micromark-util-chunked */ "../node_modules/micromark-util-chunked/dev/index.js");
 /* harmony import */ var micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! micromark-util-symbol/codes.js */ "../node_modules/micromark-util-symbol/codes.js");
 /* harmony import */ var micromark_util_symbol_constants_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! micromark-util-symbol/constants.js */ "../node_modules/micromark-util-symbol/constants.js");
 /* harmony import */ var micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! micromark-util-symbol/types.js */ "../node_modules/micromark-util-symbol/types.js");
-/* harmony import */ var micromark_util_chunked__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! micromark-util-chunked */ "../node_modules/micromark-util-chunked/dev/index.js");
+/* harmony import */ var uvu_assert__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! uvu/assert */ "../node_modules/uvu/assert/index.mjs");
 /**
+ * @typedef {import('micromark-util-types').Construct} Construct
+ * @typedef {import('micromark-util-types').ContainerState} ContainerState
  * @typedef {import('micromark-util-types').InitialConstruct} InitialConstruct
  * @typedef {import('micromark-util-types').Initializer} Initializer
- * @typedef {import('micromark-util-types').Construct} Construct
+ * @typedef {import('micromark-util-types').Point} Point
+ * @typedef {import('micromark-util-types').State} State
+ * @typedef {import('micromark-util-types').Token} Token
  * @typedef {import('micromark-util-types').TokenizeContext} TokenizeContext
  * @typedef {import('micromark-util-types').Tokenizer} Tokenizer
- * @typedef {import('micromark-util-types').Token} Token
- * @typedef {import('micromark-util-types').State} State
- * @typedef {import('micromark-util-types').Point} Point
  */
 
 /**
- * @typedef {Record<string, unknown>} StackState
- * @typedef {[Construct, StackState]} StackItem
+ * @typedef {[Construct, ContainerState]} StackItem
  */
 
 
@@ -28871,15 +33764,18 @@ const document = {tokenize: initializeDocument}
 /** @type {Construct} */
 const containerConstruct = {tokenize: tokenizeContainer}
 
-/** @type {Initializer} */
+/**
+ * @this {TokenizeContext}
+ * @type {Initializer}
+ */
 function initializeDocument(effects) {
   const self = this
   /** @type {Array<StackItem>} */
   const stack = []
   let continued = 0
-  /** @type {TokenizeContext|undefined} */
+  /** @type {TokenizeContext | undefined} */
   let childFlow
-  /** @type {Token|undefined} */
+  /** @type {Token | undefined} */
   let childToken
   /** @type {number} */
   let lineStartOffset
@@ -28939,7 +33835,7 @@ function initializeDocument(effects) {
       // algorithm when dealing with lazy lines in `writeToChild`.
       const indexBeforeExits = self.events.length
       let indexBeforeFlow = indexBeforeExits
-      /** @type {Point|undefined} */
+      /** @type {Point | undefined} */
       let point
 
       // Find the flow chunk.
@@ -29007,6 +33903,8 @@ function initializeDocument(effects) {
       // If we do have flow, it could still be a blank line,
       // but we’d be interrupting it w/ a new container if there’s a current
       // construct.
+      // To do: next major: remove `_gfmTableDynamicInterruptHack` (no longer
+      // needed in micromark-extension-gfm-table@1.0.6).
       self.interrupt = Boolean(
         childFlow.currentConstruct && !childFlow._gfmTableDynamicInterruptHack
       )
@@ -29105,7 +34003,7 @@ function initializeDocument(effects) {
 
   /**
    * @param {Token} token
-   * @param {boolean} [eof]
+   * @param {boolean | undefined} [eof]
    * @returns {void}
    */
   function writeToChild(token, eof) {
@@ -29173,9 +34071,9 @@ function initializeDocument(effects) {
       // algorithm when closing flow in `documentContinue`.
       const indexBeforeExits = self.events.length
       let indexBeforeFlow = indexBeforeExits
-      /** @type {boolean|undefined} */
+      /** @type {boolean | undefined} */
       let seen
-      /** @type {Point|undefined} */
+      /** @type {Point | undefined} */
       let point
 
       // Find the previous chunk (the one before the lazy line).
@@ -29252,8 +34150,16 @@ function initializeDocument(effects) {
   }
 }
 
-/** @type {Tokenizer} */
+/**
+ * @this {TokenizeContext}
+ * @type {Tokenizer}
+ */
 function tokenizeContainer(effects, ok, nok) {
+  // Always populated by defaults.
+  (0,uvu_assert__WEBPACK_IMPORTED_MODULE_0__.ok)(
+    this.parser.constructs.disable.null,
+    'expected `disable.null` to be populated'
+  )
   return (0,micromark_factory_space__WEBPACK_IMPORTED_MODULE_6__.factorySpace)(
     effects,
     effects.attempt(this.parser.constructs.document, ok, nok),
@@ -29276,19 +34182,20 @@ function tokenizeContainer(effects, ok, nok) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "flow": () => (/* binding */ flow)
+/* harmony export */   flow: () => (/* binding */ flow)
 /* harmony export */ });
-/* harmony import */ var uvu_assert__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! uvu/assert */ "../node_modules/uvu/assert/index.mjs");
 /* harmony import */ var micromark_core_commonmark__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! micromark-core-commonmark */ "../node_modules/micromark-core-commonmark/dev/lib/blank-line.js");
 /* harmony import */ var micromark_core_commonmark__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! micromark-core-commonmark */ "../node_modules/micromark-core-commonmark/dev/lib/content.js");
 /* harmony import */ var micromark_factory_space__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! micromark-factory-space */ "../node_modules/micromark-factory-space/dev/index.js");
 /* harmony import */ var micromark_util_character__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! micromark-util-character */ "../node_modules/micromark-util-character/dev/index.js");
 /* harmony import */ var micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! micromark-util-symbol/codes.js */ "../node_modules/micromark-util-symbol/codes.js");
 /* harmony import */ var micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! micromark-util-symbol/types.js */ "../node_modules/micromark-util-symbol/types.js");
+/* harmony import */ var uvu_assert__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! uvu/assert */ "../node_modules/uvu/assert/index.mjs");
 /**
  * @typedef {import('micromark-util-types').InitialConstruct} InitialConstruct
  * @typedef {import('micromark-util-types').Initializer} Initializer
  * @typedef {import('micromark-util-types').State} State
+ * @typedef {import('micromark-util-types').TokenizeContext} TokenizeContext
  */
 
 
@@ -29301,7 +34208,10 @@ __webpack_require__.r(__webpack_exports__);
 /** @type {InitialConstruct} */
 const flow = {tokenize: initializeFlow}
 
-/** @type {Initializer} */
+/**
+ * @this {TokenizeContext}
+ * @type {Initializer}
+ */
 function initializeFlow(effects) {
   const self = this
   const initial = effects.attempt(
@@ -29377,21 +34287,23 @@ function initializeFlow(effects) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "resolver": () => (/* binding */ resolver),
-/* harmony export */   "string": () => (/* binding */ string),
-/* harmony export */   "text": () => (/* binding */ text)
+/* harmony export */   resolver: () => (/* binding */ resolver),
+/* harmony export */   string: () => (/* binding */ string),
+/* harmony export */   text: () => (/* binding */ text)
 /* harmony export */ });
-/* harmony import */ var micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! micromark-util-symbol/codes.js */ "../node_modules/micromark-util-symbol/codes.js");
-/* harmony import */ var micromark_util_symbol_constants_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! micromark-util-symbol/constants.js */ "../node_modules/micromark-util-symbol/constants.js");
-/* harmony import */ var micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! micromark-util-symbol/types.js */ "../node_modules/micromark-util-symbol/types.js");
+/* harmony import */ var micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! micromark-util-symbol/codes.js */ "../node_modules/micromark-util-symbol/codes.js");
+/* harmony import */ var micromark_util_symbol_constants_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! micromark-util-symbol/constants.js */ "../node_modules/micromark-util-symbol/constants.js");
+/* harmony import */ var micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! micromark-util-symbol/types.js */ "../node_modules/micromark-util-symbol/types.js");
+/* harmony import */ var uvu_assert__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! uvu/assert */ "../node_modules/uvu/assert/index.mjs");
 /**
- * @typedef {import('micromark-util-types').Resolver} Resolver
- * @typedef {import('micromark-util-types').Initializer} Initializer
- * @typedef {import('micromark-util-types').Construct} Construct
- * @typedef {import('micromark-util-types').InitialConstruct} InitialConstruct
- * @typedef {import('micromark-util-types').State} State
  * @typedef {import('micromark-util-types').Code} Code
+ * @typedef {import('micromark-util-types').InitialConstruct} InitialConstruct
+ * @typedef {import('micromark-util-types').Initializer} Initializer
+ * @typedef {import('micromark-util-types').Resolver} Resolver
+ * @typedef {import('micromark-util-types').State} State
+ * @typedef {import('micromark-util-types').TokenizeContext} TokenizeContext
  */
+
 
 
 
@@ -29402,7 +34314,7 @@ const string = initializeFactory('string')
 const text = initializeFactory('text')
 
 /**
- * @param {'string'|'text'} field
+ * @param {'string' | 'text'} field
  * @returns {InitialConstruct}
  */
 function initializeFactory(field) {
@@ -29413,7 +34325,10 @@ function initializeFactory(field) {
     )
   }
 
-  /** @type {Initializer} */
+  /**
+   * @this {TokenizeContext}
+   * @type {Initializer}
+   */
   function initializeText(effects) {
     const self = this
     const constructs = this.parser.constructs[field]
@@ -29428,12 +34343,12 @@ function initializeFactory(field) {
 
     /** @type {State} */
     function notText(code) {
-      if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_0__.codes.eof) {
+      if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.eof) {
         effects.consume(code)
         return
       }
 
-      effects.enter(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.data)
+      effects.enter(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.data)
       effects.consume(code)
       return data
     }
@@ -29441,7 +34356,7 @@ function initializeFactory(field) {
     /** @type {State} */
     function data(code) {
       if (atBreak(code)) {
-        effects.exit(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.data)
+        effects.exit(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.data)
         return text(code)
       }
 
@@ -29455,7 +34370,7 @@ function initializeFactory(field) {
      * @returns {boolean}
      */
     function atBreak(code) {
-      if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_0__.codes.eof) {
+      if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.eof) {
         return true
       }
 
@@ -29463,6 +34378,9 @@ function initializeFactory(field) {
       let index = -1
 
       if (list) {
+        // Always populated by defaults.
+        (0,uvu_assert__WEBPACK_IMPORTED_MODULE_0__.ok)(Array.isArray(list), 'expected `disable.null` to be populated')
+
         while (++index < list.length) {
           const item = list[index]
           if (!item.previous || item.previous.call(self, self.previous)) {
@@ -29477,7 +34395,7 @@ function initializeFactory(field) {
 }
 
 /**
- * @param {Resolver} [extraResolver]
+ * @param {Resolver | undefined} [extraResolver]
  * @returns {Resolver}
  */
 function createResolver(extraResolver) {
@@ -29486,18 +34404,18 @@ function createResolver(extraResolver) {
   /** @type {Resolver} */
   function resolveAllText(events, context) {
     let index = -1
-    /** @type {number|undefined} */
+    /** @type {number | undefined} */
     let enter
 
     // A rather boring computation (to merge adjacent `data` events) which
     // improves mm performance by 29%.
     while (++index <= events.length) {
       if (enter === undefined) {
-        if (events[index] && events[index][1].type === micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.data) {
+        if (events[index] && events[index][1].type === micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.data) {
           enter = index
           index++
         }
-      } else if (!events[index] || events[index][1].type !== micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.data) {
+      } else if (!events[index] || events[index][1].type !== micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.data) {
         // Don’t do anything if there is one data token.
         if (index !== enter + 2) {
           events[enter][1].end = events[index - 1][1].end
@@ -29530,15 +34448,15 @@ function resolveAllLineSuffixes(events, context) {
   while (++eventIndex <= events.length) {
     if (
       (eventIndex === events.length ||
-        events[eventIndex][1].type === micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.lineEnding) &&
-      events[eventIndex - 1][1].type === micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.data
+        events[eventIndex][1].type === micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.lineEnding) &&
+      events[eventIndex - 1][1].type === micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.data
     ) {
       const data = events[eventIndex - 1][1]
       const chunks = context.sliceStream(data)
       let index = chunks.length
       let bufferIndex = -1
       let size = 0
-      /** @type {boolean|undefined} */
+      /** @type {boolean | undefined} */
       let tabs
 
       while (index--) {
@@ -29547,7 +34465,7 @@ function resolveAllLineSuffixes(events, context) {
         if (typeof chunk === 'string') {
           bufferIndex = chunk.length
 
-          while (chunk.charCodeAt(bufferIndex - 1) === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_0__.codes.space) {
+          while (chunk.charCodeAt(bufferIndex - 1) === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.space) {
             size++
             bufferIndex--
           }
@@ -29556,10 +34474,10 @@ function resolveAllLineSuffixes(events, context) {
           bufferIndex = -1
         }
         // Number
-        else if (chunk === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_0__.codes.horizontalTab) {
+        else if (chunk === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.horizontalTab) {
           tabs = true
           size++
-        } else if (chunk === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_0__.codes.virtualSpace) {
+        } else if (chunk === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.virtualSpace) {
           // Empty
         } else {
           // Replacement character, exit.
@@ -29573,9 +34491,9 @@ function resolveAllLineSuffixes(events, context) {
           type:
             eventIndex === events.length ||
             tabs ||
-            size < micromark_util_symbol_constants_js__WEBPACK_IMPORTED_MODULE_2__.constants.hardBreakPrefixSizeMin
-              ? micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.lineSuffix
-              : micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.hardBreakTrailing,
+            size < micromark_util_symbol_constants_js__WEBPACK_IMPORTED_MODULE_3__.constants.hardBreakPrefixSizeMin
+              ? micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.lineSuffix
+              : micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.hardBreakTrailing,
           start: {
             line: data.end.line,
             column: data.end.column - size,
@@ -29622,7 +34540,7 @@ function resolveAllLineSuffixes(events, context) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "parse": () => (/* binding */ parse)
+/* harmony export */   parse: () => (/* binding */ parse)
 /* harmony export */ });
 /* harmony import */ var micromark_util_combine_extensions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! micromark-util-combine-extensions */ "../node_modules/micromark-util-combine-extensions/index.js");
 /* harmony import */ var _initialize_content_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./initialize/content.js */ "../node_modules/micromark/dev/lib/initialize/content.js");
@@ -29632,11 +34550,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _create_tokenizer_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./create-tokenizer.js */ "../node_modules/micromark/dev/lib/create-tokenizer.js");
 /* harmony import */ var _constructs_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./constructs.js */ "../node_modules/micromark/dev/lib/constructs.js");
 /**
- * @typedef {import('micromark-util-types').InitialConstruct} InitialConstruct
- * @typedef {import('micromark-util-types').FullNormalizedExtension} FullNormalizedExtension
- * @typedef {import('micromark-util-types').ParseOptions} ParseOptions
- * @typedef {import('micromark-util-types').ParseContext} ParseContext
  * @typedef {import('micromark-util-types').Create} Create
+ * @typedef {import('micromark-util-types').FullNormalizedExtension} FullNormalizedExtension
+ * @typedef {import('micromark-util-types').InitialConstruct} InitialConstruct
+ * @typedef {import('micromark-util-types').ParseContext} ParseContext
+ * @typedef {import('micromark-util-types').ParseOptions} ParseOptions
  */
 
 
@@ -29648,16 +34566,15 @@ __webpack_require__.r(__webpack_exports__);
 
 
 /**
- * @param {ParseOptions} [options]
+ * @param {ParseOptions | null | undefined} [options]
  * @returns {ParseContext}
  */
-function parse(options = {}) {
-  /** @type {FullNormalizedExtension} */
-  // @ts-expect-error `defaultConstructs` is full, so the result will be too.
-  const constructs = (0,micromark_util_combine_extensions__WEBPACK_IMPORTED_MODULE_0__.combineExtensions)(
-    // @ts-expect-error Same as above.
-    [_constructs_js__WEBPACK_IMPORTED_MODULE_1__].concat(options.extensions || [])
+function parse(options) {
+  const settings = options || {}
+  const constructs = /** @type {FullNormalizedExtension} */ (
+    (0,micromark_util_combine_extensions__WEBPACK_IMPORTED_MODULE_0__.combineExtensions)([_constructs_js__WEBPACK_IMPORTED_MODULE_1__, ...(settings.extensions || [])])
   )
+
   /** @type {ParseContext} */
   const parser = {
     defined: [],
@@ -29696,7 +34613,7 @@ function parse(options = {}) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "postprocess": () => (/* binding */ postprocess)
+/* harmony export */   postprocess: () => (/* binding */ postprocess)
 /* harmony export */ });
 /* harmony import */ var micromark_util_subtokenize__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! micromark-util-subtokenize */ "../node_modules/micromark-util-subtokenize/dev/index.js");
 /**
@@ -29729,22 +34646,22 @@ function postprocess(events) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "preprocess": () => (/* binding */ preprocess)
+/* harmony export */   preprocess: () => (/* binding */ preprocess)
 /* harmony export */ });
 /* harmony import */ var micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! micromark-util-symbol/codes.js */ "../node_modules/micromark-util-symbol/codes.js");
 /* harmony import */ var micromark_util_symbol_constants_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! micromark-util-symbol/constants.js */ "../node_modules/micromark-util-symbol/constants.js");
 /**
- * @typedef {import('micromark-util-types').Encoding} Encoding
- * @typedef {import('micromark-util-types').Value} Value
  * @typedef {import('micromark-util-types').Chunk} Chunk
  * @typedef {import('micromark-util-types').Code} Code
+ * @typedef {import('micromark-util-types').Encoding} Encoding
+ * @typedef {import('micromark-util-types').Value} Value
  */
 
 /**
  * @callback Preprocessor
  * @param {Value} value
- * @param {Encoding} [encoding]
- * @param {boolean} [end=false]
+ * @param {Encoding | null | undefined} [encoding]
+ * @param {boolean | null | undefined} [end=false]
  * @returns {Array<Chunk>}
  */
 
@@ -29759,9 +34676,9 @@ const search = /[\0\t\n\r]/g
 function preprocess() {
   let column = 1
   let buffer = ''
-  /** @type {boolean|undefined} */
+  /** @type {boolean | undefined} */
   let start = true
-  /** @type {boolean|undefined} */
+  /** @type {boolean | undefined} */
   let atCarriageReturn
 
   return preprocessor
@@ -29770,7 +34687,7 @@ function preprocess() {
   function preprocessor(value, encoding, end) {
     /** @type {Array<Chunk>} */
     const chunks = []
-    /** @type {RegExpMatchArray|null} */
+    /** @type {RegExpMatchArray | null} */
     let match
     /** @type {number} */
     let next
@@ -29787,6 +34704,7 @@ function preprocess() {
     buffer = ''
 
     if (start) {
+      // To do: `markdown-rs` actually parses BOMs (byte order mark).
       if (value.charCodeAt(0) === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_0__.codes.byteOrderMarker) {
         startPosition++
       }
@@ -29879,11 +34797,11 @@ function preprocess() {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "find": () => (/* reexport safe */ _lib_find_js__WEBPACK_IMPORTED_MODULE_0__.find),
-/* harmony export */   "hastToReact": () => (/* reexport safe */ _lib_hast_to_react_js__WEBPACK_IMPORTED_MODULE_1__.hastToReact),
-/* harmony export */   "html": () => (/* binding */ html),
-/* harmony export */   "normalize": () => (/* reexport safe */ _lib_normalize_js__WEBPACK_IMPORTED_MODULE_2__.normalize),
-/* harmony export */   "svg": () => (/* binding */ svg)
+/* harmony export */   find: () => (/* reexport safe */ _lib_find_js__WEBPACK_IMPORTED_MODULE_0__.find),
+/* harmony export */   hastToReact: () => (/* reexport safe */ _lib_hast_to_react_js__WEBPACK_IMPORTED_MODULE_1__.hastToReact),
+/* harmony export */   html: () => (/* binding */ html),
+/* harmony export */   normalize: () => (/* reexport safe */ _lib_normalize_js__WEBPACK_IMPORTED_MODULE_2__.normalize),
+/* harmony export */   svg: () => (/* binding */ svg)
 /* harmony export */ });
 /* harmony import */ var _lib_util_merge_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./lib/util/merge.js */ "../node_modules/property-information/lib/util/merge.js");
 /* harmony import */ var _lib_xlink_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./lib/xlink.js */ "../node_modules/property-information/lib/xlink.js");
@@ -29926,7 +34844,7 @@ const svg = (0,_lib_util_merge_js__WEBPACK_IMPORTED_MODULE_3__.merge)([_lib_xml_
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "aria": () => (/* binding */ aria)
+/* harmony export */   aria: () => (/* binding */ aria)
 /* harmony export */ });
 /* harmony import */ var _util_types_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./util/types.js */ "../node_modules/property-information/lib/util/types.js");
 /* harmony import */ var _util_create_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./util/create.js */ "../node_modules/property-information/lib/util/create.js");
@@ -30002,7 +34920,7 @@ const aria = (0,_util_create_js__WEBPACK_IMPORTED_MODULE_0__.create)({
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "find": () => (/* binding */ find)
+/* harmony export */   find: () => (/* binding */ find)
 /* harmony export */ });
 /* harmony import */ var _normalize_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./normalize.js */ "../node_modules/property-information/lib/normalize.js");
 /* harmony import */ var _util_defined_info_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./util/defined-info.js */ "../node_modules/property-information/lib/util/defined-info.js");
@@ -30088,7 +35006,7 @@ function camelcase($0) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "hastToReact": () => (/* binding */ hastToReact)
+/* harmony export */   hastToReact: () => (/* binding */ hastToReact)
 /* harmony export */ });
 /**
  * `hast` is close to `React`, but differs in a couple of cases.
@@ -30131,7 +35049,7 @@ const hastToReact = {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "html": () => (/* binding */ html)
+/* harmony export */   html: () => (/* binding */ html)
 /* harmony export */ });
 /* harmony import */ var _util_types_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./util/types.js */ "../node_modules/property-information/lib/util/types.js");
 /* harmony import */ var _util_create_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./util/create.js */ "../node_modules/property-information/lib/util/create.js");
@@ -30453,7 +35371,7 @@ const html = (0,_util_create_js__WEBPACK_IMPORTED_MODULE_0__.create)({
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "normalize": () => (/* binding */ normalize)
+/* harmony export */   normalize: () => (/* binding */ normalize)
 /* harmony export */ });
 /**
  * @param {string} value
@@ -30475,7 +35393,7 @@ function normalize(value) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "svg": () => (/* binding */ svg)
+/* harmony export */   svg: () => (/* binding */ svg)
 /* harmony export */ });
 /* harmony import */ var _util_types_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./util/types.js */ "../node_modules/property-information/lib/util/types.js");
 /* harmony import */ var _util_create_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./util/create.js */ "../node_modules/property-information/lib/util/create.js");
@@ -31052,7 +35970,7 @@ const svg = (0,_util_create_js__WEBPACK_IMPORTED_MODULE_0__.create)({
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "caseInsensitiveTransform": () => (/* binding */ caseInsensitiveTransform)
+/* harmony export */   caseInsensitiveTransform: () => (/* binding */ caseInsensitiveTransform)
 /* harmony export */ });
 /* harmony import */ var _case_sensitive_transform_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./case-sensitive-transform.js */ "../node_modules/property-information/lib/util/case-sensitive-transform.js");
 
@@ -31078,7 +35996,7 @@ function caseInsensitiveTransform(attributes, property) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "caseSensitiveTransform": () => (/* binding */ caseSensitiveTransform)
+/* harmony export */   caseSensitiveTransform: () => (/* binding */ caseSensitiveTransform)
 /* harmony export */ });
 /**
  * @param {Record<string, string>} attributes
@@ -31101,7 +36019,7 @@ function caseSensitiveTransform(attributes, attribute) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "create": () => (/* binding */ create)
+/* harmony export */   create: () => (/* binding */ create)
 /* harmony export */ });
 /* harmony import */ var _normalize_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../normalize.js */ "../node_modules/property-information/lib/normalize.js");
 /* harmony import */ var _schema_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./schema.js */ "../node_modules/property-information/lib/util/schema.js");
@@ -31177,7 +36095,7 @@ function create(definition) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "DefinedInfo": () => (/* binding */ DefinedInfo)
+/* harmony export */   DefinedInfo: () => (/* binding */ DefinedInfo)
 /* harmony export */ });
 /* harmony import */ var _info_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./info.js */ "../node_modules/property-information/lib/util/info.js");
 /* harmony import */ var _types_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./types.js */ "../node_modules/property-information/lib/util/types.js");
@@ -31238,7 +36156,7 @@ function mark(values, key, value) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "Info": () => (/* binding */ Info)
+/* harmony export */   Info: () => (/* binding */ Info)
 /* harmony export */ });
 class Info {
   /**
@@ -31278,7 +36196,7 @@ Info.prototype.defined = false
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "merge": () => (/* binding */ merge)
+/* harmony export */   merge: () => (/* binding */ merge)
 /* harmony export */ });
 /* harmony import */ var _schema_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./schema.js */ "../node_modules/property-information/lib/util/schema.js");
 /**
@@ -31320,7 +36238,7 @@ function merge(definitions, space) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "Schema": () => (/* binding */ Schema)
+/* harmony export */   Schema: () => (/* binding */ Schema)
 /* harmony export */ });
 /**
  * @typedef {import('./info.js').Info} Info
@@ -31363,13 +36281,13 @@ Schema.prototype.space = null
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "boolean": () => (/* binding */ boolean),
-/* harmony export */   "booleanish": () => (/* binding */ booleanish),
-/* harmony export */   "commaOrSpaceSeparated": () => (/* binding */ commaOrSpaceSeparated),
-/* harmony export */   "commaSeparated": () => (/* binding */ commaSeparated),
-/* harmony export */   "number": () => (/* binding */ number),
-/* harmony export */   "overloadedBoolean": () => (/* binding */ overloadedBoolean),
-/* harmony export */   "spaceSeparated": () => (/* binding */ spaceSeparated)
+/* harmony export */   boolean: () => (/* binding */ boolean),
+/* harmony export */   booleanish: () => (/* binding */ booleanish),
+/* harmony export */   commaOrSpaceSeparated: () => (/* binding */ commaOrSpaceSeparated),
+/* harmony export */   commaSeparated: () => (/* binding */ commaSeparated),
+/* harmony export */   number: () => (/* binding */ number),
+/* harmony export */   overloadedBoolean: () => (/* binding */ overloadedBoolean),
+/* harmony export */   spaceSeparated: () => (/* binding */ spaceSeparated)
 /* harmony export */ });
 let powers = 0
 
@@ -31397,7 +36315,7 @@ function increment() {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "xlink": () => (/* binding */ xlink)
+/* harmony export */   xlink: () => (/* binding */ xlink)
 /* harmony export */ });
 /* harmony import */ var _util_create_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./util/create.js */ "../node_modules/property-information/lib/util/create.js");
 
@@ -31430,7 +36348,7 @@ const xlink = (0,_util_create_js__WEBPACK_IMPORTED_MODULE_0__.create)({
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "xml": () => (/* binding */ xml)
+/* harmony export */   xml: () => (/* binding */ xml)
 /* harmony export */ });
 /* harmony import */ var _util_create_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./util/create.js */ "../node_modules/property-information/lib/util/create.js");
 
@@ -31455,7 +36373,7 @@ const xml = (0,_util_create_js__WEBPACK_IMPORTED_MODULE_0__.create)({
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "xmlns": () => (/* binding */ xmlns)
+/* harmony export */   xmlns: () => (/* binding */ xmlns)
 /* harmony export */ });
 /* harmony import */ var _util_create_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./util/create.js */ "../node_modules/property-information/lib/util/create.js");
 /* harmony import */ var _util_case_insensitive_transform_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./util/case-insensitive-transform.js */ "../node_modules/property-information/lib/util/case-insensitive-transform.js");
@@ -31482,7 +36400,7 @@ const xmlns = (0,_util_create_js__WEBPACK_IMPORTED_MODULE_0__.create)({
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* reexport safe */ _lib_react_markdown_js__WEBPACK_IMPORTED_MODULE_1__.ReactMarkdown),
-/* harmony export */   "uriTransformer": () => (/* reexport safe */ _lib_uri_transformer_js__WEBPACK_IMPORTED_MODULE_0__.uriTransformer)
+/* harmony export */   uriTransformer: () => (/* reexport safe */ _lib_uri_transformer_js__WEBPACK_IMPORTED_MODULE_0__.uriTransformer)
 /* harmony export */ });
 /* harmony import */ var _lib_uri_transformer_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./lib/uri-transformer.js */ "../node_modules/react-markdown/lib/uri-transformer.js");
 /* harmony import */ var _lib_react_markdown_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./lib/react-markdown.js */ "../node_modules/react-markdown/lib/react-markdown.js");
@@ -31507,7 +36425,7 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "childrenToReact": () => (/* binding */ childrenToReact)
+/* harmony export */   childrenToReact: () => (/* binding */ childrenToReact)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
 /* harmony import */ var react_is__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-is */ "../node_modules/react-is/index.js");
@@ -31983,12 +36901,12 @@ function flattenPosition(pos) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "ReactMarkdown": () => (/* binding */ ReactMarkdown)
+/* harmony export */   ReactMarkdown: () => (/* binding */ ReactMarkdown)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
 /* harmony import */ var vfile__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! vfile */ "../node_modules/vfile/lib/index.js");
 /* harmony import */ var unified__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! unified */ "../node_modules/unified/lib/index.js");
-/* harmony import */ var remark_parse__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! remark-parse */ "../node_modules/remark-parse/index.js");
+/* harmony import */ var remark_parse__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! remark-parse */ "../node_modules/remark-parse/lib/index.js");
 /* harmony import */ var remark_rehype__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! remark-rehype */ "../node_modules/remark-rehype/lib/index.js");
 /* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! prop-types */ "../node_modules/prop-types/index.js");
 /* harmony import */ var property_information__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! property-information */ "../node_modules/property-information/index.js");
@@ -32273,7 +37191,7 @@ function rehypeFilter(options) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "uriTransformer": () => (/* binding */ uriTransformer)
+/* harmony export */   uriTransformer: () => (/* binding */ uriTransformer)
 /* harmony export */ });
 const protocols = ['http', 'https', 'mailto', 'tel']
 
@@ -32324,25 +37242,6 @@ function uriTransformer(uri) {
 
 /***/ }),
 
-/***/ "../node_modules/remark-parse/index.js":
-/*!*********************************************!*\
-  !*** ../node_modules/remark-parse/index.js ***!
-  \*********************************************/
-/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _lib_index_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./lib/index.js */ "../node_modules/remark-parse/lib/index.js");
-
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_lib_index_js__WEBPACK_IMPORTED_MODULE_0__["default"]);
-
-
-/***/ }),
-
 /***/ "../node_modules/remark-parse/lib/index.js":
 /*!*************************************************!*\
   !*** ../node_modules/remark-parse/lib/index.js ***!
@@ -32362,7 +37261,10 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-/** @type {import('unified').Plugin<[Options?] | void[], string, Root>} */
+/**
+ * @this {import('unified').Processor}
+ * @type {import('unified').Plugin<[Options?] | void[], string, Root>}
+ */
 function remarkParse(options) {
   /** @type {import('unified').ParserFunction<Root>} */
   const parser = (doc) => {
@@ -32483,8 +37385,8 @@ function mutate(options) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "parse": () => (/* binding */ parse),
-/* harmony export */   "stringify": () => (/* binding */ stringify)
+/* harmony export */   parse: () => (/* binding */ parse),
+/* harmony export */   stringify: () => (/* binding */ stringify)
 /* harmony export */ });
 /**
  * Parse space-separated tokens to an array of strings.
@@ -32542,7 +37444,7 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "trimLines": () => (/* binding */ trimLines)
+/* harmony export */   trimLines: () => (/* binding */ trimLines)
 /* harmony export */ });
 const tab = 9 /* `\t` */
 const space = 32 /* ` ` */
@@ -32626,8 +37528,8 @@ function trimLine(value, start, end) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "trough": () => (/* binding */ trough),
-/* harmony export */   "wrap": () => (/* binding */ wrap)
+/* harmony export */   trough: () => (/* binding */ trough),
+/* harmony export */   wrap: () => (/* binding */ wrap)
 /* harmony export */ });
 /**
  * @typedef {(error?: Error|null|undefined, ...output: Array<any>) => void} Callback
@@ -32802,7 +37704,7 @@ function wrap(middleware, callback) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "unified": () => (/* binding */ unified)
+/* harmony export */   unified: () => (/* binding */ unified)
 /* harmony export */ });
 /* harmony import */ var bail__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! bail */ "../node_modules/bail/index.js");
 /* harmony import */ var is_buffer__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! is-buffer */ "../node_modules/is-buffer/index.js");
@@ -33422,7 +38324,7 @@ function looksLikeAVFileValue(value) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "generated": () => (/* binding */ generated)
+/* harmony export */   generated: () => (/* binding */ generated)
 /* harmony export */ });
 /**
  * @typedef PointLike
@@ -33471,8 +38373,8 @@ function generated(node) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "convert": () => (/* binding */ convert),
-/* harmony export */   "is": () => (/* binding */ is)
+/* harmony export */   convert: () => (/* binding */ convert),
+/* harmony export */   is: () => (/* binding */ is)
 /* harmony export */ });
 /**
  * @typedef {import('unist').Node} Node
@@ -33788,9 +38690,9 @@ function ok() {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "pointEnd": () => (/* binding */ pointEnd),
-/* harmony export */   "pointStart": () => (/* binding */ pointStart),
-/* harmony export */   "position": () => (/* binding */ position)
+/* harmony export */   pointEnd: () => (/* binding */ pointEnd),
+/* harmony export */   pointStart: () => (/* binding */ pointStart),
+/* harmony export */   position: () => (/* binding */ position)
 /* harmony export */ });
 /**
  * @typedef {import('unist').Position} Position
@@ -33889,7 +38791,7 @@ function point(type) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "stringifyPosition": () => (/* binding */ stringifyPosition)
+/* harmony export */   stringifyPosition: () => (/* binding */ stringifyPosition)
 /* harmony export */ });
 /**
  * @typedef {import('unist').Node} Node
@@ -33988,7 +38890,7 @@ function index(value) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "color": () => (/* binding */ color)
+/* harmony export */   color: () => (/* binding */ color)
 /* harmony export */ });
 /**
  * @param {string} d
@@ -34010,10 +38912,10 @@ function color(d) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "CONTINUE": () => (/* binding */ CONTINUE),
-/* harmony export */   "EXIT": () => (/* binding */ EXIT),
-/* harmony export */   "SKIP": () => (/* binding */ SKIP),
-/* harmony export */   "visitParents": () => (/* binding */ visitParents)
+/* harmony export */   CONTINUE: () => (/* binding */ CONTINUE),
+/* harmony export */   EXIT: () => (/* binding */ EXIT),
+/* harmony export */   SKIP: () => (/* binding */ SKIP),
+/* harmony export */   visitParents: () => (/* binding */ visitParents)
 /* harmony export */ });
 /* harmony import */ var unist_util_is__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! unist-util-is */ "../node_modules/unist-util-is/lib/index.js");
 /* harmony import */ var _color_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./color.js */ "../node_modules/unist-util-visit-parents/lib/color.browser.js");
@@ -34271,10 +39173,10 @@ function toResult(value) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "CONTINUE": () => (/* reexport safe */ unist_util_visit_parents__WEBPACK_IMPORTED_MODULE_0__.CONTINUE),
-/* harmony export */   "EXIT": () => (/* reexport safe */ unist_util_visit_parents__WEBPACK_IMPORTED_MODULE_0__.EXIT),
-/* harmony export */   "SKIP": () => (/* reexport safe */ unist_util_visit_parents__WEBPACK_IMPORTED_MODULE_0__.SKIP),
-/* harmony export */   "visit": () => (/* binding */ visit)
+/* harmony export */   CONTINUE: () => (/* reexport safe */ unist_util_visit_parents__WEBPACK_IMPORTED_MODULE_0__.CONTINUE),
+/* harmony export */   EXIT: () => (/* reexport safe */ unist_util_visit_parents__WEBPACK_IMPORTED_MODULE_0__.EXIT),
+/* harmony export */   SKIP: () => (/* reexport safe */ unist_util_visit_parents__WEBPACK_IMPORTED_MODULE_0__.SKIP),
+/* harmony export */   visit: () => (/* binding */ visit)
 /* harmony export */ });
 /* harmony import */ var unist_util_visit_parents__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! unist-util-visit-parents */ "../node_modules/unist-util-visit-parents/lib/index.js");
 /**
@@ -34472,18 +39374,18 @@ const visit =
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "Assertion": () => (/* binding */ Assertion),
-/* harmony export */   "equal": () => (/* binding */ equal),
-/* harmony export */   "fixture": () => (/* binding */ fixture),
-/* harmony export */   "instance": () => (/* binding */ instance),
-/* harmony export */   "is": () => (/* binding */ is),
-/* harmony export */   "match": () => (/* binding */ match),
-/* harmony export */   "not": () => (/* binding */ not),
-/* harmony export */   "ok": () => (/* binding */ ok),
-/* harmony export */   "snapshot": () => (/* binding */ snapshot),
-/* harmony export */   "throws": () => (/* binding */ throws),
-/* harmony export */   "type": () => (/* binding */ type),
-/* harmony export */   "unreachable": () => (/* binding */ unreachable)
+/* harmony export */   Assertion: () => (/* binding */ Assertion),
+/* harmony export */   equal: () => (/* binding */ equal),
+/* harmony export */   fixture: () => (/* binding */ fixture),
+/* harmony export */   instance: () => (/* binding */ instance),
+/* harmony export */   is: () => (/* binding */ is),
+/* harmony export */   match: () => (/* binding */ match),
+/* harmony export */   not: () => (/* binding */ not),
+/* harmony export */   ok: () => (/* binding */ ok),
+/* harmony export */   snapshot: () => (/* binding */ snapshot),
+/* harmony export */   throws: () => (/* binding */ throws),
+/* harmony export */   type: () => (/* binding */ type),
+/* harmony export */   unreachable: () => (/* binding */ unreachable)
 /* harmony export */ });
 /* harmony import */ var dequal__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! dequal */ "../node_modules/dequal/dist/index.mjs");
 /* harmony import */ var uvu_diff__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! uvu/diff */ "../node_modules/uvu/diff/index.mjs");
@@ -34660,14 +39562,14 @@ not.throws = function (blk, exp, msg) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "arrays": () => (/* binding */ arrays),
-/* harmony export */   "chars": () => (/* binding */ chars),
-/* harmony export */   "circular": () => (/* binding */ circular),
-/* harmony export */   "compare": () => (/* binding */ compare),
-/* harmony export */   "direct": () => (/* binding */ direct),
-/* harmony export */   "lines": () => (/* binding */ lines),
-/* harmony export */   "sort": () => (/* binding */ sort),
-/* harmony export */   "stringify": () => (/* binding */ stringify)
+/* harmony export */   arrays: () => (/* binding */ arrays),
+/* harmony export */   chars: () => (/* binding */ chars),
+/* harmony export */   circular: () => (/* binding */ circular),
+/* harmony export */   compare: () => (/* binding */ compare),
+/* harmony export */   direct: () => (/* binding */ direct),
+/* harmony export */   lines: () => (/* binding */ lines),
+/* harmony export */   sort: () => (/* binding */ sort),
+/* harmony export */   stringify: () => (/* binding */ stringify)
 /* harmony export */ });
 /* harmony import */ var kleur__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! kleur */ "../node_modules/uvu/node_modules/kleur/index.mjs");
 /* harmony import */ var diff__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! diff */ "../node_modules/diff/lib/index.mjs");
@@ -35028,7 +39930,7 @@ function init(open, close) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "VFileMessage": () => (/* binding */ VFileMessage)
+/* harmony export */   VFileMessage: () => (/* binding */ VFileMessage)
 /* harmony export */ });
 /* harmony import */ var unist_util_stringify_position__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! unist-util-stringify-position */ "../node_modules/unist-util-stringify-position/lib/index.js");
 /**
@@ -35269,7 +40171,7 @@ VFileMessage.prototype.position = null
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "VFile": () => (/* binding */ VFile)
+/* harmony export */   VFile: () => (/* binding */ VFile)
 /* harmony export */ });
 /* harmony import */ var is_buffer__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! is-buffer */ "../node_modules/is-buffer/index.js");
 /* harmony import */ var vfile_message__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! vfile-message */ "../node_modules/vfile-message/lib/index.js");
@@ -35810,7 +40712,7 @@ function buffer(value) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "path": () => (/* binding */ path)
+/* harmony export */   path: () => (/* binding */ path)
 /* harmony export */ });
 // A derivative work based on:
 // <https://github.com/browserify/path-browserify>.
@@ -36247,7 +41149,7 @@ function assertPath(path) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "proc": () => (/* binding */ proc)
+/* harmony export */   proc: () => (/* binding */ proc)
 /* harmony export */ });
 // Somewhat based on:
 // <https://github.com/defunctzombie/node-process/blob/master/browser.js>.
@@ -36270,8 +41172,8 @@ function cwd() {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "isUrl": () => (/* reexport safe */ _minurl_shared_js__WEBPACK_IMPORTED_MODULE_0__.isUrl),
-/* harmony export */   "urlToPath": () => (/* binding */ urlToPath)
+/* harmony export */   isUrl: () => (/* reexport safe */ _minurl_shared_js__WEBPACK_IMPORTED_MODULE_0__.isUrl),
+/* harmony export */   urlToPath: () => (/* binding */ urlToPath)
 /* harmony export */ });
 /* harmony import */ var _minurl_shared_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./minurl.shared.js */ "../node_modules/vfile/lib/minurl.shared.js");
 /// <reference lib="dom" />
@@ -36365,7 +41267,7 @@ function getPathFromURLPosix(url) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "isUrl": () => (/* binding */ isUrl)
+/* harmony export */   isUrl: () => (/* binding */ isUrl)
 /* harmony export */ });
 /**
  * @typedef URL

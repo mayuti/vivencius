@@ -235,8 +235,11 @@ if($dbhandler->get_global_option_value('pm_enable_private_profile')=='1')
         }
 	
 	echo '<div class="pm_clear"></div>';
-	echo '<div class="pm-member-pagination-grid">'.wp_kses_post($pagination).'</div>';
-
+        if(!empty($pagination)){
+            echo '<div class="pm-member-pagination-grid">'.wp_kses_post($pagination).'</div>';
+        }else{
+            echo '<div class="pm-member-pagination-grid"></div>';
+        }
 ?>
             </div>  
           </div>

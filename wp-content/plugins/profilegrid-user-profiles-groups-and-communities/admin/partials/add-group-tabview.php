@@ -10,7 +10,7 @@ $group_options         = array();
 $deactivate_extensions = $pmrequests->pg_check_premium_extension();
 $email_template        =  $dbhandler->get_all_result( 'EMAIL_TMPL', array( 'id', 'tmpl_name' ) );
 $id                    = filter_input( INPUT_GET, 'id', FILTER_VALIDATE_INT );
-$tab                   = filter_input( INPUT_GET, 'tab', FILTER_SANITIZE_STRING );
+$tab                   = filter_input( INPUT_GET, 'tab', FILTER_SANITIZE_FULL_SPECIAL_CHARS );
 $pm_user_profile_page  = $dbhandler->get_global_option_value( 'pm_user_profile_page', '0' );
 if ( !isset( $tab ) && empty( $tab ) ) {
     $tab = 'basics';
@@ -108,6 +108,9 @@ if ( filter_input( INPUT_POST, 'submit_group' ) ) {
 				if ( !isset( $post['group_options']['enable_mailchimp_tab'] ) ) {
 					$post['group_options']['enable_mailchimp_tab'] = 0;
 				}
+                if ( isset( $post['group_options']['mailchimp_tag'] ) ) {
+                    do_action( 'pg_mailchimp_tag', $id, $post['group_options']['mailchimp_tag'], $group_options);
+				}
 			}
                         
                         if ( $group_tab=='mailpoet' ) {
@@ -176,7 +179,9 @@ if ( filter_input( INPUT_POST, 'submit_group' ) ) {
 				}
 			}
 
-			$post['group_options'] = array_replace_recursive( $group_options, $post['group_options'] );
+            $new_post = array_replace_recursive( $group_options, $post['group_options'] );
+
+			$post['group_options'] = apply_filters("pg_mailchimp_group_list_update", $new_post, $post['group_options']["mailchimp_list"]);
 
 		} else {
 			 $post['group_options'] = $group_options;
@@ -273,8 +278,12 @@ if ( filter_input( INPUT_POST, 'submit_group' ) ) {
 	if ( $group_tab=='management' ) {
                 do_action( 'pg_groupleader_assign_remove', $gid, $is_leader, $group_leaders, $post['is_group_leader'], $post['group_leaders'] );
             }
-        wp_safe_redirect( esc_url_raw( 'admin.php?page=pm_manage_groups' ) );
-	exit;
+        if($groupid == 0){
+            wp_safe_redirect( esc_url_raw( 'admin.php?page=pm_manage_groups' ) );
+        }else{
+            wp_safe_redirect(esc_url_raw($_SERVER['REQUEST_URI']));  
+        }
+        exit;
 }
 if ( filter_input( INPUT_POST, 'delete_group' ) ) {
 
@@ -550,7 +559,7 @@ if ( $id==false || $id==null ) {
 			<?php esc_html_e( 'New Group', 'profilegrid-user-profiles-groups-and-communities' ); ?>
       </div>
       <?php else : ?>
-      <div class="uimheader pg-options-head">
+      <div class="uimheader pg-options-head pg-justify-content-between">
 		  <?php
 			$tab_title = strtoupper( str_replace( '_', ' ', $tab ) );
 			echo esc_html( $tab_title );
@@ -569,6 +578,7 @@ if ( $id==false || $id==null ) {
 
         </div>
         <?php endif; ?> 
+          <?php do_action('pg_group_name_additional_data', $id);?>
       </div>
       <?php endif; ?> 
             
@@ -598,7 +608,10 @@ if ( $id==false || $id==null ) {
 								?>" />
                              <div class="errortext"></div>
                          </div>
-                         <div class="uimnote"><?php esc_html_e( 'Name of this Group. The name will appear on Single and All Groups page and Member Profiles.', 'profilegrid-user-profiles-groups-and-communities' ); ?><a target="_blank" href="https://profilegrid.co/documentation/new-group-or-edit-group/"><?php esc_html_e( 'More', 'profilegrid-user-profiles-groups-and-communities' ); ?></a></div>
+                         <div class="uimnote">
+                             <?php esc_html_e( 'Name of this Group. The name will appear on Single and All Groups page and Member Profiles.', 'profilegrid-user-profiles-groups-and-communities' ); ?><a target="_blank" href="https://profilegrid.co/documentation/new-group-or-edit-group/"><?php esc_html_e( 'More', 'profilegrid-user-profiles-groups-and-communities' ); ?></a>
+                             
+                         </div>
                      </div>
 
                      <div class="uimrow">
@@ -817,7 +830,7 @@ if ( $id==false || $id==null ) {
                              <div class="uiminput">
 								<?php
 								if ( isset( $row ) ) {
-									$group_limit_message = $row->group_limit_message;
+									$group_limit_message = isset($row->group_limit_message) && !empty($row->group_limit_message) ? $row->group_limit_message : '';
 								} else {
 									$group_limit_message = '';
                                 }
@@ -1823,7 +1836,7 @@ if ( $id==false || $id==null ) {
                              <div class="uiminput">
     <?php
     if ( isset( $row ) ) {
-		$success_message = $row->success_message;
+		$success_message = !empty($row->success_message) ? $row->success_message : '';
     } else {
 		$success_message = '';
     }

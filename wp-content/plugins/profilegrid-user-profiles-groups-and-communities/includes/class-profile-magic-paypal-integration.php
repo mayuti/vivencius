@@ -29,6 +29,8 @@ class profile_magic_paypal_class {
 	private $fields  = array();          // array holds the fields to submit to paypal
 	private $ipn_debug;                 // ipn_debug
 	private $send_box;
+        public $tax;
+        public $sendbox;
 
 	// initialization constructor.  Called when class is created.
 	function __construct() {

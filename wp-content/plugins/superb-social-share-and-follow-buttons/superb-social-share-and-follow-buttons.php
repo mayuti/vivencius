@@ -2,7 +2,7 @@
 /*
 Plugin Name: Superb Social Media Share Buttons and Follow Buttons for WordPress
 Description: Social Media Share Buttons & Follow Buttons. Social Share Icons. 25+ Social networks. Icon & Button Shortcodes. Floating Sidebar.
-Version: 1.1.6
+Version: 1.1.7
 Text Domain: spbsm
 Domain Path: /languages
 Author: SuPlugins
@@ -20,4 +20,4 @@ if (!class_exists('spbsm')) {
     include_once dirname(__FILE__) . '/plugin.php';
 }
 
-$spbsm_plugin = spbsm::GetInstance('1.1.6', __FILE__);
+$spbsm_plugin = spbsm::GetInstance('1.1.7', __FILE__);

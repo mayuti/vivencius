@@ -10,6 +10,7 @@ use SuperbAddons\Components\Admin\Modal;
 use SuperbAddons\Components\Admin\PremiumBox;
 use SuperbAddons\Components\Admin\ReviewBox;
 use SuperbAddons\Components\Admin\SupportBox;
+use SuperbAddons\Elementor\Controllers\ElementorController;
 use SuperbAddons\Tours\Controllers\TourController;
 
 class SupportPage
@@ -101,17 +102,19 @@ class SupportPage
                                 "classes" => 'superbaddons-start-tutorial-link-gutenberg'
                             )
                         );
-                        new LinkBox(
-                            array(
-                                "id" => "superbaddons-tour-elementor",
-                                "icon" => "logo-elementor.svg",
-                                "title" => __("Elementor Addons", "superbaddons"),
-                                "description" => __("Love using Elementor? Start the tutorial and see how you can use our Elementor addons.", "superbaddons"),
-                                "cta" => __("Start Tutorial", "superbaddons"),
-                                "link" => esc_url('#' . TourController::TOUR_ELEMENTOR),
-                                "classes" => 'superbaddons-start-tutorial-link-elementor superbaddons-flex-basis-100'
-                            )
-                        );
+                        if (ElementorController::is_compatible()) {
+                            new LinkBox(
+                                array(
+                                    "id" => "superbaddons-tour-elementor",
+                                    "icon" => "logo-elementor.svg",
+                                    "title" => __("Elementor Addons", "superbaddons"),
+                                    "description" => __("Love using Elementor? Start the tutorial and see how you can use our Elementor addons.", "superbaddons"),
+                                    "cta" => __("Start Tutorial", "superbaddons"),
+                                    "link" => esc_url('#' . TourController::TOUR_ELEMENTOR),
+                                    "classes" => 'superbaddons-start-tutorial-link-elementor superbaddons-flex-basis-100'
+                                )
+                            );
+                        }
                         ?>
                     </div>
                 </div>

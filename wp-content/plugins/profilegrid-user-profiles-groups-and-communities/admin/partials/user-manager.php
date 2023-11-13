@@ -88,13 +88,13 @@ if ( filter_input( INPUT_GET, 'reset' ) ) {
 	exit;
 }
 
-$query_args = $pmrequests->pm_get_user_meta_query( filter_input_array( INPUT_GET, FILTER_SANITIZE_STRING ) );
+$query_args = $pmrequests->pm_get_user_meta_query( filter_input_array( INPUT_GET, FILTER_SANITIZE_FULL_SPECIAL_CHARS ) );
 //print_r($meta_query_array);die;
 $meta_query_array = array( 'relation' => 'OR', $query_args );
-$date_query = $pmrequests->pm_get_user_date_query( filter_input_array( INPUT_GET, FILTER_SANITIZE_STRING ) );
+$date_query = $pmrequests->pm_get_user_date_query( filter_input_array( INPUT_GET, FILTER_SANITIZE_FULL_SPECIAL_CHARS)  );
 
 if ( isset( $_GET['search'] ) ) {
-	$search = filter_input( INPUT_GET, 'search', FILTER_SANITIZE_STRING );
+	$search = filter_input( INPUT_GET, 'search', FILTER_SANITIZE_FULL_SPECIAL_CHARS );
 } else {
 	$search = '';
 }
@@ -205,11 +205,11 @@ $pagination   = $dbhandler->pm_get_pagination( $num_of_pages, $pagenum );
 	  <div class="sb-filter"><?php esc_html_e( 'Search', 'profilegrid-user-profiles-groups-and-communities' ); ?>
 		<input type="text" class="sb-search" name="search" id="search" value="<?php
 		if ( isset( $_GET['search'] ) ) {
-			echo filter_input( INPUT_GET, 'search', FILTER_SANITIZE_STRING );}
+			echo filter_input( INPUT_GET, 'search', FILTER_SANITIZE_FULL_SPECIAL_CHARS );}
 		?>">
 	  </div>
 	  <?php if ( isset( $_GET['search'] ) && $_GET['search'] != '' ) : ?>
-	  <div class="sb-search-keyword" id="search_keyword"><?php echo filter_input( INPUT_GET, 'search', FILTER_SANITIZE_STRING ); ?> <span onclick="show_hide_search_text()">x</span></div>
+	  <div class="sb-search-keyword" id="search_keyword"><?php echo filter_input( INPUT_GET, 'search', FILTER_SANITIZE_FULL_SPECIAL_CHARS ); ?> <span onclick="show_hide_search_text()">x</span></div>
 	  <?php endif; ?>
 	  <div class="sb-filter"> <?php esc_html_e( 'Time', 'profilegrid-user-profiles-groups-and-communities' ); ?>
 	  <div class="filter-row">
@@ -289,14 +289,14 @@ $pagination   = $dbhandler->pm_get_pagination( $num_of_pages, $pagenum );
 	   <?php esc_html_e( 'Start Date', 'profilegrid-user-profiles-groups-and-communities' ); ?>
 		  <input type="text" class="sb-search pm_calendar" name="start_date" value="<?php
 			if ( isset( $_GET['start_date'] ) ) {
-				echo filter_input( INPUT_GET, 'start_date', FILTER_SANITIZE_STRING );}
+				echo filter_input( INPUT_GET, 'start_date', FILTER_SANITIZE_FULL_SPECIAL_CHARS );}
 			?>">
 		</div>
 		<div class="filter-row">
 		<?php esc_html_e( 'End Date', 'profilegrid-user-profiles-groups-and-communities' ); ?>
 		  <input type="text" class="sb-search pm_calendar" name="end_date" value="<?php
 			if ( isset( $_GET['end_date'] ) ) {
-				echo filter_input( INPUT_GET, 'end_date', FILTER_SANITIZE_STRING );}
+				echo filter_input( INPUT_GET, 'end_date', FILTER_SANITIZE_FULL_SPECIAL_CHARS );}
 			?>">
 		</div>
 		</div>
@@ -404,7 +404,7 @@ $pagination   = $dbhandler->pm_get_pagination( $num_of_pages, $pagenum );
 		?>
 	</table>
   </div>
-  <?php echo wp_kses_post( $pagination ); ?>
+  <?php if(!empty($pagination)) echo wp_kses_post( $pagination ); ?>
   <?php wp_nonce_field( 'pg_user_manager' ); ?>
   </form>
 </div>

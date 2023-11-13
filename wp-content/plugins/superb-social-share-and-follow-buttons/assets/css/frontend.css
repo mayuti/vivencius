@@ -6,7 +6,7 @@
 }
 .spbsm-follow-twitter a,
 .spbsm-share-twitter a {
-  background: #00aaf3 !important;
+  background: #000 !important;
   line-height: 150%;
 }
 .spbsm-follow-instagram a,
@@ -147,7 +147,21 @@
   background: #26a5e5 !important;
   line-height: 150%;
 }
-
+.spbsm-follow-mastodon a,
+.spbsm-share-mastodon a {
+  background: #2b90d9 !important;
+  line-height: 150%;
+}
+.spbsm-follow-goodreads a,
+.spbsm-share-goodreads a {
+  background: #d5d2bc !important;
+  line-height: 150%;
+}
+.spbsm-follow-threads a,
+.spbsm-share-threads a {
+  background: #101010 !important;
+  line-height: 150%;
+}
 /* BRAND COLORS END */
 
 /* Output wrapper start */

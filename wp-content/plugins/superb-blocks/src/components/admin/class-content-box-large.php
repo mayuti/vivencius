@@ -40,7 +40,7 @@ class ContentBoxLarge
                     <img class="superbaddons-admindashboard-content-icon" src="<?= esc_url(SUPERBADDONS_ASSETS_PATH . '/img/' . $this->icon); ?>" />
                 <?php endif; ?>
                 <h3 class="superbaddons-element-text-md superbaddons-element-text-800 superbaddons-element-text-dark"><?= esc_html($this->title); ?></h3>
-                <p class="superbaddons-element-text-xxs superbaddons-element-text-gray">
+                <p class="superbaddons-element-text-xs superbaddons-element-text-gray">
                     <?= esc_html($this->description); ?>
                 </p>
                 <?php if ($this->link && $this->cta) : ?>

@@ -36,7 +36,7 @@ class ElementorDashboardPage
                 new ContentBoxLarge(
                     array(
                         "title" => __("We're sorry, but it appears that Elementor is not installed or activated on your website.", "superbaddons"),
-                        "description" => __("Superb Addons requires Elementor to offer all of its features. Elementor is a powerful page builder that allows you to create beautiful, responsive pages with ease. Once Elementor is installed and activated, you'll be able to take full advantage of all the features and benefits of Superb Addons for Elementor.", "superbaddons"),
+                        "description" => __("If you'd like to start using Elementor and the addons available for it, Elementor must first be installed. Once Elementor is installed and activated, you'll be able to take full advantage of all the features and benefits of Superb Addons for Elementor.", "superbaddons"),
                         "image" => "asset-medium-elementor.jpg",
                         "icon" => "logo-elementor.svg",
                         "cta" => __("Install Elementor", "superbaddons"),

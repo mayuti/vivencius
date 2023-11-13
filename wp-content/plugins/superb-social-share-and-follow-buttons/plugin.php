@@ -186,13 +186,14 @@ final class spbsm
                     echo '<div class="spbsm-output-textstring">' . esc_attr($this->defaultShareText) . '</div>';
                     echo '<div class="spbsm-button-wrapper-flat">';
                     foreach ($buttons as &$button) {
+                        $name = isset($button['alt-name']) ? $button['alt-name'] : $button['class'];
                         $link = str_replace(
                             array('{url}', '{title}', '{img}', '{description}'),
                             array(esc_url($permlink), urlencode($title), $thumb, urlencode($excerpt)),
                             $button['share']
                         );
                         echo '<span class="spbsm-share-' . esc_attr($button['class']) . '"><a href="' . esc_url($link) . '" rel="nofollow" target="_blank">' . $button['icon'];
-                        echo esc_attr($button['class']);
+                        echo esc_attr($name);
                         echo '</a></span>';
                     }
                     echo '</div></div>';

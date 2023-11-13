@@ -518,25 +518,25 @@ $pm_default_groups_sorting = $dbhandler->get_global_option_value( 'pm_default_gr
       </div>
 
         <div class="uimrow">
-            <div class="uimfield">
-              <?php esc_html_e( 'User Blog Submission Page:', 'profilegrid-user-profiles-groups-and-communities' ); ?>
-            </div>
-            <div class="uiminput">
+          <div class="uimfield">
+            <?php esc_html_e( 'User Blog Submission Page:', 'profilegrid-user-profiles-groups-and-communities' ); ?>
+          </div>
+          <div class="uiminput">
             <?php
                             $pm_submit_blog = $dbhandler->get_global_option_value( 'pm_submit_blog', '0' );
                             wp_dropdown_pages( array(
-								'depth'             =>0,
-								'child_of'          =>0,
-								'selected'          => esc_attr($pm_submit_blog),
-								'echo'              =>1,
-								'show_option_none'  =>esc_attr__( 'Select Page', 'profilegrid-user-profiles-groups-and-communities' ),
-								'option_none_value' =>0,
-								'name'              =>'pm_submit_blog',
-							) );
-							?>
-              <div class="errortext"></div>
-            </div>
-            <div class="uimnote"><?php esc_html_e( 'Page from where users can submit new blog posts, which will then appear in Blogs tab of their profiles.', 'profilegrid-user-profiles-groups-and-communities' ); ?></div>
+                'depth'             =>0,
+                'child_of'          =>0,
+                'selected'          => esc_attr($pm_submit_blog),
+                'echo'              =>1,
+                'show_option_none'  =>esc_attr__( 'Select Page', 'profilegrid-user-profiles-groups-and-communities' ),
+                'option_none_value' =>0,
+                'name'              =>'pm_submit_blog',
+              ) );
+              ?>
+            <div class="errortext"></div>
+          </div>
+          <div class="uimnote"><?php esc_html_e( 'Page from where users can submit new blog posts, which will then appear in Blogs tab of their profiles.', 'profilegrid-user-profiles-groups-and-communities' ); ?></div>
         </div>
      <?php do_action('pm_general_setting_option_html'); ?>
       <div class="buttonarea"> <a href="admin.php?page=pm_settings">

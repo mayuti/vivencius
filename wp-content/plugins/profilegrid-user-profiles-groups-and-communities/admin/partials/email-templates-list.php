@@ -104,7 +104,7 @@ if ( isset( $_GET['selected'] ) ) {
       </table>
     </div>
     
-		<?php echo wp_kses_post( $pagination ); ?>
+		<?php if(!empty($pagination)) echo wp_kses_post( $pagination ); ?>
     <?php else : ?>
 	<div class="pm_message"><?php esc_html_e( 'You haven’t created any email templates yet. Why don’t you go ahead and create one now!', 'profilegrid-user-profiles-groups-and-communities' ); ?></div>
 	<?php endif; ?>

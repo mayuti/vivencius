@@ -47,6 +47,8 @@ class Profile_Magic_Admin {
 	 * @param      string $profile_magic       The name of this plugin.
 	 * @param      string $version    The version of this plugin.
 	 */
+        private $pm_theme_path;
+        private $pm_theme_path_in_wptheme;
 	public function __construct( $profile_magic, $version ) {
 
 		$this->profile_magic                    = $profile_magic;
@@ -152,6 +154,16 @@ class Profile_Magic_Admin {
 			wp_enqueue_media();
 			wp_enqueue_script( $this->profile_magic, plugin_dir_url( __FILE__ ) . 'js/profile-magic-admin.js', array( 'jquery' ), $this->version, false );
 			wp_enqueue_script( 'profile-magic-admin-footer', plugin_dir_url( __FILE__ ) . 'js/profile-magic-admin-footer.js', array( 'jquery', 'wp-color-picker' ), $this->version, true );
+                        wp_enqueue_script( 'profile-magic-license', plugin_dir_url( __FILE__ ) . 'js/profile-magic-license.js', array( 'jquery',), $this->version, true );
+                        wp_localize_script(
+							'profile-magic-license',
+							'pg_admin_license_settings',
+							array(
+								'ajax_url' => admin_url( 'admin-ajax.php' ),
+								'nonce'    => wp_create_nonce( 'pg-license-nonce' ),
+							)
+						);
+                        
 						wp_localize_script(
 							$this->profile_magic,
 							'pm_ajax_object',
@@ -219,54 +231,61 @@ class Profile_Magic_Admin {
 	}
 
 	public function profile_magic_admin_menu() {
-		add_menu_page( __( 'ProfileGrid', 'profilegrid-user-profiles-groups-and-communities' ), __( 'ProfileGrid', 'profilegrid-user-profiles-groups-and-communities' ), 'manage_options', 'pm_manage_groups', array( $this, 'pm_manage_groups' ), 'dashicons-groups', 26 );
-				add_submenu_page( '', __( 'New Group', 'profilegrid-user-profiles-groups-and-communities' ), __( 'New Group', 'profilegrid-user-profiles-groups-and-communities' ), 'manage_options', 'pm_add_group', array( $this, 'pm_add_group' ) );
-		add_submenu_page( '', __( 'Profile Fields', 'profilegrid-user-profiles-groups-and-communities' ), __( 'Profile Fields', 'profilegrid-user-profiles-groups-and-communities' ), 'manage_options', 'pm_profile_fields', array( $this, 'pm_profile_fields' ) );
-		add_submenu_page( '', __( 'New Field', 'profilegrid-user-profiles-groups-and-communities' ), __( 'New Field', 'profilegrid-user-profiles-groups-and-communities' ), 'manage_options', 'pm_add_field', array( $this, 'pm_add_field' ) );
-		add_submenu_page( '', __( 'New Section', 'profilegrid-user-profiles-groups-and-communities' ), __( 'New Section', 'profilegrid-user-profiles-groups-and-communities' ), 'manage_options', 'pm_add_section', array( $this, 'pm_add_section' ) );
-		add_submenu_page( '', __( 'Profile Templates', 'profilegrid-user-profiles-groups-and-communities' ), __( 'Profile Templates', 'profilegrid-user-profiles-groups-and-communities' ), 'manage_options', 'pm_theme_settings', array( $this, 'pm_theme_settings' ) );
+		add_menu_page( __( 'User Profiles', 'profilegrid-user-profiles-groups-and-communities' ), __( 'User Profiles', 'profilegrid-user-profiles-groups-and-communities' ), 'manage_options', 'pm_manage_groups', array( $this, 'pm_manage_groups' ), 'dashicons-groups', 26 );
+		add_submenu_page( 'pm_manage_groups', __( 'Groups', 'profilegrid-user-profiles-groups-and-communities' ), __( 'Groups', 'profilegrid-user-profiles-groups-and-communities' ), 'manage_options', 'pm_manage_groups', array( $this, 'pm_manage_groups' ) );
+                add_submenu_page( 'pm_manage_groups_hide', __( 'New Group', 'profilegrid-user-profiles-groups-and-communities' ), __( 'New Group', 'profilegrid-user-profiles-groups-and-communities' ), 'manage_options', 'pm_add_group', array( $this, 'pm_add_group' ) );
+		add_submenu_page( 'pm_manage_groups_hide', __( 'Profile Fields', 'profilegrid-user-profiles-groups-and-communities' ), __( 'Profile Fields', 'profilegrid-user-profiles-groups-and-communities' ), 'manage_options', 'pm_profile_fields', array( $this, 'pm_profile_fields' ) );
+		add_submenu_page( 'pm_manage_groups_hide', __( 'New Field', 'profilegrid-user-profiles-groups-and-communities' ), __( 'New Field', 'profilegrid-user-profiles-groups-and-communities' ), 'manage_options', 'pm_add_field', array( $this, 'pm_add_field' ) );
+		add_submenu_page( 'pm_manage_groups_hide', __( 'New Section', 'profilegrid-user-profiles-groups-and-communities' ), __( 'New Section', 'profilegrid-user-profiles-groups-and-communities' ), 'manage_options', 'pm_add_section', array( $this, 'pm_add_section' ) );
+		add_submenu_page( 'pm_manage_groups_hide', __( 'Profile Templates', 'profilegrid-user-profiles-groups-and-communities' ), __( 'Profile Templates', 'profilegrid-user-profiles-groups-and-communities' ), 'manage_options', 'pm_theme_settings', array( $this, 'pm_theme_settings' ) );
 		add_submenu_page( 'pm_manage_groups', __( 'Members', 'profilegrid-user-profiles-groups-and-communities' ), __( 'Members', 'profilegrid-user-profiles-groups-and-communities' ), 'manage_options', 'pm_user_manager', array( $this, 'pm_user_manager' ) );
 		add_submenu_page( 'pm_manage_groups', __( 'Requests', 'profilegrid-user-profiles-groups-and-communities' ), __( 'Requests', 'profilegrid-user-profiles-groups-and-communities' ), 'manage_options', 'pm_requests_manager', array( $this, 'pm_requests_manager' ) );
-		add_submenu_page( '', __( 'Profile View', 'profilegrid-user-profiles-groups-and-communities' ), __( 'Profile View', 'profilegrid-user-profiles-groups-and-communities' ), 'manage_options', 'pm_profile_view', array( $this, 'pm_profile_view' ) );
-		add_submenu_page( '', __( 'Edit User', 'profilegrid-user-profiles-groups-and-communities' ), __( 'Edit User', 'profilegrid-user-profiles-groups-and-communities' ), 'manage_options', 'pm_user_edit', array( $this, 'pm_user_edit' ) );
+		add_submenu_page( 'pm_manage_groups_hide', __( 'Profile View', 'profilegrid-user-profiles-groups-and-communities' ), __( 'Profile View', 'profilegrid-user-profiles-groups-and-communities' ), 'manage_options', 'pm_profile_view', array( $this, 'pm_profile_view' ) );
+		add_submenu_page( 'pm_manage_groups_hide', __( 'Edit User', 'profilegrid-user-profiles-groups-and-communities' ), __( 'Edit User', 'profilegrid-user-profiles-groups-and-communities' ), 'manage_options', 'pm_user_edit', array( $this, 'pm_user_edit' ) );
 		add_submenu_page( 'pm_manage_groups', __( 'Email Templates', 'profilegrid-user-profiles-groups-and-communities' ), __( 'Email Templates', 'profilegrid-user-profiles-groups-and-communities' ), 'manage_options', 'pm_email_templates', array( $this, 'pm_email_templates' ) );
-		add_submenu_page( '', __( 'Add Email Template', 'profilegrid-user-profiles-groups-and-communities' ), __( 'Add Email Template', 'profilegrid-user-profiles-groups-and-communities' ), 'manage_options', 'pm_add_email_template', array( $this, 'pm_add_email_template' ) );
-		add_submenu_page( '', __( 'Email Preview', 'profilegrid-user-profiles-groups-and-communities' ), __( 'Email Preview', 'profilegrid-user-profiles-groups-and-communities' ), 'manage_options', 'pm_email_preview', array( $this, 'pm_email_preview' ) );
-		add_submenu_page( '', __( 'Analytics', 'profilegrid-user-profiles-groups-and-communities' ), __( 'Analytics', 'profilegrid-user-profiles-groups-and-communities' ), 'manage_options', 'pm_analytics', array( $this, 'pm_analytics' ) );
-		add_submenu_page( '', __( 'Membership', 'profilegrid-user-profiles-groups-and-communities' ), __( 'Membership', 'profilegrid-user-profiles-groups-and-communities' ), 'manage_options', 'pm_membership', array( $this, 'pm_membership' ) );
+		add_submenu_page( 'pm_manage_groups_hide', __( 'Add Email Template', 'profilegrid-user-profiles-groups-and-communities' ), __( 'Add Email Template', 'profilegrid-user-profiles-groups-and-communities' ), 'manage_options', 'pm_add_email_template', array( $this, 'pm_add_email_template' ) );
+		add_submenu_page( 'pm_manage_groups_hide', __( 'Email Preview', 'profilegrid-user-profiles-groups-and-communities' ), __( 'Email Preview', 'profilegrid-user-profiles-groups-and-communities' ), 'manage_options', 'pm_email_preview', array( $this, 'pm_email_preview' ) );
+		add_submenu_page( 'pm_manage_groups_hide', __( 'Analytics', 'profilegrid-user-profiles-groups-and-communities' ), __( 'Analytics', 'profilegrid-user-profiles-groups-and-communities' ), 'manage_options', 'pm_analytics', array( $this, 'pm_analytics' ) );
+		add_submenu_page( 'pm_manage_groups_hide', __( 'Membership', 'profilegrid-user-profiles-groups-and-communities' ), __( 'Membership', 'profilegrid-user-profiles-groups-and-communities' ), 'manage_options', 'pm_membership', array( $this, 'pm_membership' ) );
 		add_submenu_page( 'pm_manage_groups', __( 'Shortcodes', 'profilegrid-user-profiles-groups-and-communities' ), __( 'Shortcodes', 'profilegrid-user-profiles-groups-and-communities' ), 'manage_options', 'pm_shortcodes', array( $this, 'pm_shortcodes' ) );
-				add_submenu_page( 'pm_manage_groups', __( 'Global Settings', 'profilegrid-user-profiles-groups-and-communities' ), __( 'Global Settings', 'profilegrid-user-profiles-groups-and-communities' ), 'manage_options', 'pm_settings', array( $this, 'pm_settings' ) );
-		add_submenu_page( '', __( 'General Settings', 'profilegrid-user-profiles-groups-and-communities' ), __( 'General Settings', 'profilegrid-user-profiles-groups-and-communities' ), 'manage_options', 'pm_general_settings', array( $this, 'pm_general_settings' ) );
-
-		add_submenu_page( '', __( 'Anti Spam Settings', 'profilegrid-user-profiles-groups-and-communities' ), __( 'Anti Spam Settings', 'profilegrid-user-profiles-groups-and-communities' ), 'manage_options', 'pm_security_settings', array( $this, 'pm_security_settings' ) );
-		add_submenu_page( '', __( 'User Accounts Settings', 'profilegrid-user-profiles-groups-and-communities' ), __( 'User Accounts Settings', 'profilegrid-user-profiles-groups-and-communities' ), 'manage_options', 'pm_user_settings', array( $this, 'pm_user_settings' ) );
-		add_submenu_page( '', __( 'Email Settings', 'profilegrid-user-profiles-groups-and-communities' ), __( 'Email Settings', 'profilegrid-user-profiles-groups-and-communities' ), 'manage_options', 'pm_email_settings', array( $this, 'pm_email_settings' ) );
-		add_submenu_page( '', __( 'Third Party Integrations', 'profilegrid-user-profiles-groups-and-communities' ), __( 'Third Party Integrations', 'profilegrid-user-profiles-groups-and-communities' ), 'manage_options', 'pm_third_party_settings', array( $this, 'pm_third_party_settings' ) );
-				add_submenu_page( '', __( 'Payments Settings', 'profilegrid-user-profiles-groups-and-communities' ), __( 'Payments Settings', 'profilegrid-user-profiles-groups-and-communities' ), 'manage_options', 'pm_payment_settings', array( $this, 'pm_payment_settings' ) );
-				add_submenu_page( '', __( 'Tools', 'profilegrid-user-profiles-groups-and-communities' ), __( 'Tools', 'profilegrid-user-profiles-groups-and-communities' ), 'manage_options', 'pm_tools', array( $this, 'pm_tools' ) );
-				add_submenu_page( '', __( 'Export Users', 'profilegrid-user-profiles-groups-and-communities' ), __( 'Export Users', 'profilegrid-user-profiles-groups-and-communities' ), 'manage_options', 'pm_export_users', array( $this, 'pm_export_users' ) );
-				add_submenu_page( '', __( 'Import Users', 'profilegrid-user-profiles-groups-and-communities' ), __( 'Import Users', 'profilegrid-user-profiles-groups-and-communities' ), 'manage_options', 'pm_import_users', array( $this, 'pm_import_users' ) );
-				add_submenu_page( '', __( 'Blog Settings', 'profilegrid-user-profiles-groups-and-communities' ), __( 'Blog Settings', 'profilegrid-user-profiles-groups-and-communities' ), 'manage_options', 'pm_blog_settings', array( $this, 'pm_blog_settings' ) );
-				add_submenu_page( '', __( 'Message Settings', 'profilegrid-user-profiles-groups-and-communities' ), __( 'Message Settings', 'profilegrid-user-profiles-groups-and-communities' ), 'manage_options', 'pm_message_settings', array( $this, 'pm_message_settings' ) );
-				add_submenu_page( '', __( 'Friends Settings', 'profilegrid-user-profiles-groups-and-communities' ), __( 'Friends Settings', 'profilegrid-user-profiles-groups-and-communities' ), 'manage_options', 'pm_friend_settings', array( $this, 'pm_friend_settings' ) );
-				add_submenu_page( '', __( 'Upload Settings', 'profilegrid-user-profiles-groups-and-communities' ), __( 'Upload Settings', 'profilegrid-user-profiles-groups-and-communities' ), 'manage_options', 'pm_upload_settings', array( $this, 'pm_upload_settings' ) );
-				add_submenu_page( '', __( 'SEO Settings', 'profilegrid-user-profiles-groups-and-communities' ), __( 'SEO Settings', 'profilegrid-user-profiles-groups-and-communities' ), 'manage_options', 'pm_seo_settings', array( $this, 'pm_seo_settings' ) );
-				add_submenu_page( '', __( 'Export Options', 'profilegrid-user-profiles-groups-and-communities' ), __( 'Export Options', 'profilegrid-user-profiles-groups-and-communities' ), 'manage_options', 'pm_export_options', array( $this, 'pm_export_options' ) );
-				add_submenu_page( '', __( 'Import Options', 'profilegrid-user-profiles-groups-and-communities' ), __( 'Import Options', 'profilegrid-user-profiles-groups-and-communities' ), 'manage_options', 'pm_import_options', array( $this, 'pm_import_options' ) );
-				add_submenu_page( '', __( 'Content Restrictions', 'profilegrid-user-profiles-groups-and-communities' ), __( 'Content Restrictions', 'profilegrid-user-profiles-groups-and-communities' ), 'manage_options', 'pm_content_restrictions', array( $this, 'pm_content_restrictions' ) );
-				add_submenu_page( '', __( 'Woocommerce Extension', 'profilegrid-user-profiles-groups-and-communities' ), __( 'Woocommerce Extension', 'profilegrid-user-profiles-groups-and-communities' ), 'manage_options', 'pm_woocommerce_extension', array( $this, 'pm_woocommerce_extension' ) );
-				add_submenu_page( '', __( 'Advanced Woocommerce Extension', 'profilegrid-user-profiles-groups-and-communities' ), __( 'Advanced Woocommerce Extension', 'profilegrid-user-profiles-groups-and-communities' ), 'manage_options', 'pm_woocommerce_advanced_extension', array( $this, 'pm_woocommerce_advanced_extension' ) );
-				add_submenu_page( '', __( 'RegistrationMagic Integrations', 'profilegrid-user-profiles-groups-and-communities' ), __( 'RegistrationMagic Integrations', 'profilegrid-user-profiles-groups-and-communities' ), 'manage_options', 'pm_rm_integration', array( $this, 'pm_rm_integration' ) );
-				add_submenu_page( '', __( 'Profile Notifications', 'profilegrid-user-profiles-groups-and-communities' ), __( 'Profile Notifications', 'profilegrid-user-profiles-groups-and-communities' ), 'manage_options', 'pm_profile_notification_settings', array( $this, 'pm_profile_notification_settings' ) );
-				add_submenu_page( '', __( 'Woocommerce Wishlist Extension', 'profilegrid-user-profiles-groups-and-communities' ), __( 'Woocommerce Wishlist Extension', 'profilegrid-user-profiles-groups-and-communities' ), 'manage_options', 'pm_woocommerce_wishlist_extension', array( $this, 'pm_woocommerce_wishlist_extension' ) );
-				add_submenu_page( '', __( 'Profile Tabs Settings', 'profilegrid-user-profiles-groups-and-communities' ), __( 'Profile Tabs Settings', 'profilegrid-user-profiles-groups-and-communities' ), 'manage_options', 'pm_profile_tabs_settings', array( $this, 'pm_profile_tabs_settings' ) );
-				add_submenu_page( '', __( 'Private Profile Settings', 'profilegrid-user-profiles-groups-and-communities' ), __( 'Private Profile Settings', 'profilegrid-user-profiles-groups-and-communities' ), 'manage_options', 'pm_private_profile_settings', array( $this, 'pm_private_profile_settings' ) );
-				add_submenu_page( '', __( 'Elements Visibility Settings', 'profilegrid-user-profiles-groups-and-communities' ), __( 'Elements Visibility Settings', 'profilegrid-user-profiles-groups-and-communities' ), 'manage_options', 'pm_elements_visibility_settings', array( $this, 'pm_elements_visibility_settings' ) );
-				add_submenu_page( '', __( 'Performance Settings', 'profilegrid-user-profiles-groups-and-communities' ), __( 'Performance Settings', 'profilegrid-user-profiles-groups-and-communities' ), 'manage_options', 'pm_performance_options', array( $this, 'pm_performance_options' ) );
-				add_submenu_page( '', __( 'Activation Wizard', 'profilegrid-user-profiles-groups-and-communities' ), __( 'Activation Wizard', 'profilegrid-user-profiles-groups-and-communities' ), 'manage_options', 'pm_activation_wizard', array( $this, 'pm_activation_wizard' ) );
-				add_submenu_page( '', __( 'All Users Listing Settings', 'profilegrid-user-profiles-groups-and-communities' ), __( 'All Users Listing Settings', 'profilegrid-user-profiles-groups-and-communities' ), 'manage_options', 'pm_users_listing_settings', array( $this, 'pm_users_listing_settings' ) );
-
+                add_submenu_page( 'pm_manage_groups', __( 'Global Settings', 'profilegrid-user-profiles-groups-and-communities' ), __( 'Global Settings', 'profilegrid-user-profiles-groups-and-communities' ), 'manage_options', 'pm_settings', array( $this, 'pm_settings' ) );
+		add_submenu_page( 'pm_manage_groups_hide', __( 'General Settings', 'profilegrid-user-profiles-groups-and-communities' ), __( 'General Settings', 'profilegrid-user-profiles-groups-and-communities' ), 'manage_options', 'pm_general_settings', array( $this, 'pm_general_settings' ) );
+		add_submenu_page( 'pm_manage_groups_hide', __( 'Anti Spam Settings', 'profilegrid-user-profiles-groups-and-communities' ), __( 'Anti Spam Settings', 'profilegrid-user-profiles-groups-and-communities' ), 'manage_options', 'pm_security_settings', array( $this, 'pm_security_settings' ) );
+		add_submenu_page( 'pm_manage_groups_hide', __( 'User Accounts Settings', 'profilegrid-user-profiles-groups-and-communities' ), __( 'User Accounts Settings', 'profilegrid-user-profiles-groups-and-communities' ), 'manage_options', 'pm_user_settings', array( $this, 'pm_user_settings' ) );
+		add_submenu_page( 'pm_manage_groups_hide', __( 'Email Settings', 'profilegrid-user-profiles-groups-and-communities' ), __( 'Email Settings', 'profilegrid-user-profiles-groups-and-communities' ), 'manage_options', 'pm_email_settings', array( $this, 'pm_email_settings' ) );
+		add_submenu_page( 'pm_manage_groups_hide', __( 'Third Party Integrations', 'profilegrid-user-profiles-groups-and-communities' ), __( 'Third Party Integrations', 'profilegrid-user-profiles-groups-and-communities' ), 'manage_options', 'pm_third_party_settings', array( $this, 'pm_third_party_settings' ) );
+                add_submenu_page( 'pm_manage_groups_hide', __( 'Payments Settings', 'profilegrid-user-profiles-groups-and-communities' ), __( 'Payments Settings', 'profilegrid-user-profiles-groups-and-communities' ), 'manage_options', 'pm_payment_settings', array( $this, 'pm_payment_settings' ) );
+                add_submenu_page( 'pm_manage_groups_hide', __( 'Tools', 'profilegrid-user-profiles-groups-and-communities' ), __( 'Tools', 'profilegrid-user-profiles-groups-and-communities' ), 'manage_options', 'pm_tools', array( $this, 'pm_tools' ) );
+                add_submenu_page( 'pm_manage_groups_hide', __( 'Export Users', 'profilegrid-user-profiles-groups-and-communities' ), __( 'Export Users', 'profilegrid-user-profiles-groups-and-communities' ), 'manage_options', 'pm_export_users', array( $this, 'pm_export_users' ) );
+                add_submenu_page( 'pm_manage_groups_hide', __( 'Import Users', 'profilegrid-user-profiles-groups-and-communities' ), __( 'Import Users', 'profilegrid-user-profiles-groups-and-communities' ), 'manage_options', 'pm_import_users', array( $this, 'pm_import_users' ) );
+                add_submenu_page( 'pm_manage_groups_hide', __( 'Blog Settings', 'profilegrid-user-profiles-groups-and-communities' ), __( 'Blog Settings', 'profilegrid-user-profiles-groups-and-communities' ), 'manage_options', 'pm_blog_settings', array( $this, 'pm_blog_settings' ) );
+                add_submenu_page( 'pm_manage_groups_hide', __( 'Message Settings', 'profilegrid-user-profiles-groups-and-communities' ), __( 'Message Settings', 'profilegrid-user-profiles-groups-and-communities' ), 'manage_options', 'pm_message_settings', array( $this, 'pm_message_settings' ) );
+                add_submenu_page( 'pm_manage_groups_hide', __( 'Friends Settings', 'profilegrid-user-profiles-groups-and-communities' ), __( 'Friends Settings', 'profilegrid-user-profiles-groups-and-communities' ), 'manage_options', 'pm_friend_settings', array( $this, 'pm_friend_settings' ) );
+                add_submenu_page( 'pm_manage_groups_hide', __( 'Upload Settings', 'profilegrid-user-profiles-groups-and-communities' ), __( 'Upload Settings', 'profilegrid-user-profiles-groups-and-communities' ), 'manage_options', 'pm_upload_settings', array( $this, 'pm_upload_settings' ) );
+                add_submenu_page( 'pm_manage_groups_hide', __( 'SEO Settings', 'profilegrid-user-profiles-groups-and-communities' ), __( 'SEO Settings', 'profilegrid-user-profiles-groups-and-communities' ), 'manage_options', 'pm_seo_settings', array( $this, 'pm_seo_settings' ) );
+                add_submenu_page( 'pm_manage_groups_hide', __( 'Export Options', 'profilegrid-user-profiles-groups-and-communities' ), __( 'Export Options', 'profilegrid-user-profiles-groups-and-communities' ), 'manage_options', 'pm_export_options', array( $this, 'pm_export_options' ) );
+                add_submenu_page( 'pm_manage_groups_hide', __( 'Import Options', 'profilegrid-user-profiles-groups-and-communities' ), __( 'Import Options', 'profilegrid-user-profiles-groups-and-communities' ), 'manage_options', 'pm_import_options', array( $this, 'pm_import_options' ) );
+                add_submenu_page( 'pm_manage_groups_hide', __( 'Content Restrictions', 'profilegrid-user-profiles-groups-and-communities' ), __( 'Content Restrictions', 'profilegrid-user-profiles-groups-and-communities' ), 'manage_options', 'pm_content_restrictions', array( $this, 'pm_content_restrictions' ) );
+                add_submenu_page( 'pm_manage_groups_hide', __( 'Woocommerce Extension', 'profilegrid-user-profiles-groups-and-communities' ), __( 'Woocommerce Extension', 'profilegrid-user-profiles-groups-and-communities' ), 'manage_options', 'pm_woocommerce_extension', array( $this, 'pm_woocommerce_extension' ) );
+                add_submenu_page( 'pm_manage_groups_hide', __( 'Advanced Woocommerce Extension', 'profilegrid-user-profiles-groups-and-communities' ), __( 'Advanced Woocommerce Extension', 'profilegrid-user-profiles-groups-and-communities' ), 'manage_options', 'pm_woocommerce_advanced_extension', array( $this, 'pm_woocommerce_advanced_extension' ) );
+                add_submenu_page( 'pm_manage_groups_hide', __( 'RegistrationMagic Integrations', 'profilegrid-user-profiles-groups-and-communities' ), __( 'RegistrationMagic Integrations', 'profilegrid-user-profiles-groups-and-communities' ), 'manage_options', 'pm_rm_integration', array( $this, 'pm_rm_integration' ) );
+                add_submenu_page( 'pm_manage_groups_hide', __( 'Profile Notifications', 'profilegrid-user-profiles-groups-and-communities' ), __( 'Profile Notifications', 'profilegrid-user-profiles-groups-and-communities' ), 'manage_options', 'pm_profile_notification_settings', array( $this, 'pm_profile_notification_settings' ) );
+                add_submenu_page( 'pm_manage_groups_hide', __( 'Woocommerce Wishlist Extension', 'profilegrid-user-profiles-groups-and-communities' ), __( 'Woocommerce Wishlist Extension', 'profilegrid-user-profiles-groups-and-communities' ), 'manage_options', 'pm_woocommerce_wishlist_extension', array( $this, 'pm_woocommerce_wishlist_extension' ) );
+                add_submenu_page( 'pm_manage_groups_hide', __( 'Profile Tabs Settings', 'profilegrid-user-profiles-groups-and-communities' ), __( 'Profile Tabs Settings', 'profilegrid-user-profiles-groups-and-communities' ), 'manage_options', 'pm_profile_tabs_settings', array( $this, 'pm_profile_tabs_settings' ) );
+                add_submenu_page( 'pm_manage_groups_hide', __( 'Private Profile Settings', 'profilegrid-user-profiles-groups-and-communities' ), __( 'Private Profile Settings', 'profilegrid-user-profiles-groups-and-communities' ), 'manage_options', 'pm_private_profile_settings', array( $this, 'pm_private_profile_settings' ) );
+                add_submenu_page( 'pm_manage_groups_hide', __( 'Elements Visibility Settings', 'profilegrid-user-profiles-groups-and-communities' ), __( 'Elements Visibility Settings', 'profilegrid-user-profiles-groups-and-communities' ), 'manage_options', 'pm_elements_visibility_settings', array( $this, 'pm_elements_visibility_settings' ) );
+                add_submenu_page( 'pm_manage_groups_hide', __( 'Performance Settings', 'profilegrid-user-profiles-groups-and-communities' ), __( 'Performance Settings', 'profilegrid-user-profiles-groups-and-communities' ), 'manage_options', 'pm_performance_options', array( $this, 'pm_performance_options' ) );
+                add_submenu_page( 'pm_manage_groups_hide', __( 'Activation Wizard', 'profilegrid-user-profiles-groups-and-communities' ), __( 'Activation Wizard', 'profilegrid-user-profiles-groups-and-communities' ), 'manage_options', 'pm_activation_wizard', array( $this, 'pm_activation_wizard' ) );
+                add_submenu_page( 'pm_manage_groups_hide', __( 'All Users Listing Settings', 'profilegrid-user-profiles-groups-and-communities' ), __( 'All Users Listing Settings', 'profilegrid-user-profiles-groups-and-communities' ), 'manage_options', 'pm_users_listing_settings', array( $this, 'pm_users_listing_settings' ) );
+                add_submenu_page( 'pm_manage_groups_hide', __( 'License Settings', 'profilegrid-user-profiles-groups-and-communities' ), __( 'License Settings', 'profilegrid-user-profiles-groups-and-communities' ), 'manage_options', 'pm_license_settings', array( $this, 'pm_license_settings' ) );
+                
+                
 	}
+        
+        public function pm_license_settings()
+        {
+            include 'partials/pg-license.php';
+        }
 
 	public function pm_offers() {
 		include 'partials/pg-offers.php';
@@ -1301,7 +1320,7 @@ class Profile_Magic_Admin {
                                         </div>
 
                                         <div class="pg-banner-btn-wrap">
-                                            <a target="_blank" href="https://metagauss.com/customization-help/" class=""><button class="button button-primary pg-customize-banner-btn"><?php esc_html_e('Get Help Now', 'profilegrid-user-profiles-groups-and-communities'); ?></button></a>
+                                            <a target="_blank" href="https://profilegrid.co/help-support/customizations/" class=""><button class="button button-primary pg-customize-banner-btn"><?php esc_html_e('Get Help Now', 'profilegrid-user-profiles-groups-and-communities'); ?></button></a>
                                         </div>
 
 
@@ -2048,7 +2067,7 @@ class Profile_Magic_Admin {
                             <p class="authors" style="display:none"> <cite><?php esc_html_e('By', 'profilegrid-user-profiles-groups-and-communities'); ?> <a target="_blank" href="https://profilegrid.co/extensions/"><?php esc_html_e('ProfileGrid', 'profilegrid-user-profiles-groups-and-communities'); ?></a></cite></p>
                         </div>
                         <div class="pg-ext-box-button">
-                            <a class="pg-install-now-btn pg-more-info" target="_blank" href="https://metagauss.com/customization-help/"> <?php esc_html_e('Get Help Now', 'profilegrid-user-profiles-groups-and-communities'); ?></a>
+                            <a class="pg-install-now-btn pg-more-info" target="_blank" href="https://profilegrid.co/help-support/customizations/"> <?php esc_html_e('Get Help Now', 'profilegrid-user-profiles-groups-and-communities'); ?></a>
                         </div>
                     </div> 
                     <div class="pg-box-col-4 pg-d-flex pg-d-flex-v-center pg-flex-direction-col">
@@ -2059,5 +2078,55 @@ class Profile_Magic_Admin {
         </div>                                                       
             <?php                                                                
         }
+        
+        public function profilegrid_activate_license()
+        {
+            $retrieved_nonce = filter_input( INPUT_POST, 'nonce' );
+            if ( !wp_verify_nonce( $retrieved_nonce, 'pg-license-nonce' ) ) {
+                    die( esc_html__( 'Failed security check', 'profilegrid-user-profiles-groups-and-communities' ) );
+            }
+            $dbhandler   = new PM_DBhandler();
+            $pg_license_activate = sanitize_text_field(filter_input( INPUT_POST, 'pg_license_activate' ));
+            $license_key = sanitize_text_field(filter_input( INPUT_POST, 'pg_license' ));
+            $item_id = sanitize_text_field(filter_input( INPUT_POST, 'pg_item_id' ));
+            $item_key = sanitize_text_field(filter_input( INPUT_POST, 'pg_item_key' ));
+            $dbhandler->update_global_option_value( $item_key.'_license_key', $license_key );
+            $response = array();
+            if( isset( $pg_license_activate ) && ! empty( $pg_license_activate ) ){
+                $license = new Profile_Magic_License();
+                $response = $license->pg_activate_license($license_key,$item_id,$item_key);
+                wp_send_json_success( $response );
+            }
+            else
+            {
+                wp_send_json_error( array( 'message' => esc_html__( 'Security check failed. Please refresh the page and try again later.', 'profilegrid-user-profiles-groups-and-communities' ) ) );
+            }
+            
+    }
+
+    public function profilegrid_deactivate_license(){
+        
+        $retrieved_nonce = filter_input( INPUT_POST, 'nonce' );
+            if ( !wp_verify_nonce( $retrieved_nonce, 'pg-license-nonce' ) ) {
+                    die( esc_html__( 'Failed security check', 'profilegrid-user-profiles-groups-and-communities' ) );
+            }
+            $dbhandler   = new PM_DBhandler();
+            $pg_license_deactivate = sanitize_text_field(filter_input( INPUT_POST, 'pg_license_deactivate' ));
+            $license_key = sanitize_text_field(filter_input( INPUT_POST, 'pg_license' ));
+            $item_id = sanitize_text_field(filter_input( INPUT_POST, 'pg_item_id' ));
+            $item_key = sanitize_text_field(filter_input( INPUT_POST, 'pg_item_key' ));
+            $dbhandler->update_global_option_value( $item_key.'_license_key', $license_key );
+            $response = array();
+            if( isset( $pg_license_deactivate ) && ! empty( $pg_license_deactivate ) ){
+                $license = new Profile_Magic_License();
+                $response = $license->pg_deactivate_license($license_key,$item_id,$item_key);
+                wp_send_json_success( $response );
+            }
+            else
+            {
+                wp_send_json_error( array( 'message' => esc_html__( 'Security check failed. Please refresh the page and try again later.', 'profilegrid-user-profiles-groups-and-communities' ) ) );
+            }
+        
+    }
 
 }

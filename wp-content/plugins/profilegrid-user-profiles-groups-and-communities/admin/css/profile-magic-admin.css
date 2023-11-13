@@ -1862,6 +1862,7 @@ input.pm_toggle:checked + label:after {
 
 .uimagic input[type=text],
 .uimagic input[type=number],
+.uimagic input[type=url],
 .uimagic input[type=password],
 .uimagic textarea,
 .pm-new-form input[type=text] {
@@ -1881,6 +1882,7 @@ input.pm_toggle:checked + label:after {
 
 .uimagic input[type=text]:focus,
 .uimagic input[type=number]:focus,
+.uimagic input[type=url]:focus,
 .uimagic input[type=password]:focus,
 .uimagic textarea:focus,
 .pm-new-form input[type=text]:focus {
@@ -6795,6 +6797,10 @@ a.pg-premium-extension-link:hover span {
     align-items: center;
 }
 
+.uimheader.pg-options-head .pg-group-pre-btn a{
+    font-weight: normal;
+}
+
 .uimheader.pg-options-head .pg-premium-options {
     color: #FF8F00;
     font-size: 16px;
@@ -7038,3 +7044,194 @@ a.pg-premium-extension-link:hover span {
     }
 
 }
+
+/* -- Setting table---*/
+
+.pg-setting-table-main {}
+
+.pg-setting-table-main .form-table {
+    margin: 0;
+    position: relative;
+    table-layout: fixed;
+}
+
+table.pg-setting-table {
+    position: relative;
+}
+
+table.pg-setting-table {
+    background: #fff;
+    border: 1px solid #c3c4c7;
+    box-shadow: 0 1px 1px rgb(0 0 0 / 4%);
+}
+
+
+
+table.pg-setting-table tr:nth-child(odd) td {
+    background: #f9f9f9;
+}
+
+table.pg-setting-table td {
+    margin-bottom: 9px;
+    padding: 15px 10px;
+    line-height: 1.3;
+    vertical-align: middle;
+}
+
+table.pg-setting-table td, 
+table.pg-setting-table th {
+    display: table-cell!important;
+    padding: 1em!important;
+    vertical-align: top;
+}
+
+table.pg-setting-table-wide{
+    border-spacing: 0;
+    width: 100%;
+    clear: both;
+    margin: 0;
+}
+
+table.pg-setting-table-wide tfoot tr td,
+table.pg-setting-table-wide tfoot tr th, 
+table.pg-setting-table-wide thead tr td, 
+table.pg-setting-table-wide thead tr th {
+    color: #2c3338;
+}
+
+table.pg-setting-table-wide thead td, table.pg-setting-table-wide thead th {
+    border-bottom: 1px solid #c3c4c7;
+}
+
+
+
+/*-- Setting table---*/
+
+
+/*--Toast Notification---*/
+
+.pg-status-update-model {
+    visibility: hidden;
+    position: fixed;
+    z-index: 999999;
+    left: 50%;
+    top: 70px;
+    width: 600px;
+    max-width: 100%;
+    margin-left: -300px;
+}
+
+
+
+.pg-status-update-model .pg-notification-overlay {
+    z-index: 9999;
+    display: block;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.5);
+}
+
+
+.pg-status-update-model .pg-status-close {
+    position: absolute;
+    right: 10px;
+    top: 6px;
+    font-size: 22px;
+    color: #0d0d0d;
+    cursor: pointer;
+}
+
+/*--- Success-----*/
+
+.pg-status-update-model.pg-status-success-model{
+
+}
+
+.pg-status-update-model.pg-status-success-model .pg-modal-wrap-toast{
+    background-color: #fff;
+    border: 1px solid #908a8a;
+    color: #66b541;
+    
+}
+
+.pg-status-update-model .pg-modal-wrap-toast {
+    position: absolute;
+    z-index: 9999;
+    width: 100%;
+    border-radius: 3px;
+    padding: 8px 20px;
+}
+
+
+/*--- Failed-----*/
+
+.pg-status-update-model.pg-status-failed-model .pg-modal-wrap-toast{
+    color: #721c24;
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+}
+/*--- Failed-----*/
+
+.pg-status-update-model.pg-modal-show {
+    visibility: visible;
+    -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+    animation: fadein 0.5s, fadeout 0.5s 2.5s;
+}
+
+.pg-status-update-model.pg-modal-show {
+    visibility: visible;
+    -webkit-animation: fadein 0.5s;
+    animation: fadein 0.5s
+}
+
+@-webkit-keyframes fadein {
+    from {
+        top: 0;
+        opacity: 0;
+    }
+    to {
+        top: 70px;
+        opacity: 1;
+    }
+}
+
+@keyframes fadein {
+    from {
+        top: 0;
+        opacity: 0;
+    }
+    to {
+        top: 70px;
+        opacity: 1;
+    }
+}
+
+@-webkit-keyframes fadeout {
+    from {
+        top: 70px;
+        opacity: 1;
+    }
+    to {
+        top: 0;
+        opacity: 0;
+    }
+}
+
+@keyframes fadeout {
+    from {
+        top: 70px;
+        opacity: 1;
+    }
+    to {
+        top: 0;
+        opacity: 0;
+    }
+}
+
+
+/*----Toast Notification End----*/
+
+
