@@ -168,12 +168,33 @@ Experiencias adquiridas durante el desarrollo y la puesta en producción del sit
 - Se decide mantener las secciones que gestionan usuarios y blogs debido a la eficiencia en seguridad y procesamiento de información proporcionada por la plantilla de WordPress seleccionada.
 - Modificar estas secciones podría comprometer la seguridad y la adaptación del diseño a diferentes dispositivos.
 
+-------------------------
 
 
+### Registro de Cambios
+
+#### 0.1.2 - Noviembre 2023
+
+* Actualización, Creación y Codificación de varias páginas web en PHP, HTML y CSS conservando la seguridad ofrecida por los plugin y el acabado profesional del CMS Wordpress.
+
+Desarrollador [@mayuti](https://github.com/mayuti)
+
+#### 0.1.1 - Septiembre 2023
+
+* Mejoras en logo, sección redes sociales, imágenes y redacciones.
+
+Desarrollador [@mayuti](https://github.com/mayuti)
+
+#### 0.1.0 - Agosto 2023
+
+* Lanzamiento inicial
+
+Desarrollador [@mayuti](https://github.com/mayuti)
+
+-------------------------
 
 
-
-
+### Contacto con Admnistrador
 
 [Administrador Vivencius](mailto:admin@vivencius.ar)
 
