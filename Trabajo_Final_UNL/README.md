@@ -59,7 +59,7 @@ Cronograma de Actualización
 -------------------------
 | Etapa | - | - | - | - |
 | -------------------------------- | ------------ | ------------ | ------------ | ------------ |
-| **Etapa 5:** <br> - **Nota:** El proyecto se extiende una semana más debido al requerimiento de codificación de algunas partes del proyecto y creación de nuevas secciones. <br> - Codificar en lenguaje __PHP, HTML y CSS__ la sección de exposición de vivencias. <br> - Colocar nueva tabla en la estructura de la base de datos Wordpress. <br> - Realizar una programación de búsqueda de vivencias de acuerdo a la descripción con la que fueron cargadas. <br> - Codificar en lenguaje __PHP, HTML y CSS__ toda la sección de Ayuda, Código de Conducta, Política de Privacidad y formulario de Contacto (adicional al actual). <br> - Embeber lenguaje __PHP__ en __HTML__ y utilizar funciones de WordPress dentro de las páginas que serán creadas. <br>| - | - | - | - |
+| **Etapa 5:** <br> - **Nota:** El proyecto se extiende una semana más debido al requerimiento de codificación de algunas partes del proyecto y creación de nuevas secciones. <br> - Codificar en lenguaje __PHP__, __HTML__ y __CSS__ la sección de exposición de vivencias. <br> - Colocar nueva tabla en la estructura de la base de datos Wordpress. <br> - Realizar una programación de búsqueda de vivencias de acuerdo a la descripción con la que fueron cargadas. <br> - Codificar en lenguaje __PHP__, __HTML__ y __CSS__ toda la sección de Ayuda, Código de Conducta, Política de Privacidad y formulario de Contacto (adicional al actual). <br> - Embeber lenguaje __PHP__ en __HTML__ y utilizar funciones de WordPress dentro de las páginas que serán creadas. <br>| - | - | - | - |
 
 
 
@@ -92,50 +92,50 @@ Referencias
 Experiencias adquiridas durante el desarrollo y la puesta en producción del sitio.
 -------------------------
 
-**Etapas 1, 2, 3, 4:**
+### Etapas 1, 2, 3, 4: <br>
 
-* Inicios en la exploración de WordPress:
+**Inicios en la exploración de WordPress:**
 - Inicialmente, me adentré en el mundo de WordPress, comenzando por la elección de una plantilla que se ajustara a mis necesidades.
 
-* Configuración del entorno local:
+**Configuración del entorno local:**
 - Después de seleccionar la plantilla ideal, opté por trabajar en un entorno local. Esta decisión se basó en la necesidad de evitar requisitos innecesarios y costos desconocidos al utilizar herramientas externas.
 
-* Investigación y consultas:
+**Investigación y consultas:**
 - Investigué a fondo el proceso para aclarar dudas específicas sobre WordPress y su uso local.
 
-* Instalación y configuración:
+**Instalación y configuración:**
 - Luego de instalar XAMPP, procedí a instalar WordPress localmente. Configuré el entorno y elegí los plugins recomendados para potenciar el desarrollo.
 
-* Desafíos y ajustes constantes:
+**Desafíos y ajustes constantes:**
 - En la fase de diseño, enfrenté desafíos al configurar widgets, imaginando el contenido de cada sección y ajustando detalles según surgían nuevas ideas. Este proceso requería pausas estratégicas para adquirir conocimientos necesarios.
 
-* Elementor y diseño creativo:
+**Elementor y diseño creativo:**
 - Diariamente, realicé pruebas con Elementor para diseñar y adaptar el tema elegido a las necesidades del proyecto, combinando configuraciones de WordPress, plugins del tema y Elementor.
 
-* Integración de videos en Peertube:
+**Integración de videos en Peertube:**
 - Exploré la carga de videos en Peertube. Se creo una sección con exposiciones TED y TEDx. También se establecieron políticas de privacidad y código de conducta.
 
-* Expansión del sitio:
+**Expansión del sitio:**
 - Se diseñaron secciones de experiencias en video y se realizaron pruebas de contacto con cooperativas, blogs y portales de conferencias.
 
-* Repositorio en Github:
+**Repositorio en Github:**
 - Subí el proyecto a Github, creando un README.md detallado y compartiendo la estructura local mediante sentencias SQL.
 
-* Elección de proveedor de alojamiento:
+**Elección de proveedor de alojamiento:**
 - Después de investigar opciones, opté por un proveedor argentino, Donweb, que permitía pagos mensuales y brindaba soporte local.
 
-* Lanzamiento del sitio:
+**anzamiento del sitio:**
 - Tras aprender a trasladar WordPress de lo local a la nube, configuré direcciones de correo personalizadas y publiqué el sitio en línea, continuando con ajustes generales.
 
-* Presencia en redes sociales:
+**Presencia en redes sociales:**
 - Establecí cuentas en Twitter, Instagram y TikTok, y realicé ajustes en el portal, incluyendo cambios de imágenes y redacciones.
 
-* Retroalimentación y mejoras:
+**Retroalimentación y mejoras:**
 - Finalicé el logo, lo compartí en redes sociales, actualicé el repositorio en Github y solicité opiniones a personas cercanas mediante diferentes dispositivos.
 
 -------------------------
 
-**Etapa 5:** <br>
+### Etapa 5: <br>
 
 **1. Separación de estructuras en compilado.php:**
 - Se crea un archivo compilado.php personalizado que se separa de la estructura principal del tema.
