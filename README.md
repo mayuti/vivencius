@@ -44,7 +44,7 @@ Si deseas contribuir al desarrollo de este portal, ya sea en su diseño gráfico
 
 * Cuando clones el repositorio en tu equipo local, tendrás disponible el archivo de la base de datos `c2122128_wordpre.sql.gz`, comprimido para que puedas importarlo directamente. De esta manera, este proceso no debería generar errores por exceso en el tiempo de ejecución.
 
-* Debes configurar en ___PhpMyAdmin___ un usuario y clave para el acceso a la base de datos, si aún no lo has hecho, para que puedas realizar todas las operaciones que requiere Wordpress.
+* Debes configurar en __PhpMyAdmin__ un usuario y clave para el acceso a la base de datos, si aún no lo has hecho, para que puedas realizar todas las operaciones que requiere Wordpress.
 
 * Recuerda configurar correctamente el archivo `wp-config.php` dentro del proyecto en las líneas `define( 'DB_USER', 'admin' );` con el usuario y define`( 'DB_PASSWORD', 'admin1234' );` con la contraseña correcta que hayas establecido para el usuario mencionado en el punto anterior.
 
