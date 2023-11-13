@@ -55,8 +55,9 @@ Cronograma
 | **Etapa 3:** <br> - Buscar y colocar contenido como fotos, videos, textos y animaciones de licencias permisivas. <br> - Contacto con cooperativa, blog, portal de conferencias sobre la iniciativa del portal. <br> - Diseñar logo del sitio y eslogan. <br> - Búsqueda de proveedor de alojamiento y dominio web. <br> - Registro de dominio vivencius.ar. <br> **Nota:** Puede extenderse una semana más del mes si no resulta fácil obtener ciertos recursos. | - | X | X | - |
 | **Etapa 4:** <br> - Subir al hosting todo el contenido y poner en línea http://vivencius.ar. <br> - Crear usuario vivencius en redes sociales Instagram, Twitter y TikTok. <br> - Difundir sitio web en diferentes redes sociales, comunidades, foros, etc..   | - | - | - | X |
 
-
-
+Cronograma de Actualización
+-------------------------
+| **Etapa 3 bis:** <br> - **Nota:** El proyecto se extiende una semana más, como estaba estipulado, debido al requerimiento de codificación de algunas partes del proyecto y creación de nuevas secciones. <br> - Codificar en lenguaje ___PHP, HTML y CSS___ la sección de exposición de vivencias. <br> - Colocar nueva tabla en la estructura de la base de datos Wordpress. <br> - Realizar una programación de búsqueda de vivencias de acuerdo a la descripción con la que fueron cargadas. <br> - Codificar en lenguaje ___PHP, HTML y CSS___ toda la sección de Ayuda, Código de Conducta, Política de Privacidad y formulario de Contacto (adicional al actual). | - | X | X | - |
 
 
 
