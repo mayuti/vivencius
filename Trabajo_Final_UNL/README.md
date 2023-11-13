@@ -92,51 +92,53 @@ Referencias
 Experiencias adquiridas durante el desarrollo y la puesta en producción del sitio.
 -------------------------
 
+**Etapas 1, 2, 3, 4:**
+
 * Inicios en la exploración de WordPress:
-    Inicialmente, me adentré en el mundo de WordPress, comenzando por la elección de una plantilla que se ajustara a mis necesidades.
+    - Inicialmente, me adentré en el mundo de WordPress, comenzando por la elección de una plantilla que se ajustara a mis necesidades.
 
 * Configuración del entorno local:
-    Después de seleccionar la plantilla ideal, opté por trabajar en un entorno local. Esta decisión se basó en la necesidad de evitar requisitos innecesarios y costos desconocidos al utilizar herramientas externas.
+    - Después de seleccionar la plantilla ideal, opté por trabajar en un entorno local. Esta decisión se basó en la necesidad de evitar requisitos innecesarios y costos desconocidos al utilizar herramientas externas.
 
 * Investigación y consultas:
-    Investigué a fondo el proceso, utilizando herramientas como chatGPT para aclarar dudas específicas sobre WordPress y su uso local.
+    - Investigué a fondo el proceso, utilizando herramientas como chatGPT para aclarar dudas específicas sobre WordPress y su uso local.
 
 * Instalación y configuración:
-    Luego de instalar XAMPP, procedí a instalar WordPress localmente. Configuré el entorno y elegí los plugins recomendados para potenciar el desarrollo.
+    - Luego de instalar XAMPP, procedí a instalar WordPress localmente. Configuré el entorno y elegí los plugins recomendados para potenciar el desarrollo.
 
 * Desafíos y ajustes constantes:
-    En la fase de diseño, enfrenté desafíos al configurar widgets, imaginando el contenido de cada sección y ajustando detalles según surgían nuevas ideas. Este proceso requería pausas estratégicas para adquirir conocimientos necesarios.
+    - En la fase de diseño, enfrenté desafíos al configurar widgets, imaginando el contenido de cada sección y ajustando detalles según surgían nuevas ideas. Este proceso requería pausas estratégicas para adquirir conocimientos necesarios.
 
 * Elementor y diseño creativo:
-    Diariamente, realicé pruebas con Elementor para diseñar y adaptar el tema elegido a las necesidades del proyecto, combinando configuraciones de WordPress, plugins del tema y Elementor.
+    - Diariamente, realicé pruebas con Elementor para diseñar y adaptar el tema elegido a las necesidades del proyecto, combinando configuraciones de WordPress, plugins del tema y Elementor.
 
 * Integración de videos en Peertube:
-    Exploré la carga de videos en Peertube, creando una sección con exposiciones TED y TEDx. También se establecieron políticas de privacidad y código de conducta.
+    - Exploré la carga de videos en Peertube, creando una sección con exposiciones TED y TEDx. También se establecieron políticas de privacidad y código de conducta.
 
 * Expansión del sitio:
-    Se diseñaron secciones de experiencias en video y texto, y se realizaron pruebas de contacto con cooperativas, blogs y portales de conferencias.
+    - Se diseñaron secciones de experiencias en video y texto, y se realizaron pruebas de contacto con cooperativas, blogs y portales de conferencias.
 
 * Repositorio en Github:
-    Subí el proyecto a Github, creando un README.md detallado y compartiendo la estructura local mediante sentencias SQL.
+    - Subí el proyecto a Github, creando un README.md detallado y compartiendo la estructura local mediante sentencias SQL.
 
 * Elección de proveedor de alojamiento:
-    Después de investigar opciones, opté por un proveedor argentino, Donweb, que permitía pagos mensuales y brindaba soporte local.
+    - Después de investigar opciones, opté por un proveedor argentino, Donweb, que permitía pagos mensuales y brindaba soporte local.
 
 * Lanzamiento del sitio:
-    Tras aprender a trasladar WordPress de lo local a la nube, configuré direcciones de correo personalizadas y publiqué el sitio en línea, continuando con ajustes generales.
+    - Tras aprender a trasladar WordPress de lo local a la nube, configuré direcciones de correo personalizadas y publiqué el sitio en línea, continuando con ajustes generales.
 
 * Presencia en redes sociales:
-    Establecí cuentas en Twitter, Instagram y TikTok, y realicé ajustes en el portal, incluyendo cambios de imágenes y redacciones.
+    - Establecí cuentas en Twitter, Instagram y TikTok, y realicé ajustes en el portal, incluyendo cambios de imágenes y redacciones.
 
 * Retroalimentación y mejoras:
-    Finalicé el logo, lo compartí en redes sociales, actualicé el repositorio en Github y solicité opiniones a personas cercanas mediante diferentes dispositivos.
+    - Finalicé el logo, lo compartí en redes sociales, actualicé el repositorio en Github y solicité opiniones a personas cercanas mediante diferentes dispositivos.
 
 * Promoción en línea:
-    Lanzamiento oficial en redes sociales para dar a conocer el proyecto.
+    - Lanzamiento oficial en redes sociales para dar a conocer el proyecto.
 
 -------------------------
 
-**Etapa 3 bis:**
+**Etapa 5:**
 
 * Se crea una web vivencias.php personalizada que se separa de la estructura principal del tema, aunque se siguen utilizando la cabecera y pie de la plantilla llamándolas con las funciones correspondientes de Wordpress
 
