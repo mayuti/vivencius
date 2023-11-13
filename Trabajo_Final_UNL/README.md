@@ -135,7 +135,8 @@ Experiencias adquiridas durante el desarrollo y la puesta en producción del sit
 
 -------------------------
 
-**Etapa 5:**
+**Etapa 5:** <br>
+
 **1. Separación de estructuras en compilado.php:**
 - Se crea un archivo compilado.php personalizado que se separa de la estructura principal del tema.
     Aunque se llama a funciones predefinidas de WordPress para la cabecera y el pie de página, asegurándose de no afectar el estilo general de la web.
