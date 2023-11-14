@@ -91,7 +91,7 @@ Referencias
 
 Experiencias adquiridas durante el desarrollo y la puesta en producción del sitio.
 -------------------------
-<br>
+<hr>
 
 ### Etapas 1, 2, 3, 4: <br>
 
