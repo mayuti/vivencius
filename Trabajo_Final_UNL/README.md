@@ -132,7 +132,7 @@ Referencias
 **Retroalimentación y mejoras:**
 - Finalicé el logo, lo compartí en redes sociales, actualicé el repositorio en Github y solicité opiniones a personas cercanas mediante diferentes dispositivos.
 
--------------------------
+<br>
 
 ### Etapa 5: <br>
 
