@@ -91,8 +91,6 @@ Referencias
 
 ## Experiencias adquiridas durante el desarrollo y la puesta en producción del sitio.
 
-<hr>
-
 ### Etapas 1, 2, 3, 4: <br>
 
 **Inicios en la exploración de WordPress:**
